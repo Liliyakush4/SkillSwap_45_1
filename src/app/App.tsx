@@ -1,3 +1,5 @@
+import  AppRouter  from './router/router';
+
 export default function App() {
-  return <div>SkillSwap</div>;
+  return <AppRouter />;;
 }
