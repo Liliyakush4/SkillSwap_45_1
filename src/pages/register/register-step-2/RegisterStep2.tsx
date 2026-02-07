@@ -1,3 +1,7 @@
 export default function RegisterStep2() {
-  return <div>RegisterStep2</div>;
+      return (
+    <div>
+      <h1>Шаг регистрации 2</h1>
+    </div>
+  );
 }
