@@ -11,6 +11,8 @@ import FavoritesPage from '../../pages/favorites/FavoritesPage';
 import ErrorPage404 from '../../pages/error404/ErrorPage404';
 import ErrorPage500 from '../../pages/error500/ErrorPage500';
 
+import MainLayout from '../layouts/MainLayout'; // добавила импорт скелета
+
 export default function AppRouter() {
   return (
     <Routes>
@@ -36,6 +38,9 @@ export default function AppRouter() {
 
       {/* Неизвестные URL */}
       <Route path="*" element={<Navigate to="/404" replace />} />
+
+      { /* layout-скелет */}
+      <Route path="/" element={<MainLayout />}></Route>
     </Routes>
   );
 }
