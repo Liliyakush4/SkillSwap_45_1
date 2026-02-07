@@ -1,5 +1,5 @@
 export default function MainPage() {
-     return (
+  return (
     <div>
       <h1>Главная страница</h1>
     </div>

@@ -1,5 +1,5 @@
 export default function SkillPage() {
-    return (
+  return (
     <div>
       <h1>Страница навыка</h1>
     </div>

@@ -1,7 +1,7 @@
 export default function ErrorPage500() {
-      return (
+  return (
     <div>
       <h1>Страница ошибки 500</h1>
     </div>
-  );;
+  );
 }

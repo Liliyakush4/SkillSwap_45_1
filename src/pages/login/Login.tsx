@@ -1,5 +1,5 @@
 export default function Login() {
-    return (
+  return (
     <div>
       <h1>Страница авторизации Login</h1>
     </div>

@@ -1,5 +1,5 @@
 export default function FavoritesPage() {
-      return (
+  return (
     <div>
       <h1>Избранное</h1>
     </div>
