@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 
+import MainLayout from '../layouts/MainLayout';
 import MainPage from '../../pages/main-page/MainPage';
 import Login from '../../pages/login/Login';
 import RegisterStep1 from '../../pages/register/register-step-1/RegisterStep1';
@@ -11,11 +12,12 @@ import FavoritesPage from '../../pages/favorites/FavoritesPage';
 import ErrorPage404 from '../../pages/error404/ErrorPage404';
 import ErrorPage500 from '../../pages/error500/ErrorPage500';
 
-import MainLayout from '../layouts/MainLayout'; // добавила импорт скелета
-
 export default function AppRouter() {
   return (
     <Routes>
+      {/* структрурная страница  */}
+      <Route path="/" element={<MainLayout />}></Route>
+
       {/* Главная */}
       <Route path="/" element={<MainPage />} />
 
@@ -39,8 +41,6 @@ export default function AppRouter() {
       {/* Неизвестные URL */}
       <Route path="*" element={<Navigate to="/404" replace />} />
 
-      { /* layout-скелет */}
-      <Route path="/" element={<MainLayout />}></Route>
     </Routes>
   );
 }
