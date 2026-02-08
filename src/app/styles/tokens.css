@@ -1,50 +1,57 @@
 :root {
- /* ===========================================
+  /* ===========================================
      Цветовая палитра
      =========================================== */
 
-     /* Основные цвет */
+  /* Основные цвет */
 
-    --color-bg: #F9FAF7; /*цвет фона */
-    --color-text: #253017; /* цвет текста */
-    --color-primary: #ABD27A; /* по сути цвет кнопок, элементов */
-    --color-secondary: #FFFFFF; /* цвет карточек, цвет фона в шапке и в футере */
-    --color-accent: #508826; /* акцентный цвет для выбранного чкбокса */
-    --color-border: #69735D; /* для бордера , например в форме регистрации/авторизации */
-    --color-error: #BF3920; /* цвет ошибки */ 
+  --color-bg: #f9faf7; /*цвет фона */
+  --color-text: #253017; /* цвет текста */
+  --color-primary: #abd27a; /* по сути цвет кнопок, элементов */
+  --color-secondary: #ffffff; /* цвет карточек, цвет фона в шапке и в футере */
+  --color-accent: #508826; /* акцентный цвет для выбранного чкбокса */
+  --color-border: #69735d; /* для бордера , например в форме регистрации/авторизации */
+  --color-error: #bf3920; /* цвет ошибки */
 
-    --color-disable: #E4E8DF;
-    --color-hover: #DEEBC5;
+  --color-disable: #e4e8df;
+  --color-hover: #deebc5;
 
-    --color-tag-englih: #EBE5C5;
-    --color-tag-business: #EEE7F7;
-    --color-tag-creativity: #F7E7F2;
-    --color-tag-education: #E7F2F6;
-    --color-tag-home: #F7EBE5;
-    --color-tag-health: #E9F7E7;
-    --color-tag-plus: #E8ECF7;
+  --color-tag-englih: #ebe5c5;
+  --color-tag-business: #eee7f7;
+  --color-tag-creativity: #f7e7f2;
+  --color-tag-education: #e7f2f6;
+  --color-tag-home: #f7ebe5;
+  --color-tag-health: #e9f7e7;
+  --color-tag-plus: #e8ecf7;
 
-    /* Шрифты - перепроверить с макетом */
-    --font-family-primary: 'Jost', sans-serif;
-    --font-family-base: 'Roboto', 'Regular', sans-serif;
+  /* Шрифты - перепроверить с макетом */
+  --font-family-primary: 'Jost', sans-serif;
+  --font-family-base: 'Roboto', 'Regular', sans-serif;
 
-    /* Размеры */
+  /* Размеры */
 
-    --font-size-base: 1rem;    /* 16px по умолчанию */
-    --font-size-sm: 0.875rem;      /* 14px при базовом 16px */
-  
+  --font-size-base: 1rem; /* 16px по умолчанию */
+  --font-size-sm: 0.875rem; /* 14px при базовом 16px */
+
   /* Адаптивные заголовки с clamp() */
-    --font-size-h1: clamp(2rem, 5vw, 2.5rem);     /* Минимум 32px, максимум 40px */
-    --font-size-h2: clamp(1.5rem, 4vw, 2rem);   /* Минимум 24px, максимум 32px */
-    --font-size-h3: clamp(1.25rem, 3vw, 1.5rem); /* минимум 20px, максимум 24px - добавлено на всякий случай */
-    --font-size-h4: clamp(1rem, 2vw, 1.5rem); /* минимум 16px, максимум 24px - добавлено на всякий случай */
-
+  --font-size-h1: clamp(2rem, 5vw, 2.5rem); /* Минимум 32px, максимум 40px */
+  --font-size-h2: clamp(1.5rem, 4vw, 2rem); /* Минимум 24px, максимум 32px */
+  --font-size-h3: clamp(
+    1.25rem,
+    3vw,
+    1.5rem
+  ); /* минимум 20px, максимум 24px - добавлено на всякий случай */
+  --font-size-h4: clamp(
+    1rem,
+    2vw,
+    1.5rem
+  ); /* минимум 16px, максимум 24px - добавлено на всякий случай */
 
   /* Межстрочные интервалы (безразмерные значения) */
-    --line-height-base: 1.5rem;       /* Базовый межстрочный интервал */
+  --line-height-base: 1.5rem; /* Базовый межстрочный интервал */
 
   /* Насыщенность шрифта */
-    --font-weight-regular: 400;    /* Обычное начертание */
-    --font-weight-medium: 500;     /* Среднее начертание */
-    --font-weight-bold: 600;       /* Жирное начертание */
+  --font-weight-regular: 400; /* Обычное начертание */
+  --font-weight-medium: 500; /* Среднее начертание */
+  --font-weight-bold: 600; /* Жирное начертание */
 }
