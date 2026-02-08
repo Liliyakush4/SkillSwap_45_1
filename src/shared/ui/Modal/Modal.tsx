@@ -5,12 +5,13 @@ import styles from './Modal.module.css';
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
-  children: ReactNode;
+  icon?: ReactNode;
   title?: string;
+  text?: string;
   className?: string;
 }
 
-export const Modal: FC<ModalProps> = ({ isOpen, onClose, children, title, className }) => {
+export const Modal: FC<ModalProps> = ({ isOpen, onClose, icon, title, text, className }) => {
   const modalRoot = document.getElementById('modal-root') as HTMLElement;
 
   useEffect(() => {
@@ -48,21 +49,24 @@ export const Modal: FC<ModalProps> = ({ isOpen, onClose, children, title, classN
         role="dialog"
         aria-modal="true"
       >
-        {/* Заголовок */}
-        {title && <h2 className={styles.title}>{title}</h2>}
+        {/* Первый блок: иконка */}
+        <div className={styles.iconBlock}>
+          {icon}
+        </div>
 
-        {/* Основной контент */}
-        <div className={styles.content}>{children}</div>
-
-        {/* Кнопка закрытия */}
-        <button
-          className={styles.closeButton}
-          type="button"
-          onClick={onClose}
-          data-testid='modal-close-button'
-        >
-          Закрыть
-        </button>
+        {/* Второй блок: заголовок, текст и кнопка */}
+        <div className={styles.contentBlock}>
+          {title && <h2 className={styles.title}>{title}</h2>}
+          {text && <p className={styles.text}>{text}</p>}
+          <button
+            className={styles.closeButton} /*пока ставлю такой стиль, т.к. не готовы кнопки и если что поправлю */
+            type="button"
+            onClick={onClose}
+            data-testid='modal-close-button'
+          >
+            Готово
+          </button>
+        </div>
       </div>
     </div>,
     modalRoot
