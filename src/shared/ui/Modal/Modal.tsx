@@ -12,16 +12,21 @@ interface ModalProps {
 }
 
 export const Modal: FC<ModalProps> = ({ isOpen, onClose, icon, title, text, className }) => {
-  const modalRoot = document.getElementById('modal-root') as HTMLElement;
+  const modalRoot = document.getElementById('modal-root');
+
+  if (!modalRoot) {
+    console.error("Элемент с id 'modal-root' не найден в DOM");
+    return null;
+  }
 
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+    if (!isOpen) return;
+
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
     return () => {
-      document.body.style.overflow = '';
+      document.body.style.overflow = prevOverflow;
     };
   }, [isOpen]);
 
@@ -59,7 +64,7 @@ export const Modal: FC<ModalProps> = ({ isOpen, onClose, icon, title, text, clas
           {title && <h2 className={styles.title}>{title}</h2>}
           {text && <p className={styles.text}>{text}</p>}
           <button
-            className={styles.closeButton} /*пока ставлю такой стиль, т.к. не готовы кнопки и если что поправлю */
+            className={styles.closeButton} /*пока такой стиль, жду как сделают кнопки и если что переделаю */
             type="button"
             onClick={onClose}
             data-testid='modal-close-button'
