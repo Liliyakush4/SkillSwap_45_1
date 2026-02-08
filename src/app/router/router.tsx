@@ -15,32 +15,32 @@ import ErrorPage500 from '../../pages/error500/ErrorPage500';
 export default function AppRouter() {
   return (
     <Routes>
-      {/* структрурная страница  */}
-      <Route path="/" element={<MainLayout />}></Route>
-
+      {/* Родительский route с MainLayout */}
+      <Route path="/" element={<MainLayout />}>
+      
       {/* Главная */}
-      <Route path="/" element={<MainPage />} />
+        <Route index element={<MainPage />} />
 
-      {/* Авторизация */}
-      <Route path="/auth/login" element={<Login />} />
+        {/* Авторизация */}
+        <Route path="auth/login" element={<Login />} />
 
-      {/* Регистрация */}
-      <Route path="/auth/register/step-1" element={<RegisterStep1 />} />
-      <Route path="/auth/register/step-2" element={<RegisterStep2 />} />
-      <Route path="/auth/register/step-3" element={<RegisterStep3 />} />
+        {/* Регистрация */}
+        <Route path="auth/register/step-1" element={<RegisterStep1 />} />
+        <Route path="auth/register/step-2" element={<RegisterStep2 />} />
+        <Route path="auth/register/step-3" element={<RegisterStep3 />} />
 
-      {/* Основные страницы */}
-      <Route path="/skill/:id" element={<SkillPage />} />
-      <Route path="/profile" element={<ProfilePage />} />
-      <Route path="/favorites" element={<FavoritesPage />} />
+        {/* Основные страницы */}
+        <Route path="skill/:id" element={<SkillPage />} />
+        <Route path="profile" element={<ProfilePage />} />
+        <Route path="favorites" element={<FavoritesPage />} />
 
-      {/* Ошибки */}
-      <Route path="/404" element={<ErrorPage404 />} />
-      <Route path="/500" element={<ErrorPage500 />} />
+        {/* Страницы ошибок */}
+        <Route path="404" element={<ErrorPage404 />} />
+        <Route path="500" element={<ErrorPage500 />} />
 
-      {/* Неизвестные URL */}
-      <Route path="*" element={<Navigate to="/404" replace />} />
-
+        {/* Неизвестные URL */}
+        <Route path="*" element={<Navigate to="/404" replace />} />
+      </Route>
     </Routes>
   );
 }
