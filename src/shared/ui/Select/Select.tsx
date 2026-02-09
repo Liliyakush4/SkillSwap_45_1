@@ -40,7 +40,11 @@ export function Select({
     <div className={styles.wrapper} ref={ref}>
       {label && <div className={styles.label}>{label}</div>}
       <div 
-        className={`${styles.trigger} ${error ? styles.error : ''} ${disabled ? styles.disabled : ''}`}
+        className={[
+          styles.trigger,
+          error && styles.triggerError,
+          disabled && styles.triggerDisabled,
+        ].filter(Boolean).join(' ')}
         onClick={() => !disabled && setIsOpen(!isOpen)}
         tabIndex={disabled ? -1 : 0}
       >
