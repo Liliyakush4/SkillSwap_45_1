@@ -1,0 +1,44 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text);
+}
+
+.input {
+  margin: 0;
+}
+
+/* Focus состояние*/
+.input:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Disabled состояние*/
+.disabled .label {
+  opacity: 0.5;
+  cursor: not-allowed;
+  color: var(--color-disable);
+}
+
+.input:disabled {
+  cursor: not-allowed;
+}
+
+.error {
+  color: var(--color-error);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  margin-top: 4px;
+}
