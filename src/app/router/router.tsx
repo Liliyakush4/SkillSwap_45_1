@@ -12,6 +12,8 @@ import FavoritesPage from '../../pages/favorites/FavoritesPage';
 import ErrorPage404 from '../../pages/error404/ErrorPage404';
 import ErrorPage500 from '../../pages/error500/ErrorPage500';
 
+import { AuthLayout } from '../layouts/AuthLayout';
+
 export default function AppRouter() {
   return (
     <Routes>

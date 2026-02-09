@@ -1,0 +1,40 @@
+.root {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--color-bg);
+}
+
+.closeButton {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+
+  padding: 8px 12px;
+
+  background: #ffffff;
+  border: none;
+  border-radius: 12px;
+
+  font-size: 14px;
+  cursor: pointer;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.closeButton:hover {
+  opacity: 0.8;
+}
+
+.content {
+  width: 100%;
+  max-width: 1200px;
+
+  display: flex;
+  justify-content: center;
+}
