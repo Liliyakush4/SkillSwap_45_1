@@ -16,7 +16,7 @@ export const AuthLayout = () => {
         <div className={styles.headerContent}>
           <div className={styles.logo}>
             <img src={logo} alt="SkillSwap Logo" className={styles.logoImg} />
-          SkillSwap
+            SkillSwap
           </div>
           <button
             type="button"

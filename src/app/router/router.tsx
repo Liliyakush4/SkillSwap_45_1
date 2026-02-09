@@ -19,18 +19,17 @@ export default function AppRouter() {
     <Routes>
       {/* Родительский route с MainLayout */}
       <Route path="/" element={<MainLayout />}>
-      
-      {/* Главная */}
+        {/* Главная */}
         <Route index element={<MainPage />} />
 
         {/* Авторизация */}
         <Route element={<AuthLayout />}>
-        <Route path="auth/login" element={<Login />} />
+          <Route path="auth/login" element={<Login />} />
 
-        {/* Регистрация */}
-        <Route path="auth/register/step-1" element={<RegisterStep1 />} />
-        <Route path="auth/register/step-2" element={<RegisterStep2 />} />
-        <Route path="auth/register/step-3" element={<RegisterStep3 />} />
+          {/* Регистрация */}
+          <Route path="auth/register/step-1" element={<RegisterStep1 />} />
+          <Route path="auth/register/step-2" element={<RegisterStep2 />} />
+          <Route path="auth/register/step-3" element={<RegisterStep3 />} />
         </Route>
 
         {/* Основные страницы */}
