@@ -1,21 +1,10 @@
 .container {
   position: relative;
-
   display: flex;
   flex-direction: column;
   width: 100%;
   min-height: 100vh;
-
   background-color: var(--color-bg);
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-weight: 600;
-  font-size: 24px;
-  line-height: 32px;
 }
 
 .header {
@@ -31,42 +20,15 @@
   margin: 0 auto;
 }
 
-.logoImg {
-  width: auto;
-  height: 40px;
-}
-
 .closeButton {
-
   display: flex;
   align-items: center;
-  gap: 8px;
-  border: none;
-  border-radius: 12px;
-
-
-  padding: 12px 24px;
-
-  color: #253017;
-
-  font-size: 16px;
-  line-height: 24px;
-
-  background: #ffffff;
-}
-
-.closeButton:hover {
-  opacity: 0.8;
+  border: none !important;
 }
 
 .content {
-
   display: flex;
   flex: 1;
   justify-content: center;
   align-items: center;
-}
-.icon {
-  width: 24px;
-  height: 24px;
 }

@@ -2,6 +2,8 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import styles from './AuthLayout.module.css';
 import CloseIcon from '../../../shared/assets/icons/ui/icon_close.svg';
 import logo from '../../../shared/assets/images/common/header_logo.svg';
+import { Logo } from '../../../shared/ui/Logo';
+import { Button } from '../../../shared/ui/Button';
 
 export const AuthLayout = () => {
   const navigate = useNavigate();
@@ -14,19 +16,17 @@ export const AuthLayout = () => {
     <div className={styles.container}>
       <header className={styles.header}>
         <div className={styles.headerContent}>
-          <div className={styles.logo}>
-            <img src={logo} alt="SkillSwap Logo" className={styles.logoImg} />
-            SkillSwap
-          </div>
-          <button
+          <Logo />
+          <Button
             type="button"
-            aria-label="Закрыть"
+            variant="secondary"
             className={styles.closeButton}
             onClick={handleClose}
+            aria-label="Закрыть"
           >
             Закрыть
             <img src={CloseIcon} alt="" aria-hidden="true" className={styles.icon} />
-          </button>
+          </Button>
         </div>
       </header>
 

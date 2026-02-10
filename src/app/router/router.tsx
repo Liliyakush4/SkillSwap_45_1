@@ -17,20 +17,21 @@ import { AuthLayout } from '../layouts/AuthLayout';
 export default function AppRouter() {
   return (
     <Routes>
-      {/* Родительский route с MainLayout */}
+      {/* Auth-ветка без Header/Footer */}
+      <Route path="/auth" element={<AuthLayout />}>
+        {/* если зашли на /auth */}
+        <Route index element={<Navigate to="/auth/login" replace />} />
+
+        <Route path="login" element={<Login />} />
+        <Route path="register/step-1" element={<RegisterStep1 />} />
+        <Route path="register/step-2" element={<RegisterStep2 />} />
+        <Route path="register/step-3" element={<RegisterStep3 />} />
+      </Route>
+
+      {/* Основная часть с Header/Footer */}
       <Route path="/" element={<MainLayout />}>
         {/* Главная */}
         <Route index element={<MainPage />} />
-
-        {/* Авторизация */}
-        <Route element={<AuthLayout />}>
-          <Route path="auth/login" element={<Login />} />
-
-          {/* Регистрация */}
-          <Route path="auth/register/step-1" element={<RegisterStep1 />} />
-          <Route path="auth/register/step-2" element={<RegisterStep2 />} />
-          <Route path="auth/register/step-3" element={<RegisterStep3 />} />
-        </Route>
 
         {/* Основные страницы */}
         <Route path="skill/:id" element={<SkillPage />} />
