@@ -5,13 +5,11 @@ import styles from './Modal.module.css';
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
-  icon?: ReactNode;
-  title?: string;
-  text?: string;
+  children?: ReactNode;
   className?: string;
 }
 
-export const Modal: FC<ModalProps> = ({ isOpen, onClose, icon, title, text, className }) => {
+export const Modal: FC<ModalProps> = ({ isOpen, onClose, children, className }) => {
   const modalRoot = document.getElementById('modal-root');
 
   if (!modalRoot) {
@@ -54,23 +52,12 @@ export const Modal: FC<ModalProps> = ({ isOpen, onClose, icon, title, text, clas
         role="dialog"
         aria-modal="true"
       >
-        {/* Первый блок: иконка */}
         <div className={styles.iconBlock}>
-          {icon}
+          {/* Можно вставлять иконки через children или отдельное место, если нужно */}
         </div>
 
-        {/* Второй блок: заголовок, текст и кнопка */}
         <div className={styles.contentBlock}>
-          {title && <h2 className={styles.title}>{title}</h2>}
-          {text && <p className={styles.text}>{text}</p>}
-          <button
-            className={styles.closeButton} /*пока такой стиль, жду как сделают кнопки и если что переделаю */
-            type="button"
-            onClick={onClose}
-            data-testid='modal-close-button'
-          >
-            Готово
-          </button>
+          {children}
         </div>
       </div>
     </div>,
