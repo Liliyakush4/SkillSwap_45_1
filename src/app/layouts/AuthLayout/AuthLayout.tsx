@@ -7,7 +7,7 @@ export const AuthLayout = () => {
   const navigate = useNavigate();
 
   const handleClose = () => {
-    navigate('/');
+    navigate('/', { replace: true });
   };
 
   return (

@@ -25,7 +25,8 @@
 .headerContent {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  /* align-items: center; */
+  align-items: flex-end;
   max-width: 1200px;
   margin: 0 auto;
 }
