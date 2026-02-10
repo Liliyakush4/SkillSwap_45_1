@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: center;
   padding: 12px 24px;
-  border-radius: 8px;
+  border-radius: 12px;
   border: none;
   font-size: var(--font-size-base, 1rem);
   font-weight: var(--font-weight-medium, 500);
