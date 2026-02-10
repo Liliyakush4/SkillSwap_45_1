@@ -87,3 +87,21 @@ button {
   margin: 0 auto;
   padding: 0 1rem;
 }
+
+
+/* Специальные стили при ширине ровно 320px */
+@media (max-width: 320px) {
+  .container {
+    width: 100%;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 324px;
+    height: 368px;
+  }
+
+  .header {
+    display: block;
+  }
+}
