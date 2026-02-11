@@ -19,30 +19,48 @@ const Footer: React.FC<FooterProps> = () => {
         </div>
 
         <div className={styles.column}>
-          <button type="button" className={styles.linkButton}>
-            О проекте
-          </button>
-          <button type="button" className={styles.linkButton}>
-            Все навыки
-          </button>
+          <ul className={styles.navList}>
+            <li className={styles.navItem}>
+              <button type="button" className={styles.navButton}>
+                О проекте
+              </button>
+            </li>
+            <li className={styles.navItem}>
+              <button type="button" className={styles.navButton}>
+                Все навыки
+              </button>
+            </li>
+          </ul>
         </div>
 
         <div className={styles.column}>
-          <button type="button" className={styles.linkButton}>
-            Контакты
-          </button>
-          <button type="button" className={styles.linkButton}>
-            Блог
-          </button>
+          <ul className={styles.navList}>
+            <li className={styles.navItem}>
+              <button type="button" className={styles.navButton}>
+                Контакты
+              </button>
+            </li>
+            <li className={styles.navItem}>
+              <button type="button" className={styles.navButton}>
+                Блог
+              </button>
+            </li>
+          </ul>
         </div>
 
         <div className={styles.column}>
-          <button type="button" className={styles.linkButton}>
-            Политика конфиденциальности
-          </button>
-          <button type="button" className={styles.linkButton}>
-            Пользовательское соглашение
-          </button>
+          <ul className={styles.navList}>
+            <li className={styles.navItem}>
+              <button type="button" className={styles.navButton}>
+                Политика конфиденциальности
+              </button>
+            </li>
+            <li className={styles.navItem}>
+              <button type="button" className={styles.navButton}>
+                Пользовательское соглашение
+              </button>
+            </li>
+          </ul>
         </div>
       </div>
     </footer>
