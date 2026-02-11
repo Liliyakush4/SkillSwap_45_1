@@ -18,7 +18,7 @@ export const AuthLayout = () => {
           <Logo />
           <Button
             type="button"
-            variant="secondary"
+            variant="ghost"
             className={styles.closeButton}
             onClick={handleClose}
             aria-label="Закрыть"
