@@ -1,0 +1,412 @@
+{
+  "skills": [
+    {
+      "id": 101, 
+      "title": "Проектное управление для новичков",
+      "categoryId": 1,
+      "subcategoryId": 7,
+      "ownerUserId": 1,
+      "description": "Разберем роли, планирование, риски и статусы. На примерах из реальных проектов."
+    },
+    {
+      "id": 102,
+      "title": "Йога и медитация для начинающих",
+      "categoryId": 6,
+      "subcategoryId": 36,
+      "ownerUserId": 3,
+      "description": "Мягкая практика, дыхание и расслабление. Подойдет, если давно хотел(а) начать."
+    },
+    {
+      "id": 103,
+      "title": "Фронтенд-разработка на HTML и CSS",
+      "categoryId": 5,
+      "subcategoryId": 32,
+      "ownerUserId": 3,
+      "description": "Основы HTML, CSS, создание адаптивных сайтов."
+    },
+    {
+      "id": 104,
+      "title": "Электроника и схемотехника",
+      "categoryId": 1,
+      "subcategoryId": 2,
+      "ownerUserId": 1,
+      "description": "Работа с микроконтроллерами, схемы, компоненты."
+    },
+    {
+      "id": 105,
+      "title": "Программирование микроконтроллеров",
+      "categoryId": 1,
+      "subcategoryId": 7,
+      "ownerUserId": 4,
+      "description": "Работа с Arduino, ESP8266 и др."
+    },
+    {
+      "id": 106,
+      "title": "Фотография для начинающих",
+      "categoryId": 4,
+      "subcategoryId": 23,
+      "ownerUserId": 1,
+      "description": "Основы композиции, съемки, настройка камеры."
+    },
+    {
+      "id": 107,
+      "title": "Кодирование на Python",
+      "categoryId": 1,
+      "subcategoryId": 3,
+      "ownerUserId": 6,
+      "description": "Базовые конструкции, работу с файлами и библиотеками."
+    },
+    {
+      "id": 108,
+      "title": "Создание контента для соцсетей",
+      "categoryId": 4,
+      "subcategoryId": 29,
+      "ownerUserId": 6,
+      "description": "Фото, видео, тексты для Instagram, TikTok."
+    },
+    {
+      "id": 109,
+      "title": "SMM и продвижение",
+      "categoryId": 1,
+      "subcategoryId": 2,
+      "ownerUserId": 7,
+      "description": "Продвижение в соцсетях, таргетинг."
+    },
+    {
+      "id": 110,
+      "title": "Английский язык для начинающих",
+      "categoryId": 2,
+      "subcategoryId": 9,
+      "ownerUserId": 7,
+      "description": "Базовая грамматика, разговорные фразы."
+    },
+    {
+      "id": 111,
+      "title": "Графический дизайн",
+      "categoryId": 4,
+      "subcategoryId": 22,
+      "ownerUserId": 8,
+      "description": "Работа с Photoshop, иллюстрации."
+    },
+    {
+      "id": 112,
+      "title": "Игра на гитаре",
+      "categoryId": 4,
+      "subcategoryId": 25,
+      "ownerUserId": 9,
+      "description": "Основы игры, аккорды, ритм."
+    },
+    {
+      "id": 113,
+      "title": "Кроссфит тренировки",
+      "categoryId": 6,
+      "subcategoryId": 36,
+      "ownerUserId": 10,
+      "description": "Интенсивные тренировки для силы и выносливости."
+    },
+    {
+      "id": 114,
+      "title": "Фитнес и здоровье",
+      "categoryId": 6,
+      "subcategoryId": 36,
+      "ownerUserId": 10,
+      "description": "Общие принципы здоровья, тренировки."
+    },
+    {
+      "id": 115,
+      "title": "Монтаж видео",
+      "categoryId": 4,
+      "subcategoryId": 24,
+      "ownerUserId": 11,
+      "description": "Adobe Premiere, DaVinci Resolve."
+    },
+    {
+      "id": 116,
+      "title": "Android-разработка",
+      "categoryId": 1,
+      "subcategoryId": 3,
+      "ownerUserId": 12,
+      "description": "Java, Kotlin, создание приложений."
+    },
+    {
+      "id": 117,
+      "title": "iOS-разработка",
+      "categoryId": 1,
+      "subcategoryId": 3,
+      "ownerUserId": 12,
+      "description": "Swift, Xcode, создание приложений."
+    },
+    {
+      "id": 118,
+      "title": "Шитье и рукоделие",
+      "categoryId": 4,
+      "subcategoryId": 28,
+      "ownerUserId": 13,
+      "description": "Создаем одежду, игрушки, аксессуары."
+    },
+    {
+      "id": 119,
+      "title": "Автоматизация производства",
+      "categoryId": 1,
+      "subcategoryId": 1,
+      "ownerUserId": 14,
+      "description": "Работа с PLC, SCADA."
+    },
+    {
+      "id": 120,
+      "title": "Автоматизация систем",
+      "categoryId": 1,
+      "subcategoryId": 3,
+      "ownerUserId": 14,
+      "description": "Настройка и программирование систем автоматизации."
+    },
+    {
+      "id": 121,
+      "title": "Рисование для начинающих",
+      "categoryId": 4,
+      "subcategoryId": 24,
+      "ownerUserId": 15,
+      "description": "Основы графики, техника рисования."
+    },
+    {
+      "id": 122,
+      "title": "Учусь играть на скрипке",
+      "categoryId": 4,
+      "subcategoryId": 29,
+      "ownerUserId": 16,
+      "description": "Обучение игре на скрипке, практика."
+    },
+    {
+      "id": 123,
+      "title": "Персональный тренинг по фитнесу",
+      "categoryId": 6,
+      "subcategoryId": 41,
+      "ownerUserId": 16,
+      "description": "Индивидуальные тренировки для начинающих."
+    },
+    {
+      "id": 124,
+      "title": "Создание видеоблогов",
+      "categoryId": 4,
+      "subcategoryId": 28,
+      "ownerUserId": 17,
+      "description": "Видеоблогинг, монтаж, сценарии."
+    },
+    {
+      "id": 125,
+      "title": "Монтаж видео для YouTube",
+      "categoryId": 4,
+      "subcategoryId": 23,
+      "ownerUserId": 17,
+      "description": "Обработка видео, оформление канала."
+    },
+    {
+      "id": 126,
+      "title": "Разработка игр на Unity",
+      "categoryId": 1,
+      "subcategoryId": 5,
+      "ownerUserId": 18,
+      "description": "Создание игр, программирование."
+    },
+    {
+      "id": 127,
+      "title": "Backend-разработка на Node.js",
+      "categoryId": 1,
+      "subcategoryId": 3,
+      "ownerUserId": 18,
+      "description": "Создание серверных приложений."
+    },
+    {
+      "id": 128,
+      "title": "Шитье одежды",
+      "categoryId": 4,
+      "subcategoryId": 28,
+      "ownerUserId": 19,
+      "description": "Создаю одежду и аксессуары."
+    },
+    {
+      "id": 129,
+      "title": "Игра на скрипке для начинающих",
+      "categoryId": 4,
+      "subcategoryId": 26,
+      "ownerUserId": 20,
+      "description": "Обучение игре на скрипке."
+    },
+    {
+      "id": 130,
+      "title": "Кроссфит тренировки для начинающих",
+      "categoryId": 6,
+      "subcategoryId": 42,
+      "ownerUserId": 21,
+      "description": "Тренировки для новичков."
+    },
+    {
+      "id": 131,
+      "title": "Фитнес для похудения",
+      "categoryId": 6,
+      "subcategoryId": 40,
+      "ownerUserId": 21,
+      "description": "Тренировки и советы по питанию."
+    },
+    {
+      "id": 132,
+      "title": "Редактирование текста для блогов",
+      "categoryId": 4,
+      "subcategoryId": 22,
+      "ownerUserId": 22,
+      "description": "Создание и редактирование текстов, сценариев."
+    },
+    {
+      "id": 133,
+      "title": "Редактура и корректура",
+      "categoryId": 4,
+      "subcategoryId": 28,
+      "ownerUserId": 22,
+      "description": "Правка текстов, подготовка к публикации."
+    },
+    {
+      "id": 134,
+      "title": "Фотография для соцсетей",
+      "categoryId": 4,
+      "subcategoryId": 23,
+      "ownerUserId": 23,
+      "description": "Создание контента для соцсетей."
+    },
+    {
+      "id": 135,
+      "title": "Электронная инженерия",
+      "categoryId": 1,
+      "subcategoryId": 1,
+      "ownerUserId": 24,
+      "description": "Проектирование электроники, схемотехника."
+    },
+    {
+      "id": 136,
+      "title": "Инженерное проектирование",
+      "categoryId": 1,
+      "subcategoryId": 4,
+      "ownerUserId": 24,
+      "description": "Проектирование систем автоматизации."
+    },
+    {
+      "id": 137,
+      "title": "Игра на скрипке для начинающих",
+      "categoryId": 4,
+      "subcategoryId": 23,
+      "ownerUserId": 25,
+      "description": "Обучение игре на скрипке."
+    },
+    {
+      "id": 138,
+      "title": "Электроника и схемотехника",
+      "categoryId": 1,
+      "subcategoryId": 6,
+      "ownerUserId": 26,
+      "description": "Работа с микроконтроллерами, схемы."
+    },
+    {
+      "id": 139,
+      "title": "Проектирование электроники",
+      "categoryId": 1,
+      "subcategoryId": 5,
+      "ownerUserId": 26,
+      "description": "Создание схем и устройств."
+    },
+    {
+      "id": 140,
+      "title": "Python программирование",
+      "categoryId": 1,
+      "subcategoryId": 1,
+      "ownerUserId": 27,
+      "description": "Основы Python, библиотеки, автоматизация."
+    },
+    {
+      "id": 141,
+      "title": "Видеомонтаж",
+      "categoryId": 4,
+      "subcategoryId": 25,
+      "ownerUserId": 28,
+      "description": "Adobe Premiere, DaVinci Resolve."
+    },
+    {
+      "id": 142,
+      "title": "Игра на пианино",
+      "categoryId": 4,
+      "subcategoryId": 27,
+      "ownerUserId": 29,
+      "description": "Обучение игре, аккорды."
+    },
+    {
+      "id": 143,
+      "title": "Кроссфит тренер",
+      "categoryId": 6,
+      "subcategoryId": 37,
+      "ownerUserId": 30,
+      "description": "Обучение для начинающих."
+    },
+    {
+      "id": 144,
+      "title": "Фитнес-тренировки для женщин",
+      "categoryId": 6,
+      "subcategoryId": 38,
+      "ownerUserId": 30,
+      "description": "Тренировки и советы по питанию."
+    },
+    {
+      "id": 145,
+      "title": "Создание контента для Instagram",
+      "categoryId": 4,
+      "subcategoryId": 28,
+      "ownerUserId": 31,
+      "description": "Фото, видео, тексты для соцсетей."
+    },
+    {
+      "id": 146,
+      "title": "Продвижение в Instagram",
+      "categoryId": 1,
+      "subcategoryId": 2,
+      "ownerUserId": 31,
+      "description": "Таргетинг, сторис, реклама."
+    },
+    {
+      "id": 147,
+      "title": "Мобильная разработка на Android",
+      "categoryId": 1,
+      "subcategoryId": 3,
+      "ownerUserId": 32,
+      "description": "Java, Kotlin, создание приложений."
+    },
+    {
+      "id": 148,
+      "title": "Разработка приложений на iOS",
+      "categoryId": 1,
+      "subcategoryId": 6,
+      "ownerUserId": 32,
+      "description": "Swift, Xcode."
+    },
+    {
+      "id": 149,
+      "title": "Шитье одежды и аксессуаров",
+      "categoryId": 4,
+      "subcategoryId": 28,
+      "ownerUserId": 33,
+      "description": "Создаем одежду, игрушки, аксессуары."
+    },
+    {
+      "id": 150,
+      "title": "Игра на скрипке для начинающих",
+      "categoryId": 4,
+      "subcategoryId": 26,
+      "ownerUserId": 34,
+      "description": "Обучение игре на скрипке."
+    },
+    {
+      "id": 151,
+      "title": "Кроссфит для начинающих",
+      "categoryId": 6,
+      "subcategoryId": 36,
+      "ownerUserId": 35,
+      "description": "Тренировки для новичков."
+    }
+  ]
+}
