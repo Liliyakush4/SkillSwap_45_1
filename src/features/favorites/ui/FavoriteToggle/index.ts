@@ -1,2 +1,2 @@
-export { FavoriteToggle, LikeIcon } from './FavoriteToggle';
-export type { FavoriteToggleProps, LikeIconProps } from './FavoriteToggle';
+export { FavoriteToggle } from './FavoriteToggle';
+export type { FavoriteToggleProps } from './FavoriteToggle';

@@ -1,9 +1,9 @@
-.likeButton {
+.heartButton {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
-  border: 1px solid transparent;
+  justify-content: center;
+  padding: 8px;
+  border: none;
   border-radius: 8px;
   background-color: transparent;
   cursor: pointer;
@@ -11,20 +11,13 @@
   font-family: var(--font-family-base, sans-serif);
 }
 
-.likeButton:hover {
-  border-color: var(--color-primary, #abd27a);
+.heartButton:hover {
+  background-color: var(--color-hover, #deebc5);
 }
 
-.likeButton:focus-visible {
+.heartButton:focus-visible {
   outline: 2px solid var(--color-accent, #508826);
   outline-offset: 2px;
-}
-
-.likesCount {
-  font-size: var(--font-size-base, 1rem);
-  font-weight: var(--font-weight-medium, 500);
-  color: var(--color-primary, #abd27a);
-  line-height: 1;
 }
 
 .heartIcon {
@@ -34,18 +27,6 @@
   transition: all 0.2s ease-in-out;
 }
 
-.likeButton.active {
-  border-color: var(--color-primary, #abd27a);
-}
-
-.likeButton.active .heartIcon {
+.heartButton.active .heartIcon {
   filter: none;
-}
-
-.likeButton.active .likesCount {
-  color: var(--color-accent, #508826);
-}
-
-.likeButton.active:hover {
-  border-color: var(--color-accent, #508826);
 }
