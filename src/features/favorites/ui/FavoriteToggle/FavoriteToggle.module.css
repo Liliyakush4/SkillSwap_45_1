@@ -9,10 +9,7 @@
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   font-family: var(--font-family-base, sans-serif);
-}
-
-.heartButton:hover {
-  background-color: var(--color-hover, #deebc5);
+  color: var(--color-text, #253017);
 }
 
 .heartButton:focus-visible {
@@ -24,9 +21,16 @@
   width: 24px;
   height: 24px;
   display: block;
-  transition: all 0.2s ease-in-out;
+  transition: fill 0.2s ease-in-out, stroke 0.2s ease-in-out;
+  pointer-events: none;
+}
+
+.heartButton:hover .heartIcon {
+  fill: #bf3920;
+  stroke: #bf3920;
 }
 
 .heartButton.active .heartIcon {
-  filter: none;
+  fill: var(--color-text, #253017);
+  stroke: var(--color-text, #253017);
 }

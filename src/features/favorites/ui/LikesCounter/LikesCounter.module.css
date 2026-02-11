@@ -9,8 +9,11 @@
   transition: all 0.2s ease-in-out;
 }
 
-.likesContainer:hover {
-  border-color: var(--color-primary, #abd27a);
+/* Ховер на сердечко при наведении на контейнер или кнопку */
+.likesContainer:hover button svg path,
+.likesContainer button:hover svg path {
+  fill: #bf3920 !important;
+  stroke: #bf3920 !important;
 }
 
 .likesCount {
