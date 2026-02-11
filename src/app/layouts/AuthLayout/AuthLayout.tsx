@@ -1,7 +1,6 @@
 import { Outlet, useNavigate } from 'react-router-dom';
 import styles from './AuthLayout.module.css';
 import CloseIcon from '../../../shared/assets/icons/ui/icon_close.svg';
-import logo from '../../../shared/assets/images/common/header_logo.svg';
 import { Logo } from '../../../shared/ui/Logo';
 import { Button } from '../../../shared/ui/Button';
 
