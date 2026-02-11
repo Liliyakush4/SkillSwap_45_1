@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Avatar.module.css';
+import placeholderImg from '../../assets/icons/common/icon_person.svg';
 
 export interface AvatarProps {
   src?: string;
@@ -25,10 +26,9 @@ export const Avatar: React.FC<AvatarProps> = ({
         <img src={src} alt={alt} className={styles.avatarImage} />
       ) : (
         <div className={styles.Avatar_placeholder}>
-          {/* Заглушка */}
           <img
-            src='..\src\shared\assets\icons\common\icon_person.svg'
-            alt="Заглушка"
+            src={src ?? placeholderImg}
+            alt="заглушка"
             className={styles.avatarImage}
           />
         </div>
