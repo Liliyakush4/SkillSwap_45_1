@@ -31,7 +31,7 @@ export interface CategoryResponse {
 export interface SubCategory {
   id: SubCategoryId;
   name: string;
-  category: CategoryId;
+  categoryId: CategoryId;
 }
 
 export interface SubCategoryResponse {

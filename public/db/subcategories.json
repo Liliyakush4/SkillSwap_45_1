@@ -3,212 +3,212 @@
     {
       "id": 1,
       "name": "Управление командой",
-      "category": 1
+      "categoryId": 1
     },
     {
       "id": 2,
       "name": "Маркетинг и реклама",
-      "category": 1
+      "categoryId": 1
     },
     {
       "id": 3,
       "name": "Продажи и переговоры",
-      "category": 1
+      "categoryId": 1
     },
     {
       "id": 4,
       "name": "Личный бренд",
-      "category": 1
+      "categoryId": 1
     },
     {
       "id": 5,
       "name": "Резюме и собеседование",
-      "category": 1
+      "categoryId": 1
     },
     {
       "id": 6,
       "name": "Тайм-менеджмент",
-      "category": 1
+      "categoryId": 1
     },
     {
       "id": 7,
       "name": "Проектное управление",
-      "category": 1
+      "categoryId": 1
     },
     {
       "id": 8,
       "name": "Предпринимательство",
-      "category": 1
+      "categoryId": 1
     },
     {
       "id": 9,
       "name": "Английский",
-      "category": 2
+      "categoryId": 2
     },
     {
       "id": 10,
       "name": "Французский",
-      "category": 2
+      "categoryId": 2
     },
     {
       "id": 11,
       "name": "Испанский",
-      "category": 2
+      "categoryId": 2
     },
     {
       "id": 12,
       "name": "Немецкий",
-      "category": 2
+      "categoryId": 2
     },
     {
       "id": 13,
       "name": "Китайский",
-      "category": 2
+      "categoryId": 2
     },
     {
       "id": 14,
       "name": "Японский",
-      "category": 2
+      "categoryId": 2
     },
     {
       "id": 15,
       "name": "Подготовка к экзаменам (IELTS, TOEFL)",
-      "category": 2
+      "categoryId": 2
     },
     {
       "id": 16,
       "name": "Уборка и организация",
-      "category": 3
+      "categoryId": 3
     },
     {
       "id": 17,
       "name": "Домашние финансы",
-      "category": 3
+      "categoryId": 3
     },
     {
       "id": 18,
       "name": "Приготовление еды",
-      "category": 3
+      "categoryId": 3
     },
     {
       "id": 19,
       "name": "Домашние растения",
-      "category": 3
+      "categoryId": 3
     },
     {
       "id": 20,
       "name": "Ремонт",
-      "category": 3
+      "categoryId": 3
     },
     {
       "id": 21,
       "name": "Хранение вещей",
-      "category": 3
+      "categoryId": 3
     },
     {
       "id": 22,
       "name": "Рисование и иллюстрация",
-      "category": 4
+      "categoryId": 4
     },
     {
       "id": 23,
       "name": "Фотография",
-      "category": 4
+      "categoryId": 4
     },
     {
       "id": 24,
       "name": "Видеомонтаж",
-      "category": 4
+      "categoryId": 4
     },
     {
       "id": 25,
       "name": "Музыка и звук",
-      "category": 4
+      "categoryId": 4
     },
     {
       "id": 26,
       "name": "Актёрское мастерство",
-      "category": 4
+      "categoryId": 4
     },
     {
       "id": 27,
       "name": "Креативное письмо",
-      "category": 4
+      "categoryId": 4
     },
     {
       "id": 28,
       "name": "Арт-терапия",
-      "category": 4
+      "categoryId": 4
     },
     {
       "id": 29,
       "name": "Декор и DIY",
-      "category": 4
+      "categoryId": 4
     },
     {
       "id": 30,
       "name": "Личностное развитие",
-      "category": 5
+      "categoryId": 5
     },
     {
       "id": 31,
       "name": "Навыки обучения",
-      "category": 5
+      "categoryId": 5
     },
     {
       "id": 32,
       "name": "Когнитивные техники",
-      "category": 5
+      "categoryId": 5
     },
     {
       "id": 33,
       "name": "Скорочтение",
-      "category": 5
+      "categoryId": 5
     },
     {
       "id": 34,
       "name": "Навыки преподавания",
-      "category": 5
+      "categoryId": 5
     },
     {
       "id": 35,
       "name": "Коучинг",
-      "category": 5
+      "categoryId": 5
     },
     {
       "id": 36,
       "name": "Йога и медитация",
-      "category": 6
+      "categoryId": 6
     },
     {
       "id": 37,
       "name": "Питание и ЗОЖ",
-      "category": 6
+      "categoryId": 6
     },
     {
       "id": 38,
       "name": "Ментальное здоровье",
-      "category": 6
+      "categoryId": 6
     },
     {
       "id": 39,
       "name": "Осознанность",
-      "category": 6
+      "categoryId": 6
     },
     {
       "id": 40,
       "name": "Физические тренировки",
-      "category": 6
+      "categoryId": 6
     },
     {
       "id": 41,
       "name": "Сон и восстановление",
-      "category": 6
+      "categoryId": 6
     },
     {
       "id": 42,
       "name": "Баланс жизни и работы",
-      "category": 6
+      "categoryId": 6
     }
   ]
 }
