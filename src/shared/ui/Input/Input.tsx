@@ -1,8 +1,7 @@
-import { type InputHTMLAttributes, forwardRef } from "react";
-import cls from "./Input.module.css";
+import { type InputHTMLAttributes, forwardRef } from 'react';
+import cls from './Input.module.css';
 
-export interface InputProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, "onChange"> {
+export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
   label?: string;
   value: string;
   onChange: (value: string) => void;
@@ -18,13 +17,13 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       onChange,
       placeholder,
       name,
-      type = "text",
+      type = 'text',
       disabled,
       errorText,
       className,
       ...rest
     },
-    ref
+    ref,
   ) => {
     const hasError = Boolean(errorText);
 
@@ -32,10 +31,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       <div
         className={[
           cls.wrapper,
-          disabled ? cls.disabled : "",
-          hasError ? cls.error : "",
-          className ?? "",
-        ].join(" ")}
+          disabled ? cls.disabled : '',
+          hasError ? cls.error : '',
+          className ?? '',
+        ].join(' ')}
       >
         {label && <label className={cls.label}>{label}</label>}
 
@@ -55,7 +54,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {hasError && <span className={cls.errorText}>{errorText}</span>}
       </div>
     );
-  }
+  },
 );
 
-Input.displayName = "Input";
+Input.displayName = 'Input';

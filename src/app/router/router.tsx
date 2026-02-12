@@ -17,8 +17,7 @@ export default function AppRouter() {
     <Routes>
       {/* Родительский route с MainLayout */}
       <Route path="/" element={<MainLayout />}>
-      
-      {/* Главная */}
+        {/* Главная */}
         <Route index element={<MainPage />} />
 
         {/* Авторизация */}

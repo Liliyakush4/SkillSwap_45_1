@@ -34,17 +34,19 @@ export function Select({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const selected = options.find(opt => opt.value === value);
+  const selected = options.find((opt) => opt.value === value);
 
   return (
     <div className={styles.wrapper} ref={ref}>
       {label && <div className={styles.label}>{label}</div>}
-      <div 
+      <div
         className={[
           styles.trigger,
           error && styles.triggerError,
           disabled && styles.triggerDisabled,
-        ].filter(Boolean).join(' ')}
+        ]
+          .filter(Boolean)
+          .join(' ')}
         onClick={() => !disabled && setIsOpen(!isOpen)}
         tabIndex={disabled ? -1 : 0}
       >

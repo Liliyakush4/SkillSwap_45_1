@@ -25,8 +25,10 @@ export const Button: React.FC<ButtonProps> = ({
     styles[variant],
     fullWidth ? styles.fullWidth : '',
     disabled ? styles.disabled : '',
-    className
-  ].join(' ').trim();
+    className,
+  ]
+    .join(' ')
+    .trim();
 
   return (
     <button
