@@ -1,35 +1,26 @@
 import type { FC } from 'react';
-import { getTagColor } from '../../lib/constants/categories';
 import styles from './SkillPlate.module.css';
+import clsx from 'clsx';
+
+export type TSkillPlateVariant = 'default' | 'count';
 
 export type TSkillPlateProps = {
   text: string;
-  variant: 'default' | 'count';
-  count?: number;
+  variant?: TSkillPlateVariant;
   className?: string;
-  category: string;
-};
+}
 
-export const SkillPlate: FC<TSkillPlateProps> = ({ text, variant, count, className, category }) => {
-  // Получаем имя CSS-класса на основе цвета
-  const colorClassName = getTagColor(category);
-
+export const SkillPlate: FC<TSkillPlateProps> = ({ text, variant = 'default', className }) => {
   // Формируем строку классов
-  const combinedClassName = [styles.skillPlate, className]
-    .filter(Boolean) // Удаляем пустые значения
-    .join(' '); // Объединяем через пробел
+  const combinedClassName = clsx(
+    styles.skillPlate,
+    styles[variant], // Добавляем класс для варианта
+    className,
+  );
 
   if (variant === 'default') {
-    return (
-      <span className={combinedClassName} style={{ backgroundColor: colorClassName }}>
-        {text}
-      </span>
-    );
+    return <span className={combinedClassName}>{text}</span>;
   } else {
-    return (
-      <span className={combinedClassName} style={{ backgroundColor: colorClassName }}>
-        +{count}
-      </span>
-    );
+    return <span className={combinedClassName}>+{text}</span>;
   }
 };
