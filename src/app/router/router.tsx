@@ -9,7 +9,7 @@ import RegisterStep3 from '../../pages/register/register-step-3/RegisterStep3';
 import SkillPage from '../../pages/skill-page/SkillPage';
 import ProfilePage from '../../pages/profile/ProfilePage';
 import FavoritesPage from '../../pages/favorites/FavoritesPage';
-import ErrorPage404 from '../../pages/error404/ErrorPage404';
+import { ErrorPage404 } from '../../pages/error404/ErrorPage404';
 import ErrorPage500 from '../../pages/error500/ErrorPage500';
 
 import { AuthLayout } from '../layouts/AuthLayout';
