@@ -1,6 +1,7 @@
 import { Input } from "../input/Input";
 import { type InputProps } from "../input/Input";
 import cls from "./SearchInput.module.css";
+import searchIcon from "../../../shared/assets/icons/ui/icon_search.svg";
 
 type SearchInputProps = Pick<
   InputProps,
@@ -15,7 +16,9 @@ export const SearchInput = ({
 }: SearchInputProps) => {
   return (
     <div className={[cls.container, className ?? ""].join(" ")}>
-      <span className={cls.icon}>🔍</span>
+      <span className={cls.icon}>
+        <img src={searchIcon} alt="search" />
+      </span>
       <Input
         value={value}
         onChange={onChange}

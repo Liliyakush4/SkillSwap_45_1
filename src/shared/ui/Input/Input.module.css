@@ -6,28 +6,27 @@
 }
 
 .label {
-  font-size: 14px;
-  font-weight: 500;
+  font-weight: var(--font-weight-regular);
 }
 
 .input {
   height: 44px;
   padding: 0 12px;
   border-radius: 10px;
-  border: 1px solid #d0d5dd;
+  border: 1px solid var(--color-border);
   font-size: 14px;
   outline: none;
   transition: border 0.2s ease, box-shadow 0.2s ease;
   background: #fff;
+    caret-color: var(--color-accent);
 }
 
 .input:hover {
-  border-color: #98a2b3;
+border: 1px solid var(--color-border);
 }
 
 .input:focus-visible {
-  border-color: #7f56d9;
-  box-shadow: 0 0 0 3px rgba(127, 86, 217, 0.15);
+border: 1px solid var(--color-border);
 }
 
 .disabled .input {
@@ -37,10 +36,17 @@
 }
 
 .error .input {
-  border-color: #f04438;
+  border-color: var(--color-error);
 }
 
 .errorText {
   font-size: 12px;
-  color: #f04438;
+  font-weight: var(--font-weight-regular);
+  color: var(--color-error);
+}
+
+.input::placeholder {
+  color: var(--color-border);
+  font-weight: var(--font-weight-regular);
+  font-size: 16px;
 }
