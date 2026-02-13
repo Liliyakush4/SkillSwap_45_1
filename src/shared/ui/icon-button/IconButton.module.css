@@ -14,11 +14,11 @@
 
 .ghost {
   background-color: transparent;
-  color: var(--color-primary, #ABD27A);
+  color: var(--color-primary, #abd27a);
 }
 
 .ghost:hover:not(:disabled) {
-  background-color: var(--color-hover, #DEEBC5);
+  background-color: var(--color-hover, #deebc5);
 }
 
 .ghost:focus-visible {
@@ -27,12 +27,12 @@
 }
 
 .solid {
-  background-color: var(--color-primary, #ABD27A);
-  color: var(--color-secondary, #FFFFFF);
+  background-color: var(--color-primary, #abd27a);
+  color: var(--color-secondary, #ffffff);
 }
 
 .solid:hover:not(:disabled) {
-  background-color: var(--color-hover, #DEEBC5);
+  background-color: var(--color-hover, #deebc5);
 }
 
 .solid:focus-visible {
@@ -41,16 +41,16 @@
 }
 
 .active.ghost {
-  color: var(--color-error, #BF3920);
+  color: var(--color-error, #bf3920);
 }
 
 .active.solid {
-  background-color: var(--color-error, #BF3920);
-  color: var(--color-secondary, #FFFFFF);
+  background-color: var(--color-error, #bf3920);
+  color: var(--color-secondary, #ffffff);
 }
 
 .active.solid:hover:not(:disabled) {
-  background-color: #D03A25;
+  background-color: #d03a25;
 }
 
 .iconWrapper {
@@ -62,8 +62,8 @@
 }
 
 .disabled {
-  background-color: var(--color-disable, #E4E8DF) !important;
-  color: var(--color-border, #69735D) !important;
+  background-color: var(--color-disable, #e4e8df) !important;
+  color: var(--color-border, #69735d) !important;
   cursor: not-allowed;
 }
 
