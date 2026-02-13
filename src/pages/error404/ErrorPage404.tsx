@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { Button } from '../..//shared/ui/Button/Button';
+import { Button } from '../../shared/ui/Button/Button';
 import styles from './ErrorPage404.module.css';
 import errorImage from '../../shared/assets/images/error/error_404.svg';
 
