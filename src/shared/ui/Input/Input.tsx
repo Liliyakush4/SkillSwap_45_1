@@ -7,7 +7,7 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 
   onChange: (value: string) => void;
   errorText?: string;
   className?: string;
-   rightSlot?: React.ReactNode;
+  rightSlot?: React.ReactNode;
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
@@ -29,7 +29,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
   ) => {
     const hasError = Boolean(errorText);
 
- const errorId = useId(); 
+    const errorId = useId();
     const describedBy = hasError ? errorId : undefined;
 
     return (
@@ -42,27 +42,24 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         ].join(' ')}
       >
         {label && <label className={cls.label}>{label}</label>}
-<div className={cls.inputContainer}>
-        <input
-          ref={ref}
-          className={cls.input}
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          placeholder={placeholder}
-          name={name}
-          type={type}
-          disabled={disabled}
-          aria-invalid={hasError}
-           aria-describedby={describedBy}
-          {...rest}
-        />
-  {rightSlot && rightSlot} 
+        <div className={cls.inputContainer}>
+          <input
+            ref={ref}
+            className={cls.input}
+            value={value}
+            onChange={(e) => onChange(e.target.value)}
+            placeholder={placeholder}
+            name={name}
+            type={type}
+            disabled={disabled}
+            aria-invalid={hasError}
+            aria-describedby={describedBy}
+            {...rest}
+          />
+          {rightSlot && rightSlot}
         </div>
         {hasError && (
-          <span
-            id={errorId} 
-            className={cls.errorText}
-          >
+          <span id={errorId} className={cls.errorText}>
             {errorText}
           </span>
         )}

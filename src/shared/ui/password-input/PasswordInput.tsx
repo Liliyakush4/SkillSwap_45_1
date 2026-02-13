@@ -34,11 +34,7 @@ export const PasswordInput = ({
           onClick={() => setIsVisible((prev) => !prev)}
           aria-label={toggleLabel}
         >
-          <img
-            src={isVisible ? hideIcon : showIcon}
-            alt=""
-            aria-hidden="true"
-          />
+          <img src={isVisible ? hideIcon : showIcon} alt="" aria-hidden="true" />
         </button>
       } // NEW: используем rightSlot
     />
