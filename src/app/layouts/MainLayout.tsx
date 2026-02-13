@@ -2,12 +2,13 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from '../../widgets/Header/Header';
 import Footer from '../../widgets/Footer/Footer';
+import styles from './MainLayout.module.css';
 
 const MainLayout: React.FC = () => {
   return (
-    <div>
+    <div className={styles.layout}>
       <Header />
-      <main>
+      <main className={styles.main}>
         <Outlet /> {/* Здесь подставляется содержимое страниц */}
       </main>
       <Footer />
