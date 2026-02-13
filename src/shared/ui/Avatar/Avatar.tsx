@@ -9,28 +9,16 @@ export interface AvatarProps {
   className?: string;
 }
 
-export const Avatar: React.FC<AvatarProps> = ({
-  src,
-  alt = 'Аватар',
-  size,
-  className = '',
-}) => {
+export const Avatar: React.FC<AvatarProps> = ({ src, alt = 'Аватар', size, className = '' }) => {
   const sizeStyle = size ? { width: size, height: size } : {};
 
   return (
-    <div
-      className={`${styles.avatarWrapper} ${className}`}
-      style={sizeStyle}
-    >
+    <div className={`${styles.avatarWrapper} ${className}`} style={sizeStyle}>
       {src ? (
         <img src={src} alt={alt} className={styles.avatarImage} />
       ) : (
         <div className={styles.Avatar_placeholder}>
-          <img
-            src={src ?? placeholderImg}
-            alt="заглушка"
-            className={styles.avatarImage}
-          />
+          <img src={src ?? placeholderImg} alt="заглушка" className={styles.avatarImage} />
         </div>
       )}
     </div>
