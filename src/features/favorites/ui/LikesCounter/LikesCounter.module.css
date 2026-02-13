@@ -4,13 +4,6 @@
   gap: 8px;
 }
 
-/* Ховер на сердечко при наведении на контейнер или кнопку */
-.likesContainer:hover button svg path,
-.likesContainer button:hover svg path {
-  fill: var(--color-primary, #abd27a);
-  stroke: var(--color-primary, #abd27a);
-}
-
 .likesCount {
   font-size: var(--font-size-base, 1rem);
   font-weight: var(--font-weight-medium, 500);
