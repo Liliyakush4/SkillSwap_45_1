@@ -1,0 +1,26 @@
+.skillPlate {
+  display: inline-block;
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-regular);
+  font-size: 12px; /* font-size: var(--font-size-sm); */
+  line-height: var(--line-height-base);
+  border-radius: 20px;
+  padding: 8px 12px;
+  /* cursor: pointer; */
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  /* Стили для обрезки текста */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.default {
+  /* Вставили цвет серый по умолчанию, чтобы увидеть проблемы в передаче цвета родителем */
+  background-color: rgb(192, 192, 192);
+}
+
+.count {
+  background-color: var(--color-tag-plus);
+}
