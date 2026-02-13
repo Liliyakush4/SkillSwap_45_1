@@ -10,15 +10,15 @@
   max-width: 100%;
   min-width: 0;
   box-sizing: border-box;
-}
-
-.default {
-  /* Вставили цвет ошибки по умолчанию, чтобы увидеть проблемы в передаче цвета родителем */
-  background-color: var(--color-error);
   /* Стили для обрезки текста */
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+.default {
+  /* Вставили цвет серый по умолчанию, чтобы увидеть проблемы в передаче цвета родителем */
+  background-color: rgb(192, 192, 192);
 }
 
 .count {
