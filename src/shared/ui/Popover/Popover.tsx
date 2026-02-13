@@ -10,6 +10,7 @@ export interface PopoverProps {
   children: ReactNode;
   placement?: 'bottom-start' | 'bottom-end';
   className?: string;
+  role?: React.AriaRole;
 }
 
 export const Popover: FC<PopoverProps> = ({
@@ -19,6 +20,7 @@ export const Popover: FC<PopoverProps> = ({
   children,
   placement = 'bottom-start',
   className,
+  role = 'dialog',
 }) => {
   const popoverRef = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState<{ top: number; left: number } | null>(null);
@@ -42,9 +44,7 @@ export const Popover: FC<PopoverProps> = ({
       if (placement === 'bottom-start') {
         left = anchorRect.left;
       } else if (placement === 'bottom-end') {
-        // Для bottom-end используем правый край окна минус позиция правого края триггера
-        // Это позволит выровнять правый край панели с правым краем триггера
-        // Временно устанавливаем left = anchorRect.right, потом скорректируем
+        // Правый край панели = правый край триггера; выравнивание через transform: translateX(-100%)
         left = anchorRect.right;
       }
 
@@ -62,33 +62,6 @@ export const Popover: FC<PopoverProps> = ({
       window.removeEventListener('resize', updatePosition);
     };
   }, [isOpen, anchorRef, placement]);
-
-  // Корректировка позиции для bottom-end после получения ширины панели
-  useEffect(() => {
-    if (!isOpen || !popoverRef.current || !position || placement !== 'bottom-end' || !anchorRef.current) {
-      return;
-    }
-
-    // Используем requestAnimationFrame для измерения после рендера
-    const frameId = requestAnimationFrame(() => {
-      const popoverWidth = popoverRef.current?.offsetWidth || 0;
-      const anchorRect = anchorRef.current?.getBoundingClientRect();
-      
-      if (anchorRect && popoverWidth > 0) {
-        setPosition((prevPosition) => {
-          if (!prevPosition) return prevPosition;
-          return {
-            top: prevPosition.top,
-            left: anchorRect.right - popoverWidth,
-          };
-        });
-      }
-    });
-
-    return () => {
-      cancelAnimationFrame(frameId);
-    };
-  }, [isOpen, placement, anchorRef]);
 
   // Обработка клика вне панели
   useEffect(() => {
@@ -144,12 +117,12 @@ export const Popover: FC<PopoverProps> = ({
   return createPortal(
     <div
       ref={popoverRef}
-      className={clsx(styles.popover, className)}
+      className={clsx(styles.popover, placement === 'bottom-end' && styles.placementBottomEnd, className)}
       style={{
         top: `${position.top}px`,
         left: `${position.left}px`,
       }}
-      role="dialog"
+      role={role}
       aria-modal="false"
     >
       {children}

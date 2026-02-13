@@ -12,6 +12,11 @@
   font-family: var(--font-family-base, sans-serif);
 }
 
+/* bottom-end: правый край панели совпадает с правым краем триггера */
+.placementBottomEnd {
+  transform: translateX(-100%);
+}
+
 .popover::-webkit-scrollbar {
   width: 8px;
 }
