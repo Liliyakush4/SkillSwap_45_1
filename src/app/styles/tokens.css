@@ -28,6 +28,19 @@
 
   --color-alarm: #e0796e; /* цвет у уведомления, если есть непрочитанные */
 
+  /* Семантические цвета */
+  --color-surface: var(--color-secondary); /* поверхность (карточки, блоки) */
+  --color-disabled-text: var(--color-disable-tetx); /* текст в неактивном состоянии */
+  --color-primary-hover: var(--color-hover); /* ховер для primary-элементов */
+  --color-input-border: var(--color-border); /* бордер для полей ввода */
+  --color-placeholder: var(--color-border); /* плейсхолдер в полях */
+  --color-error-text: var(--color-error); /* текст ошибок */
+  --color-overlay-bg: var(--color-overlay); /* фон оверлея */
+
+  /* ===========================================
+     Типографика
+     =========================================== */
+
   /* Шрифты  */
   --font-family-primary: 'Jost', sans-serif;
   --font-family-base: 'Roboto', sans-serif;
@@ -57,4 +70,42 @@
   --font-weight-regular: 400; /* Обычное начертание */
   --font-weight-medium: 500; /* Среднее начертание */
   --font-weight-bold: 600; /* Жирное начертание */
+
+  /* ===========================================
+     Размеры
+     =========================================== */
+
+  /* Отступы */
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-40: 40px;
+
+  /* Радиусы */
+  --radius-small: 4px;
+  --radius-medium: 8px;
+  --radius-large: 12px;
+  --radius-extra-large: 16px;
+  --radius-circle: 50%;
+
+  /* ===========================================
+     Уровни z-index
+     =========================================== */
+
+  --z-dropdown: 100; /* выпадающие списки */
+  --z-popover: 200; /* всплывающие подсказки/попверы */
+  --z-modal: 300; /* модальные окна */
+  --z-overlay: 500; /* оверлей под модалками */
+  --z-header: 1000; /* шапка сайта */
+  --z-fixed-elements: 999; /* фиксированные элементы (не в шапке) */
+
+  /* ===========================================
+     Базовые стили
+     =========================================== */
+
+  --transition-default: all 0.2s ease-in-out; /* Базовый переход */
+  --border-default: 1px solid var(--color-border); /* Инпуты, селекты, кнопки, поповеры */
 }
