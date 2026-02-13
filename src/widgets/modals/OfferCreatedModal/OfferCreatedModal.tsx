@@ -12,38 +12,30 @@ export interface OfferCreatedModalProps {
 export const OfferCreatedModal: FC<OfferCreatedModalProps> = ({
   isOpen,
   onClose,
-}) => {
-  const handleClose = () => {
-    onClose();
-  };
+}) => (
+  <Modal
+    isOpen={isOpen}
+    onClose={onClose}
+    className={styles.modal}
+  >
+    <div className={styles.container}>
+      <img
+        src={iconPerson}
+        alt=""
+        aria-hidden="true"
+        className={styles.icon}
+      />
+      <h2 className={styles.title}>Ваше предложение создано</h2>
 
-  return (
-    <Modal
-      isOpen={isOpen}
-      onClose={handleClose}
-      className={styles.modal}
-      icon={
-        <img
-          src={iconPerson}
-          alt=""
-          aria-hidden="true"
-          className={styles.icon}
-        />
-      }
-    >
-      <div className={styles.container}>
-        <h2 className={styles.title}>Ваше предложение создано</h2>
+      <p className={styles.description}>
+        Теперь вы можете предложить обмен
+      </p>
 
-        <p className={styles.description}>
-          Теперь вы можете предложить обмен
-        </p>
-
-        <div className={styles.buttonWrapper}>
-          <Button fullWidth onClick={handleClose} className={styles.button}>
-            Готово
-          </Button>
-        </div>
+      <div className={styles.buttonWrapper}>
+        <Button fullWidth onClick={onClose}>
+          Готово
+        </Button>
       </div>
-    </Modal>
-  );
-};
+    </div>
+  </Modal>
+);
