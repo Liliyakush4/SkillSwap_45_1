@@ -7,6 +7,7 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 
   onChange: (value: string) => void;
   errorText?: string;
   className?: string;
+   rightSlot?: React.ReactNode;
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
@@ -21,6 +22,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       disabled,
       errorText,
       className,
+      rightSlot,
       ...rest
     },
     ref,
@@ -40,7 +42,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         ].join(' ')}
       >
         {label && <label className={cls.label}>{label}</label>}
-
+<div className={cls.inputContainer}>
         <input
           ref={ref}
           className={cls.input}
@@ -54,7 +56,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
            aria-describedby={describedBy}
           {...rest}
         />
-
+  {rightSlot && rightSlot} 
+        </div>
         {hasError && (
           <span
             id={errorId} 

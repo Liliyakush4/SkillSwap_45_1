@@ -19,20 +19,16 @@ export const PasswordInput = ({
   const toggleLabel = isVisible ? 'Скрыть пароль' : 'Показать пароль';
 
   return (
-    <div className={[cls.container, className ?? ''].join(' ')}>
-      <div className={cls.inputWrapper}>
-        
-        <Input
-          {...rest}
-          value={value}
-          onChange={onChange}
-          placeholder={placeholder}
-          type={isVisible ? 'text' : 'password'}
-          errorText={errorText}
-          className={cls.input}
-        />
-
-          <button
+    <Input
+      {...rest}
+      value={value}
+      onChange={onChange}
+      placeholder={placeholder}
+      type={isVisible ? 'text' : 'password'}
+      errorText={errorText}
+      className={className}
+      rightSlot={
+        <button
           type="button"
           className={cls.toggle}
           onClick={() => setIsVisible((prev) => !prev)}
@@ -44,7 +40,7 @@ export const PasswordInput = ({
             aria-hidden="true"
           />
         </button>
-      </div>
-    </div>
+      } // NEW: используем rightSlot
+    />
   );
 };

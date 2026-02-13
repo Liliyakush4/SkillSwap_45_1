@@ -9,6 +9,11 @@
   font-weight: var(--font-weight-regular);
 }
 
+.inputContainer {
+  position: relative;
+  width: 100%;
+}
+
 .input {
   height: 44px;
   padding: 0 12px;
@@ -22,6 +27,18 @@
   background: #fff;
   caret-color: var(--color-accent);
   box-sizing: border-box;
+  width: 100%;
+}
+
+.inputContainer {
+  position: relative;
+  width: 100%;
+}
+
+
+
+.hasRightSlot .input {
+  padding-right: 44px;
 }
 
 .input:hover {
