@@ -1,4 +1,4 @@
-import { type FC, type ReactNode, useEffect, useState, useRef } from 'react';
+import { type FC, type ReactNode, useEffect, useState, useRef, useMemo } from 'react';
 import ReactDOM from 'react-dom';
 import styles from './DropdownMenu.module.css';
 
@@ -7,7 +7,7 @@ export interface DropdownMenuProps {
   onClose: () => void;
   anchorRef: React.RefObject<HTMLElement>;
   children?: ReactNode;
-  placement?: 'bottom-start';
+  placement?: 'bottom-start' | 'bottom-end' | 'top-start' | 'top-end';
   matchWidth?: boolean;
   className?: string;
 }
@@ -22,13 +22,17 @@ export const DropdownMenu: FC<DropdownMenuProps> = ({
   className = '',
 }) => {
   const [position, setPosition] = useState({ top: 0, left: 0, width: 0 });
-  const popoverRoot = document.getElementById('popover-root');
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  if (!popoverRoot) {
-    console.error("Элемент с id 'popover-root' не найден в DOM");
-    return null;
-  }
+  const portalRoot = useMemo(() => {
+    let root = document.getElementById('popover-root');
+    if (!root) {
+      root = document.createElement('div');
+      root.id = 'popover-root';
+      document.body.appendChild(root);
+    }
+    return root;
+  }, []);
 
   useEffect(() => {
     if (!isOpen || !anchorRef.current) return;
@@ -39,9 +43,26 @@ export const DropdownMenu: FC<DropdownMenuProps> = ({
     let left = 0;
     let width = matchWidth ? anchorRect.width : 0;
 
-    if (placement === 'bottom-start') {
-      top = anchorRect.bottom + window.scrollY;
-      left = anchorRect.left + window.scrollX;
+    switch (placement) {
+      case 'bottom-start':
+        top = anchorRect.bottom + window.scrollY;
+        left = anchorRect.left + window.scrollX;
+        break;
+      case 'bottom-end':
+        top = anchorRect.bottom + window.scrollY;
+        left = anchorRect.right + window.scrollX - (matchWidth ? anchorRect.width : 0);
+        break;
+      case 'top-start':
+        top = anchorRect.top + window.scrollY;
+        left = anchorRect.left + window.scrollX;
+        break;
+      case 'top-end':
+        top = anchorRect.top + window.scrollY;
+        left = anchorRect.right + window.scrollX - (matchWidth ? anchorRect.width : 0);
+        break;
+      default:
+        top = anchorRect.bottom + window.scrollY;
+        left = anchorRect.left + window.scrollX;
     }
 
     setPosition({ top, left, width });
@@ -49,18 +70,13 @@ export const DropdownMenu: FC<DropdownMenuProps> = ({
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        onClose();
-      }
+      if (e.key === 'Escape') onClose();
     };
 
     if (isOpen) {
       document.addEventListener('keydown', handleKeyDown);
     }
-
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-    };
+    return () => document.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, onClose]);
 
   useEffect(() => {
@@ -79,10 +95,7 @@ export const DropdownMenu: FC<DropdownMenuProps> = ({
     if (isOpen) {
       document.addEventListener('mousedown', handleClickOutside);
     }
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [isOpen, onClose, anchorRef]);
 
   if (!isOpen) return null;
@@ -107,6 +120,6 @@ export const DropdownMenu: FC<DropdownMenuProps> = ({
     >
       {children}
     </div>,
-    popoverRoot
+    portalRoot
   );
 };
