@@ -1,23 +1,23 @@
 .button {
   display: inline-flex;
-  align-items: center;
   justify-content: center;
-  padding: 12px 24px;
-  border-radius: 8px;
-  border: none;
-  font-size: var(--font-size-base, 1rem);
-  font-weight: var(--font-weight-medium, 500);
-  line-height: var(--line-height-base, 1.5);
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  text-decoration: none;
-  font-family: var(--font-family-base, sans-serif);
+  align-items: center;
   min-height: 48px;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-family: var(--font-family-base, sans-serif);
+  font-weight: var(--font-weight-medium, 500);
+  font-size: var(--font-size-base, 1rem);
+  line-height: var(--line-height-base, 1.5);
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
 }
 
 .primary {
-  background-color: var(--color-primary, #abd27a);
   color: var(--color-text, #253017);
+  background-color: var(--color-primary, #abd27a);
 }
 
 .primary:hover:not(:disabled) {
@@ -30,17 +30,32 @@
 }
 
 .secondary {
-  background-color: var(--color-secondary, #ffffff);
-  color: var(--color-text, #253017);
   border: 1px solid var(--color-primary, #abd27a);
+  color: var(--color-text, #253017);
+  background-color: var(--color-secondary, #ffffff);
 }
 
 .secondary:hover:not(:disabled) {
-  background-color: var(--color-hover, #deebc5);
   border-color: var(--color-hover, #deebc5);
+  background-color: var(--color-hover, #deebc5);
 }
 
 .secondary:focus-visible {
+  outline: 2px solid var(--color-accent, #508826);
+  outline-offset: 2px;
+}
+
+.ghost {
+  border: none;
+  color: var(--color-text, #253017);
+  background-color: var(--color-secondary, #ffffff);
+}
+
+.ghost:hover:not(:disabled) {
+  background-color: var(--color-hover, #deebc5);
+}
+
+.ghost:focus-visible {
   outline: 2px solid var(--color-accent, #508826);
   outline-offset: 2px;
 }
@@ -50,9 +65,9 @@
 }
 
 .disabled {
-  background-color: var(--color-disable, #e4e8df) !important;
-  color: var(--color-border, #69735d) !important;
   border-color: var(--color-disable, #e4e8df) !important;
+  color: var(--color-border, #69735d) !important;
+  background-color: var(--color-disable, #e4e8df) !important;
   cursor: not-allowed;
 }
 
