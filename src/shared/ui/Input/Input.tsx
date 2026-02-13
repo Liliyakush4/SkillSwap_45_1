@@ -1,4 +1,4 @@
-import { type InputHTMLAttributes, forwardRef } from 'react';
+import { type InputHTMLAttributes, forwardRef, useId } from 'react';
 import cls from './Input.module.css';
 
 export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
@@ -27,6 +27,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
   ) => {
     const hasError = Boolean(errorText);
 
+ const errorId = useId(); 
+    const describedBy = hasError ? errorId : undefined;
+
     return (
       <div
         className={[
@@ -48,10 +51,18 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           type={type}
           disabled={disabled}
           aria-invalid={hasError}
+           aria-describedby={describedBy}
           {...rest}
         />
 
-        {hasError && <span className={cls.errorText}>{errorText}</span>}
+        {hasError && (
+          <span
+            id={errorId} 
+            className={cls.errorText}
+          >
+            {errorText}
+          </span>
+        )}
       </div>
     );
   },

@@ -4,7 +4,7 @@ import cls from './PasswordInput.module.css';
 import showIcon from '../../../shared/assets/icons/ui/icon_password_show.svg';
 import hideIcon from '../../../shared/assets/icons/ui/icon_password_hide.svg';
 
-type PasswordInputProps = Omit<InputProps, 'type'>;
+export type PasswordInputProps = Omit<InputProps, 'type'>;
 
 export const PasswordInput = ({
   value,
@@ -16,9 +16,12 @@ export const PasswordInput = ({
 }: PasswordInputProps) => {
   const [isVisible, setIsVisible] = useState(false);
 
+  const toggleLabel = isVisible ? 'Скрыть пароль' : 'Показать пароль';
+
   return (
     <div className={[cls.container, className ?? ''].join(' ')}>
       <div className={cls.inputWrapper}>
+        
         <Input
           {...rest}
           value={value}
@@ -29,8 +32,17 @@ export const PasswordInput = ({
           className={cls.input}
         />
 
-        <button type="button" className={cls.toggle} onClick={() => setIsVisible((prev) => !prev)}>
-          <img src={isVisible ? hideIcon : showIcon} alt="toggle password visibility" />
+          <button
+          type="button"
+          className={cls.toggle}
+          onClick={() => setIsVisible((prev) => !prev)}
+          aria-label={toggleLabel}
+        >
+          <img
+            src={isVisible ? hideIcon : showIcon}
+            alt=""
+            aria-hidden="true"
+          />
         </button>
       </div>
     </div>

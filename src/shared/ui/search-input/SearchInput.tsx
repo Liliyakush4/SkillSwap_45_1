@@ -3,7 +3,7 @@ import { type InputProps } from '../input/Input';
 import cls from './SearchInput.module.css';
 import searchIcon from '../../../shared/assets/icons/ui/icon_search.svg';
 
-type SearchInputProps = Pick<InputProps, 'value' | 'onChange' | 'placeholder' | 'className'>;
+export type SearchInputProps = Pick<InputProps, 'value' | 'onChange' | 'placeholder' | 'className'>;
 
 export const SearchInput = ({ value, onChange, placeholder, className }: SearchInputProps) => {
   return (
