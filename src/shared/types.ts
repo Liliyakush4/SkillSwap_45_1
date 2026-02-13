@@ -8,14 +8,13 @@ export type CityId = number;
 export type CategoryId = number;
 export type SubCategoryId = number;
 
-
 export interface City {
   id: CityId;
   name: string;
 }
 
 export interface CityResponse {
-    cities: City[]
+  cities: City[];
 }
 
 export interface Category {
@@ -25,7 +24,7 @@ export interface Category {
 }
 
 export interface CategoryResponse {
-    categories: Category[]
+  categories: Category[];
 }
 
 export interface SubCategory {
@@ -35,5 +34,5 @@ export interface SubCategory {
 }
 
 export interface SubCategoryResponse {
-    subcategories: SubCategory[]
+  subcategories: SubCategory[];
 }

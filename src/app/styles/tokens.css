@@ -15,7 +15,7 @@
   --color-overlay: rgba(142, 142, 142, 0.6); /* цвет оверлея*/
 
   --color-disable-button: #e4e8df; /* дизейбл кнопок*/
-  --color-disable-tetx: #9CA197; /* дизейбл текста*/
+  --color-disable-tetx: #9ca197; /* дизейбл текста*/
   --color-hover: #deebc5;
 
   --color-tag-englih: #ebe5c5; /* иностранные языки*/
@@ -26,7 +26,7 @@
   --color-tag-health: #e9f7e7; /* здоровье*/
   --color-tag-plus: #e8ecf7; /* цвет плашка с +2*/
 
-  --color-alarm: #E0796E; /* цвет у уведомления, если есть непрочитанные */
+  --color-alarm: #e0796e; /* цвет у уведомления, если есть непрочитанные */
 
   /* Шрифты  */
   --font-family-primary: 'Jost', sans-serif;

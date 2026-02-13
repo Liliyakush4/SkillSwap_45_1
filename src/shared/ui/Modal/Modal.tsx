@@ -6,7 +6,7 @@ interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   children?: ReactNode;
-  className?: string;
+  className?: string; // className, чтобы конкретные модалки задавали свои max-width/padding
 }
 
 export const Modal: FC<ModalProps> = ({ isOpen, onClose, children, className }) => {
@@ -17,6 +17,7 @@ export const Modal: FC<ModalProps> = ({ isOpen, onClose, children, className }) 
     return null;
   }
 
+  // Поведение shared: блокируем скролл страницы, пока модалка открыта
   useEffect(() => {
     if (!isOpen) return;
 
@@ -28,15 +29,17 @@ export const Modal: FC<ModalProps> = ({ isOpen, onClose, children, className }) 
     };
   }, [isOpen]);
 
+  // Поведение shared: закрытие по Escape
   useEffect(() => {
+    if (!isOpen) return;
+
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         onClose();
       }
     };
-    if (isOpen) {
-      document.addEventListener('keydown', handleKeyDown);
-    }
+
+    document.addEventListener('keydown', handleKeyDown);
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
@@ -45,22 +48,16 @@ export const Modal: FC<ModalProps> = ({ isOpen, onClose, children, className }) 
   if (!isOpen) return null;
 
   return ReactDOM.createPortal(
-    <div className={styles.overlay} onClick={onClose} data-testid='modal-overlay'>
+    <div className={styles.overlay} onClick={onClose} data-testid="modal-overlay">
       <div
         className={`${styles.modal} ${className || ''}`}
         onClick={(e) => e.stopPropagation()}
         role="dialog"
         aria-modal="true"
       >
-        <div className={styles.iconBlock}>
-          {/* Можно вставлять иконки через children или отдельное место, если нужно */}
-        </div>
-
-        <div className={styles.contentBlock}>
-          {children}
-        </div>
+        {children}
       </div>
     </div>,
-    modalRoot
+    modalRoot,
   );
 };
