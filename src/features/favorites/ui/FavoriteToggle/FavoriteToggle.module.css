@@ -25,12 +25,10 @@
   pointer-events: none;
 }
 
-.heartButton:hover .heartIcon {
-  fill: #bf3920;
-  stroke: #bf3920;
+.heartButton:hover .heartIcon {  
+  stroke: var(--color-primary, #abd27a);
 }
 
-.heartButton.active .heartIcon {
-  fill: var(--color-text, #253017);
-  stroke: var(--color-text, #253017);
+.heartButton.active .heartIcon { 
+  color: var(--color-primary, #abd27a);
 }

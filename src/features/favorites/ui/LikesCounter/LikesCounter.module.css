@@ -2,18 +2,13 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 12px;
-  border: 1px solid transparent;
-  border-radius: 8px;
-  background-color: transparent;
-  transition: all 0.2s ease-in-out;
 }
 
 /* Ховер на сердечко при наведении на контейнер или кнопку */
 .likesContainer:hover button svg path,
 .likesContainer button:hover svg path {
-  fill: #bf3920 !important;
-  stroke: #bf3920 !important;
+  fill: var(--color-primary, #abd27a);
+  stroke: var(--color-primary, #abd27a);
 }
 
 .likesCount {
