@@ -18,7 +18,7 @@ export const OfferPreviewModal: React.FC<OfferPreviewModalProps> = ({
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={handleClose}>
+    <Modal isOpen={isOpen} onClose={handleClose} className={styles.modal}>
       <div className={styles.container}>
         <div className={styles.iconWrapper}>
           <img

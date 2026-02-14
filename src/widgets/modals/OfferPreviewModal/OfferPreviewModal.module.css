@@ -1,3 +1,9 @@
+.modal {
+  max-width: 556px;
+  width: calc(100% - 32px); /* адаптив */
+  padding: 62px 60px;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -32,6 +38,5 @@
 
 .buttonWrapper {
   width: 100%;
-  max-width: 320px;
 }
 
