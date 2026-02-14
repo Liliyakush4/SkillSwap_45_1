@@ -44,7 +44,7 @@
   padding: 0;
 }
 
-.navButton:focus {
+.navButton:focus:not(:focus-visible) {
   outline: none;
 }
 
