@@ -132,6 +132,14 @@
 
 @media (min-width: 1024px) {
   .container {
+<<<<<<< Updated upstream
     grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr));
+=======
+    grid-template-columns: repeat(4, minmax(0, 1fr))
+  }
+
+  .container > * {
+    min-width: 0;
+>>>>>>> Stashed changes
   }
 }
