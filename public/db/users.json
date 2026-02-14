@@ -1,0 +1,364 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Андрей Крылов",
+      "cityId": 1,
+      "avatar": "/images/profile/Mikhail_29_novosib.jpg",
+      "about": "Проджект, люблю порядок в хаосе. Помогу с планом и процессами.",
+      "skillsOfferedIds": [101, 104, 106],
+      "skillsWantedIds": [103, 110]
+    },
+    {
+      "id": 2,
+      "name": "Артем Кузнецов",
+      "cityId": 8,
+      "avatar": "/images/profile/Ivan_34_spb.jpg",
+      "about": "Пока просто смотрю, выбираю, с чего начать.",
+      "skillsOfferedIds": [],
+      "skillsWantedIds": []
+    },
+    {
+      "id": 3,
+      "name": "Ирина Иванова",
+      "cityId": 2,
+      "avatar": "/images/profile/Alla_22_arch.jpg",
+      "about": "Учусь веб-разработке, хочу стать фронтендером.",
+      "skillsOfferedIds": [102, 103],
+      "skillsWantedIds": [101, 110]
+    },
+    {
+      "id": 4,
+      "name": "Максим Смирнов",
+      "cityId": 3,
+      "avatar": "/images/profile/Konstantin_36_irk.jpg",
+      "about": "Инженер, интересуюсь электроникой.",
+      "skillsOfferedIds": [105],
+      "skillsWantedIds": [103, 107]
+    },
+    {
+      "id": 5,
+      "name": "Елена Попова",
+      "cityId": 4,
+      "avatar": "/images/profile/Elena_28_krasn.jpg",
+      "about": "Хочу научиться фотографировать.",
+      "skillsOfferedIds": [],
+      "skillsWantedIds": []
+    },
+    {
+      "id": 6,
+      "name": "Денис Волков",
+      "cityId": 10,
+      "avatar": "/images/profile/Konstantin_36_irk.jpg",
+      "about": "Программист, ищу команду для совместных проектов.",
+      "skillsOfferedIds": [107, 108],
+      "skillsWantedIds": [103, 115]
+    },
+    {
+      "id": 7,
+      "name": "Ольга Федорова",
+      "cityId": 20,
+      "avatar": "/images/profile/Ilona_33_ekb.jpg",
+      "about": "Маркетолог, хочу развивать навыки продвижения.",
+      "skillsOfferedIds": [109, 110],
+      "skillsWantedIds": [103, 107]
+    },
+    {
+      "id": 8,
+      "name": "Игорь Лебедев",
+      "cityId": 30,
+      "avatar": "/images/profile/Mikhail_29_novosib.jpg",
+      "about": "Дизайнер, ищу работу в сфере графики.",
+      "skillsOfferedIds": [111],
+      "skillsWantedIds": [110, 115]
+    },
+    {
+      "id": 9,
+      "name": "Виктория Михайлова",
+      "cityId": 40,
+      "avatar": "/images/profile/Viktoria_31_sochi.jpg",
+      "about": "Учусь играть на гитаре.",
+      "skillsOfferedIds": [112],
+      "skillsWantedIds": [110, 113]
+    },
+    {
+      "id": 10,
+      "name": "Константин Громов",
+      "cityId": 15,
+      "avatar": "/images/profile/Konstantin_36_irk.jpg",
+      "about": "Инструктор по фитнесу.",
+      "skillsOfferedIds": [113, 114],
+      "skillsWantedIds": [112, 115]
+    },
+    {
+      "id": 11,
+      "name": "Алина Чернова",
+      "cityId": 23,
+      "avatar": "/images/profile/Anna_26_kaz.jpg",
+      "about": "Обучаюсь видеомонтажу.",
+      "skillsOfferedIds": [115],
+      "skillsWantedIds": [103, 110]
+    },
+    {
+      "id": 12,
+      "name": "Михаил Орлов",
+      "cityId": 36,
+      "avatar": "/images/profile/Maksim_23_msk.jpg",
+      "about": "Разработчик мобильных приложений.",
+      "skillsOfferedIds": [116, 117],
+      "skillsWantedIds": [115, 103]
+    },
+    {
+      "id": 13,
+      "name": "Ирина Воронова",
+      "cityId": 48,
+      "avatar": "/images/profile/Daria_26_yar.jpg",
+      "about": "Хочу научиться шитью.",
+      "skillsOfferedIds": [118],
+      "skillsWantedIds": [121, 112]
+    },
+    {
+      "id": 14,
+      "name": "Владимир Попов",
+      "cityId": 17,
+      "avatar": "/images/profile/Maksim_23_msk.jpg",
+      "about": "Инженер по автоматике.",
+      "skillsOfferedIds": [119, 120],
+      "skillsWantedIds": [101, 107]
+    },
+    {
+      "id": 15,
+      "name": "Наталья Григорьева",
+      "cityId": 22,
+      "avatar": "/images/profile/Ekaterina_33_perm.jpg",
+      "about": "Хочу научиться рисовать.",
+      "skillsOfferedIds": [121],
+      "skillsWantedIds": [115, 110]
+    },
+    {
+      "id": 16,
+      "name": "Роман Сидоров",
+      "cityId": 39,
+      "avatar": "/images/profile/Konstantin_36_irk.jpg",
+      "about": "Инструктор по фитнесу.",
+      "skillsOfferedIds": [122, 123],
+      "skillsWantedIds": [112, 110]
+    },
+    {
+      "id": 17,
+      "name": "Алина Михайлова",
+      "cityId": 46,
+      "avatar": "/images/profile/Daria_26_yar.jpg",
+      "about": "Блогер и видеомейкер.",
+      "skillsOfferedIds": [124, 125],
+      "skillsWantedIds": [115, 110]
+    },
+    {
+      "id": 18,
+      "name": "Михаил Орлов",
+      "cityId": 15,
+      "avatar": "/images/profile/Maksim_23_msk.jpg",
+      "about": "Разработчик мобильных приложений.",
+      "skillsOfferedIds": [126, 127],
+      "skillsWantedIds": [103, 110]
+    },
+    {
+      "id": 19,
+      "name": "Ирина Воронова",
+      "cityId": 22,
+      "avatar": "/images/profile/Elizaveta_25_vladiv.jpg",
+      "about": "Хочу научиться шитью.",
+      "skillsOfferedIds": [128],
+      "skillsWantedIds": [121, 115]
+    },
+    {
+      "id": 20,
+      "name": "Виктория Лазарева",
+      "cityId": 33,
+      "avatar": "/images/profile/Ekaterina_33_perm.jpg",
+      "about": "Учусь играть на скрипке.",
+      "skillsOfferedIds": [129],
+      "skillsWantedIds": [112, 110]
+    },
+    {
+      "id": 21,
+      "name": "Константин Громов",
+      "cityId": 14,
+      "avatar": "/images/profile/Konstantin_36_irk.jpg",
+      "about": "Инструктор по кроссфиту.",
+      "skillsOfferedIds": [130, 131],
+      "skillsWantedIds": [113, 115]
+    },
+    {
+      "id": 22,
+      "name": "Денис Петров",
+      "cityId": 48,
+      "avatar": "/images/profile/Maksim_23_msk.jpg",
+      "about": "Писатель, ищу редактора.",
+      "skillsOfferedIds": [132, 133],
+      "skillsWantedIds": [115, 110]
+    },
+    {
+      "id": 23,
+      "name": "Анастасия Романова",
+      "cityId": 100,
+      "avatar": "/images/profile/Elizaveta_25_vladiv.jpg",
+      "about": "Хочу научиться фотографировать.",
+      "skillsOfferedIds": [134],
+      "skillsWantedIds": [112, 115]
+    },
+    {
+      "id": 24,
+      "name": "Юрий Мельников",
+      "cityId": 98,
+      "avatar": "/images/profile/Maksim_23_msk.jpg",
+      "about": "Инженер, ищу работу по специальности.",
+      "skillsOfferedIds": [135, 136],
+      "skillsWantedIds": [101, 107]
+    },
+    {
+      "id": 25,
+      "name": "Виктория Лазарева",
+      "cityId": 87,
+      "avatar": "/images/profile/Ekaterina_33_perm.jpg",
+      "about": "Учусь играть на скрипке.",
+      "skillsOfferedIds": [137],
+      "skillsWantedIds": [129, 112]
+    },
+    {
+      "id": 26,
+      "name": "Максим Ткаченко",
+      "cityId": 4,
+      "avatar": "/images/profile/Maksim_23_msk.jpg",
+      "about": "Инженер электроники.",
+      "skillsOfferedIds": [138, 139],
+      "skillsWantedIds": [107, 103]
+    },
+    {
+      "id": 27,
+      "name": "Ксения Алексеева",
+      "cityId": 23,
+      "avatar": "/images/profile/Ekaterina_33_perm.jpg",
+      "about": "Учусь программировать на Python.",
+      "skillsOfferedIds": [140],
+      "skillsWantedIds": [107, 115]
+    },
+    {
+      "id": 28,
+      "name": "Павел Белов",
+      "cityId": 35,
+      "avatar": "/images/profile/Maksim_23_msk.jpg",
+      "about": "Фрилансер по видеомонтажу.",
+      "skillsOfferedIds": [141],
+      "skillsWantedIds": [115, 110]
+    },
+    {
+      "id": 29,
+      "name": "Виктория Козлова",
+      "cityId": 100,
+      "avatar": "/images/profile/Ekaterina_33_perm.jpg",
+      "about": "Хочу научиться играть на пианино.",
+      "skillsOfferedIds": [142],
+      "skillsWantedIds": [112, 110]
+    },
+    {
+      "id": 30,
+      "name": "Роман Сидоров",
+      "cityId": 74,
+      "avatar": "/images/profile/Maksim_23_msk.jpg",
+      "about": "Инструктор по фитнесу.",
+      "skillsOfferedIds": [143, 144],
+      "skillsWantedIds": [113, 110]
+    },
+    {
+      "id": 31,
+      "name": "Алина Михайлова",
+      "cityId": 62,
+      "avatar": "/images/profile/Elizaveta_25_vladiv.jpg",
+      "about": "Блогер и видеомейкер.",
+      "skillsOfferedIds": [145, 146],
+      "skillsWantedIds": [110, 103]
+    },
+    {
+      "id": 32,
+      "name": "Михаил Орлов",
+      "cityId": 53,
+      "avatar": "/images/profile/Konstantin_36_irk.jpg",
+      "about": "Разработчик мобильных приложений.",
+      "skillsOfferedIds": [147, 148],
+      "skillsWantedIds": [107, 115]
+    },
+    {
+      "id": 33,
+      "name": "Ирина Воронова",
+      "cityId": 44,
+      "avatar": "/images/profile/Maria_21_krasn.jpg",
+      "about": "Хочу научиться шитью.",
+      "skillsOfferedIds": [149],
+      "skillsWantedIds": [118, 115]
+    },
+    {
+      "id": 34,
+      "name": "Виктория Лазарева",
+      "cityId": 31,
+      "avatar": "/images/profile/Maria_21_krasn.jpg",
+      "about": "Учусь играть на скрипке.",
+      "skillsOfferedIds": [150],
+      "skillsWantedIds": [129, 112]
+    },
+    {
+      "id": 35,
+      "name": "Константин Громов",
+      "cityId": 12,
+      "avatar": "/images/profile/Konstantin_36_irk.jpg",
+      "about": "Инструктор по кроссфиту.",
+      "skillsOfferedIds": [151],
+      "skillsWantedIds": [113, 110]
+    },
+    {
+      "id": 36,
+      "name": "Денис Петров",
+      "cityId": 93,
+      "avatar": "/images/profile/Maksim_23_msk.jpg",
+      "about": "Писатель, ищу редактора.",
+      "skillsOfferedIds": [152],
+      "skillsWantedIds": []
+    },
+    {
+      "id": 37,
+      "name": "Анастасия Романова",
+      "cityId": 84,
+      "avatar": "/images/profile/Maria_21_krasn.jpg",
+      "about": "Хочу научиться фотографировать.",
+      "skillsOfferedIds": [153],
+      "skillsWantedIds": [115, 110]
+    },
+    {
+      "id": 38,
+      "name": "Юрий Мельников",
+      "cityId": 71,
+      "avatar": "/images/profile/Maksim_23_msk.jpg",
+      "about": "Инженер, ищу работу по специальности.",
+      "skillsOfferedIds": [154],
+      "skillsWantedIds": [101, 110]
+    },
+    {
+      "id": 39,
+      "name": "Виктория Лазарева",
+      "cityId": 42,
+      "avatar": "/images/profile/Elizaveta_25_vladiv.jpg",
+      "about": "Учусь играть на скрипке.",
+      "skillsOfferedIds": [155],
+      "skillsWantedIds": [112, 110]
+    },
+    {
+      "id": 40,
+      "name": "Максим Ткаченко",
+      "cityId": 13,
+      "avatar": "/images/profile/Maksim_23_msk.jpg",
+      "about": "Инженер электроники.",
+      "skillsOfferedIds": [156],
+      "skillsWantedIds": [103, 107]
+    }
+  ]
+}
