@@ -2,7 +2,7 @@
   display: grid;
   place-items: center;
   height: 100%;
-  margin-top: 124px;
+  /* margin-top: 124px; */
 }
 
 .imageWrapper {
@@ -27,6 +27,7 @@
 .textBlock {
   display: flex;
   flex-direction: column;
+  gap: 4px;
 }
 
 .title {
