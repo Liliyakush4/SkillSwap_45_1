@@ -1,4 +1,5 @@
 import React from 'react'
+import { Logo } from '../../shared/ui/Logo'
 import styles from './Footer.module.css'
 
 export type FooterProps = {}
@@ -8,12 +9,7 @@ const Footer: React.FC<FooterProps> = () => {
     <footer className={styles.footer}>
       <div className={styles.container}>
         <div className={styles.columnLogo}>
-          <div className={styles.logo}>
-            <span className={styles.logoIcon} aria-hidden="true">
-              ✦
-            </span>
-            <span className={styles.logoText}>SkillSwap</span>
-          </div>
+          <Logo className={styles.logo} />
 
           <p className={styles.watermark}>SkillSwap — 2025</p>
         </div>
