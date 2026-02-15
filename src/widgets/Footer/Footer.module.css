@@ -26,6 +26,17 @@
   margin-bottom: 112px;
 }
 
+/* Hover для логотипа на всех разрешениях: accent без подчёркивания */
+.logo:hover {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.logo:focus,
+.logo:focus-visible {
+  text-decoration: none;
+}
+
 .watermark {
   margin: 0;
   font-size: var(--font-size-xs);
@@ -76,18 +87,41 @@
   outline: none;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 767px) {
   .footer {
     padding: 24px 16px 32px;
   }
 
   .container {
-    gap: 24px;
+    gap: 10px;
     align-items: flex-start;
+  }
+
+  .column {
+    gap: 10px;
+  }
+
+  .navList {
+    gap: 10px;
   }
 
   .logo {
     margin-bottom: 40px;
+    order: 1;
+  }
+
+  /* Watermark: внизу по центру */
+  .columnLogo {
+    display: contents;
+  }
+
+  .column {
+    order: 2;
+  }
+
+  .watermark {
+    order: 3;
+    text-align: center;
   }
 }
 
@@ -102,9 +136,47 @@
   }
 }
 
-@media (min-width: 1024px) {
+/* 768–1024: 3 колонки — первая: логотип, О проекте/Все навыки, подпись */
+@media (min-width: 768px) and (max-width: 1024px) {
   .container {
-    grid-template-columns: repeat(4, minmax(0, 1fr))
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .columnLogo {
+    display: contents;
+  }
+
+  .columnLogo .logo {
+    grid-column: 1;
+    grid-row: 1;
+    margin-bottom: 16px;
+  }
+
+  .columnLogo .watermark {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  /* О проекте, Все навыки, Контакты, Блог, Политика, Соглашение — в одной строке */
+  .container > .column:nth-child(2) {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .container > .column:nth-child(3) {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .container > .column:nth-child(4) {
+    grid-column: 3;
+    grid-row: 2;
+  }
+}
+
+@media (min-width: 1025px) {
+  .container {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .container > * {
