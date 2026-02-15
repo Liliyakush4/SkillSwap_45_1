@@ -4,7 +4,7 @@ import styles from './Footer.module.css'
 
 export type FooterProps = {}
 
-const Footer: React.FC<FooterProps> = () => {
+export const Footer: React.FC<FooterProps> = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
@@ -62,5 +62,3 @@ const Footer: React.FC<FooterProps> = () => {
     </footer>
   )
 }
-
-export default Footer
