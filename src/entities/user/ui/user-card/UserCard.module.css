@@ -1,0 +1,100 @@
+.user-card {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 16px;
+  padding: 16px;
+}
+
+.avatar-container {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.user-info {
+  margin-bottom: 8px;
+}
+
+.name {
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.city-age {
+  color: #666;
+  font-size: 14px;
+}
+
+.skills-section {
+  margin-top: 8px;
+}
+
+.skill-badge {
+  background-color: #eaeaea;
+  border-radius: 4px;
+  padding: 4px 8px;
+  margin-right: 4px;
+  margin-bottom: 4px;
+  display: inline-block;
+}
+
+.no-skills {
+  color: #999;
+  font-style: italic;
+  margin-top: 8px;
+}
+
+.about {
+  margin-top: 8px;
+  color: #666;
+}
+
+.actions {
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.like-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.more-button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .user-card {
+    padding: 12px;
+  }
+
+  .avatar {
+    width: 60px;
+    height: 60px;
+  }
+
+  .name {
+    font-size: 14px;
+  }
+
+  .city-age {
+    font-size: 12px;
+  }
+}
