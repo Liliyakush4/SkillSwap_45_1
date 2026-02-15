@@ -11,7 +11,6 @@ export const ErrorPage404 = () => {
   };
 
   return (
-    <>
       <div className={styles.page}>
         <div className={styles.imageWrapper}>
           <img src={errorImage} alt="Страница не найдена" className={styles.image} />
@@ -34,6 +33,5 @@ export const ErrorPage404 = () => {
           </div>
         </div>
       </div>
-    </>
   );
 };
