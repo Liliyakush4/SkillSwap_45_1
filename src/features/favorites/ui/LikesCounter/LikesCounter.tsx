@@ -1,6 +1,6 @@
 import { type FC, useState } from 'react';
 import clsx from 'clsx';
-import { FavoriteToggle } from '../../../../shared/ui/FavoriteToggle';
+import { FavoriteToggle } from '../../../../shared/ui/favorite-toggle';
 import styles from './LikesCounter.module.css';
 
 export interface LikesCounterProps {
