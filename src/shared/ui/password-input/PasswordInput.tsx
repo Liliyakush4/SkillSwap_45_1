@@ -17,6 +17,7 @@ export const PasswordInput = ({
   const [isVisible, setIsVisible] = useState(false);
 
   const toggleLabel = isVisible ? 'Скрыть пароль' : 'Показать пароль';
+ const isDisabled = Boolean(rest.disabled);
 
   return (
     <Input
@@ -33,6 +34,7 @@ export const PasswordInput = ({
           className={cls.toggle}
           onClick={() => setIsVisible((prev) => !prev)}
           aria-label={toggleLabel}
+          disabled={isDisabled}
         >
           <img src={isVisible ? hideIcon : showIcon} alt="" aria-hidden="true" />
         </button>
