@@ -29,6 +29,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
   ) => {
     const hasError = Boolean(errorText);
 
+const inputId = useId();
+
     const errorId = useId();
     const describedBy = hasError ? errorId : undefined;
 
@@ -41,10 +43,18 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           className ?? '',
         ].join(' ')}
       >
-        {label && <label className={cls.label}>{label}</label>}
+         {label && (
+          <label
+            className={cls.label}
+            htmlFor={inputId} 
+          >
+            {label}
+          </label>
+        )}
         <div className={cls.inputContainer}>
           <input
             ref={ref}
+            id={inputId}
             className={cls.input}
             value={value}
             onChange={(e) => onChange(e.target.value)}
