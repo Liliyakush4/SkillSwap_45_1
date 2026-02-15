@@ -1,6 +1,6 @@
 import { type FC, useState } from 'react';
 import clsx from 'clsx';
-import { FavoriteToggle } from '../FavoriteToggle';
+import { FavoriteToggle } from '../../../../shared/ui/FavoriteToggle';
 import styles from './LikesCounter.module.css';
 
 export interface LikesCounterProps {
@@ -9,9 +9,11 @@ export interface LikesCounterProps {
   onClick?: () => void;
   className?: string;
   'aria-label'?: string;
+  showCount?: boolean;
 }
 
 export const LikesCounter: FC<LikesCounterProps> = ({
+  showCount = false,
   isActive: externalIsActive,
   likesCount: externalLikesCount,
   onClick: externalOnClick,
@@ -37,12 +39,13 @@ export const LikesCounter: FC<LikesCounterProps> = ({
       setInternalLikesCount(prev => newIsActive ? prev + 1 : prev - 1);
     }
   };
-
   return (
     <div className={clsx(styles.likesContainer, className)}>
-      <span className={clsx(styles.likesCount, isActive && styles.active)}>
+      {showCount && (
+        <span className={clsx(styles.likesCount, isActive && styles.active)}>
         {likesCount}
       </span>
+      )}
       <FavoriteToggle
         isActive={isActive}
         onClick={handleToggle}
