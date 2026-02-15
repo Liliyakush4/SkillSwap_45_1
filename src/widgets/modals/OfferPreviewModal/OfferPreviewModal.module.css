@@ -1,6 +1,6 @@
 .modal {
   max-width: 556px;
-  width: calc(100% - 32px); /* адаптив */
+  width: calc(100% - 32px);
   padding: 62px 60px;
 }
 
@@ -19,21 +19,21 @@
 }
 
 .icon {
-  width: 72px;
-  height: 72px;
+  width: 75px;
+  height: 75px;
 }
 
 .title {
   margin: 0 0 12px;
   font-size: var(--font-size-xl, 24px);
-  font-weight: var(--font-weight-semibold, 600);
+  font-weight: 500;
   color: var(--color-text, #253017);
 }
 
 .description {
   margin: 0 0 32px;
   font-size: var(--font-size-base, 16px);
-  color: var(--color-text-secondary, #69735d);
+  color: var(--color-text, #253017);
 }
 
 .buttonWrapper {
