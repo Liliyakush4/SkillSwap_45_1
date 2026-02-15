@@ -9,17 +9,11 @@
   font-weight: var(--font-weight-regular);
 }
 
-.inputContainer {
-  position: relative;
-  width: 100%;
-}
-
 .input {
   height: 44px;
   padding: 0 12px;
   border-radius: 10px;
   border: 1px solid var(--color-border);
-  font-size: 14px;
   outline: none;
   transition:
     border 0.2s ease,
@@ -44,7 +38,7 @@
 }
 
 .input:focus-visible {
-  border: 1px solid var(--color-border);
+  border-color: var(--color-accent);
 }
 
 .disabled .input {
