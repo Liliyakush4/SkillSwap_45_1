@@ -51,7 +51,7 @@ const inputId = useId();
             {label}
           </label>
         )}
-        <div className={cls.inputContainer}>
+        <div className={[cls.inputContainer, rightSlot ? cls.hasRightSlot : ''].join(' ')}>
           <input
             ref={ref}
             id={inputId}

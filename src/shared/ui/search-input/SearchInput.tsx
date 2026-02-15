@@ -2,16 +2,37 @@ import { Input } from '../input/Input';
 import { type InputProps } from '../input/Input';
 import cls from './SearchInput.module.css';
 import searchIcon from '../../../shared/assets/icons/ui/icon_search.svg';
+import { useRef } from 'react';
 
-export type SearchInputProps = Pick<InputProps, 'value' | 'onChange' | 'placeholder' | 'className'>;
+export type SearchInputProps = Pick<InputProps, 'value' | 'onChange' | 'placeholder' | 'className'> & { onSearch?: () => void };
 
-export const SearchInput = ({ value, onChange, placeholder, className }: SearchInputProps) => {
+export const SearchInput = ({ value, onChange, placeholder, className, onSearch }: SearchInputProps) => {
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleSearch = () => {
+    inputRef.current?.focus();
+    if (!value.trim()) return;
+    onSearch?.();
+  };
+
   return (
     <div className={[cls.container, className ?? ''].join(' ')}>
-      <span className={cls.icon}>
-        <img src={searchIcon} alt="search" />
-      </span>
-      <Input value={value} onChange={onChange} placeholder={placeholder} className={cls.input} />
+      <button
+        type='button'
+        className={cls.iconButton}
+        aria-label='Поиск'
+        onClick={handleSearch}
+        >
+          <img src={searchIcon} alt='' aria-hidden='true' />
+        </button>
+        
+      <Input ref={inputRef} value={value} onChange={onChange} placeholder={placeholder} className={cls.input} onKeyDown={(e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          handleSearch();
+        }
+      }} 
+      />
     </div>
   );
 };
