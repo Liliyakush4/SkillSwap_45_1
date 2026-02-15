@@ -10,7 +10,7 @@
 
 .modal {
   background: var(--color-secondary);
-  border-radius: 8px;
+  border-radius: 12px;
   box-sizing: border-box;
   width: calc(100% - 32px);
   max-width: 1024px;

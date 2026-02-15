@@ -7,6 +7,7 @@ export default function MainPage() {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [search, setSearch] = useState('');
+
   return (
     <div>
       <h1>Главная страница</h1>

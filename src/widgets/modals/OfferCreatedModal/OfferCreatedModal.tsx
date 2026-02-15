@@ -1,7 +1,7 @@
 import { type FC } from 'react';
 import { Modal } from '../../../shared/ui/Modal';
 import { Button } from '../../../shared/ui/Button';
-import iconPerson from '../../../shared/assets/icons/common/icon_person_circle_nosize.svg';
+import iconOkay from '../../../shared/assets/icons/common/icon_okay_nosize.svg';
 import styles from './OfferCreatedModal.module.css';
 
 export interface OfferCreatedModalProps {
@@ -20,7 +20,7 @@ export const OfferCreatedModal: FC<OfferCreatedModalProps> = ({
   >
     <div className={styles.container}>
       <img
-        src={iconPerson}
+        src={iconOkay}
         alt=""
         aria-hidden="true"
         className={styles.icon}

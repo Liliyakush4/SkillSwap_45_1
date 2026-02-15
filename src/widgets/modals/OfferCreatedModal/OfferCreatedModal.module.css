@@ -1,7 +1,11 @@
+h2 {
+  margin-block-start: 0; /* хардкод */
+}
+
 .modal {
   max-width: 556px;
   width: calc(100% - 32px);
-  padding: 62px 60px;  
+  padding: 62px 60px;
 }
 
 .container {
@@ -9,12 +13,13 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  width: 100%;  
 }
 
 .icon {
-  width: 72px;
-  height: 72px;
+  width: 100px;
+  height: 100px;
+  display: block;
+  margin: 0 0 52px;
 }
 
 .title {
@@ -26,8 +31,7 @@
   text-align: center;
   vertical-align: middle;
   color: var(--color-text, #253017);
-   margin-block-start: 0;
-   margin-block-end: 10px;
+  margin-bottom: 12px;
 }
 
 .description {
@@ -39,11 +43,34 @@
   text-align: center;
   vertical-align: middle;
   color: var(--color-text, #253017);   
-  margin-block-end: 25px;
+  margin: 0 0 32px;
 }
 
 .buttonWrapper {
   width: 100%;
+  margin: 0;
   display: flex;
   justify-content: center;
+}
+
+/* планшет */
+@media (max-width: 1023px) {
+  .description {
+    margin-bottom: 24px;
+  }
+
+  .icon {
+    margin-bottom: 40px;
+  }
+}
+
+/* мобилка */
+@media (max-width: 767px) {
+  .description {
+    margin-bottom: 20px;
+  }
+
+  .icon {
+    margin-bottom: 28px;
+  }
 }
