@@ -1,0 +1,25 @@
+.container {
+  position: relative;
+  width: 100%;
+}
+
+.icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.input input {
+  padding-left: 44px;
+}
