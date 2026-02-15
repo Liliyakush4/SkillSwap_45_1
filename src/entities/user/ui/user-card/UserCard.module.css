@@ -1,100 +1,82 @@
-.user-card {
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  margin-bottom: 16px;
-  padding: 16px;
+h2, h4 {
+  margin: 0;
 }
 
-.avatar-container {
-  text-align: center;
-  margin-bottom: 12px;
+.userCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 324px;
+  max-height: 444px;
 }
 
-.avatar {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  object-fit: cover;
+.header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
-.user-info {
-  margin-bottom: 8px;
+.userInfo {
+  display: flex;
+  flex-direction: column;
 }
 
-.name {
-  font-weight: bold;
-  font-size: 16px;
+.nameDiv {
+  font-size: 20px;
   margin-bottom: 4px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  line-height: 24px;
 }
 
-.city-age {
-  color: #666;
-  font-size: 14px;
-}
-
-.skills-section {
-  margin-top: 8px;
-}
-
-.skill-badge {
-  background-color: #eaeaea;
-  border-radius: 4px;
-  padding: 4px 8px;
-  margin-right: 4px;
+.nameH2 {
+  font-size: 20px;
   margin-bottom: 4px;
-  display: inline-block;
+  line-height: 28px;
 }
 
-.no-skills {
-  color: #999;
-  font-style: italic;
-  margin-top: 8px;
+.cityAge {
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.skillsSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
 }
 
 .about {
-  margin-top: 8px;
-  color: #666;
+  max-height: 72px;
+  overflow: hidden;
 }
 
-.actions {
-  margin-top: 16px;
+.skills {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
 }
 
-.like-button {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0;
+.skillsLabel {
+  font-size: 16px;
+  margin-bottom: 8px;
 }
 
-.more-button {
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
-  cursor: pointer;
+.skillsRow {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
-@media (max-width: 768px) {
-  .user-card {
-    padding: 12px;
-  }
+.emptySkill {
+  color: #999;
+}
 
-  .avatar {
-    width: 60px;
-    height: 60px;
-  }
-
-  .name {
-    font-size: 14px;
-  }
-
-  .city-age {
-    font-size: 12px;
-  }
+.favoriteToggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }
