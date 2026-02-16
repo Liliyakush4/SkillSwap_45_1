@@ -3,7 +3,7 @@
   font-family: var(--font-family-base);
   font-weight: var(--font-weight-regular);
   font-size: 12px; /* font-size: var(--font-size-sm); */
-  line-height: var(--line-height-base);
+  line-height: 16px;
   border-radius: 20px;
   padding: 8px 12px;
   /* cursor: pointer; */
