@@ -20,6 +20,11 @@
   opacity: 0.8;
 }
 
+.dropzone:not(.disabled):focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
 .active {
   border-color: var(--color-accent);
   transform: scale(0.99);

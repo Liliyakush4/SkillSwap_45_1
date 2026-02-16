@@ -1,4 +1,10 @@
-import React, { useState, type ChangeEvent, type DragEvent } from 'react';
+import React, {
+  useState,
+  useRef,
+  type ChangeEvent,
+  type DragEvent,
+  type KeyboardEvent,
+} from 'react';
 import styles from './FileDropzone.module.css';
 import iconPhotoAdd from '../../assets/icons/ui/icon_photo_add.svg';
 
@@ -11,6 +17,28 @@ export interface FileDropzoneProps {
   errorText?: string;
 }
 
+const isAcceptedFileType = (file: File, accept: string): boolean => {
+  if (!accept) return true;
+
+  if (accept.includes('*')) {
+    const mimeType = accept.replace('*', '').trim();
+    return file.type.startsWith(mimeType);
+  }
+
+  const acceptTypes = accept.split(',').map((type) => type.trim());
+  return acceptTypes.some((type) => {
+    if (type.includes('/')) {
+      return file.type === type || file.type.startsWith(type.replace('*', '') + '/');
+    }
+
+    if (type.startsWith('.')) {
+      const ext = type.slice(1).toLowerCase();
+      return file.name.toLowerCase().endsWith('.' + ext);
+    }
+    return false;
+  });
+};
+
 export const FileDropzone: React.FC<FileDropzoneProps> = ({
   onChange,
   multiple = true,
@@ -20,6 +48,7 @@ export const FileDropzone: React.FC<FileDropzoneProps> = ({
   errorText,
 }) => {
   const [isDragActive, setIsDragActive] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (disabled) return;
@@ -30,7 +59,22 @@ export const FileDropzone: React.FC<FileDropzoneProps> = ({
     e.target.value = '';
   };
 
-  const handleDragEnter = (e: DragEvent<HTMLLabelElement>) => {
+  const handleClick = () => {
+    if (!disabled && inputRef.current) {
+      inputRef.current.click();
+    }
+  };
+
+  const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    if (disabled) return;
+
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleClick();
+    }
+  };
+
+  const handleDragEnter = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
     if (!disabled) {
@@ -38,13 +82,13 @@ export const FileDropzone: React.FC<FileDropzoneProps> = ({
     }
   };
 
-  const handleDragLeave = (e: DragEvent<HTMLLabelElement>) => {
+  const handleDragLeave = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
     setIsDragActive(false);
   };
 
-  const handleDragOver = (e: DragEvent<HTMLLabelElement>) => {
+  const handleDragOver = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
     if (!disabled) {
@@ -52,7 +96,7 @@ export const FileDropzone: React.FC<FileDropzoneProps> = ({
     }
   };
 
-  const handleDrop = (e: DragEvent<HTMLLabelElement>) => {
+  const handleDrop = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
     setIsDragActive(false);
@@ -60,8 +104,11 @@ export const FileDropzone: React.FC<FileDropzoneProps> = ({
     if (disabled) return;
 
     const files = e.dataTransfer.files ? Array.from(e.dataTransfer.files) : [];
-    if (files.length > 0) {
-      onChange(files);
+
+    const acceptedFiles = files.filter((file) => isAcceptedFileType(file, accept));
+
+    if (acceptedFiles.length > 0) {
+      onChange(acceptedFiles);
     }
   };
 
@@ -77,14 +124,20 @@ export const FileDropzone: React.FC<FileDropzoneProps> = ({
 
   return (
     <>
-      <label
+      <div
         className={rootClasses}
+        onClick={handleClick}
+        onKeyDown={handleKeyDown}
         onDragEnter={handleDragEnter}
         onDragLeave={handleDragLeave}
         onDragOver={handleDragOver}
         onDrop={handleDrop}
+        tabIndex={disabled ? -1 : 0}
+        role="button"
+        aria-disabled={disabled}
       >
         <input
+          ref={inputRef}
           type="file"
           hidden
           multiple={multiple}
@@ -99,7 +152,7 @@ export const FileDropzone: React.FC<FileDropzoneProps> = ({
           <img src={iconPhotoAdd} alt="Картинка выбрать изображения" className={styles.icon} />
           <span className={styles.selectImageText}>Выбрать изображения</span>
         </div>
-      </label>
+      </div>
 
       {errorText && <span className={styles.errorMessage}>{errorText}</span>}
     </>
