@@ -13,8 +13,8 @@
 
 .avatarButton {
   position: absolute;
-  bottom: 0;
-  right: 0;
+  bottom: 4px;
+  right: 6px;
   width: 20px;
   height: 20px;
   border-radius: 50%;
