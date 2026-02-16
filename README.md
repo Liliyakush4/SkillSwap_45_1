@@ -85,8 +85,12 @@ npm run build
 
 ```
 npm run lint
+npm run lint:fix
 npm run format
+npm run format:check
 ```
+
+Подробнее: [docs/code-style.md](docs/code-style.md)
 
 ## Ссылки
 
