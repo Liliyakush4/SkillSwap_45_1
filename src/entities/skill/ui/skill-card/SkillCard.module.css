@@ -1,0 +1,105 @@
+h1 {
+  margin: 0;
+}
+
+.skillCard {
+  margin: 40px;
+  background-color: var(--color-surface);
+  max-width: 916px;
+  min-width: 904px;
+}
+
+.contentContainer {
+  position: relative; /* для плавающего размера вертикального разделения */
+  right: 0;
+  left: 0;
+  display: grid;
+  gap: 20px 0;
+  grid-template-areas:
+    'header gallery'
+    'description gallery'
+    'actions gallery';
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 60px 176px 48px;
+  height: 324px;
+  width: 100%;
+}
+
+.headerColumn {
+  grid-area: header;
+  height: 60px;
+}
+
+.descriptionColumn {
+  grid-area: description;
+  max-height: 144px;
+  max-width: 420px;
+  overflow: hidden;
+}
+
+.galleryColumn {
+  grid-area: gallery;
+  height: 324px;
+  min-width: 440px;
+  max-width: 440px;
+}
+
+.actionsColumn {
+  grid-area: actions;
+  min-height: 48px;
+  max-width: 420px;
+}
+
+.title {
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-medium);
+  font-size: 32px;
+  line-height: 40px;
+  margin-bottom: var(--space-4);
+}
+
+.category {
+  color: var(--color-disable-text);
+  font-size: var(--font-size-xs);
+  line-height: 16px;
+}
+
+.description {
+  word-break: break-word;
+  overflow: hidden;
+  line-height: 1.5;
+  margin-bottom: 32px;
+}
+
+.actionsContainer {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  max-height: 100%;
+}
+
+.galleryColumn {
+  grid-area: gallery;
+}
+
+@media (max-width: 768px) {
+  .skillCard {
+    height: auto;
+    max-width: max-content;
+    min-width: auto;
+  }
+  .contentContainer {
+    grid-template-areas: 'gallery' 'header' 'description' 'actions';
+    grid-template-columns: 1fr;
+    grid-template-rows: 598px 60px auto 48px;
+    height: auto;
+    width: 100%;
+  }
+
+  .actionsColumn,
+  .headerColumn,
+  .galleryColumn,
+  .descriptionColumn {
+    max-width: 440px;
+  }
+}
