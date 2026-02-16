@@ -29,6 +29,11 @@
   outline-offset: 2px;
 }
 
+.primary:active:not(:disabled) {
+  background-color: var(--color-accent, #508826);
+  color: var(--color-secondary, #ffffff);
+}
+
 .secondary {
   border: 1px solid var(--color-primary, #abd27a);
   color: var(--color-text, #253017);
@@ -43,6 +48,10 @@
 .secondary:focus-visible {
   outline: 2px solid var(--color-accent, #508826);
   outline-offset: 2px;
+}
+
+.secondary:active:not(:disabled) {
+  border-color:  var(--color-accent, #508826);  
 }
 
 .ghost {
