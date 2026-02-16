@@ -11,12 +11,17 @@ import ProfilePage from '../../pages/profile/ProfilePage';
 import FavoritesPage from '../../pages/favorites/FavoritesPage';
 import { ErrorPage404 } from '../../pages/error404/ErrorPage404';
 import {ErrorPage500} from '../../pages/error500/ErrorPage500';
+import { StyleGuidePage } from '../../pages/styleguide';
 
 import { AuthLayout } from '../layouts/AuthLayout';
 
 export default function AppRouter() {
   return (
     <Routes>
+      {/* Style Guide: только в dev, в проде редирект на / */}
+      <Route path="/__ui" element={<StyleGuidePage />} />
+      <Route path="/styleguide" element={<StyleGuidePage />} />
+
       {/* Auth-ветка без Header/Footer */}
       <Route path="/auth" element={<AuthLayout />}>
         {/* если зашли на /auth */}
