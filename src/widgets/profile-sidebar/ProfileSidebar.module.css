@@ -1,0 +1,46 @@
+.sidebar {
+  background-color: var(--color-bg);
+  min-height: 272px;
+  max-width: 244px;
+}
+
+.menuList {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  gap: 8px;
+}
+
+.menuItem {
+  width: 100%;
+}
+
+.menuButton {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  background-color: var(--color-bg);
+  border: none;
+  border-radius: var(--radius-large);
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+  width: 100%;
+}
+
+.menuButton:hover,
+.menuButton:focus-visible {
+  background-color: var(--color-accent);
+}
+
+.active {
+  background-color: var(--color-primary);
+}
+
+.icon {
+  height: 24px;
+  width: 24px;
+  fill: currentColor;
+}
