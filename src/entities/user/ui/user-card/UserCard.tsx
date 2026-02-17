@@ -17,6 +17,7 @@ export const UserCard: React.FC<UserCardProps> = ({
   skillsWanted,
   about,
   showLike = true,
+  likesCount,
   onLikeClick,
   isLiked = false,
   onMore,
@@ -47,38 +48,32 @@ export const UserCard: React.FC<UserCardProps> = ({
       <div className={styles.header}>
         <Avatar src={avatarSrc} size={100} alt={`Аватар пользователя ${name}`} />
         <div className={styles.userInfo}>
-          {onMore ? (
-            <h2 className={styles.nameH2}>{name}</h2>
-          ) : (
-            <div className={styles.nameDiv}>{name}</div>
-          )}
-          <div className={styles.cityAge}>
-            {city}, {age}
-          </div>
+          <h2 className={styles.name}>{name}</h2>
+          <div className={styles.cityAge}>{age === undefined ? `${city}` : `${city}, ${age}`}</div>
         </div>
+        {showLike && (
+          <LikesCounter
+            showCount={likesCount !== undefined}
+            isActive={isLiked}
+            likesCount={likesCount}
+            className={styles.favoriteToggle}
+            onClick={onLikeClick}
+            aria-label={isLiked ? 'Убрать из избранного' : 'Добавить в избранное'}
+          />
+        )}
       </div>
 
       <div className={styles.skillsSection}>
-        {about && <div className={styles.about}>{about}</div>}
-        <div className={styles.skills}>
+        {about && !onMore && <div className={styles.about}>{about}</div>}
+        <div className={styles.skill}>
           <h4 className={styles.skillsLabel}>Может научить:</h4>
           <div className={styles.skillsRow}>{renderSkills(skillsOffered)}</div>
         </div>
-        <div className={styles.skills}>
+        <div className={styles.skill}>
           <h4 className={styles.skillsLabel}>Хочет научиться:</h4>
           <div className={styles.skillsRow}>{renderSkills(skillsWanted)}</div>
         </div>
       </div>
-
-      {showLike && (
-        <LikesCounter
-          isActive={isLiked}
-          likesCount={0} /* TODO: Не хватает параметра likesCount с количеством лайков */
-          className={styles.favoriteToggle}
-          onClick={onLikeClick}
-          aria-label={isLiked ? 'Убрать из избранного' : 'Добавить в избранное'}
-        />
-      )}
 
       {onMore && (
         <Button fullWidth={true} onClick={onMore}>

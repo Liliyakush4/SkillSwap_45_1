@@ -9,6 +9,7 @@ export interface UserCardProps {
   skillsWanted: SkillBadge[];
   about?: string;
   showLike?: boolean;
+  likesCount?: number;
   onLikeClick?: () => void;
   isLiked?: boolean;
   onMore?: () => void;
