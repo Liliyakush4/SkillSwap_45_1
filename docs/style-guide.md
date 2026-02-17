@@ -136,6 +136,6 @@ import { SearchInput } from '@/shared/ui/search-input';
 - Роуты: **`/__ui`** и **`/styleguide`**.
 - Доступна только в dev (`import.meta.env.DEV`). В проде — редирект на `/`.
 - На странице: витрина токенов (цвета, типографика) и демо компонентов (Button, IconButton, Input, SearchInput, PasswordInput, RadioGroup, Modal, Popover).
-- Файлы: `src/pages/styleguide/StyleGuidePage.tsx`, `StyleGuidePage.module.css`, `index.ts`; роут в `src/app/router/router.tsx`.
+- Файлы: `src/pages/styleguide/StyleGuidePage.tsx` (обёртка с проверкой DEV и редиректом), `StyleGuideContent.tsx` (контент страницы, подгружается через `React.lazy` только в dev — не попадает в прод-бандл), `StyleGuidePage.module.css`; роут в `src/app/router/router.tsx` через динамический импорт (`lazy`) и `Suspense`.
 
 Используйте страницу как эталон: новые компоненты должны визуально и по состояниям совпадать с демо на стайл-гайде.

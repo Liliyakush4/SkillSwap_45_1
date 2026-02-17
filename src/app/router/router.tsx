@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 import MainLayout from '../layouts/MainLayout';
@@ -11,16 +12,33 @@ import ProfilePage from '../../pages/profile/ProfilePage';
 import FavoritesPage from '../../pages/favorites/FavoritesPage';
 import { ErrorPage404 } from '../../pages/error404/ErrorPage404';
 import {ErrorPage500} from '../../pages/error500/ErrorPage500';
-import { StyleGuidePage } from '../../pages/styleguide';
 
 import { AuthLayout } from '../layouts/AuthLayout';
+
+const StyleGuidePage = lazy(() =>
+  import('../../pages/styleguide/StyleGuidePage').then((m) => ({ default: m.StyleGuidePage }))
+);
 
 export default function AppRouter() {
   return (
     <Routes>
-      {/* Style Guide: только в dev, в проде редирект на / */}
-      <Route path="/__ui" element={<StyleGuidePage />} />
-      <Route path="/styleguide" element={<StyleGuidePage />} />
+      {/* Style Guide: только в dev, в проде редирект на /; динамический импорт — не в прод-бандле */}
+      <Route
+        path="/__ui"
+        element={
+          <Suspense fallback={null}>
+            <StyleGuidePage />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/styleguide"
+        element={
+          <Suspense fallback={null}>
+            <StyleGuidePage />
+          </Suspense>
+        }
+      />
 
       {/* Auth-ветка без Header/Footer */}
       <Route path="/auth" element={<AuthLayout />}>
