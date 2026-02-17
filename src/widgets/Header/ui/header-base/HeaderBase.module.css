@@ -1,0 +1,44 @@
+.base {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.logoIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #8bc34a;
+}
+
+.logoText {
+  font-weight: 600;
+  font-size: 18px;
+  color: #111;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.linkStub {
+  color: #555;
+  cursor: default;
+}
+
+.skillsButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  color: #111;
+}
