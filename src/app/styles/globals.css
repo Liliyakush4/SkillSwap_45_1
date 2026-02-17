@@ -71,6 +71,10 @@ h4 {
   font-weight: var(--font-weight-medium);
 }
 
+h1, h2, h3, h4 {
+  margin: 0;
+}
+
 p {
   margin: 0;
 }
@@ -78,7 +82,7 @@ p {
 ul,
 ol {
   margin: 0;
-  padding: 0;
+  padding-left: 1.5rem;
 }
 
 li {
@@ -97,6 +101,10 @@ select {
 
 button {
   cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
 }
 
 .visually-hidden {
@@ -121,5 +129,11 @@ button {
 @media (max-width: 320px) {
   .container {
     width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
