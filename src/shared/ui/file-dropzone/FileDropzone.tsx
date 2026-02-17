@@ -106,10 +106,9 @@ export const FileDropzone: React.FC<FileDropzoneProps> = ({
     const files = e.dataTransfer.files ? Array.from(e.dataTransfer.files) : [];
 
     const acceptedFiles = files.filter((file) => isAcceptedFileType(file, accept));
+    const finalFiles = multiple ? acceptedFiles : acceptedFiles.slice(0, 1);
 
-    if (acceptedFiles.length > 0) {
-      onChange(acceptedFiles);
-    }
+    if (finalFiles.length > 0) onChange(finalFiles);
   };
 
   const rootClasses = [
