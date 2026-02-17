@@ -7,6 +7,8 @@ import SvgIconChat from '@shared/assets/icons/common/icon_speech.svg';
 import SvgIconHeart from '@shared/assets/icons/ui/icon_heart.svg';
 import SvgIconBulb from '@shared/assets/icons/common/icon_lightbulb_nosize.svg';
 import SvgIconUser from '@shared/assets/icons/common/icon_person.svg';
+import { Button } from '@shared/ui/Button';
+import stylesButton from '@shared/ui/Button/Button.module.css';
 
 export const ProfileSidebar = () => {
   const [activeItem, setActiveItem] = useState('Личные данные');
@@ -19,31 +21,38 @@ export const ProfileSidebar = () => {
     <nav className={styles.sidebar}>
       <ul className={styles.menuList}>
         <li className={styles.menuItem}>
-          <button
-            type="button"
+          <Button
+            variant="ghost"
             className={clsx(styles.menuButton, activeItem === 'Заявки' && styles.active)}
             onClick={handleButtonClick('Заявки')}
           >
             <img src={SvgIconEnvelope} className={styles.icon} alt="Заявки" />
             <span>Заявки</span>
-          </button>
+          </Button>
         </li>
 
         <li className={styles.menuItem}>
-          <button
-            type="button"
+          <Button
+            variant="ghost"
             className={clsx(styles.menuButton, activeItem === 'Мои обмены' && styles.active)}
             onClick={handleButtonClick('Мои обмены')}
           >
             <img src={SvgIconChat} className={styles.icon} alt="Мои обмены" />
             <span>Мои обмены</span>
-          </button>
+          </Button>
         </li>
 
         <li className={styles.menuItem} onClick={handleButtonClick('Избранное')}>
           <NavLink
             to="/favorites"
-            className={() => clsx(styles.menuButton, activeItem === 'Избранное' && styles.active)}
+            className={() =>
+              clsx(
+                styles.menuButton,
+                stylesButton.button,
+                stylesButton.ghost,
+                activeItem === 'Избранное' && styles.active,
+              )
+            }
           >
             <img src={SvgIconHeart} className={styles.icon} alt="Избранное" />
             <span>Избранное</span>
@@ -51,21 +60,26 @@ export const ProfileSidebar = () => {
         </li>
 
         <li className={styles.menuItem}>
-          <button
-            type="button"
+          <Button
+            variant="ghost"
             className={clsx(styles.menuButton, activeItem === 'Мои навыки' && styles.active)}
             onClick={handleButtonClick('Мои навыки')}
           >
             <img src={SvgIconBulb} className={styles.icon} alt="Мои навыки" />
             <span>Мои навыки</span>
-          </button>
+          </Button>
         </li>
 
         <li className={styles.menuItem} onClick={handleButtonClick('Личные данные')}>
           <NavLink
             to="/profile"
             className={() =>
-              clsx(styles.menuButton, activeItem === 'Личные данные' && styles.active)
+              clsx(
+                styles.menuButton,
+                stylesButton.button,
+                stylesButton.ghost,
+                activeItem === 'Личные данные' && styles.active,
+              )
             }
           >
             <img src={SvgIconUser} className={styles.icon} alt="Личные данные" />

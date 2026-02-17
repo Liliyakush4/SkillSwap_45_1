@@ -17,22 +17,15 @@
 
 .menuButton {
   display: flex;
-  align-items: center;
+  justify-content: flex-start;
   gap: 12px;
   padding: 12px 20px;
-  background-color: var(--color-bg);
-  border: none;
-  border-radius: var(--radius-large);
-  cursor: pointer;
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease;
   width: 100%;
 }
 
-.menuButton:hover,
-.menuButton:focus-visible {
-  background-color: var(--color-accent);
+.menuButton:hover {
+  background-color: var(--color-hover);
+  text-decoration: none;
 }
 
 .active {
