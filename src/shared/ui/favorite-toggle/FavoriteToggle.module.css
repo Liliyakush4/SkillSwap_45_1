@@ -2,7 +2,6 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 8px;
   border: 1px solid transparent;
   border-radius: 8px;
   background-color: transparent;
@@ -28,11 +27,11 @@
   pointer-events: none;
 }
 
-.heartButton:hover {  
+.heartButton:hover {
   border-color: transparent;
   color: var(--color-primary, #abd27a);
 }
 
-.heartButton.active .heartIcon { 
+.heartButton.active .heartIcon {
   color: var(--color-primary, #abd27a);
 }

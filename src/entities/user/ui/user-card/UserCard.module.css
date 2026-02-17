@@ -1,0 +1,79 @@
+.userCard h2,
+.userCard h4 {
+  margin: 0;
+}
+
+.userCard {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 324px;
+  min-height: 368px;
+  height: 100%;
+  flex-grow: 1;
+  max-height: 444px;
+}
+
+.header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  font-size: 20px;
+  margin-bottom: 4px;
+  line-height: 28px;
+}
+
+.cityAge {
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.skillsSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  flex-grow: 1;
+}
+
+.about {
+  max-height: 72px;
+  overflow: hidden;
+}
+
+.skill {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.skillsLabel {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.skillsRow {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.emptySkill {
+  color: #999;
+}
+
+.favoriteToggle {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
