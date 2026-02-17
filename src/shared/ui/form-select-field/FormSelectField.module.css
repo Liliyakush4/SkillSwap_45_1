@@ -1,0 +1,134 @@
+.wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.label {
+  display: block;
+  margin-bottom: 4px;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
+  line-height: var(--line-height-base);
+}
+
+.trigger {
+  padding: 12px 20px;
+  border: 2px solid var(--color-border);
+  border-radius: 12px;
+  background-color: var(--color-secondary);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  line-height: var(--line-height-base);
+  transition: border-color 0.2s ease;
+  width: 100%;
+}
+
+.trigger:hover {
+  border-color: var(--color-primary);
+}
+
+.trigger:focus-visible {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px var(--color-hover);
+}
+
+.triggerError {
+  border-color: var(--color-error);
+}
+
+.triggerDisabled {
+  background-color: var(--color-disable);
+  border-color: var(--color-disable);
+  color: var(--color-border);
+  cursor: not-allowed;
+}
+
+.value {
+  color: var(--color-text);
+}
+
+.placeholder {
+  color: var(--color-border);
+}
+
+.arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text);
+  transition: transform 0.2s ease;
+  font-size: 12px;
+  block-size: 24px;
+}
+
+/* Стили для скрытого input */
+input[type="hidden"] {
+  display: none;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  color: var(--color-disable-button);
+  border: 2px solid var(--color-border);
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  padding-top: 10px;
+  background-color: var(--color-secondary);
+  z-index: 2;
+  max-height: 120px;
+  overflow-y: auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.option {
+  padding: 4px 20px;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  line-height: var(--line-height-base);
+  cursor: pointer;
+  border-bottom: 1px solid var(--color-disable);
+  transition: background-color 0.2s ease;
+}
+
+.option:last-child {
+  border-bottom: none;
+}
+
+.option:hover {
+  background-color: var(--color-hover);
+}
+
+.selected {
+  background-color: var(--color-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+
+.optionDisabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.optionDisabled:hover {
+  background-color: transparent;
+}
+
+.errorText {
+  color: var(--color-error);
+  font-size: var(--font-size-small);
+  margin-top: 4px;
+  font-family: var(--font-family-base);
+}
