@@ -1,12 +1,12 @@
-h2,
-h4 {
+.userCard h2,
+.userCard h4 {
   margin: 0;
 }
 
 .userCard {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
   max-width: 324px;
   min-height: 368px;
   height: 100%;
