@@ -3,7 +3,6 @@ h1 {
 }
 
 .skillCard {
-  margin: 40px;
   background-color: var(--color-surface);
   max-width: 916px;
   min-width: 904px;
@@ -59,7 +58,7 @@ h1 {
 }
 
 .category {
-  color: var(--color-disable-text);
+  color: var(--color-border);
   font-size: var(--font-size-xs);
   line-height: 16px;
 }
