@@ -37,7 +37,7 @@
   width: 100%;
 }
 
-.trigger:hover:not(:disabled) {
+.trigger:hover:not(:disabled)  {
   border-color: var(--color-border);
 }
 
@@ -122,7 +122,8 @@ input[type="hidden"] {
   border-bottom: none;
 }
 
-.option:hover {
+.option:hover,
+.optionFocused {
   background-color: var(--color-disable-button);
 }
 
