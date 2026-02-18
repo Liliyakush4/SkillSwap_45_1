@@ -1,27 +1,46 @@
 import { type FC, useState } from 'react';
-import { Button } from 'src/shared/ui/Button';
-import { Input } from 'src/shared/ui/Input';
-import { PasswordInput } from 'src/shared/ui/password-input';
+import { Button } from '@shared/ui/Button';
+import { Input } from '@shared/ui/input';
+import { PasswordInput } from '@shared/ui/password-input';
 import styles from './AuthForm.module.css';
 
+import googleIcon from '@shared/assets/images/auth/login_google.svg';
+import appleIcon from '@shared/assets/images/auth/login_apple.svg';
+
 export type AuthFormMode = 'login' | 'register';
+export type AuthFormData = {
+  email: string;
+  password: string;
+};
 
 export interface AuthFormProps {
   mode: AuthFormMode;
-  onSubmit?: (data: any) => void;
+  onSubmit?: (data: AuthFormData) => void;
+  className?: string;
 }
 
-export const AuthForm: FC<AuthFormProps> = ({ mode }) => {
+export const AuthForm: FC<AuthFormProps> = ({ mode, onSubmit, className }) => {
   const isLogin = mode === 'login';
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    onSubmit?.({ email, password });
+  };
+
   return (
-    <div className={styles.authForm}>
+    <form className={`${styles.authForm} ${className || ''}`} onSubmit={handleSubmit}>
       <div className={styles.authFormContent}>
         <div className={styles.socialButtons}>
-          <Button variant="secondary" fullWidth>Google</Button>
-          <Button variant="secondary" fullWidth>Apple</Button>
+          <Button variant="secondary" fullWidth>
+            <img src={googleIcon} alt="" className={styles.socialIcon} />
+            Google
+          </Button>
+          <Button variant="secondary" fullWidth>
+            <img src={appleIcon} alt="" className={styles.socialIcon} />
+            Apple
+          </Button>
         </div>
 
         <div className={styles.divider}>
@@ -54,6 +73,6 @@ export const AuthForm: FC<AuthFormProps> = ({ mode }) => {
           </div>
         )}
       </div>
-    </div>
+    </form>
   );
 };
