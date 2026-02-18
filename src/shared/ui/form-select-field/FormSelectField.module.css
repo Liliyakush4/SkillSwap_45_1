@@ -1,53 +1,68 @@
 .wrapper {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4, 4px);
   width: 100%;
 }
 
 .label {
   display: block;
-  margin-bottom: 4px;
   font-family: var(--font-family-base);
   font-size: var(--font-size-base);
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-regular);
   color: var(--color-text);
   line-height: var(--line-height-base);
 }
 
 .trigger {
-  padding: 12px 20px;
-  border: 2px solid var(--color-border);
-  border-radius: 12px;
-  background-color: var(--color-secondary);
-  cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  min-height: 44px;
+  padding: 12px 20px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-large, 12px);
+  background-color: var(--color-secondary);
+  cursor: pointer;
   font-family: var(--font-family-base);
   font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
   color: var(--color-text);
   line-height: var(--line-height-base);
-  transition: border-color 0.2s ease;
+  transition: border-color var(--transition-default);
+  text-align: left;
+  box-sizing: border-box;
   width: 100%;
 }
 
-.trigger:hover {
-  border-color: var(--color-primary);
+.trigger:hover:not(:disabled) {
+  border-color: var(--color-border);
 }
 
 .trigger:focus-visible {
   outline: none;
-  border-color: var(--color-primary);
+  border-color: var(--color-accent);
   box-shadow: 0 0 0 2px var(--color-hover);
+}
+
+.triggerOpen {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .triggerError {
   border-color: var(--color-error);
 }
 
+.triggerError:focus-visible {
+  box-shadow: 0 0 0 2px rgba(191, 57, 32, 0.3);
+}
+
 .triggerDisabled {
-  background-color: var(--color-disable);
-  border-color: var(--color-disable);
-  color: var(--color-border);
+  background-color: var(--color-disable-button);
+  border-color: var(--color-disable-button);
+  color: var(--color-disabled-text);
   cursor: not-allowed;
 }
 
@@ -65,7 +80,7 @@
   justify-content: center;
   color: var(--color-text);
   transition: transform 0.2s ease;
-  font-size: 12px;
+  inline-size: 24px;
   block-size: 24px;
 }
 
@@ -80,12 +95,12 @@ input[type="hidden"] {
   left: 0;
   right: 0;
   color: var(--color-disable-button);
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-top: none;
-  border-radius: 0 0 12px 12px;
+  border-radius: 0 0 var(--radius-large, 12px) var(--radius-large, 12px);
   padding-top: 10px;
   background-color: var(--color-secondary);
-  z-index: 2;
+  z-index: var(--z-dropdown);
   max-height: 120px;
   overflow-y: auto;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -107,12 +122,11 @@ input[type="hidden"] {
 }
 
 .option:hover {
-  background-color: var(--color-hover);
+  background-color: var(--color-disable-button);
 }
 
 .selected {
-  background-color: var(--color-primary);
-  font-weight: var(--font-weight-medium);
+  color: var(--color-accent);
 }
 
 
@@ -131,4 +145,17 @@ input[type="hidden"] {
   font-size: var(--font-size-small);
   margin-top: 4px;
   font-family: var(--font-family-base);
+}
+
+.custom_scroll::-webkit-scrollbar-button {
+    display: none;
+}
+
+.custom_scroll::-webkit-scrollbar {
+    width: 4px;
+}
+
+.custom_scroll::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 2px;
 }

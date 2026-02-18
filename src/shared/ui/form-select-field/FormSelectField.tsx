@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import styles from './FormSelectField.module.css';
+import clsx from 'clsx';
 
 export interface FormSelectFieldProps {
   /** Подпись над полем */
@@ -63,14 +64,15 @@ export function FormSelectField({
     <div className={`${styles.wrapper} ${className}`} ref={ref}>
       {label && <div className={styles.label}>{label}</div>}
 
-      <div
-        className={[
+      <button
+        type="button"
+        className={clsx(
           styles.trigger,
           hasError && styles.triggerError,
           disabled && styles.triggerDisabled,
-        ]
-          .filter(Boolean)
-          .join(' ')}
+          isOpen && styles.triggerOpen,
+          className,
+        )}
         onClick={() => !disabled && setIsOpen(!isOpen)}
         tabIndex={disabled ? -1 : 0}
         role="listbox"
@@ -90,10 +92,10 @@ export function FormSelectField({
         >
           {iconArrowDown}
         </span>
-      </div>
+      </button>
 
       {isOpen && (
-        <div className={styles.dropdown} role="listbox">
+        <div className={clsx(styles.dropdown, styles.custom_scroll, className)} role="listbox">
           {options.map((option) => (
             <div
               key={option.value}
@@ -113,15 +115,6 @@ export function FormSelectField({
               role="option"
               aria-selected={value === option.value}
               aria-disabled={option.disabled}
-              style={
-                option.disabled
-                  ? {
-                      opacity: 0.5,
-                      cursor: 'not-allowed',
-                      pointerEvents: 'none',
-                    }
-                  : undefined
-              }
             >
               {option.label}
             </div>
