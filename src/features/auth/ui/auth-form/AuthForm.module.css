@@ -1,5 +1,6 @@
 .authForm {
-  width: 556px;
+  max-width: 556px;
+  width: 100%;
   border-radius: 12px;
   padding: 85.5px 60px;
   background-color: var(--color-secondary);

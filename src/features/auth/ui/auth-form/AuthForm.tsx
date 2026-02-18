@@ -33,13 +33,13 @@ export const AuthForm: FC<AuthFormProps> = ({ mode, onSubmit, className }) => {
     <form className={`${styles.authForm} ${className || ''}`} onSubmit={handleSubmit}>
       <div className={styles.authFormContent}>
         <div className={styles.socialButtons}>
-          <Button variant="secondary" fullWidth>
+          <Button variant="secondary" fullWidth type="button">
             <img src={googleIcon} alt="" className={styles.socialIcon} />
-            Google
+            Продолжить с Google
           </Button>
-          <Button variant="secondary" fullWidth>
+          <Button variant="secondary" fullWidth type="button">
             <img src={appleIcon} alt="" className={styles.socialIcon} />
-            Apple
+            Продолжить с Apple
           </Button>
         </div>
 
@@ -48,6 +48,7 @@ export const AuthForm: FC<AuthFormProps> = ({ mode, onSubmit, className }) => {
         </div>
 
         <Input 
+          label="Email"
           placeholder="Введите email" 
           name="email"
           value={email}
@@ -55,10 +56,12 @@ export const AuthForm: FC<AuthFormProps> = ({ mode, onSubmit, className }) => {
         />
         
         <PasswordInput 
-          placeholder={isLogin ? "Пароль" : "Придумайте надежный пароль"}
+          label="Пароль"
+          placeholder={isLogin ? "Введите ваш пароль" : "Придумайте надежный пароль"}
           name="password"
           value={password}
           onChange={setPassword}
+          errorText="Пароль должен содержать не менее 8 знаков"
         />
 
         <Button type="submit" variant="primary" fullWidth>
