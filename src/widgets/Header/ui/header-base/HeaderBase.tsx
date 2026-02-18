@@ -1,8 +1,5 @@
-import { Link } from 'react-router-dom';
 import cls from './HeaderBase.module.css';
 import { Logo } from '@shared/ui/Logo';
-import { SearchInput } from '@shared/ui/search-input';
-import { useState } from 'react';
 
 export const HeaderBase = () => {
   return (
