@@ -33,4 +33,14 @@
 
 .input input {
   padding-left: 44px;
+  border: 1px solid transparent;
 }
+
+.input input:hover {
+  border: 1px solid transparent;
+}
+
+.input input:focus {
+  border-color: transparent;
+}
+
