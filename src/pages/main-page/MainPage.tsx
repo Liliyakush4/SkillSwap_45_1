@@ -1,116 +1,68 @@
-import { FormMultiSelectField } from '@shared/ui/form-multi-select-field';
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { UserCard } from '@entities/user/ui/user-card';
 
-const TestFormPage = () => {
-  const [formData, setFormData] = useState({
-    country: '',
-    city: '',
-  });
-
-  const [errors, setErrors] = useState({
-    country: '',
-    city: '',
-  });
-
-  // Примеры данных для select
-  const countries = [
-    { value: 'ru', label: 'Россия' },
-    { value: 'us', label: 'США' },
-    { value: 'gb', label: 'Великобритания' },
-    { value: 'de', label: 'Германия' },
-    { value: 'fr', label: 'Франция' },
-    { value: 'it', label: 'Италия' },
-    { value: 'es', label: 'Испания' },
-    { value: 'cn', label: 'Китай' },
-    { value: 'jp', label: 'Япония' },
-    { value: 'kr', label: 'Южная Корея' },
-  ];
-
-  const cities = [
-    { value: 'msk', label: 'Москва' },
-    { value: 'spb', label: 'Санкт-Петербург' },
-    { value: 'ekb', label: 'Екатеринбург', disabled: true },
-    { value: 'nsk', label: 'Новосибирск' },
-    { value: 'kzn', label: 'Казань' },
-    { value: 'sochi', label: 'Сочи', disabled: true },
-    { value: 'vld', label: 'Владивосток' },
-  ];
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    // Простая валидация
-    const newErrors = {
-      country: !formData.country ? 'Выберите страну' : '',
-      city: !formData.city ? 'Выберите город' : '',
-    };
-
-    setErrors(newErrors);
-
-    if (Object.values(newErrors).every((error) => !error)) {
-      alert('Форма успешно отправлена!\n' + JSON.stringify(formData, null, 2));
-    }
-  };
+export default function MainPage() {
+  const [liked, setLiked] = useState(false);
+  const [likes, setLikes] = useState(12);
 
   return (
-    <div
-      style={{
-        maxWidth: '1200px',
-        margin: '40px auto',
-        padding: '20px',
-        fontFamily: 'Arial, sans-serif',
-      }}
-    >
-      <h1 style={{ marginBottom: '30px' }}>Тестирование FormSelectField</h1>
+    <div style={{ padding: 24 }}>
+      <h1>Главная страница</h1>
 
-      <form onSubmit={handleSubmit}>
-        {/* Обычное поле */}
-        <div style={{ marginBottom: '24px' }}>
-          <FormMultiSelectField
-            label="Страна"
-            placeholder="не указан"
-            value={formData.country}
-            onChange={(value) => setFormData({ ...formData, country: value })}
-            options={countries}
-            errorText={errors.country}
-            name="country"
-          />
-        </div>
+      <div
+        style={{
+          marginTop: 24,
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(324px, 1fr))',
+          gap: 16,
+          alignItems: 'start',
+        }}
+      >
+        {/* Вариант 1: с описанием и БЕЗ лайка */}
+        <UserCard
+          avatarSrc="https://i.pravatar.cc/150?img=32"
+          name="Аня"
+          city="Москва"
+          age={26}
+          about="Frontend-разработка, люблю аккуратные компоненты и ненавижу непредсказуемые отступы. Могу научить базовой архитектуре и стилю кода."
+          skillsOffered={[
+            { id: 1, text: 'React' },
+            { id: 2, text: 'TypeScript' },
+            { id: 3, text: 'CSS Modules' },
+            { id: 4, text: 'Storybook' },
+          ]}
+          skillsWanted={[
+            { id: 101, text: 'Figma' },
+            { id: 102, text: 'UX' },
+          ]}
+          showLike={false}
+        />
 
-        {/* Поле с disabled опциями */}
-        <div style={{ marginBottom: '24px' }}>
-          <FormMultiSelectField
-            label="Город"
-            placeholder="не указан"
-            value={formData.city}
-            onChange={(value) => setFormData({ ...formData, city: value })}
-            options={cities}
-            errorText={errors.city}
-            name="city"
-          />
-          <div style={{ fontSize: '12px', color: '#666', marginTop: '4px' }}>
-            * Екатеринбург и Сочи отключены для выбора
-          </div>
-        </div>
-
-        {/* Задизейбленное поле */}
-        <div style={{ marginBottom: '24px' }}>
-          <FormMultiSelectField
-            label="Заблокированное поле"
-            placeholder="Это поле недоступно"
-            value=""
-            onChange={() => {}}
-            options={countries}
-            disabled={true}
-            name="disabled"
-          />
-          <div style={{ fontSize: '12px', color: '#666', marginTop: '4px' }}>
-            * Поле полностью отключено
-          </div>
-        </div>
-      </form>
+        {/* Вариант 2: С лайком и БЕЗ описания */}
+        <UserCard
+          avatarSrc="https://i.pravatar.cc/150?img=12"
+          name="Игорь"
+          city="Рига"
+          skillsOffered={[
+            { id: 11, text: 'Node.js' },
+            { id: 12, text: 'PostgreSQL' },
+          ]}
+          skillsWanted={[
+            { id: 201, text: 'React' },
+            { id: 202, text: 'Redux' },
+            { id: 203, text: 'Testing' },
+          ]}
+          showLike
+          isLiked={liked}
+          likesCount={likes}
+          onLikeClick={() => {
+            setLiked((v) => !v);
+            setLikes((c) => (liked ? Math.max(0, c - 1) : c + 1));
+          }}
+          onMore={() => console.log('Подробнее')}
+          moreLabel="Подробнее"
+        />
+      </div>
     </div>
   );
-};
-
-export default TestFormPage;
+}
