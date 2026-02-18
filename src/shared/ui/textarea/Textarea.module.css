@@ -21,7 +21,7 @@
   caret-color: var(--color-accent);
   box-sizing: border-box;
   width: 100%;
-  resize: vertical;
+  /* resize: vertical; */
   min-height: 96px;
 }
 
