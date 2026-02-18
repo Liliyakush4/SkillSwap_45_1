@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Input, type InputProps } from '../input/Input';
+import { Input, type InputProps } from '@shared/ui/input';
 import cls from './PasswordInput.module.css';
 import showIcon from '../../../shared/assets/icons/ui/icon_password_show.svg';
 import hideIcon from '../../../shared/assets/icons/ui/icon_password_hide.svg';

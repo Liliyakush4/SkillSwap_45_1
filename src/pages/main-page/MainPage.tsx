@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Input } from '../../shared/ui/input/Input';
+import { Input } from '@shared/ui/input';
 import { PasswordInput } from '../../shared/ui/password-input';
 import { SearchInput } from '../../shared/ui/search-input/SearchInput';
 
