@@ -24,6 +24,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border-radius: 12px;
+  padding: 20px;
   background-color: var(--color-secondary);
 }
 
@@ -35,7 +37,7 @@
 @media (max-width: 1023px) {
   .card {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 20px;
     min-height: auto;
   }
 
