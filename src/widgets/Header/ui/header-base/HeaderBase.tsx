@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom';
 import cls from './HeaderBase.module.css';
+import { Logo } from '@shared/ui/Logo';
+import { SearchInput } from '@shared/ui/search-input';
+import { useState } from 'react';
 
 export const HeaderBase = () => {
   return (
     <div className={cls.base}>
-      <Link to="/" className={cls.logo}>
-        <div className={cls.logoIcon} />
-        <span className={cls.logoText}>SkillSwap</span>
-      </Link>
+
+      <Logo />
 
       <nav className={cls.nav}>
         <span className={cls.linkStub}>О проекте</span>
@@ -16,6 +17,8 @@ export const HeaderBase = () => {
           Все навыки
         </button>
       </nav>
+
+
     </div>
   );
 };

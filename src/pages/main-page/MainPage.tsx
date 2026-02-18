@@ -3,6 +3,7 @@ import { Input } from '../../shared/ui/input/Input';
 import { PasswordInput } from '../../shared/ui/password-input';
 import { SearchInput } from '../../shared/ui/search-input/SearchInput';
 
+
 export default function MainPage() {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
@@ -10,6 +11,9 @@ export default function MainPage() {
 
   return (
     <div>
+
+
+
       <h1>Главная страница</h1>
 
       <div style={{ marginTop: 20 }}>
