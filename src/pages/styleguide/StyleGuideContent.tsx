@@ -1,13 +1,13 @@
 import { useState, useRef } from 'react';
 import clsx from 'clsx';
-import { Button } from '../../shared/ui/Button';
-import { IconButton } from '../../shared/ui/icon-button';
-import { Input } from '../../shared/ui/Input';
-import { SearchInput } from '../../shared/ui/search-input';
-import { PasswordInput } from '../../shared/ui/password-input';
-import { RadioGroup } from '../../shared/ui/radio-group';
-import { Modal } from '../../shared/ui/Modal';
-import { Popover } from '../../shared/ui/Popover';
+import { Button } from '@shared/ui/Button';
+import { IconButton } from '@shared/ui/icon-button';
+import { Input } from '@shared/ui/input';
+import { SearchInput } from '@shared/ui/search-input';
+import { PasswordInput } from '@shared/ui/password-input';
+import { RadioGroup } from '@shared/ui/radio-group';
+import { Modal } from '@shared/ui/Modal';
+import { Popover } from '@shared/ui/Popover';
 import styles from './StyleGuidePage.module.css';
 
 /** Контент стайл-гайда. Подгружается только в dev через React.lazy. */
