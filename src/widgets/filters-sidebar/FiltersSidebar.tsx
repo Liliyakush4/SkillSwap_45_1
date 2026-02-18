@@ -22,7 +22,7 @@ const defaultFilterValues: FilterValues = {
   cities: [],
 };
 
-const FiltersSidebar = () => {
+export const FiltersSidebar = () => {
   const [filterValues, setFilterValues] = useState(defaultFilterValues);
 
   // минимальный функционал для тестирования
@@ -41,7 +41,7 @@ const FiltersSidebar = () => {
 
       <div className={styles.filterGroup}>
         <div className={styles.section}>
-          <RadioGroup
+          <RadioGroup /* gap у RadioGroup должен быть 12px, по факту - 8px */
             name="offerType"
             options={SKILL_TYPE}
             value={filterValues.offerType}
@@ -52,13 +52,18 @@ const FiltersSidebar = () => {
         <div className={styles.section}>
           <h3 className={styles.sectionTitle}>Навыки</h3>
           <div className={styles.checkboxGroup}>
-            <CheckboxGroup
+            <CheckboxGroup /* gap у CheckboxGroup должен быть 12px, по факту - 16px */
               name="categories"
               options={SKILL_CATEGORIES}
               value={filterValues.categories}
               onChange={(values) => handleFilterChange('categories', values)}
             />
-            <Button disabled className={styles.arrowBtn} aria-label="Показать все категории">
+            <Button /* у Button по макету font-weight: 400, по факту - 500 */
+              variant="ghost"
+              disabled
+              className={styles.arrowBtn}
+              aria-label="Показать все категории"
+            >
               Все категории
               <img src={iconArrowDown} className={styles.icon} alt="icon" aria-hidden="true" />
             </Button>
@@ -84,7 +89,7 @@ const FiltersSidebar = () => {
               value={filterValues.cities}
               onChange={(values) => handleFilterChange('cities', values)}
             />
-            <Button disabled className={styles.arrowBtn}>
+            <Button variant="ghost" disabled className={styles.arrowBtn}>
               Все города
               <img src={iconArrowDown} className={styles.icon} alt="icon" aria-hidden="true" />
             </Button>
@@ -94,5 +99,3 @@ const FiltersSidebar = () => {
     </div>
   );
 };
-
-export default FiltersSidebar;

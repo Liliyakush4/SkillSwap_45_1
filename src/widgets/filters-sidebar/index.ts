@@ -1,1 +1,1 @@
-export { default as FiltersSidebar } from './FiltersSidebar';
+export { FiltersSidebar } from './FiltersSidebar';
