@@ -1,1 +1,85 @@
-// компонент карточки пользователя
+import { useCallback } from 'react';
+import clsx from 'clsx';
+import type { UserCardProps, SkillBadge } from './UserCard.types';
+import styles from './UserCard.module.css';
+import { Card } from '@shared/ui/Card';
+import { Avatar } from '@shared/ui/Avatar';
+import { LikesCounter } from '@features/favorites/ui/LikesCounter';
+import { SkillPlate } from '@shared/ui/skill-plate/SkillPlate';
+import { Button } from '@shared/ui/Button';
+
+export const UserCard: React.FC<UserCardProps> = ({
+  avatarSrc,
+  name,
+  city,
+  age,
+  skillsOffered,
+  skillsWanted,
+  about,
+  showLike = true,
+  likesCount,
+  onLikeClick,
+  isLiked = false,
+  onMore,
+  moreLabel = 'Подробнее',
+  className,
+}) => {
+  const renderSkills = useCallback((skills: SkillBadge[]) => {
+    if (skills.length === 0) {
+      return <SkillPlate className={styles.emptySkill} variant="default" text="Нет навыков" />;
+    }
+    if (skills.length < 3) {
+      return skills.map((skill) => (
+        <SkillPlate key={skill.id} variant="default" text={skill.text} />
+      ));
+    }
+    return (
+      <>
+        {skills.slice(0, 2).map((skill) => (
+          <SkillPlate key={skill.id} variant="default" text={skill.text} />
+        ))}
+        <SkillPlate variant="count" text={`${skills.length - 2}`} />
+      </>
+    );
+  }, []);
+
+  return (
+    <Card className={clsx(styles.userCard, className)}>
+      <div className={styles.header}>
+        <Avatar src={avatarSrc} size={100} alt={`Аватар пользователя ${name}`} />
+        <div className={styles.userInfo}>
+          <h2 className={styles.name}>{name}</h2>
+          <div className={styles.cityAge}>{age === undefined ? `${city}` : `${city}, ${age}`}</div>
+        </div>
+        {showLike && (
+          <LikesCounter
+            showCount={likesCount !== undefined}
+            isActive={isLiked}
+            likesCount={likesCount}
+            className={styles.favoriteToggle}
+            onClick={onLikeClick}
+            aria-label={isLiked ? 'Убрать из избранного' : 'Добавить в избранное'}
+          />
+        )}
+      </div>
+
+      <div className={styles.skillsSection}>
+        {about && !onMore && <div className={styles.about}>{about}</div>}
+        <div className={styles.skill}>
+          <h4 className={styles.skillsLabel}>Может научить:</h4>
+          <div className={styles.skillsRow}>{renderSkills(skillsOffered)}</div>
+        </div>
+        <div className={styles.skill}>
+          <h4 className={styles.skillsLabel}>Хочет научиться:</h4>
+          <div className={styles.skillsRow}>{renderSkills(skillsWanted)}</div>
+        </div>
+      </div>
+
+      {onMore && (
+        <Button fullWidth={true} onClick={onMore}>
+          {moreLabel}
+        </Button>
+      )}
+    </Card>
+  );
+};

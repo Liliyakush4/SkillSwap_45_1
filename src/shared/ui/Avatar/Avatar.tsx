@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Avatar.module.css';
-import placeholderImg from '../../assets/icons/common/icon_person.svg';
+import placeholderImg from '../../assets/icons/common/icon_person_circle_nosize.svg';
 
 export interface AvatarProps {
   src?: string;

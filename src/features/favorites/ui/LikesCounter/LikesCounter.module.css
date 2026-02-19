@@ -5,13 +5,8 @@
 }
 
 .likesCount {
-  font-size: var(--font-size-base, 1rem);
   font-weight: var(--font-weight-medium, 500);
-  color: var(--color-primary, #abd27a);
+  font-size: var(--font-size-base, 1rem);
   line-height: 1;
   transition: color 0.2s ease-in-out;
-}
-
-.likesCount.active {
-  color: var(--color-accent, #508826);
 }
