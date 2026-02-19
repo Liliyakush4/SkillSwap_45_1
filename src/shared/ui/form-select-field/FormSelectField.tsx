@@ -53,7 +53,7 @@ export function FormSelectField({
   useEffect(() => {
     if (isOpen) {
       // Находим индекс выбранного элемента
-      const selectedIndex = options.findIndex(opt => opt.value === value);
+      const selectedIndex = options.findIndex((opt) => opt.value === value);
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setFocusedIndex(selectedIndex >= 0 ? selectedIndex : 0);
     } else {
@@ -106,7 +106,7 @@ export function FormSelectField({
         if (!isOpen) {
           setIsOpen(true);
         } else {
-          setFocusedIndex(prev => {
+          setFocusedIndex((prev) => {
             let nextIndex = prev + 1;
             // Пропускаем disabled опции
             while (nextIndex < options.length && options[nextIndex].disabled) {
@@ -122,7 +122,7 @@ export function FormSelectField({
         if (!isOpen) {
           setIsOpen(true);
         } else {
-          setFocusedIndex(prev => {
+          setFocusedIndex((prev) => {
             let nextIndex = prev - 1;
             // Пропускаем disabled опции
             while (nextIndex >= 0 && options[nextIndex].disabled) {
@@ -151,83 +151,81 @@ export function FormSelectField({
   return (
     <div className={`${styles.wrapper} ${className}`} ref={ref}>
       {label && <div className={styles.label}>{label}</div>}
+      <div className={styles.container}>
+        <button
+          ref={triggerRef}
+          type="button"
+          className={clsx(
+            styles.trigger,
+            hasError && styles.triggerError,
+            disabled && styles.triggerDisabled,
+            isOpen && styles.triggerOpen,
+            className,
+          )}
+          onClick={() => !disabled && setIsOpen(!isOpen)}
+          onKeyDown={handleKeyDown}
+          tabIndex={disabled ? -1 : 0}
+          role="combobox"
+          aria-expanded={isOpen}
+          aria-haspopup="listbox"
+          aria-label={label}
+          aria-invalid={hasError}
+          aria-controls={isOpen ? 'select-dropdown' : undefined}
+          aria-activedescendant={
+            isOpen && focusedIndex >= 0 ? `option-${options[focusedIndex]?.value}` : undefined
+          }
+        >
+          <span className={selected ? styles.value : styles.placeholder}>
+            {selected ? selected.label : placeholder}
+          </span>
+          <span
+            className={styles.arrow}
+            style={{
+              transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+            }}
+          >
+            {iconArrowDown}
+          </span>
+        </button>
 
-      <button
-        ref={triggerRef}
-        type="button"
-        className={clsx(
-          styles.trigger,
-          hasError && styles.triggerError,
-          disabled && styles.triggerDisabled,
-          isOpen && styles.triggerOpen,
-          className,
+        {isOpen && (
+          <div
+            id="select-dropdown"
+            className={clsx(styles.dropdown, styles.custom_scroll, className)}
+            role="listbox"
+          >
+            {options.map((option, index) => (
+              <div
+                key={option.value}
+                ref={(el) => (optionRefs.current[index] = el)}
+                id={`option-${option.value}`}
+                className={clsx(
+                  styles.option,
+                  value === option.value && styles.selected,
+                  option.disabled && styles.optionDisabled,
+                  focusedIndex === index && styles.optionFocused,
+                  className,
+                )}
+                onClick={() => {
+                  if (!option.disabled) {
+                    onChange(option.value);
+                    setIsOpen(false);
+                    triggerRef.current?.focus();
+                  }
+                }}
+                onMouseEnter={() => setFocusedIndex(index)}
+                role="option"
+                aria-selected={value === option.value}
+                aria-disabled={option.disabled}
+              >
+                {option.label}
+              </div>
+            ))}
+          </div>
         )}
-        onClick={() => !disabled && setIsOpen(!isOpen)}
-        onKeyDown={handleKeyDown}
-        tabIndex={disabled ? -1 : 0}
-        role="combobox"
-        aria-expanded={isOpen}
-        aria-haspopup="listbox"
-        aria-label={label}
-        aria-invalid={hasError}
-        aria-controls={isOpen ? 'select-dropdown' : undefined}
-        aria-activedescendant={
-          isOpen && focusedIndex >= 0
-            ? `option-${options[focusedIndex]?.value}`
-            : undefined
-        }
-      >
-        <span className={selected ? styles.value : styles.placeholder}>
-          {selected ? selected.label : placeholder}
-        </span>
-        <span
-          className={styles.arrow}
-          style={{
-            transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
-          }}
-        >
-          {iconArrowDown}
-        </span>
-      </button>
+      </div>
 
-      {isOpen && (
-        <div
-          id="select-dropdown"
-          className={clsx(styles.dropdown, styles.custom_scroll, className)}
-          role="listbox"
-        >
-          {options.map((option, index) => (
-            <div
-              key={option.value}
-              ref={el => optionRefs.current[index] = el}
-              id={`option-${option.value}`}
-              className={[
-                styles.option,
-                value === option.value && styles.selected,
-                option.disabled && styles.optionDisabled,
-                focusedIndex === index && styles.optionFocused,
-              ]
-                .filter(Boolean)
-                .join(' ')}
-              onClick={() => {
-                if (!option.disabled) {
-                  onChange(option.value);
-                  setIsOpen(false);
-                  triggerRef.current?.focus();
-                }
-              }}
-              onMouseEnter={() => setFocusedIndex(index)}
-              role="option"
-              aria-selected={value === option.value}
-              aria-disabled={option.disabled}
-            >
-              {option.label}
-            </div>
-          ))}
-        </div>
-      )}
-
-      {errorText && <div className={styles.errorText}>{errorText}</div>}
+      {errorText && <span className={styles.errorText}>{errorText}</span>}
 
       {name && <input type="hidden" name={name} value={value} />}
     </div>
