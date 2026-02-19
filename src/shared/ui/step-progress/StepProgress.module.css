@@ -4,7 +4,9 @@
 
 .stepTitle {
   font-size: 24px;
+  font-family: var(--font-family-primary);
   font-weight: var(--font-weight-medium);
+  line-height: 28px;
   margin-bottom: var(--space-12);
 }
 

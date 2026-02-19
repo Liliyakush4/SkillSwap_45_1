@@ -9,6 +9,11 @@
   font-weight: var(--font-weight-medium);
 }
 
-.container {
-  margin-top: 76px; /* вместо StepProgress, чтобы не прилипало */
+.title {
+  text-align: center;
+  font-family: var(--font-family-primary);
+  font-size: 24px;
+  font-weight: var(--font-weight-medium);
+  line-height: 28px;
+  margin-bottom: var(--space-32);
 }
