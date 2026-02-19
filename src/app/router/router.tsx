@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 import MainLayout from '../layouts/MainLayout';
+import { ProfileLayout } from '../layouts/profile-layout';
 import MainPage from '../../pages/main-page/MainPage';
 import Login from '../../pages/login/Login';
 import RegisterStep1 from '../../pages/register/register-step-1/RegisterStep1';
@@ -11,12 +12,12 @@ import SkillPage from '../../pages/skill-page/SkillPage';
 import ProfilePage from '../../pages/profile/ProfilePage';
 import FavoritesPage from '../../pages/favorites/FavoritesPage';
 import { ErrorPage404 } from '../../pages/error404/ErrorPage404';
-import {ErrorPage500} from '../../pages/error500/ErrorPage500';
+import { ErrorPage500 } from '../../pages/error500/ErrorPage500';
 
 import { AuthLayout } from '../layouts/AuthLayout';
 
 const StyleGuidePage = lazy(() =>
-  import('../../pages/styleguide/StyleGuidePage').then((m) => ({ default: m.StyleGuidePage }))
+  import('../../pages/styleguide/StyleGuidePage').then((m) => ({ default: m.StyleGuidePage })),
 );
 
 export default function AppRouter() {
@@ -58,7 +59,9 @@ export default function AppRouter() {
 
         {/* Основные страницы */}
         <Route path="skill/:id" element={<SkillPage />} />
-        <Route path="profile" element={<ProfilePage />} />
+        <Route path="profile" element={<ProfileLayout />}>
+          <Route index element={<ProfilePage />} />
+        </Route>
         <Route path="favorites" element={<FavoritesPage />} />
 
         {/* Страницы ошибок */}
