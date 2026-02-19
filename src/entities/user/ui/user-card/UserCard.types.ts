@@ -1,5 +1,11 @@
 export type SkillBadge = { id: number; text: string };
 
+export type CardHeight = 'regular' | 'compact' | 'auto' | 'full';
+// regular - В каталоге (обычная высота)
+// compact - На странице навыка (компактная)
+// auto - Если нужно без ограничений
+// full - Если на всю высоту родителя
+
 export interface UserCardProps {
   avatarSrc?: string;
   name: string;
@@ -15,4 +21,5 @@ export interface UserCardProps {
   onMore?: () => void;
   moreLabel?: string;
   className?: string;
+  height?: CardHeight; // новый проп
 }

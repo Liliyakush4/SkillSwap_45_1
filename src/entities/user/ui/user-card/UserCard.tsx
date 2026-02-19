@@ -23,6 +23,7 @@ export const UserCard: React.FC<UserCardProps> = ({
   onMore,
   moreLabel = 'Подробнее',
   className,
+  height = 'regular', // новый проп с дефолтным значением
 }) => {
   const renderSkills = useCallback((skills: SkillBadge[]) => {
     if (skills.length === 0) {
@@ -44,7 +45,10 @@ export const UserCard: React.FC<UserCardProps> = ({
   }, []);
 
   return (
-    <Card className={clsx(styles.userCard, className)}>
+    <Card 
+      className={clsx(styles.userCard, className)}
+      data-height={height} // data-атрибут для управления высотой
+    >
       <div className={styles.header}>
         <Avatar src={avatarSrc} size={100} alt={`Аватар пользователя ${name}`} />
         <div className={styles.userInfo}>
