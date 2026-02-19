@@ -1,0 +1,46 @@
+.layout {
+  display: grid;
+  min-height: 100vh;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto 1fr;
+  grid-template-areas:
+    'sidebar'
+    'main';
+}
+
+.sidebar {
+  grid-area: sidebar;
+  padding: 40px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.main {
+  grid-area: main;
+  padding: 60px;
+  overflow: auto;
+  box-sizing: border-box;
+}
+
+/* Desktop: 2 колонки (sidebar + content) */
+@media (min-width: 1024px) {
+  .layout {
+    grid-template-columns: 324px 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: 'sidebar main';
+  }
+
+  .sidebar {
+    width: 324px;
+    min-width: 324px;
+  }
+}
+
+/* Tablet: фото, боковое меню, форма — вертикальный порядок */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .layout {
+    grid-template-areas:
+      'sidebar'
+      'main';
+  }
+}
