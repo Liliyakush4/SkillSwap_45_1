@@ -41,24 +41,15 @@ export function StyleGuideContent() {
         <h3 className={styles.demoBlockTitle}>Цвета</h3>
         <div className={styles.tokensGrid}>
           <div className={styles.colorSwatch}>
-            <div
-              className={styles.colorBox}
-              style={{ backgroundColor: 'var(--color-bg)' }}
-            />
+            <div className={styles.colorBox} style={{ backgroundColor: 'var(--color-bg)' }} />
             <span className={styles.colorLabel}>--color-bg</span>
           </div>
           <div className={styles.colorSwatch}>
-            <div
-              className={styles.colorBox}
-              style={{ backgroundColor: 'var(--color-text)' }}
-            />
+            <div className={styles.colorBox} style={{ backgroundColor: 'var(--color-text)' }} />
             <span className={styles.colorLabel}>--color-text</span>
           </div>
           <div className={styles.colorSwatch}>
-            <div
-              className={styles.colorBox}
-              style={{ backgroundColor: 'var(--color-primary)' }}
-            />
+            <div className={styles.colorBox} style={{ backgroundColor: 'var(--color-primary)' }} />
             <span className={styles.colorLabel}>--color-primary</span>
           </div>
           <div className={styles.colorSwatch}>
@@ -69,24 +60,15 @@ export function StyleGuideContent() {
             <span className={styles.colorLabel}>--color-secondary</span>
           </div>
           <div className={styles.colorSwatch}>
-            <div
-              className={styles.colorBox}
-              style={{ backgroundColor: 'var(--color-accent)' }}
-            />
+            <div className={styles.colorBox} style={{ backgroundColor: 'var(--color-accent)' }} />
             <span className={styles.colorLabel}>--color-accent</span>
           </div>
           <div className={styles.colorSwatch}>
-            <div
-              className={styles.colorBox}
-              style={{ backgroundColor: 'var(--color-error)' }}
-            />
+            <div className={styles.colorBox} style={{ backgroundColor: 'var(--color-error)' }} />
             <span className={styles.colorLabel}>--color-error</span>
           </div>
           <div className={styles.colorSwatch}>
-            <div
-              className={styles.colorBox}
-              style={{ backgroundColor: 'var(--color-hover)' }}
-            />
+            <div className={styles.colorBox} style={{ backgroundColor: 'var(--color-hover)' }} />
             <span className={styles.colorLabel}>--color-hover</span>
           </div>
           <div className={styles.colorSwatch}>
@@ -159,16 +141,8 @@ export function StyleGuideContent() {
           IconButton
         </h2>
         <div className={styles.demoRow}>
-          <IconButton
-            icon={<span aria-hidden>🔍</span>}
-            aria-label="Поиск"
-            variant="ghost"
-          />
-          <IconButton
-            icon={<span aria-hidden>♥</span>}
-            aria-label="Избранное"
-            variant="solid"
-          />
+          <IconButton icon={<span aria-hidden>🔍</span>} aria-label="Поиск" variant="ghost" />
+          <IconButton icon={<span aria-hidden>♥</span>} aria-label="Избранное" variant="solid" />
           <IconButton
             icon={<span aria-hidden>♥</span>}
             aria-label="Активная"
@@ -202,20 +176,11 @@ export function StyleGuideContent() {
             onChange={setInputValue}
             errorText="Обязательное поле"
           />
-          <Input
-            label="Disabled"
-            value="Недоступно"
-            onChange={() => {}}
-            disabled
-          />
+          <Input label="Disabled" value="Недоступно" onChange={() => {}} disabled />
         </div>
         <div className={clsx(styles.demoStack, styles.demoBlock)}>
           <div className={styles.demoBlockTitle}>SearchInput</div>
-          <SearchInput
-            value={searchValue}
-            onChange={setSearchValue}
-            placeholder="Искать..."
-          />
+          <SearchInput value={searchValue} onChange={setSearchValue} placeholder="Искать..." />
         </div>
         <div className={clsx(styles.demoStack, styles.demoBlock)}>
           <div className={styles.demoBlockTitle}>PasswordInput (default / error / disabled)</div>
@@ -303,10 +268,7 @@ export function StyleGuideContent() {
         </h2>
         <div className={styles.demoRow}>
           <span ref={popoverAnchorRef}>
-            <Button
-              variant="secondary"
-              onClick={() => setPopoverOpen((v) => !v)}
-            >
+            <Button variant="secondary" onClick={() => setPopoverOpen((v) => !v)}>
               {popoverOpen ? 'Закрыть поповер' : 'Открыть поповер'}
             </Button>
           </span>

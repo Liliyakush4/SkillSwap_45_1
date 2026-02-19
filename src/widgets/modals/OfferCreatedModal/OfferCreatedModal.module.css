@@ -42,7 +42,7 @@ h2 {
   letter-spacing: 0.02em;
   text-align: center;
   vertical-align: middle;
-  color: var(--color-text, #253017);   
+  color: var(--color-text, #253017);
   margin: 0 0 32px;
 }
 

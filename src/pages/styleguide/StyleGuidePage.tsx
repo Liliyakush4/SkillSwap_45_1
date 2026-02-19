@@ -2,7 +2,7 @@ import { lazy, Suspense } from 'react';
 import { Navigate } from 'react-router-dom';
 
 const StyleGuideContentLazy = lazy(() =>
-  import('./StyleGuideContent').then((m) => ({ default: m.StyleGuideContent }))
+  import('./StyleGuideContent').then((m) => ({ default: m.StyleGuideContent })),
 );
 
 const isDev = import.meta.env.DEV;

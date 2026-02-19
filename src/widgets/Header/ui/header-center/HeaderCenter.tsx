@@ -8,7 +8,7 @@ export const HeaderCenter = () => {
   return (
     <div className={cls.center}>
       <div className={cls.searchWrapper}>
-<SearchInput value={search} onChange={setSearch} placeholder="Искать навык" />
+        <SearchInput value={search} onChange={setSearch} placeholder="Искать навык" />
       </div>
     </div>
   );

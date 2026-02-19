@@ -14,13 +14,12 @@ export const Header = ({ actions = 'public' }: HeaderProps) => {
   return (
     <header className={cls.header}>
       <div className={cls.container}>
-      
-      <div className={cls.baseHeader}>
-        <HeaderBase />
-      </div>
+        <div className={cls.baseHeader}>
+          <HeaderBase />
+        </div>
 
-<div className={cls.headerCenter}>
-  <HeaderCenter />
+        <div className={cls.headerCenter}>
+          <HeaderCenter />
         </div>
 
         <div className={cls.actions}>

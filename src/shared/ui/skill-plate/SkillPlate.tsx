@@ -8,7 +8,7 @@ export type TSkillPlateProps = {
   text: string;
   variant?: TSkillPlateVariant;
   className?: string;
-}
+};
 
 export const SkillPlate: FC<TSkillPlateProps> = ({ text, variant = 'default', className }) => {
   // Формируем строку классов

@@ -6,7 +6,6 @@
   width: 100%;
 }
 
-
 .label {
   display: block;
   font-family: var(--font-family-base);
@@ -41,7 +40,7 @@
   width: 100%;
 }
 
-.trigger:hover:not(:disabled)  {
+.trigger:hover:not(:disabled) {
   border-color: var(--color-border);
 }
 
@@ -91,7 +90,7 @@
 }
 
 /* Стили для скрытого input */
-input[type="hidden"] {
+input[type='hidden'] {
   display: none;
 }
 
@@ -136,7 +135,6 @@ input[type="hidden"] {
   color: var(--color-accent);
 }
 
-
 .optionDisabled {
   opacity: 0.5;
   cursor: not-allowed;
@@ -157,14 +155,14 @@ input[type="hidden"] {
 }
 
 .custom_scroll::-webkit-scrollbar-button {
-    display: none;
+  display: none;
 }
 
 .custom_scroll::-webkit-scrollbar {
-    width: 4px;
+  width: 4px;
 }
 
 .custom_scroll::-webkit-scrollbar-thumb {
-    background: #ccc;
-    border-radius: 2px;
+  background: #ccc;
+  border-radius: 2px;
 }

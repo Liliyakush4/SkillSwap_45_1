@@ -4,7 +4,6 @@ import { Logo } from '@shared/ui/Logo';
 export const HeaderBase = () => {
   return (
     <div className={cls.base}>
-
       <Logo />
 
       <nav className={cls.nav}>
@@ -14,8 +13,6 @@ export const HeaderBase = () => {
           Все навыки
         </button>
       </nav>
-
-
     </div>
   );
 };

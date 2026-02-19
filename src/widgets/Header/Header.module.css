@@ -12,12 +12,12 @@
   gap: 32px;
 }
 
-.headerCenter{
-display: flex;
-align-items: center;
-justify-content: center;
-height: 48px;
-flex: 1;
+.headerCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  flex: 1;
 }
 
 .container {
@@ -35,6 +35,5 @@ flex: 1;
   align-items: center;
   justify-content: flex-end;
   gap: 16px;
-  height: 48px; 
-  
+  height: 48px;
 }

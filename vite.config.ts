@@ -15,5 +15,5 @@ export default defineConfig({
       '@shared': resolve(__dirname, 'src/shared'),
       '@widgets': resolve(__dirname, 'src/widgets'),
     },
-  }
+  },
 });

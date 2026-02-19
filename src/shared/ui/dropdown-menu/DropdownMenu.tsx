@@ -38,7 +38,7 @@ export const DropdownMenu: FC<DropdownMenuProps> = ({
     if (!isOpen || !anchorRef.current) return;
 
     const anchorRect = anchorRef.current.getBoundingClientRect();
-    
+
     let top = 0;
     let left = 0;
     let width = matchWidth ? anchorRect.width : 0;
@@ -120,6 +120,6 @@ export const DropdownMenu: FC<DropdownMenuProps> = ({
     >
       {children}
     </div>,
-    portalRoot
+    portalRoot,
   );
 };

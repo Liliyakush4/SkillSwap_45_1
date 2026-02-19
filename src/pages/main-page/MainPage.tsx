@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { UserCard } from '@entities/user/ui/user-card';
 
-
 export default function MainPage() {
   const [liked, setLiked] = useState(false);
   const [likes, setLikes] = useState(12);

@@ -1,8 +1,8 @@
-import React from 'react'
-import { Logo } from '../../shared/ui/Logo'
-import styles from './Footer.module.css'
+import React from 'react';
+import { Logo } from '../../shared/ui/Logo';
+import styles from './Footer.module.css';
 
-export type FooterProps = {}
+export type FooterProps = {};
 
 export const Footer: React.FC<FooterProps> = () => {
   return (
@@ -60,5 +60,5 @@ export const Footer: React.FC<FooterProps> = () => {
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
