@@ -9,7 +9,9 @@ const MainLayout: React.FC = () => {
     <div className={styles.layout}>
       <Header />
       <main className={styles.main}>
-        <Outlet /> {/* Здесь подставляется содержимое страниц */}
+        <div className={styles.mainInner}>
+          <Outlet /> {/* Здесь подставляется содержимое страниц */}
+        </div>
       </main>
       <Footer />
     </div>

@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 import MainLayout from '../layouts/MainLayout';
@@ -14,9 +15,31 @@ import {ErrorPage500} from '../../pages/error500/ErrorPage500';
 
 import { AuthLayout } from '../layouts/AuthLayout';
 
+const StyleGuidePage = lazy(() =>
+  import('../../pages/styleguide/StyleGuidePage').then((m) => ({ default: m.StyleGuidePage }))
+);
+
 export default function AppRouter() {
   return (
     <Routes>
+      {/* Style Guide: только в dev, в проде редирект на /; динамический импорт — не в прод-бандле */}
+      <Route
+        path="/__ui"
+        element={
+          <Suspense fallback={null}>
+            <StyleGuidePage />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/styleguide"
+        element={
+          <Suspense fallback={null}>
+            <StyleGuidePage />
+          </Suspense>
+        }
+      />
+
       {/* Auth-ветка без Header/Footer */}
       <Route path="/auth" element={<AuthLayout />}>
         {/* если зашли на /auth */}

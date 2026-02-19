@@ -26,8 +26,8 @@
 }
 
 .content {
-  display: flex;
+  /* display: flex; */
   flex: 1;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
 }

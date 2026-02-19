@@ -26,7 +26,6 @@
   margin-bottom: 112px;
 }
 
-/* Hover для логотипа на всех разрешениях: accent без подчёркивания */
 .logo:hover {
   color: var(--color-accent);
   text-decoration: none;
@@ -110,7 +109,7 @@
     order: 1;
   }
 
-  /* Watermark: внизу по центру */
+  /*Подпись: внизу по центру */
   .columnLogo {
     display: contents;
   }
@@ -136,7 +135,6 @@
   }
 }
 
-/* 768–1024: 3 колонки — первая: логотип, О проекте/Все навыки, подпись */
 @media (min-width: 768px) and (max-width: 1024px) {
   .container {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -157,7 +155,6 @@
     grid-row: 3;
   }
 
-  /* О проекте, Все навыки, Контакты, Блог, Политика, Соглашение — в одной строке */
   .container > .column:nth-child(2) {
     grid-column: 1;
     grid-row: 2;

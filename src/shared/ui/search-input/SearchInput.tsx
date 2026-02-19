@@ -1,5 +1,5 @@
-import { Input } from '../input/Input';
-import { type InputProps } from '../input/Input';
+import { Input } from '../input';
+import { type InputProps } from '@shared/ui/input';
 import cls from './SearchInput.module.css';
 import searchIcon from '../../../shared/assets/icons/ui/icon_search.svg';
 import { useRef } from 'react';
