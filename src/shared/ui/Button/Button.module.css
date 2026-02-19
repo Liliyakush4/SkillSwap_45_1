@@ -5,7 +5,7 @@
   min-height: 48px;
   border: none;
   border-radius: 12px;
-  padding: 12px 24px;
+  padding: 0 24px;
   font-family: var(--font-family-base, sans-serif);
   font-weight: var(--font-weight-medium, 500);
   font-size: var(--font-size-base, 1rem);
@@ -29,11 +29,6 @@
   outline-offset: 2px;
 }
 
-.primary:active:not(:disabled) {
-  background-color: var(--color-accent, #508826);
-  color: var(--color-secondary, #ffffff);
-}
-
 .secondary {
   border: 1px solid var(--color-primary, #abd27a);
   color: var(--color-text, #253017);
@@ -42,16 +37,12 @@
 
 .secondary:hover:not(:disabled) {
   border-color: var(--color-hover, #deebc5);
-  background-color: var(--color-hover, #deebc5);
+  color: var(--color-border,#69735d);  
 }
 
 .secondary:focus-visible {
   outline: 2px solid var(--color-accent, #508826);
   outline-offset: 2px;
-}
-
-.secondary:active:not(:disabled) {
-  border-color:  var(--color-accent, #508826);  
 }
 
 .ghost {
