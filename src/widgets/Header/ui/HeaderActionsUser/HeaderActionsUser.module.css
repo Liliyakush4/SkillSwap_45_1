@@ -1,0 +1,10 @@
+.root {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.root img {
+    width: 22px;
+    height: 22px;
+}
