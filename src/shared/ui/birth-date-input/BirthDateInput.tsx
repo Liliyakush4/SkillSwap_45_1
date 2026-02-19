@@ -25,11 +25,10 @@ const BirthDateInput = () => {
   const popupRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // ✅ Вычисляем значение поля ввода на лету — НЕ ХРАНИМ В STATE
   const inputValue = formatDate(selectedDate);
 
   const handleCancel = useCallback(() => {
-    setTempDate(selectedDate); // сбрасываем временное состояние
+    setTempDate(selectedDate);
     setIsOpen(false);
   }, [selectedDate]);
 
@@ -41,20 +40,18 @@ const BirthDateInput = () => {
   }, [tempDate]);
 
   const handleDateChange = (date: Date | null) => {
-    setTempDate(date); // обновляем временное состояние
+    setTempDate(date);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
 
-    // Очистка поля
     if (value === '') {
       setSelectedDate(null);
       setTempDate(null);
       return;
     }
 
-    // Парсинг формата дд.мм.гггг
     const dateMatch = value.match(/^(\d{2})\.(\d{2})\.(\d{4})$/);
     if (dateMatch) {
       const [, day, month, year] = dateMatch;
@@ -65,10 +62,8 @@ const BirthDateInput = () => {
         setTempDate(parsedDate);
       }
     }
-    // Если не соответствует формату — просто оставляем ввод, но не обновляем selectedDate
   };
 
-  // Обработка клика вне попапа и Escape
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -104,10 +99,10 @@ const BirthDateInput = () => {
           ref={inputRef}
           type="text"
           placeholder="дд.мм.гггг"
-          value={inputValue} // ✅ Теперь это вычисляемое значение — НЕ state!
+          value={inputValue}
           onChange={handleInputChange}
           onClick={() => {
-            setTempDate(selectedDate); // запоминаем текущее значение перед открытием
+            setTempDate(selectedDate);
             setIsOpen(true);
           }}
           className={styles.inputField}
