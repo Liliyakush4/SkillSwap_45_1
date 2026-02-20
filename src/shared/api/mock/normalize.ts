@@ -13,7 +13,7 @@ export type Db = {
   categories: Category[];
   subcategories: Subcategory[];
 
-  // быстрый доступ по id (db.userById[userId])
+  // быстрый доступ по id (db.usersById[userId])
   usersById: Record<number, User>;
   skillsById: Record<number, Skill>;
   citiesById: Record<number, City>;
@@ -49,15 +49,12 @@ const toById = <T extends { id: number }>(items: T[]): Record<number, T> =>
  * Важно: если у ключа нет элементов, его просто не будет в объекте.
  * Поэтому при доступе обычно пишем: db.skillsByOwnerUserId[id] ?? []
  */
-const groupBy = <T, K extends number>(items: T[], keyFn: (item: T) => K): Record<K, T[]> =>
-  items.reduce<Record<K, T[]>>(
-    (acc, item) => {
-      const key = keyFn(item);
-      (acc[key] ??= []).push(item);
-      return acc;
-    },
-    {} as Record<K, T[]>,
-  );
+const groupBy = <T>(items: T[], keyFn: (item: T) => number): Record<number, T[]> =>
+  items.reduce<Record<number, T[]>>((acc, item) => {
+    const key = keyFn(item);
+    (acc[key] ??= []).push(item);
+    return acc;
+  }, {});
 
 /**
  * normalizeData — основной шаг подготовки данных:
