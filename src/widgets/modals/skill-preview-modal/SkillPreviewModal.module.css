@@ -1,0 +1,46 @@
+h2,
+p {
+  margin-top: 0; /* хардкод */
+  margin-bottom: 0; /* хардкод */
+}
+
+.modal.modal {
+  padding: 44px 60px 72px 60px;
+  border-radius: 12px;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  gap: 40px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  gap: 8px;
+}
+
+.title {
+  font-family: var(--font-family-primary, 'Jost', sans-serif);
+  font-weight: var(--font-weight-medium, 500);
+  font-size: 24px;
+  line-height: 28px;
+  letter-spacing: -0.011em;
+  color: var(--color-text, #253017);
+}
+
+.description {
+  font-family: var(--font-family-base, 'Roboto', sans-serif);
+  font-weight: var(--font-weight-regular, 400);
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.02em;
+  color: var(--color-text, #253017);
+}
+
+.content {
+  max-height: 324px;
+  width: 100%;
+}
