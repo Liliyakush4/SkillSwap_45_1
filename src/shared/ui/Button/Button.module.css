@@ -65,9 +65,9 @@
 }
 
 .disabled {
-  border-color: var(--color-disable, #e4e8df) !important;
-  color: var(--color-border, #69735d) !important;
-  background-color: var(--color-disable, #e4e8df) !important;
+  border-color: var(--color-disable, #e4e8df);
+  color: var(--color-border, #69735d);
+  background-color: var(--color-disable, #e4e8df);
   cursor: not-allowed;
 }
 

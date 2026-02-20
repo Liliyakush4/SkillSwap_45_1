@@ -22,6 +22,8 @@ export const CATEGORIES: SkillCategory[] = [
   { id: 4, name: 'Образование и развитие' },
   { id: 5, name: 'Здоровье и лайфстайл' },
   { id: 6, name: 'Дом и уют' },
+  { id: 7, name: 'Другое' },
+  { id: 8, name: 'Другое' },
 ] as const;
 
 export type TSkillCategory = (typeof CATEGORIES)[number];

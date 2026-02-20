@@ -29,6 +29,14 @@ export const SUBCATEGORIES: SubCategoriesOption = {
     { value: '11', label: 'Здоровье' },
     { value: '12', label: 'Лайфстайл' },
   ],
+  7: [
+    { value: '13', label: 'Другое' },
+    { value: '14', label: 'Другое' },
+  ],
+  8: [
+    { value: '15', label: 'Другое' },
+    { value: '16', label: 'Другое' },
+  ],
 } as const;
 
 export type TSubCategory = (typeof SUBCATEGORIES)[number];
