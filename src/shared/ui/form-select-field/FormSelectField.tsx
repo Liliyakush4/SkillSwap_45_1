@@ -197,7 +197,9 @@ export function FormSelectField({
             {options.map((option, index) => (
               <div
                 key={option.value}
-                ref={(el) => (optionRefs.current[index] = el)}
+                ref={(el) => {
+                  optionRefs.current[index] = el;
+                }}
                 id={`option-${option.value}`}
                 className={clsx(
                   styles.option,
