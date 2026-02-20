@@ -18,8 +18,8 @@ export interface RegisterStep3FormProps {
   values: RegisterStep3FormValues;
   onSubmit?: (data: RegisterStep3FormValues) => void;
   className?: string;
-  categoryOptions: Array<{ value: string; label: string }>;    // ← обязательные пропсы
-  subcategoryOptions: Array<{ value: string; label: string }>; // ← обязательные пропсы
+  categoryOptions: Array<{ value: string; label: string }>;
+  subcategoryOptions: Array<{ value: string; label: string }>;
 }
 
 export const RegisterStep3Form: FC<RegisterStep3FormProps> = ({ 
@@ -42,7 +42,8 @@ export const RegisterStep3Form: FC<RegisterStep3FormProps> = ({
 
   return (
     <form className={`${styles.registerForm} ${className || ''}`} onSubmit={handleSubmit}>
-      <div className={styles.registerFormContent}>
+      {/* Группа полей — все поля внутри одного div */}
+      <div className={styles.fieldsGroup}>
         <Input
           label="Название навыка"
           placeholder="Введите название вашего навыка"
@@ -79,15 +80,16 @@ export const RegisterStep3Form: FC<RegisterStep3FormProps> = ({
           multiple={true}
           accept="image/*"
         />
+      </div>
 
-        <div className={styles.buttonsContainer}>
-          <Button variant="secondary" fullWidth type="button">
-            Назад
-          </Button>
-          <Button type="submit" variant="primary" fullWidth>
-            Продолжить
-          </Button>
-        </div>
+      {/* Кнопки — отдельный блок */}
+      <div className={styles.buttonsContainer}>
+        <Button variant="secondary" fullWidth type="button">
+          Назад
+        </Button>
+        <Button type="submit" variant="primary" fullWidth>
+          Продолжить
+        </Button>
       </div>
     </form>
   );
