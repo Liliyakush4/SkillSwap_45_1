@@ -29,7 +29,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
   ) => {
     const hasError = Boolean(errorText);
 
-const inputId = useId();
+    const inputId = useId();
 
     const errorId = useId();
     const describedBy = hasError ? errorId : undefined;
@@ -43,11 +43,8 @@ const inputId = useId();
           className ?? '',
         ].join(' ')}
       >
-         {label && (
-          <label
-            className={cls.label}
-            htmlFor={inputId} 
-          >
+        {label && (
+          <label className={cls.label} htmlFor={inputId}>
             {label}
           </label>
         )}
@@ -66,7 +63,7 @@ const inputId = useId();
             aria-describedby={describedBy}
             {...rest}
           />
-          {rightSlot && rightSlot}
+          {rightSlot && <span className={cls.rightSlot}>{rightSlot}</span>}
         </div>
         {hasError && (
           <span id={errorId} className={cls.errorText}>

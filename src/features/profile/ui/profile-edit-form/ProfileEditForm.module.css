@@ -1,0 +1,84 @@
+.form {
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.formLayout {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-32, 32px);
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.fieldsColumn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-32, 32px);
+  width: 460px;
+  flex: 0 0 460px;
+  min-width: 0;
+}
+
+.avatarColumn {
+  flex-shrink: 0;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8, 8px);
+}
+
+.standaloneLabel {
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  display: block;
+}
+
+.changePasswordLink {
+  font-size: var(--font-size-sm, 14px);
+  color: var(--color-accent);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+  font-family: inherit;
+  margin-top: var(--space-4, 4px);
+}
+
+.changePasswordLink:hover {
+  text-decoration: underline;
+}
+
+.changePasswordLink:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.textareaWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.textareaWrapper :global(textarea) {
+  padding-right: 48px;
+}
+
+.textareaField {
+  width: 100%;
+}
+
+.textareaEditIcon {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+}
+
+.saveButton {
+  margin-top: var(--space-8, 8px);
+}
