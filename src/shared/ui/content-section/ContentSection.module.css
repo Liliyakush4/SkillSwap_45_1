@@ -31,6 +31,7 @@
 
 .hero {
   align-items: center;
+  gap: 40px;
   text-align: center;
 }
 
