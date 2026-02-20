@@ -6,15 +6,16 @@
 
 ## 1. Структура UI-слоёв
 
-| Слой | Путь | Назначение |
-|------|------|------------|
+| Слой          | Путь             | Назначение                                                                             |
+| ------------- | ---------------- | -------------------------------------------------------------------------------------- |
 | **shared/ui** | `src/shared/ui/` | Переиспользуемые UI-компоненты без бизнес-логики: Button, Input, Modal, Popover и т.д. |
-| **widgets** | `src/widgets/` | Сборные блоки из shared/ui и features: Header, Footer, модалки с контентом. |
-| **features** | `src/features/` | Логика и UI одной фичи (например, избранное, авторизация). |
-| **entities** | `src/entities/` | Сущности предметной области (пользователь, навык, обмен). |
-| **pages** | `src/pages/` | Страницы приложения: собирают widgets и features, роутятся в `app/router`. |
+| **widgets**   | `src/widgets/`   | Сборные блоки из shared/ui и features: Header, Footer, модалки с контентом.            |
+| **features**  | `src/features/`  | Логика и UI одной фичи (например, избранное, авторизация).                             |
+| **entities**  | `src/entities/`  | Сущности предметной области (пользователь, навык, обмен).                              |
+| **pages**     | `src/pages/`     | Страницы приложения: собирают widgets и features, роутятся в `app/router`.             |
 
 **Что где хранить:**
+
 - Новая кнопка/инпут/модалка → `shared/ui`.
 - Новый блок шапки/футера/карточки страницы → `widgets`.
 - Новый экран по роуту → `pages`, роут в `router.tsx`.
@@ -31,7 +32,7 @@
 import clsx from 'clsx';
 import styles from './MyComponent.module.css';
 
-<div className={clsx(styles.box, isActive && styles.active, className)} />
+<div className={clsx(styles.box, isActive && styles.active, className)} />;
 ```
 
 ### 2.2 Глобальные стили — только в `globals.css`
@@ -102,12 +103,12 @@ import styles from './MyComponent.module.css';
 
 Оформляйте состояния в `*.module.css` компонента, не в глобальных стилях.
 
-| Состояние | Где делать | Пример |
-|-----------|------------|--------|
-| **hover** | В модуле компонента | `.button:hover:not(:disabled) { background: var(--color-primary-hover); }` |
-| **focus-visible** | В модуле (для кнопок, инпутов, ссылок) | `.input:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }` |
-| **disabled** | В модуле + атрибут `disabled` / `aria-disabled` | `.disabled { cursor: not-allowed; opacity: 0.7; }` и `disabled` на элементе |
-| **error** | Отдельный класс (например `.error`) + `aria-invalid` | `.error .input { border-color: var(--color-error); }` |
+| Состояние         | Где делать                                           | Пример                                                                                  |
+| ----------------- | ---------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| **hover**         | В модуле компонента                                  | `.button:hover:not(:disabled) { background: var(--color-primary-hover); }`              |
+| **focus-visible** | В модуле (для кнопок, инпутов, ссылок)               | `.input:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }` |
+| **disabled**      | В модуле + атрибут `disabled` / `aria-disabled`      | `.disabled { cursor: not-allowed; opacity: 0.7; }` и `disabled` на элементе             |
+| **error**         | Отдельный класс (например `.error`) + `aria-invalid` | `.error .input { border-color: var(--color-error); }`                                   |
 
 Общее правило: не переопределять глобальный `:focus` — использовать `:focus-visible`, чтобы не показывать обводку при клике мышью.
 
@@ -115,12 +116,12 @@ import styles from './MyComponent.module.css';
 
 ## 5. Именование
 
-| Что | Правило | Пример |
-|-----|---------|--------|
-| Компоненты (файлы, экспорт) | **PascalCase** | `Button.tsx`, `SearchInput.tsx`, `Modal.tsx` |
-| Папки в `shared/ui` | **camelCase** (или kebab-case для составных имён) | `icon-button`, `search-input`, `Input`, `Modal` |
-| CSS-модули | Имя компонента + `.module.css` | `Button.module.css`, `SearchInput.module.css` |
-| Реэкспорт | Через `index.ts` в папке компонента | `export { Button } from './Button';` |
+| Что                         | Правило                                           | Пример                                          |
+| --------------------------- | ------------------------------------------------- | ----------------------------------------------- |
+| Компоненты (файлы, экспорт) | **PascalCase**                                    | `Button.tsx`, `SearchInput.tsx`, `Modal.tsx`    |
+| Папки в `shared/ui`         | **camelCase** (или kebab-case для составных имён) | `icon-button`, `search-input`, `Input`, `Modal` |
+| CSS-модули                  | Имя компонента + `.module.css`                    | `Button.module.css`, `SearchInput.module.css`   |
+| Реэкспорт                   | Через `index.ts` в папке компонента               | `export { Button } from './Button';`            |
 
 Импорт снаружи — из папки (через index):
 

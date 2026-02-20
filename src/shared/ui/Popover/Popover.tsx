@@ -117,7 +117,11 @@ export const Popover: FC<PopoverProps> = ({
   return createPortal(
     <div
       ref={popoverRef}
-      className={clsx(styles.popover, placement === 'bottom-end' && styles.placementBottomEnd, className)}
+      className={clsx(
+        styles.popover,
+        placement === 'bottom-end' && styles.placementBottomEnd,
+        className,
+      )}
       style={{
         top: `${position.top}px`,
         left: `${position.left}px`,
@@ -127,6 +131,6 @@ export const Popover: FC<PopoverProps> = ({
     >
       {children}
     </div>,
-    popoverRoot
+    popoverRoot,
   );
 };

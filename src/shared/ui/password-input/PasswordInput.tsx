@@ -17,7 +17,7 @@ export const PasswordInput = ({
   const [isVisible, setIsVisible] = useState(false);
 
   const toggleLabel = isVisible ? 'Скрыть пароль' : 'Показать пароль';
- const isDisabled = Boolean(rest.disabled);
+  const isDisabled = Boolean(rest.disabled);
 
   return (
     <Input

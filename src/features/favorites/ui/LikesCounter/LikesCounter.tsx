@@ -36,15 +36,13 @@ export const LikesCounter: FC<LikesCounterProps> = ({
       // Иначе используем внутреннюю логику
       const newIsActive = !internalIsActive;
       setInternalIsActive(newIsActive);
-      setInternalLikesCount(prev => newIsActive ? prev + 1 : prev - 1);
+      setInternalLikesCount((prev) => (newIsActive ? prev + 1 : prev - 1));
     }
   };
   return (
     <div className={clsx(styles.likesContainer, className)}>
       {showCount && (
-        <span className={clsx(styles.likesCount, isActive && styles.active)}>
-        {likesCount}
-      </span>
+        <span className={clsx(styles.likesCount, isActive && styles.active)}>{likesCount}</span>
       )}
       <FavoriteToggle
         isActive={isActive}

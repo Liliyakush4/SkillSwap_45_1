@@ -9,10 +9,7 @@ export interface OfferPreviewModalProps {
   onClose: () => void;
 }
 
-export const OfferPreviewModal: React.FC<OfferPreviewModalProps> = ({
-  isOpen,
-  onClose,
-}) => {
+export const OfferPreviewModal: React.FC<OfferPreviewModalProps> = ({ isOpen, onClose }) => {
   const handleClose = () => {
     onClose();
   };
@@ -21,19 +18,12 @@ export const OfferPreviewModal: React.FC<OfferPreviewModalProps> = ({
     <Modal isOpen={isOpen} onClose={handleClose} className={styles.modal}>
       <div className={styles.container}>
         <div className={styles.iconWrapper}>
-          <img
-            src={PersonCircleIcon}
-            alt=""
-            aria-hidden="true"
-            className={styles.icon}
-          />
+          <img src={PersonCircleIcon} alt="" aria-hidden="true" className={styles.icon} />
         </div>
 
         <h2 className={styles.title}>Ваше предложение создано</h2>
 
-        <p className={styles.description}>
-          Теперь вы можете предложить обмен
-        </p>
+        <p className={styles.description}>Теперь вы можете предложить обмен</p>
 
         <div className={styles.buttonWrapper}>
           <Button fullWidth onClick={handleClose}>
@@ -44,4 +34,3 @@ export const OfferPreviewModal: React.FC<OfferPreviewModalProps> = ({
     </Modal>
   );
 };
-

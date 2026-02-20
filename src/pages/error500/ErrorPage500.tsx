@@ -11,24 +11,24 @@ export const ErrorPage500 = () => {
   };
 
   return (
-      <div className={styles.page}>
-        <div className={styles.imageWrapper}>
-          <img src={errorImage} alt="На сервере произошла ошибка" className={styles.image} />
+    <div className={styles.page}>
+      <div className={styles.imageWrapper}>
+        <img src={errorImage} alt="На сервере произошла ошибка" className={styles.image} />
+      </div>
+      <div className={styles.content}>
+        <div className={styles.textBlock}>
+          <h2 className={styles.title}>На сервере произошла ошибка</h2>
+          <p className={styles.description}>Попробуйте позже или вернитесь на главную страницу</p>
         </div>
-        <div className={styles.content}>
-          <div className={styles.textBlock}>
-            <h2 className={styles.title}>На сервере произошла ошибка</h2>
-            <p className={styles.description}>Попробуйте позже или вернитесь на главную страницу</p>
-          </div>
-          <div className={styles.buttons}>
-            <Button className={styles.button} variant="secondary">
-              Сообщить об ошибке
-            </Button>
-            <Button className={styles.button} variant="primary" onClick={handleGoHome}>
-              На главную
-            </Button>
-          </div>
+        <div className={styles.buttons}>
+          <Button className={styles.button} variant="secondary">
+            Сообщить об ошибке
+          </Button>
+          <Button className={styles.button} variant="primary" onClick={handleGoHome}>
+            На главную
+          </Button>
         </div>
       </div>
+    </div>
   );
 };

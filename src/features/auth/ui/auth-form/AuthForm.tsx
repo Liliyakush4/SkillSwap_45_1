@@ -47,17 +47,17 @@ export const AuthForm: FC<AuthFormProps> = ({ mode, onSubmit, className }) => {
           <span>или</span>
         </div>
 
-        <Input 
+        <Input
           label="Email"
-          placeholder="Введите email" 
+          placeholder="Введите email"
           name="email"
           value={email}
           onChange={setEmail}
         />
-        
-        <PasswordInput 
+
+        <PasswordInput
           label="Пароль"
-          placeholder={isLogin ? "Введите ваш пароль" : "Придумайте надежный пароль"}
+          placeholder={isLogin ? 'Введите ваш пароль' : 'Придумайте надежный пароль'}
           name="password"
           value={password}
           onChange={setPassword}

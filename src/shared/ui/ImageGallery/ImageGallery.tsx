@@ -23,11 +23,11 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
 }) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
-useEffect(() => {
-  if (activeIndex >= images.length) {
-    setActiveIndex(0);
-  }
-}, [images.length, activeIndex]);
+  useEffect(() => {
+    if (activeIndex >= images.length) {
+      setActiveIndex(0);
+    }
+  }, [images.length, activeIndex]);
 
   // Если нет изображений - показываем заглушку
   if (images.length === 0) {
