@@ -1,1 +1,0 @@
-export { BirthDateInput } from './BirthDateInput';

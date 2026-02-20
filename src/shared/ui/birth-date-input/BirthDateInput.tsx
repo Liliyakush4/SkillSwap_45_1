@@ -17,49 +17,55 @@ const formatDate = (date: Date | null): string => {
   });
 };
 
-const BirthDateInput = () => {
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+export interface BirthDateInputProps {
+  value: Date | null;
+  onChange: (date: Date | null) => void;
+  disabled?: boolean;
+}
+
+const BirthDateInput = ({ value, onChange, disabled = false }: BirthDateInputProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [tempDate, setTempDate] = useState<Date | null>(null);
 
   const popupRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const inputValue = formatDate(selectedDate);
+  const inputValue = formatDate(value);
+
+  const openPopup = useCallback(() => {
+    if (disabled) return;
+    setTempDate(value);
+    setIsOpen(true);
+  }, [value, disabled]);
 
   const handleCancel = useCallback(() => {
-    setTempDate(selectedDate);
     setIsOpen(false);
-  }, [selectedDate]);
+  }, []);
 
   const handleConfirm = useCallback(() => {
-    if (tempDate) {
-      setSelectedDate(tempDate);
-    }
+    onChange(tempDate);
     setIsOpen(false);
-  }, [tempDate]);
+  }, [tempDate, onChange]);
 
   const handleDateChange = (date: Date | null) => {
     setTempDate(date);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
+    const inputVal = e.target.value;
 
-    if (value === '') {
-      setSelectedDate(null);
-      setTempDate(null);
+    if (inputVal === '') {
+      onChange(null);
       return;
     }
 
-    const dateMatch = value.match(/^(\d{2})\.(\d{2})\.(\d{4})$/);
+    const dateMatch = inputVal.match(/^(\d{2})\.(\d{2})\.(\d{4})$/);
     if (dateMatch) {
       const [, day, month, year] = dateMatch;
       const parsedDate = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
 
       if (!isNaN(parsedDate.getTime())) {
-        setSelectedDate(parsedDate);
-        setTempDate(parsedDate);
+        onChange(parsedDate);
       }
     }
   };
@@ -101,20 +107,16 @@ const BirthDateInput = () => {
           placeholder="дд.мм.гггг"
           value={inputValue}
           onChange={handleInputChange}
-          onClick={() => {
-            setTempDate(selectedDate);
-            setIsOpen(true);
-          }}
+          onClick={openPopup}
+          disabled={disabled}
           className={styles.inputField}
         />
 
         <button
           type="button"
           className={styles.iconWrapper}
-          onClick={() => {
-            setTempDate(selectedDate);
-            setIsOpen(true);
-          }}
+          onClick={openPopup}
+          disabled={disabled}
           aria-label="Открыть календарь"
         >
           <img src={calendarIcon} alt="Открыть календарь" className={styles.calendarIcon} />
@@ -132,7 +134,7 @@ const BirthDateInput = () => {
             monthsShown={1}
             showWeekNumbers={false}
             fixedHeight
-            dayClassName={(date) => {
+            dayClassName={(date: Date) => {
               const isToday = date.toDateString() === new Date().toDateString();
               const isSelected = tempDate && date.toDateString() === tempDate.toDateString();
               let className = '';
