@@ -3,45 +3,100 @@ import { RadioGroup } from '../../shared/ui/radio-group/RadioGroup';
 import { CheckboxGroup } from '../../shared/ui/checkbox-group/CheckboxGroup';
 import { Button } from '../../shared/ui/Button/Button';
 import { CITIES } from '../../shared/lib/constants/cities';
-import { SKILL_CATEGORIES } from '../../shared/lib/constants/categories';
+import { CATEGORIES } from '@shared/lib/constants/categories';
 import { SKILL_TYPE, GENDER } from '../../shared/lib/constants/filters';
 import iconArrowDown from '../../shared/assets/icons/ui/icon_arrow_down.svg';
 import styles from './FiltersSidebar.module.css';
+import iconCross from '../../shared/assets/icons/ui/icon_close.svg';
+import { Checkbox } from '@shared/ui/checkbox';
+import { SUBCATEGORIES } from '@shared/lib/constants/subcategories';
+import clsx from 'clsx';
+
+// т.к. у нас категорию нельзя выбрать, если не выбрана подкатегория
+// делаем объект с id всех категорий - ключами,
+// а список айди подкатегорий - значениями
+// айди подкатегорий строки из-за чекбокса
+type TCategoriesSelected = {
+  [key: number]: string[];
+};
 
 type FilterValues = {
   offerType: string;
-  categories: string[];
+  categories: TCategoriesSelected;
   gender: string;
   cities: string[];
 };
 
+const categories: TCategoriesSelected = CATEGORIES.reduce((acc, category) => {
+  acc[category.id] = [];
+  return acc;
+}, {} as TCategoriesSelected);
+
 const defaultFilterValues: FilterValues = {
   offerType: SKILL_TYPE[0].value,
-  categories: [],
+  categories: categories,
   gender: GENDER[0].value,
   cities: [],
 };
 
 export const FiltersSidebar = () => {
-  const [filterValues, setFilterValues] = useState(defaultFilterValues);
+  const [filterValues, setFilterValues] = useState(defaultFilterValues); // Выбранные фильтры
+  const [appliedFiltersCount, setAppliedFiltersCount] = useState(0); // Количество применённых фильтров
+  const [isCitiesExpanded, setIsCitiesExpanded] = useState(false); // Все города >
+  const [isCategoriesExpanded, setIsCategoriesExpanded] = useState(false); // Все категории >
+  const [expandedCategories, setExpandedCategories] = useState<number[]>([]); // развернутые категории
 
-  // минимальный функционал для тестирования
-  const handleFilterChange = (name: string, value: string | string[]) => {
-    setFilterValues((prevValues) => ({
-      ...prevValues,
-      [name]: value,
-    }));
+  const countAppliedFilters = (filters: FilterValues): number => {
+    let count = 0;
+    if (filters.offerType !== SKILL_TYPE[0].value) {
+      count++;
+    }
+    Object.values(filters.categories).forEach((subcategories) => {
+      if (subcategories.length > 0) {
+        count++;
+      }
+    });
+    if (filters.gender !== GENDER[0].value) {
+      count++;
+    }
+    count += filters.cities.length;
+
+    return count;
+  };
+
+  const handleFilterChange = (name: string, value: string | string[] | TCategoriesSelected) => {
+    setFilterValues((prevValues) => {
+      const newFilterValues = {
+        ...prevValues,
+        [name]: value,
+      };
+      setAppliedFiltersCount(countAppliedFilters(newFilterValues));
+
+      return newFilterValues;
+    });
   };
 
   return (
     <div className={styles.filtersSidebar}>
       <div className={styles.filterHeader}>
-        <h2 className={styles.filterHeaderTitle}>Фильтры</h2>
+        <h2 className={styles.filterHeaderTitle}>
+          Фильтры {appliedFiltersCount ? `(${appliedFiltersCount})` : ''}
+        </h2>
+        <Button
+          variant="ghost"
+          onClick={() => {
+            setFilterValues(defaultFilterValues);
+            setAppliedFiltersCount(0);
+          }}
+          className={styles.resetBtn}
+        >
+          Сбросить <img src={iconCross} className={styles.icon} alt="Сбросить" />
+        </Button>
       </div>
 
       <div className={styles.filterGroup}>
         <div className={styles.section}>
-          <RadioGroup /* gap у RadioGroup должен быть 12px, по факту - 8px */
+          <RadioGroup
             name="offerType"
             options={SKILL_TYPE}
             value={filterValues.offerType}
@@ -52,17 +107,47 @@ export const FiltersSidebar = () => {
         <div className={styles.section}>
           <h3 className={styles.sectionTitle}>Навыки</h3>
           <div className={styles.checkboxGroup}>
-            <CheckboxGroup /* gap у CheckboxGroup должен быть 12px, по факту - 16px */
-              name="categories"
-              options={SKILL_CATEGORIES}
-              value={filterValues.categories}
-              onChange={(values) => handleFilterChange('categories', values)}
-            />
-            <Button /* у Button по макету font-weight: 400, по факту - 500 */
+            {CATEGORIES.map((category) => (
+              <>
+                <Checkbox
+                  key={category.id}
+                  label={category.name}
+                  checked={expandedCategories.includes(category.id)}
+                  onChange={(
+                    checked, // открываем-закрываем аккордеон
+                  ) =>
+                    checked
+                      ? setExpandedCategories((prev) => [...prev, category.id])
+                      : setExpandedCategories((prev) => prev.filter((id) => id !== category.id))
+                  }
+                  checkedMark="dash"
+                />
+                <div
+                  className={clsx(
+                    styles.subcategoriesContainer,
+                    !expandedCategories.includes(category.id) && styles.hidden,
+                  )}
+                >
+                  <CheckboxGroup
+                    name="subCategories"
+                    options={SUBCATEGORIES[category.id]}
+                    value={filterValues.categories[category.id]} // id (string) выбранных подкатегорий
+                    onChange={(values) =>
+                      handleFilterChange('categories', {
+                        ...filterValues.categories,
+                        [category.id]: values,
+                      })
+                    }
+                  />
+                </div>
+              </>
+            ))}
+            <Button
               variant="ghost"
               disabled
               className={styles.arrowBtn}
               aria-label="Показать все категории"
+              onClick={() => setIsCategoriesExpanded(!isCategoriesExpanded)}
             >
               Все категории
               <img src={iconArrowDown} className={styles.icon} alt="icon" aria-hidden="true" />
@@ -86,12 +171,15 @@ export const FiltersSidebar = () => {
             <CheckboxGroup
               name="cities"
               options={CITIES}
-              value={filterValues.cities}
+              value={filterValues.cities.slice(0, 6)}
               onChange={(values) => handleFilterChange('cities', values)}
             />
-            <Button variant="ghost" disabled className={styles.arrowBtn}>
-              Все города
-              <img src={iconArrowDown} className={styles.icon} alt="icon" aria-hidden="true" />
+            <Button
+              onClick={() => setIsCitiesExpanded(!isCitiesExpanded)}
+              className={styles.arrowBtn}
+            >
+              {isCitiesExpanded ? 'Свернуть' : 'Все города'}
+              <img src={iconArrowDown} className={styles.icon} alt="Развернуть" />
             </Button>
           </div>
         </div>

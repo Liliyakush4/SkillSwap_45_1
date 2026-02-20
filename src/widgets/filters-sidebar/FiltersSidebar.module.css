@@ -15,7 +15,6 @@ h3 {
 
 .filterHeader {
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
   align-items: start;
 }
@@ -56,6 +55,13 @@ h3 {
   gap: 12px;
 }
 
+.subcategoriesContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-left: 20px;
+}
+
 .arrowBtn {
   color: var(--color-accent);
   padding: 0;
@@ -74,4 +80,8 @@ h3 {
 .icon {
   width: 24px;
   height: 24px;
+}
+
+.hidden {
+  display: none;
 }

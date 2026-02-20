@@ -1,5 +1,6 @@
 import { useId } from 'react';
 import cls from './Checkbox.module.css';
+import clsx from 'clsx';
 
 export type CheckboxProps = {
   label?: string;
@@ -12,6 +13,7 @@ export type CheckboxProps = {
   id?: string;
   value?: string;
   'aria-describedby'?: string;
+  checkedMark?: 'dash' | 'check';
 };
 
 export function Checkbox({
@@ -25,6 +27,7 @@ export function Checkbox({
   id: idProp,
   value,
   'aria-describedby': ariaDescribedBy,
+  checkedMark = 'check',
 }: CheckboxProps) {
   const generatedId = useId();
   const errorId = useId();
@@ -56,7 +59,7 @@ export function Checkbox({
           disabled={disabled}
           aria-invalid={hasError}
           aria-describedby={describedBy}
-          className={cls.input}
+          className={clsx(cls.input, checkedMark === 'dash' ? cls.dash : cls.check)}
         />
         {label != null && <span className={cls.labelText}>{label}</span>}
       </label>
