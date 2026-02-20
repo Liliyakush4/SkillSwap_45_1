@@ -1,20 +1,51 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import {
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+  type ChangeEvent,
+  type ClipboardEvent,
+} from 'react';
+
 import DatePicker, { registerLocale } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+
+import { format, parse, isValid } from 'date-fns';
+import { ru } from 'date-fns/locale';
+
 import { Button } from '../Button';
 import styles from './BirthDateInput.module.css';
-import { ru } from 'date-fns/locale/ru';
 import calendarIcon from '../../assets/icons/ui/icon_calendar.svg';
 
 registerLocale('ru', ru);
 
-const formatDate = (date: Date | null): string => {
-  if (!date) return '';
-  return date.toLocaleDateString('ru-RU', {
-    day: '2-digit',
-    month: '2-digit',
-    year: 'numeric',
-  });
+const DATE_FORMAT = 'dd.MM.yyyy';
+const FULL_RE = /^\d{2}\.\d{2}\.\d{4}$/;
+
+const formatDate = (date: Date | null) => (date ? format(date, DATE_FORMAT) : '');
+
+const parseDateStrict = (value: string): Date | null => {
+  if (!FULL_RE.test(value)) return null;
+
+  const parsed = parse(value, DATE_FORMAT, new Date(), { locale: ru });
+  if (!isValid(parsed)) return null;
+
+  // защита от "31.02.2026 -> 03.03.2026"
+  if (format(parsed, DATE_FORMAT) !== value) return null;
+
+  return parsed;
+};
+
+// Маска: только цифры, точки вставляются автоматически, максимум 8 цифр (ddmmyyyy)
+const maskDate = (raw: string) => {
+  const digits = raw.replace(/\D/g, '').slice(0, 8);
+  const dd = digits.slice(0, 2);
+  const mm = digits.slice(2, 4);
+  const yyyy = digits.slice(4, 8);
+
+  if (digits.length <= 2) return dd;
+  if (digits.length <= 4) return `${dd}.${mm}`;
+  return `${dd}.${mm}.${yyyy}`;
 };
 
 export interface BirthDateInputProps {
@@ -25,89 +56,107 @@ export interface BirthDateInputProps {
 
 const BirthDateInput = ({ value, onChange, disabled = false }: BirthDateInputProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [tempDate, setTempDate] = useState<Date | null>(null);
+  const [tempDate, setTempDate] = useState<Date | null>(value);
+  const [inputText, setInputText] = useState<string>(() => formatDate(value));
 
-  const popupRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  const inputValue = formatDate(value);
+  // Синхронизация с внешним value (reset/setValue в форме)
+  useEffect(() => {
+    setTempDate(value);
+    setInputText(formatDate(value));
+  }, [value]);
+
+  const handleCancel = useCallback(() => {
+    setTempDate(value);
+    setInputText(formatDate(value));
+    setIsOpen(false);
+  }, [value]);
 
   const openPopup = useCallback(() => {
     if (disabled) return;
-    setTempDate(value);
-    setIsOpen(true);
-  }, [value, disabled]);
 
-  const handleCancel = useCallback(() => {
-    setIsOpen(false);
+    // если пользователь ввел валидную дату руками, показать ее в календаре
+    const parsed = parseDateStrict(inputText);
+    setTempDate(parsed ?? value);
+    setIsOpen(true);
+  }, [disabled, inputText, value]);
+
+  const applyMaskedText = useCallback(
+    (nextRaw: string) => {
+      const masked = maskDate(nextRaw);
+      setInputText(masked);
+
+      if (masked === '') {
+        onChange(null);
+        return;
+      }
+
+      // в форму отправляем только полностью введенную и валидную дату
+      if (masked.length === 10) {
+        const parsed = parseDateStrict(masked);
+        if (parsed) onChange(parsed);
+      }
+    },
+    [onChange],
+  );
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    applyMaskedText(e.target.value);
+  };
+
+  const handlePaste = (e: ClipboardEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    const text = e.clipboardData.getData('text');
+    applyMaskedText(text);
+  };
+
+  // при выборе даты в календаре сразу подставляем в поле
+  const handleCalendarChange = useCallback((d: Date | null) => {
+    setTempDate(d);
+    setInputText(formatDate(d));
   }, []);
 
   const handleConfirm = useCallback(() => {
-    onChange(tempDate);
+    onChange(tempDate ?? null);
+    setInputText(formatDate(tempDate ?? null));
     setIsOpen(false);
   }, [tempDate, onChange]);
 
-  const handleDateChange = (date: Date | null) => {
-    setTempDate(date);
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const inputVal = e.target.value;
-
-    if (inputVal === '') {
-      onChange(null);
-      return;
-    }
-
-    const dateMatch = inputVal.match(/^(\d{2})\.(\d{2})\.(\d{4})$/);
-    if (dateMatch) {
-      const [, day, month, year] = dateMatch;
-      const parsedDate = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
-
-      if (!isNaN(parsedDate.getTime())) {
-        onChange(parsedDate);
-      }
-    }
-  };
-
+  // Outside click + Escape = ведут себя как "Отменить", чтобы черновик не залипал
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        popupRef.current &&
-        !popupRef.current.contains(event.target as Node) &&
-        inputRef.current &&
-        !inputRef.current.contains(event.target as Node)
-      ) {
-        handleCancel();
-      }
+    if (!isOpen) return;
+
+    const onMouseDown = (event: MouseEvent) => {
+      const root = containerRef.current;
+      if (!root) return;
+      if (!root.contains(event.target as Node)) handleCancel();
     };
 
-    const handleEscapeKey = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' && isOpen) {
-        handleCancel();
-      }
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') handleCancel();
     };
 
-    if (isOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-      document.addEventListener('keydown', handleEscapeKey);
-      return () => {
-        document.removeEventListener('mousedown', handleClickOutside);
-        document.removeEventListener('keydown', handleEscapeKey);
-      };
-    }
+    document.addEventListener('mousedown', onMouseDown);
+    document.addEventListener('keydown', onKeyDown);
+
+    return () => {
+      document.removeEventListener('mousedown', onMouseDown);
+      document.removeEventListener('keydown', onKeyDown);
+    };
   }, [isOpen, handleCancel]);
 
   return (
-    <div className={styles.container}>
+    <div ref={containerRef} className={styles.container}>
       <div className={styles.inputWrapper}>
         <input
-          ref={inputRef}
           type="text"
+          inputMode="numeric"
           placeholder="дд.мм.гггг"
-          value={inputValue}
+          value={inputText}
           onChange={handleInputChange}
-          onClick={openPopup}
+          onPaste={handlePaste}
+          maxLength={10}
           disabled={disabled}
           className={styles.inputField}
         />
@@ -119,40 +168,25 @@ const BirthDateInput = ({ value, onChange, disabled = false }: BirthDateInputPro
           disabled={disabled}
           aria-label="Открыть календарь"
         >
-          <img src={calendarIcon} alt="Открыть календарь" className={styles.calendarIcon} />
+          <img src={calendarIcon} alt="" className={styles.calendarIcon} />
         </button>
       </div>
 
       {isOpen && (
-        <div ref={popupRef} className={styles.calendarPopup}>
+        <div className={styles.calendarPopup}>
           <DatePicker
             selected={tempDate}
-            onChange={handleDateChange}
+            onChange={handleCalendarChange}
             inline
             locale="ru"
-            showMonthYearPicker={false}
-            monthsShown={1}
-            showWeekNumbers={false}
             fixedHeight
-            dayClassName={(date: Date) => {
-              const isToday = date.toDateString() === new Date().toDateString();
-              const isSelected = tempDate && date.toDateString() === tempDate.toDateString();
-              let className = '';
-              if (isToday && isSelected) {
-                className = 'react-datepicker__day--selected react-datepicker__day--today';
-              } else if (isToday) {
-                className = 'react-datepicker__day--today';
-              } else if (isSelected) {
-                className = 'react-datepicker__day--selected';
-              }
-              return className;
-            }}
           />
+
           <div className={styles.buttonGroup}>
-            <Button variant="secondary" onClick={handleCancel}>
+            <Button type="button" variant="secondary" onClick={handleCancel} disabled={disabled}>
               Отменить
             </Button>
-            <Button variant="primary" onClick={handleConfirm}>
+            <Button type="button" variant="primary" onClick={handleConfirm} disabled={disabled}>
               Выбрать
             </Button>
           </div>
