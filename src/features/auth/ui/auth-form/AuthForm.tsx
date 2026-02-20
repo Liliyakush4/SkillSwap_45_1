@@ -33,11 +33,11 @@ export const AuthForm: FC<AuthFormProps> = ({ mode, onSubmit, className }) => {
     <form className={`${styles.authForm} ${className || ''}`} onSubmit={handleSubmit}>
       <div className={styles.authFormContent}>
         <div className={styles.socialButtons}>
-          <Button variant="secondary" fullWidth type="button">
+          <Button variant="ghost" fullWidth type="button">
             <img src={googleIcon} alt="" className={styles.socialIcon} />
             Продолжить с Google
           </Button>
-          <Button variant="secondary" fullWidth type="button">
+          <Button variant="ghost" fullWidth type="button">
             <img src={appleIcon} alt="" className={styles.socialIcon} />
             Продолжить с Apple
           </Button>
