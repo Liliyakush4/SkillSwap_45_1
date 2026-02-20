@@ -193,11 +193,7 @@ export function FormAutocompleteField({
   };
 
   const hasError = !!errorText;
-  const showClearButton = options.value !== null && !disabled;
-
-  // Отдельная переменная для отладки!!!!!!!!!!!!!!!!!
-  const shouldShowClear = value !== null && !disabled;
-  console.log('Должен показать крестик?', shouldShowClear, 'value:', value, 'тип:', typeof value);
+  const showClearButton = value !== null && !disabled;
 
   return (
     <div className={`${styles.wrapper} ${className}`} ref={ref}>
