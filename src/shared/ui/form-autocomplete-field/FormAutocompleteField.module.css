@@ -75,6 +75,7 @@
   min-height: 24px;
   border: none;
   width: 100%;
+  background-color: var(--color-secondary);
 }
 
 .input:focus-visible {

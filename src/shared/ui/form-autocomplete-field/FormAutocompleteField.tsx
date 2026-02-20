@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, type ChangeEvent, useId, useCallback } from 'react';
+import { useState, useRef, useEffect, type ChangeEvent, useId, useMemo } from 'react';
 import styles from './FormAutocompleteField.module.css';
 import clsx from 'clsx';
 
@@ -54,31 +54,31 @@ export function FormAutocompleteField({
   const [focusedIndex, setFocusedIndex] = useState(-1);
 
   const inputId = useId();
-  const wrapperRef = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const optionRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   // Находим выбранную опцию
-  const selectedOption = options.find((opt) => opt.value === value);
+  const selectedOption = useMemo(
+    () => options.find((opt) => opt.value === value),
+    [options, value],
+  );
 
-  // Фильтруем опции на основе введенного текста - используем useMemo для оптимизации
-  const filteredOptions = useCallback(() => {
-    return options.filter((option) =>
-      option.label.toLowerCase().includes(filterText.toLowerCase()),
-    );
-  }, [options, filterText]);
-
-  const filteredOptionsList = filteredOptions();
+  // Фильтруем опции на основе введенного текста
+  const filteredOptions = useMemo(
+    () => options.filter((option) => option.label.toLowerCase().includes(filterText.toLowerCase())),
+    [options, filterText],
+  );
 
   // Сброс focusedIndex при изменении списка
   useEffect(() => {
-    if (isOpen && filteredOptionsList.length > 0) {
+    if (isOpen && filteredOptions.length > 0) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setFocusedIndex(0);
     } else {
       setFocusedIndex(-1);
     }
-  }, [filteredOptionsList, isOpen]);
+  }, [filteredOptions, isOpen]);
 
   // Скролл к focused элементу
   useEffect(() => {
@@ -93,9 +93,9 @@ export function FormAutocompleteField({
   // Обработчик клика вне компонента
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      if (wrapperRef.current && !wrapperRef.current.contains(e.target as Node)) {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
         setIsOpen(false);
-        // При закрытии сбрасываем фильтр
+        // При закрытии сбрасываем фильтр к выбранному значению
         setFilterText(selectedOption?.label || '');
       }
     };
@@ -128,6 +128,8 @@ export function FormAutocompleteField({
   const handleClear = () => {
     onChange(null);
     setFilterText('');
+    // Убедимся, что список не открыт после очистки
+    setIsOpen(false);
     inputRef.current?.focus();
   };
 
@@ -135,39 +137,31 @@ export function FormAutocompleteField({
     if (disabled) return;
 
     switch (e.key) {
-      case 'Enter':
-        e.preventDefault();
-        if (isOpen && focusedIndex >= 0 && filteredOptionsList[focusedIndex]) {
-          const option = filteredOptionsList[focusedIndex];
-          if (!option.disabled) {
-            onChange(option.value);
-            setFilterText(option.label);
-            setIsOpen(false);
-          }
-        }
-        break;
-
       case 'ArrowDown':
         e.preventDefault();
         if (!isOpen) {
           setIsOpen(true);
-        } else if (filteredOptionsList.length > 0) {
-          setFocusedIndex((prev) => {
-            const nextIndex = prev + 1;
-            return nextIndex < filteredOptionsList.length ? nextIndex : 0;
-          });
+        } else if (focusedIndex < filteredOptions.length - 1) {
+          setFocusedIndex(focusedIndex + 1);
         }
         break;
 
       case 'ArrowUp':
         e.preventDefault();
-        if (!isOpen) {
-          setIsOpen(true);
-        } else if (filteredOptionsList.length > 0) {
-          setFocusedIndex((prev) => {
-            const nextIndex = prev - 1;
-            return nextIndex >= 0 ? nextIndex : filteredOptionsList.length - 1;
-          });
+        if (isOpen && focusedIndex > 0) {
+          setFocusedIndex(focusedIndex - 1);
+        }
+        break;
+
+      case 'Enter':
+        e.preventDefault();
+        if (isOpen && focusedIndex >= 0 && filteredOptions[focusedIndex]) {
+          const option = filteredOptions[focusedIndex];
+          if (!option.disabled) {
+            onChange(option.value);
+            setFilterText(option.label);
+            setIsOpen(false);
+          }
         }
         break;
 
@@ -199,10 +193,19 @@ export function FormAutocompleteField({
   };
 
   const hasError = !!errorText;
+  const showClearButton = options.value !== null && !disabled;
+
+  // Отдельная переменная для отладки!!!!!!!!!!!!!!!!!
+  const shouldShowClear = value !== null && !disabled;
+  console.log('Должен показать крестик?', shouldShowClear, 'value:', value, 'тип:', typeof value);
 
   return (
-    <div className={`${styles.wrapper} ${className}`} ref={wrapperRef}>
-      {label && <div className={styles.label}>{label}</div>}
+    <div className={`${styles.wrapper} ${className}`} ref={ref}>
+      {label && (
+        <label htmlFor={inputId} className={styles.label}>
+          {label}
+        </label>
+      )}
 
       <div className={styles.container}>
         <div
@@ -210,6 +213,7 @@ export function FormAutocompleteField({
             styles.inputWrapper,
             disabled && styles.inputWrapperDisabled,
             isOpen && styles.inputWrapperOpen,
+            hasError && styles.inputWrapperError,
           )}
         >
           <input
@@ -232,7 +236,7 @@ export function FormAutocompleteField({
           />
 
           <div className={styles.actions}>
-            {value !== null && !disabled && (
+            {showClearButton && (
               <button
                 type="button"
                 className={styles.clearButton}
@@ -257,13 +261,13 @@ export function FormAutocompleteField({
           </div>
         </div>
 
-        {isOpen && filteredOptionsList.length > 0 && (
+        {isOpen && filteredOptions.length > 0 && (
           <div
             id="autocomplete-dropdown"
             className={clsx(styles.dropdown, styles.custom_scroll)}
             role="listbox"
           >
-            {filteredOptionsList.map((option, index) => (
+            {filteredOptions.map((option, index) => (
               <div
                 key={option.value}
                 ref={(el) => (optionRefs.current[index] = el)}
@@ -286,13 +290,13 @@ export function FormAutocompleteField({
           </div>
         )}
 
-        {isOpen && filteredOptionsList.length === 0 && (
+        {isOpen && filteredOptions.length === 0 && (
           <div className={clsx(styles.dropdown, styles.emptyState)}>Ничего не найдено</div>
         )}
       </div>
 
       {errorText && (
-        <span id="autocomplete-error" className={styles.errorText}>
+        <span id="autocomplete-error" className={styles.errorText} role="alert">
           {errorText}
         </span>
       )}
