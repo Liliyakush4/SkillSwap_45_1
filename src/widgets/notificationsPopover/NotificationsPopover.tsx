@@ -8,17 +8,17 @@ export interface NotificationsPopoverProps {
   isOpen: boolean;
   onClose: () => void;
   anchorRef: RefObject<HTMLElement | null>;
+  hasNew?: boolean;
 }
 
 export const NotificationsPopover: FC<NotificationsPopoverProps> = ({
   isOpen,
   onClose,
   anchorRef,
+  hasNew = true,
 }) => {
-  const hasNew = true;
-
   return (
-    <Popover isOpen={isOpen} onClose={onClose} anchorRef={anchorRef} className={styles.popover}>
+    <Popover isOpen={isOpen} onClose={onClose} anchorRef={anchorRef}>
       <div className={styles.root}>
         <div className={styles.sectionHeader}>
           <h4 className={styles.title}>Новые уведомления</h4>
