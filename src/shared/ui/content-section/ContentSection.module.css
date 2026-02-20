@@ -25,7 +25,7 @@
   justify-content: center;
   align-items: center;
   border-radius: 12px;
-  padding: 20px;
+  padding: 20px 60px;
   background-color: var(--color-secondary);
 }
 
@@ -48,5 +48,10 @@
 
   .heroImage {
     display: none;
+  }
+
+  .main,
+  .hero {
+    padding: 20px;
   }
 }
