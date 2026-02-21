@@ -96,10 +96,11 @@ export default function FavoritesPage() {
 
   return (
     <UserCardSection
-      title="Избранное"
+      title=""
       items={favoriteUsers}
       variant="grid"
       className={styles.container}
+      renderHeader={false}
     />
   );
 }
