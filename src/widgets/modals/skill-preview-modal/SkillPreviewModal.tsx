@@ -49,6 +49,7 @@ export const SkillPreviewModal: FC<SkillPreviewModalProps> = ({
         variant="secondary"
         onClick={onEdit}
         className={styles.editButton}
+        // !!! Раскомментировать после отладки
         // disabled={!onEdit}
       >
         Редактировать {EditIcon}
@@ -57,6 +58,7 @@ export const SkillPreviewModal: FC<SkillPreviewModalProps> = ({
         variant="primary"
         onClick={onConfirm}
         className={styles.confirmButton}
+        // !!! Раскомментировать после отладки
         // disabled={!onConfirm}
       >
         Готово
