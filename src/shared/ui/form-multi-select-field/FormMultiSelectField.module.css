@@ -2,7 +2,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: var(--space-8, 8px);
+  gap: var(--space-4, 4px); /* изменила на 4  пикселя, т.к. портило верстку на шагах регистрации*/
   width: 100%;
 }
 

@@ -1,7 +1,7 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px; /* изменила с 6 на 4, т.к. не соответствовало верстке*/
   width: 100%;
 }
 
