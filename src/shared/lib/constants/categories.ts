@@ -10,15 +10,20 @@
 export const SKILL_CATEGORIES = [...] as const;
 export type TSkillCategory = typeof SKILL_CATEGORIES[number]; */
 
-import type { Option } from '..//types/option';
+type SkillCategory = {
+  id: number;
+  name: string;
+};
 
-export const SKILL_CATEGORIES: Option[] = [
-  { value: '1', label: 'Бизнес и карьера' },
-  { value: '2', label: 'Иностранные языки' },
-  { value: '3', label: 'Дом и уют' },
-  { value: '4', label: 'Творчество и искусство' },
-  { value: '5', label: 'Образование и развитие' },
-  { value: '6', label: 'Здоровье и лайфстайл' },
+export const CATEGORIES: SkillCategory[] = [
+  { id: 1, name: 'Бизнес и карьера' },
+  { id: 2, name: 'Творчество и искусство' },
+  { id: 3, name: 'Иностранные языки' },
+  { id: 4, name: 'Образование и развитие' },
+  { id: 5, name: 'Здоровье и лайфстайл' },
+  { id: 6, name: 'Дом и уют' },
+  { id: 7, name: 'Другое' },
+  { id: 8, name: 'Другое' },
 ] as const;
 
-export type TSkillCategory = (typeof SKILL_CATEGORIES)[number];
+export type TSkillCategory = (typeof CATEGORIES)[number];

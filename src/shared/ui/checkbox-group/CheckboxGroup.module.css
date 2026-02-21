@@ -13,7 +13,7 @@
 
 .list {
   display: grid;
-  gap: var(--space-16, 16px);
+  gap: var(--space-12, 12px);
 }
 
 .errorText {

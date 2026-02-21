@@ -7,7 +7,7 @@
   border-radius: 12px;
   padding: 12px 24px;
   font-family: var(--font-family-base, sans-serif);
-  font-weight: var(--font-weight-medium, 500);
+  font-weight: var(--font-weight-regular, 400);
   font-size: var(--font-size-base, 1rem);
   line-height: var(--line-height-base, 1.5);
   text-decoration: none;
@@ -65,9 +65,9 @@
 }
 
 .disabled {
-  border-color: var(--color-disable, #e4e8df) !important;
-  color: var(--color-border, #69735d) !important;
-  background-color: var(--color-disable, #e4e8df) !important;
+  border-color: var(--color-disable, #e4e8df);
+  color: var(--color-border, #69735d);
+  background-color: var(--color-disable, #e4e8df);
   cursor: not-allowed;
 }
 
