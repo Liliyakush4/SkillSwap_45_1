@@ -63,11 +63,11 @@ export const AuthForm: FC<AuthFormProps> = ({
     >
       <div className={styles.authFormContent}>
         <div className={styles.socialButtons}>
-          <Button variant="secondary" fullWidth type="button" disabled={isFormDisabled}>
+          <Button variant="ghost" fullWidth type="button" disabled={isFormDisabled}>
             <img src={googleIcon} alt="" className={styles.socialIcon} />
             Продолжить с Google
           </Button>
-          <Button variant="secondary" fullWidth type="button" disabled={isFormDisabled}>
+          <Button variant="ghost" fullWidth type="button" disabled={isFormDisabled}>
             <img src={appleIcon} alt="" className={styles.socialIcon} />
             Продолжить с Apple
           </Button>
