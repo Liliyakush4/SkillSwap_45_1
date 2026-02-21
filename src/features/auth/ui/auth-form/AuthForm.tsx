@@ -1,4 +1,5 @@
 import { type FC, useState } from 'react';
+import { useForm, Controller } from 'react-hook-form';
 import { Button } from '@shared/ui/Button';
 import { Input } from '@shared/ui/input';
 import { PasswordInput } from '@shared/ui/password-input';
@@ -8,6 +9,7 @@ import googleIcon from '@shared/assets/images/auth/login_google.svg';
 import appleIcon from '@shared/assets/images/auth/login_apple.svg';
 
 export type AuthFormMode = 'login' | 'register';
+
 export type AuthFormData = {
   email: string;
   password: string;
@@ -17,27 +19,55 @@ export interface AuthFormProps {
   mode: AuthFormMode;
   onSubmit?: (data: AuthFormData) => void;
   className?: string;
+  infoText?: string;
+  isLoading?: boolean;
+  isDisabled?: boolean;
 }
 
-export const AuthForm: FC<AuthFormProps> = ({ mode, onSubmit, className }) => {
+export const AuthForm: FC<AuthFormProps> = ({
+  mode,
+  onSubmit,
+  className,
+  infoText,
+  isLoading = false,
+  isDisabled = false,
+}) => {
+  const [showInfoText, setShowInfoText] = useState(false);
   const isLogin = mode === 'login';
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    onSubmit?.({ email, password });
+  const {
+    control,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm<AuthFormData>({
+    mode: 'onChange',
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  });
+
+  const isFormDisabled = isLoading || isDisabled;
+
+  const submitHandler = (data: AuthFormData) => {
+    if (onSubmit) {
+      onSubmit(data);
+    }
+    setShowInfoText(true);
   };
 
   return (
-    <form className={`${styles.authForm} ${className || ''}`} onSubmit={handleSubmit}>
+    <form
+      className={`${styles.authForm} ${className || ''}`}
+      onSubmit={handleSubmit(submitHandler)}
+    >
       <div className={styles.authFormContent}>
         <div className={styles.socialButtons}>
-          <Button variant="ghost" fullWidth type="button">
+          <Button variant="ghost" fullWidth type="button" disabled={isFormDisabled}>
             <img src={googleIcon} alt="" className={styles.socialIcon} />
             Продолжить с Google
           </Button>
-          <Button variant="ghost" fullWidth type="button">
+          <Button variant="ghost" fullWidth type="button" disabled={isFormDisabled}>
             <img src={appleIcon} alt="" className={styles.socialIcon} />
             Продолжить с Apple
           </Button>
@@ -47,30 +77,57 @@ export const AuthForm: FC<AuthFormProps> = ({ mode, onSubmit, className }) => {
           <span>или</span>
         </div>
 
-        <Input
-          label="Email"
-          placeholder="Введите email"
+        <Controller
           name="email"
-          value={email}
-          onChange={setEmail}
+          control={control}
+          rules={{
+            required: 'Email обязателен',
+            pattern: {
+              value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+              message: 'Некорректный email',
+            },
+          }}
+          render={({ field }) => (
+            <Input
+              label="Email"
+              placeholder="Введите email"
+              {...field}
+              disabled={isFormDisabled}
+              errorText={errors.email?.message}
+            />
+          )}
         />
 
-        <PasswordInput
-          label="Пароль"
-          placeholder={isLogin ? 'Введите ваш пароль' : 'Придумайте надежный пароль'}
+        <Controller
           name="password"
-          value={password}
-          onChange={setPassword}
-          errorText="Пароль должен содержать не менее 8 знаков"
+          control={control}
+          rules={{
+            required: 'Пароль обязателен',
+            minLength: {
+              value: 8,
+              message: 'Пароль должен содержать не менее 8 символов',
+            },
+          }}
+          render={({ field }) => (
+            <PasswordInput
+              label="Пароль"
+              placeholder={isLogin ? 'Введите ваш пароль' : 'Придумайте надежный пароль'}
+              {...field}
+              disabled={isFormDisabled}
+              errorText={errors.password?.message}
+            />
+          )}
         />
 
-        <Button type="submit" variant="primary" fullWidth>
+        <Button type="submit" variant="primary" fullWidth disabled={!isValid || isFormDisabled}>
           {isLogin ? 'Войти' : 'Далее'}
         </Button>
 
+        {showInfoText && <div className={styles.infoText}>{infoText}</div>}
+
         {isLogin && (
           <div className={styles.registerLink}>
-            <button type="button" className={styles.linkButton}>
+            <button type="button" className={styles.linkButton} disabled={isFormDisabled}>
               Зарегистрироваться
             </button>
           </div>
