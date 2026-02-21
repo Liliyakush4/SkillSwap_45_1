@@ -61,8 +61,8 @@ export default function AppRouter() {
         <Route path="skill/:id" element={<SkillPage />} />
         <Route path="profile" element={<ProfileLayout />}>
           <Route index element={<ProfilePage />} />
+          <Route path="favorites" element={<FavoritesPage />} />
         </Route>
-        <Route path="favorites" element={<FavoritesPage />} />
 
         {/* Страницы ошибок */}
         <Route path="404" element={<ErrorPage404 />} />
