@@ -1,4 +1,4 @@
-import { type FC, useCallback, useState } from 'react';
+import { type FC, useCallback, useMemo, useState } from 'react';
 import { Input } from '@shared/ui/input';
 import { Textarea } from '@shared/ui/textarea';
 import { IconButton } from '@shared/ui/icon-button';
@@ -56,19 +56,45 @@ export const ProfileEditForm: FC<ProfileEditFormProps> = ({
   const [isEmailEditing, setIsEmailEditing] = useState(false);
   const [isNameEditing, setIsNameEditing] = useState(false);
   const [isAboutEditing, setIsAboutEditing] = useState(false);
+  const [lastSaved, setLastSaved] = useState<ProfileEditFormValues | null>(null);
 
-  const isFormEditing = isEmailEditing || isNameEditing || isAboutEditing;
+  // Инициализируем «сохранённое» состояние текущими values при первом рендере,
+  // чтобы форма не считалась изменённой до правок пользователя (без чтения ref в рендере и без setState в effect).
+  if (lastSaved === null) {
+    setLastSaved({
+      ...values,
+      birthDate: values.birthDate ? new Date(values.birthDate.getTime()) : null,
+    });
+  }
+
+  const isDirty = useMemo(() => {
+    if (!lastSaved) return true;
+    const eq =
+      values.email === lastSaved.email &&
+      values.name === lastSaved.name &&
+      values.about === lastSaved.about &&
+      values.gender === lastSaved.gender &&
+      values.city === lastSaved.city &&
+      (values.birthDate?.getTime() ?? null) === (lastSaved.birthDate?.getTime() ?? null);
+    return !eq;
+  }, [values, lastSaved]);
+
+  const canSave = isEmailEditing || isNameEditing || isAboutEditing || isDirty;
 
   const handleSave = useCallback(
     (e?: React.FormEvent) => {
       e?.preventDefault();
-      if (!isFormEditing) return;
+      if (!canSave) return;
       onSave();
       setIsEmailEditing(false);
       setIsNameEditing(false);
       setIsAboutEditing(false);
+      setLastSaved({
+        ...values,
+        birthDate: values.birthDate ? new Date(values.birthDate.getTime()) : null,
+      });
     },
-    [onSave, isFormEditing],
+    [onSave, canSave, values],
   );
 
   return (
@@ -86,7 +112,7 @@ export const ProfileEditForm: FC<ProfileEditFormProps> = ({
         }
         if (
           e.key === 'Enter' &&
-          isFormEditing &&
+          canSave &&
           (e.target as HTMLElement).tagName !== 'TEXTAREA' &&
           !(e.target as HTMLElement).closest('[role="listbox"]')
         ) {
@@ -100,6 +126,7 @@ export const ProfileEditForm: FC<ProfileEditFormProps> = ({
         <div className={styles.fieldsColumn}>
           <div className={styles.field}>
             <Input
+              className={styles.readOnlyOverride}
               label="Почта"
               value={values.email}
               onChange={onEmailChange}
@@ -114,7 +141,7 @@ export const ProfileEditForm: FC<ProfileEditFormProps> = ({
                 />
               }
             />
-            {isEmailEditing && onChangePassword && (
+            {onChangePassword && (
               <button
                 type="button"
                 className={styles.changePasswordLink}
@@ -127,6 +154,7 @@ export const ProfileEditForm: FC<ProfileEditFormProps> = ({
 
           <div className={styles.field}>
             <Input
+              className={styles.readOnlyOverride}
               label="Имя"
               value={values.name}
               onChange={onNameChange}
@@ -143,26 +171,27 @@ export const ProfileEditForm: FC<ProfileEditFormProps> = ({
             />
           </div>
 
-          <div className={styles.field} role="group" aria-labelledby="birth-date-label">
-            <span id="birth-date-label" className={styles.standaloneLabel}>
-              Дата рождения
-            </span>
-            <BirthDateInput
-              value={values.birthDate}
-              onChange={onBirthDateChange}
-              disabled={!isFormEditing}
-            />
-          </div>
-
-          <div className={styles.field}>
-            <FormSelectField
-              label="Пол"
-              value={values.gender}
-              onChange={onGenderChange}
-              options={genderOptions}
-              disabled={!isFormEditing}
-              placeholder="Не указан"
-            />
+          <div className={styles.birthDateGenderRow}>
+            <div className={styles.field} role="group" aria-labelledby="birth-date-label">
+              <span id="birth-date-label" className={styles.standaloneLabel}>
+                Дата рождения
+              </span>
+              <BirthDateInput
+                value={values.birthDate}
+                onChange={onBirthDateChange}
+                disabled={false}
+              />
+            </div>
+            <div className={styles.field}>
+              <FormSelectField
+                label="Пол"
+                value={values.gender}
+                onChange={onGenderChange}
+                options={genderOptions}
+                disabled={false}
+                placeholder="Не указан"
+              />
+            </div>
           </div>
 
           <div className={styles.field}>
@@ -171,7 +200,7 @@ export const ProfileEditForm: FC<ProfileEditFormProps> = ({
               value={values.city}
               onChange={onCityChange}
               options={cityOptions}
-              disabled={!isFormEditing}
+              disabled={false}
               placeholder="Не указан"
             />
           </div>
@@ -203,7 +232,7 @@ export const ProfileEditForm: FC<ProfileEditFormProps> = ({
             type="button"
             variant="primary"
             fullWidth
-            disabled={!isFormEditing}
+            disabled={!canSave}
             className={styles.saveButton}
             onClick={() => handleSave()}
           >
