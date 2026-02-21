@@ -1,4 +1,4 @@
-import { type FC } from 'react';
+import { type FC, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { Button } from '@shared/ui/Button';
 import { Input } from '@shared/ui/input';
@@ -32,6 +32,7 @@ export const AuthForm: FC<AuthFormProps> = ({
   isLoading = false,
   isDisabled = false,
 }) => {
+  const [showInfoText, setShowInfoText] = useState(false);
   const isLogin = mode === 'login';
 
   const {
@@ -52,6 +53,7 @@ export const AuthForm: FC<AuthFormProps> = ({
     if (onSubmit) {
       onSubmit(data);
     }
+    setShowInfoText(true);
   };
 
   return (
@@ -61,11 +63,11 @@ export const AuthForm: FC<AuthFormProps> = ({
     >
       <div className={styles.authFormContent}>
         <div className={styles.socialButtons}>
-          <Button variant="secondary" fullWidth type="button">
+          <Button variant="secondary" fullWidth type="button" disabled={isFormDisabled}>
             <img src={googleIcon} alt="" className={styles.socialIcon} />
             Продолжить с Google
           </Button>
-          <Button variant="secondary" fullWidth type="button">
+          <Button variant="secondary" fullWidth type="button" disabled={isFormDisabled}>
             <img src={appleIcon} alt="" className={styles.socialIcon} />
             Продолжить с Apple
           </Button>
@@ -121,7 +123,7 @@ export const AuthForm: FC<AuthFormProps> = ({
           {isLogin ? 'Войти' : 'Далее'}
         </Button>
 
-        {infoText && <div className={styles.infoText}>{infoText}</div>}
+        {showInfoText && <div className={styles.infoText}>{infoText}</div>}
 
         {isLogin && (
           <div className={styles.registerLink}>
