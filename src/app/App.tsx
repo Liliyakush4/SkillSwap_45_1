@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
-import AppRouter from './router/router';
+import AppRouter from '@app/router/router';
 
-import { initDb } from '../entities/db/model/dbSlice';
-import { selectDbStatus, selectDbError } from '../entities/db/model/selectors';
-import { useAppDispatch, useAppSelector } from '../shared/lib/storeHooks';
+import { initDb } from '@app/store/db/dbSlice';
+import { selectDbStatus, selectDbError } from '@app/store/db/selectors';
+import { useAppDispatch, useAppSelector } from '@shared/lib/storeHooks';
 
 export default function App() {
   const dispatch = useAppDispatch();

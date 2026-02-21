@@ -1,5 +1,5 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import { dbReducer } from '@entities/db/model/dbSlice';
+import { dbReducer } from '@app/store/db/dbSlice';
 import {
   type TypedUseSelectorHook,
   useDispatch as dispatchHook,
