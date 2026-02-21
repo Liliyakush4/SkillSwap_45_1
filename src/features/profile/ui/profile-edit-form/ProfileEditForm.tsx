@@ -123,108 +123,110 @@ export const ProfileEditForm: FC<ProfileEditFormProps> = ({
       noValidate
     >
       <div className={styles.formLayout}>
-        <div className={styles.fieldsColumn}>
-          <div className={styles.field}>
-            <Input
-              className={styles.readOnlyOverride}
-              label="Почта"
-              value={values.email}
-              onChange={onEmailChange}
-              disabled={!isEmailEditing}
-              rightSlot={
-                <IconButton
+        <div className={styles.fieldsGeneral}>
+          <div className={styles.fieldsColumn}>
+            <div className={styles.field}>
+              <Input
+                className={styles.readOnlyOverride}
+                label="Почта"
+                value={values.email}
+                onChange={onEmailChange}
+                disabled={!isEmailEditing}
+                rightSlot={
+                  <IconButton
+                    type="button"
+                    icon={<img src={iconEdit} alt="" aria-hidden />}
+                    variant="ghost"
+                    aria-label={isEmailEditing ? 'Заблокировать поле почты' : 'Редактировать почту'}
+                    onClick={() => setIsEmailEditing((prev) => !prev)}
+                  />
+                }
+              />
+              {onChangePassword && (
+                <button
                   type="button"
-                  icon={<img src={iconEdit} alt="" aria-hidden />}
-                  variant="ghost"
-                  aria-label={isEmailEditing ? 'Заблокировать поле почты' : 'Редактировать почту'}
-                  onClick={() => setIsEmailEditing((prev) => !prev)}
-                />
-              }
-            />
-            {onChangePassword && (
-              <button
-                type="button"
-                className={styles.changePasswordLink}
-                onClick={onChangePassword}
-              >
-                Изменить пароль
-              </button>
-            )}
-          </div>
+                  className={styles.changePasswordLink}
+                  onClick={onChangePassword}
+                >
+                  Изменить пароль
+                </button>
+              )}
+            </div>
 
-          <div className={styles.field}>
-            <Input
-              className={styles.readOnlyOverride}
-              label="Имя"
-              value={values.name}
-              onChange={onNameChange}
-              disabled={!isNameEditing}
-              rightSlot={
-                <IconButton
-                  type="button"
-                  icon={<img src={iconEdit} alt="" aria-hidden />}
-                  variant="ghost"
-                  aria-label={isNameEditing ? 'Заблокировать поле имени' : 'Редактировать имя'}
-                  onClick={() => setIsNameEditing((prev) => !prev)}
-                />
-              }
-            />
-          </div>
-
-          <div className={styles.birthDateGenderRow}>
-            <div className={styles.field} role="group" aria-labelledby="birth-date-label">
-              <span id="birth-date-label" className={styles.standaloneLabel}>
-                Дата рождения
-              </span>
-              <BirthDateInput
-                value={values.birthDate}
-                onChange={onBirthDateChange}
-                disabled={false}
+            <div className={styles.field}>
+              <Input
+                className={styles.readOnlyOverride}
+                label="Имя"
+                value={values.name}
+                onChange={onNameChange}
+                disabled={!isNameEditing}
+                rightSlot={
+                  <IconButton
+                    type="button"
+                    icon={<img src={iconEdit} alt="" aria-hidden />}
+                    variant="ghost"
+                    aria-label={isNameEditing ? 'Заблокировать поле имени' : 'Редактировать имя'}
+                    onClick={() => setIsNameEditing((prev) => !prev)}
+                  />
+                }
               />
             </div>
+
+            <div className={styles.birthDateGenderRow}>
+              <div className={styles.field} role="group" aria-labelledby="birth-date-label">
+                <span id="birth-date-label" className={styles.standaloneLabel}>
+                  Дата рождения
+                </span>
+                <BirthDateInput
+                  value={values.birthDate}
+                  onChange={onBirthDateChange}
+                  disabled={false}
+                />
+              </div>
+              <div className={styles.field}>
+                <FormSelectField
+                  label="Пол"
+                  value={values.gender}
+                  onChange={onGenderChange}
+                  options={genderOptions}
+                  disabled={false}
+                  placeholder="Не указан"
+                />
+              </div>
+            </div>
+
             <div className={styles.field}>
-              <FormSelectField
-                label="Пол"
-                value={values.gender}
-                onChange={onGenderChange}
-                options={genderOptions}
+              <FormAutocompleteField
+                label="Город"
+                value={values.city}
+                onChange={onCityChange}
+                options={cityOptions}
                 disabled={false}
                 placeholder="Не указан"
               />
             </div>
-          </div>
 
-          <div className={styles.field}>
-            <FormAutocompleteField
-              label="Город"
-              value={values.city}
-              onChange={onCityChange}
-              options={cityOptions}
-              disabled={false}
-              placeholder="Не указан"
-            />
-          </div>
-
-          <div className={styles.field}>
-            <div className={styles.textareaWrapper}>
-              <Textarea
-                label="О себе"
-                value={values.about}
-                onChange={onAboutChange}
-                disabled={!isAboutEditing}
-                rows={4}
-                className={styles.textareaField}
-              />
-              <IconButton
-                type="button"
-                icon={<img src={iconEdit} alt="" aria-hidden />}
-                variant="ghost"
-                aria-label={
-                  isAboutEditing ? 'Заблокировать поле «О себе»' : 'Редактировать «О себе»'
-                }
-                onClick={() => setIsAboutEditing((prev) => !prev)}
-                className={styles.textareaEditIcon}
-              />
+            <div className={styles.field}>
+              <div className={styles.textareaWrapper}>
+                <Textarea
+                  label="О себе"
+                  value={values.about}
+                  onChange={onAboutChange}
+                  disabled={!isAboutEditing}
+                  rows={4}
+                  className={styles.textareaField}
+                />
+                <IconButton
+                  type="button"
+                  icon={<img src={iconEdit} alt="" aria-hidden />}
+                  variant="ghost"
+                  aria-label={
+                    isAboutEditing ? 'Заблокировать поле «О себе»' : 'Редактировать «О себе»'
+                  }
+                  onClick={() => setIsAboutEditing((prev) => !prev)}
+                  className={styles.textareaEditIcon}
+                />
+              </div>
             </div>
           </div>
 
@@ -245,7 +247,7 @@ export const ProfileEditForm: FC<ProfileEditFormProps> = ({
             <AvatarUploader
               src={avatarSrc}
               alt="Аватар"
-              size={136}
+              size={244}
               onAddPhoto={onAvatarChange}
               icon={<img src={iconPhotoEdit} alt="" aria-hidden />}
             />

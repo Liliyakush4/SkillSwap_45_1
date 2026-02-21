@@ -14,10 +14,16 @@
   flex-wrap: wrap;
 }
 
-.fieldsColumn {
+.fieldsGeneral {
   display: flex;
   flex-direction: column;
   gap: var(--space-32, 32px);
+}
+
+.fieldsColumn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16, 16px);
   width: 460px;
   flex: 0 0 460px;
   min-width: 0;
@@ -99,11 +105,11 @@
 .changePasswordLink {
   font-size: var(--font-size-sm, 14px);
   color: var(--color-accent);
+  width: var(--font-weight-medium, 500);
   background: none;
   border: none;
   padding: 0;
   cursor: pointer;
-  text-decoration: underline;
   font-family: inherit;
   margin-top: var(--space-4, 4px);
   align-self: flex-start;

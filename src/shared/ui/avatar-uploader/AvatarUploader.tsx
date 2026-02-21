@@ -81,21 +81,23 @@ export const AvatarUploader: React.FC<AvatarUploaderProps> = ({
       style={{ '--size': typeof size === 'number' ? `${size}px` : size } as React.CSSProperties}
       onClick={handleContainerClick}
     >
-      <Avatar src={previewUrl || src} alt={alt} size={size} />
+      <div className={styles.imageWrapper}>
+        <Avatar src={previewUrl || src} alt={alt} size={size} />
 
-      <button
-        aria-label={src ? 'Изменить аватар' : 'Добавить аватар'}
-        onClick={(e) => {
-          e.stopPropagation();
-          handleButtonClick();
-        }}
-        onKeyDown={handleKeyDown}
-        tabIndex={0}
-        className={styles.avatarButton}
-        disabled={disabled}
-      >
-        {icon || defaultIcon}
-      </button>
+        <button
+          aria-label={src ? 'Изменить аватар' : 'Добавить аватар'}
+          onClick={(e) => {
+            e.stopPropagation();
+            handleButtonClick();
+          }}
+          onKeyDown={handleKeyDown}
+          tabIndex={0}
+          className={styles.avatarButton}
+          disabled={disabled}
+        >
+          {icon || defaultIcon}
+        </button>
+      </div>
 
       <input
         ref={inputRef}
