@@ -5,6 +5,7 @@
   border-radius: 12px;
   padding: 50px 60px;
   background-color: var(--color-secondary);
+  gap: 32px;
 }
 
 .fieldsGroup {
