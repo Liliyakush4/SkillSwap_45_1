@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import styles from './ProfileSidebar.module.css';
 import clsx from 'clsx';
@@ -11,7 +11,10 @@ import { Button } from '@shared/ui/Button';
 import stylesButton from '@shared/ui/Button/Button.module.css';
 
 export const ProfileSidebar = () => {
-  const [activeItem, setActiveItem] = useState('Личные данные');
+  const location = useLocation();
+  const [activeItem, setActiveItem] = useState(
+    location.pathname === '/profile/favorites' ? 'Избранное' : 'Личные данные',
+  );
 
   const handleButtonClick = (item: string) => () => {
     setActiveItem(item);
@@ -44,7 +47,7 @@ export const ProfileSidebar = () => {
 
         <li className={styles.menuItem} onClick={handleButtonClick('Избранное')}>
           <NavLink
-            to="/favorites"
+            to="/profile/favorites"
             className={() =>
               clsx(
                 styles.menuButton,
