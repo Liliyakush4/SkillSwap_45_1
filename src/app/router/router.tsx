@@ -5,7 +5,6 @@ import MainLayout from '../layouts/MainLayout';
 import { ProfileLayout } from '../layouts/profile-layout';
 import MainPage from '../../pages/main-page/MainPage';
 import RegisterStep2 from '../../pages/register/register-step-2/RegisterStep2';
-import RegisterStep3 from '../../pages/register/register-step-3/RegisterStep3';
 import SkillPage from '../../pages/skill-page/SkillPage';
 import ProfilePage from '../../pages/profile/ProfilePage';
 import FavoritesPage from '../../pages/favorites/FavoritesPage';
@@ -15,6 +14,7 @@ import { ErrorPage500 } from '../../pages/error500/ErrorPage500';
 import { AuthLayout } from '../layouts/AuthLayout';
 import { LoginPage } from '@pages/auth/login/LoginPage';
 import { RegisterStep1Page } from '@pages/auth/register/RegisterStep1Page';
+import { RegisterStep3Page } from '@pages/auth/register/RegisterStep3Page';
 
 const StyleGuidePage = lazy(() =>
   import('../../pages/styleguide/StyleGuidePage').then((m) => ({ default: m.StyleGuidePage })),
@@ -49,7 +49,7 @@ export default function AppRouter() {
         <Route path="login" element={<LoginPage />} />
         <Route path="register/step-1" element={<RegisterStep1Page />} />
         <Route path="register/step-2" element={<RegisterStep2 />} />
-        <Route path="register/step-3" element={<RegisterStep3 />} />
+        <Route path="register/step-3" element={<RegisterStep3Page />} />
       </Route>
 
       {/* Основная часть с Header/Footer */}

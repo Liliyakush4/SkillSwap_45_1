@@ -22,7 +22,7 @@
   box-sizing: border-box;
   width: 100%;
   /* resize: vertical; */
-  min-height: 96px;
+  height: 96px; /* поправила на определнный размер, из за возможности растягивать, портило верстку*/
 }
 
 .textarea:hover {
