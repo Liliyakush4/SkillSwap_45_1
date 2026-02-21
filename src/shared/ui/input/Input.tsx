@@ -63,7 +63,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             aria-describedby={describedBy}
             {...rest}
           />
-          {rightSlot && rightSlot}
+          {rightSlot && <span className={cls.rightSlot}>{rightSlot}</span>}
         </div>
         {hasError && (
           <span id={errorId} className={cls.errorText}>
