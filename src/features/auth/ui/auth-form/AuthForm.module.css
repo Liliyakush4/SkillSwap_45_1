@@ -27,9 +27,16 @@
 }
 
 .socialIcon {
-  width: 20px;
-  height: 20px;
-  margin-right: 8px;
+  width: 24px;
+  height: 24px;
+}
+
+.socialButton {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
 }
 
 .divider {
@@ -37,7 +44,7 @@
   align-items: center;
   text-align: center;
   color: var(--color-text);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-base, 1rem);
 }
 
 .divider::before,
@@ -62,4 +69,16 @@
   color: var(--color-accent);
   font-size: var(--font-size-sm);
   cursor: pointer;
+}
+
+.inputsGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.informationFromUser {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
