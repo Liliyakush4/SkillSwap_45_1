@@ -1,5 +1,6 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { dbReducer } from '@app/store/db/dbSlice';
+import { sortReducer } from '@features/sort/model';
 import {
   type TypedUseSelectorHook,
   useDispatch as dispatchHook,
@@ -25,7 +26,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   db: dbReducer,
-  // сюда дописывать новые редьюсеры
+  sort: sortReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
