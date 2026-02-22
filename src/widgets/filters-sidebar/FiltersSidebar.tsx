@@ -4,35 +4,26 @@ import { CheckboxGroup } from '@shared/ui/checkbox-group/CheckboxGroup';
 import { Button } from '@shared/ui/Button/Button';
 import { CITIES } from '@shared/lib/constants/cities';
 import { CATEGORIES } from '@shared/lib/constants/categories';
-import { SKILL_TYPE, GENDER } from '@shared/lib/constants/filters';
+import { SKILL_TYPE, GENDER } from '@features/filters/model/defaults';
 import iconArrowDown from '@shared/assets/icons/ui/icon_arrow_up.svg';
 import styles from './FiltersSidebar.module.css';
 import iconCross from '@shared/assets/icons/ui/icon_close.svg';
 import { Checkbox } from '@shared/ui/checkbox';
 import { SUBCATEGORIES } from '@shared/lib/constants/subcategories';
 import clsx from 'clsx';
+import type { TFilterValues, TCategoriesSelected } from '@features/filters/model/types';
 
 // т.к. у нас категорию нельзя выбрать, если не выбрана подкатегория
 // делаем объект с id всех категорий - ключами,
 // а список айди подкатегорий - значениями
 // айди подкатегорий строки из-за чекбокса
-type TCategoriesSelected = {
-  [key: number]: string[];
-};
-
-type FilterValues = {
-  offerType: string;
-  categories: TCategoriesSelected;
-  gender: string;
-  cities: string[];
-};
 
 const categories: TCategoriesSelected = CATEGORIES.reduce((acc, category) => {
   acc[category.id] = [];
   return acc;
 }, {} as TCategoriesSelected);
 
-const defaultFilterValues: FilterValues = {
+const defaultFilterValues: TFilterValues = {
   offerType: SKILL_TYPE[0].value,
   categories: categories,
   gender: GENDER[0].value,
@@ -48,7 +39,7 @@ export const FiltersSidebar = () => {
   const [visibleCategoryCount, setVisibleCategoryCount] = useState(6);
   const [visibleCitiesCount, setVisibleCitiesCount] = useState(5);
 
-  const countAppliedFilters = (filters: FilterValues): number => {
+  const countAppliedFilters = (filters: TFilterValues): number => {
     let count = 0;
     if (filters.offerType !== SKILL_TYPE[0].value) {
       count++;

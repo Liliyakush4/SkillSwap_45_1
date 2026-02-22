@@ -36,3 +36,8 @@ export interface SubCategory {
 export interface SubCategoryResponse {
   subcategories: SubCategory[];
 }
+
+export type Option = {
+  value: string;
+  label: string;
+};
