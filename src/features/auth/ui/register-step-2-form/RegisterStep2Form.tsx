@@ -1,4 +1,4 @@
-import { type FC, useState } from 'react';
+import { type FC, useState, useEffect } from 'react';
 import { AvatarUploader } from '@shared/ui/avatar-uploader/AvatarUploader';
 import { Input } from '@shared/ui/input';
 import { BirthDateInput } from '@shared/ui/birth-date-input';
@@ -44,11 +44,21 @@ export const RegisterStep2Form: FC<RegisterStep2FormProps> = ({
   className,
 }) => {
   const [name, setName] = useState(values.name);
-  const [birthDate, setBirthDate] = useState(values.birthDate);
+  const [birthDate, setBirthDate] = useState<Date | null>(values.birthDate);
   const [gender, setGender] = useState(values.gender);
   const [city, setCity] = useState(values.city);
   const [skillCategoryLearn, setSkillCategoryLearn] = useState(values.skillCategoryLearn);
   const [skillSubcategoryLearn, setSkillSubcategoryLearn] = useState(values.skillSubcategoryLearn);
+
+  // Обновление состояний при изменении пропсов
+  useEffect(() => {
+    setName(values.name);
+    setBirthDate(values.birthDate);
+    setGender(values.gender);
+    setCity(values.city);
+    setSkillCategoryLearn(values.skillCategoryLearn);
+    setSkillSubcategoryLearn(values.skillSubcategoryLearn);
+  }, [values]);
 
   const formData: RegisterStep2FormValues = {
     name,
@@ -92,6 +102,7 @@ export const RegisterStep2Form: FC<RegisterStep2FormProps> = ({
               onChange={setGender}
               options={genderOptions}
               disabled={false}
+              className={styles.genderField}
             />
           </div>
         </div>
@@ -129,13 +140,15 @@ export const RegisterStep2Form: FC<RegisterStep2FormProps> = ({
           />
         </div>
 
-        <div className={styles.buttonsRow}>
-          <Button type="button" variant="secondary" fullWidth onClick={onBack}>
-            Назад
-          </Button>
-          <Button type="button" variant="primary" fullWidth onClick={handleContinue}>
-            Продолжить
-          </Button>
+        <div className={styles.buttonsWrapper}>
+          <div className={styles.buttonsRow}>
+            <Button type="button" variant="secondary" fullWidth onClick={onBack}>
+              Назад
+            </Button>
+            <Button type="button" variant="primary" fullWidth onClick={handleContinue}>
+              Продолжить
+            </Button>
+          </div>
         </div>
       </div>
     </form>

@@ -1,8 +1,8 @@
 .form {
   width: 100%;
-  max-width: 436px;
+  max-width: 556px;
   margin: 0 auto;
-  padding: 16px;
+  padding: 40px 60px;
   box-sizing: border-box;
   background-color: #ffffff;
   border-radius: 12px;
@@ -12,6 +12,10 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+
+.buttonsWrapper {
+  margin-top: 32px;
 }
 
 .avatarWrap {
@@ -47,9 +51,14 @@
   display: block;
 }
 
+/* Цвет плейсхолдера «Не указан» по макету Figma */
+.genderField :global([class*='placeholder']) {
+  color: #69735d;
+}
+
 .buttonsRow {
   display: flex;
-  gap: 16px;
+  gap: 20px;
   width: 100%;
 }
 

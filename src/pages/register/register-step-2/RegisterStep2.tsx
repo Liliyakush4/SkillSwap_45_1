@@ -1,4 +1,5 @@
 import { RegisterStep2Form } from '@features/auth/ui/register-step-2-form';
+import styles from './RegisterStep2.module.css';
 
 const genderOptions = [
   { value: '', label: 'Не указан' },
@@ -77,7 +78,7 @@ const skillSubcategoryLearnOptions = [
 
 export default function RegisterStep2() {
   return (
-    <div style={{ padding: '24px 16px', minHeight: '100vh' }}>
+    <div className={styles.page}>
       <RegisterStep2Form
         values={{
           name: '',
