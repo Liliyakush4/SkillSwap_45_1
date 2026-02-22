@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styles from './IconButton.module.css';
 
 export interface IconButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -8,40 +8,48 @@ export interface IconButtonProps extends React.ButtonHTMLAttributes<HTMLButtonEl
   'aria-label': string;
 }
 
-export const IconButton: React.FC<IconButtonProps> = ({
-  icon,
-  variant = 'ghost',
-  isActive = false,
-  className = '',
-  type = 'button',
-  disabled = false,
-  'aria-label': ariaLabel,
-  ...props
-}) => {
-  if (!ariaLabel) {
-    console.warn('IconButton требует aria-label для доступности');
-  }
+export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
+  (
+    {
+      icon,
+      variant = 'ghost',
+      isActive = false,
+      className = '',
+      type = 'button',
+      disabled = false,
+      'aria-label': ariaLabel,
+      ...props
+    },
+    ref,
+  ) => {
+    if (!ariaLabel) {
+      console.warn('IconButton требует aria-label для доступности');
+    }
 
-  const buttonClasses = [
-    styles.iconButton,
-    styles[variant],
-    isActive ? styles.active : '',
-    disabled ? styles.disabled : '',
-    className,
-  ]
-    .join(' ')
-    .trim();
+    const buttonClasses = [
+      styles.iconButton,
+      styles[variant],
+      isActive ? styles.active : '',
+      disabled ? styles.disabled : '',
+      className,
+    ]
+      .join(' ')
+      .trim();
 
-  return (
-    <button
-      className={buttonClasses}
-      type={type}
-      disabled={disabled}
-      aria-label={ariaLabel}
-      aria-disabled={disabled}
-      {...props}
-    >
-      <span className={styles.iconWrapper}>{icon}</span>
-    </button>
-  );
-};
+    return (
+      <button
+        ref={ref}
+        className={buttonClasses}
+        type={type}
+        disabled={disabled}
+        aria-label={ariaLabel}
+        aria-disabled={disabled}
+        {...props}
+      >
+        <span className={styles.iconWrapper}>{icon}</span>
+      </button>
+    );
+  },
+);
+
+IconButton.displayName = 'IconButton';
