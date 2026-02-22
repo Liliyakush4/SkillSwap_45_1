@@ -1,11 +1,51 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { dbReducer } from '@entities/db/model/dbSlice';
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import { dbReducer } from '@app/store/db/dbSlice';
+import {
+  type TypedUseSelectorHook,
+  useDispatch as dispatchHook,
+  useSelector as selectorHook,
+} from 'react-redux';
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
-export const store = configureStore({
-  reducer: {
-    db: dbReducer,
-  },
+const persistConfig = {
+  key: 'root',
+  storage,
+  blacklist: [], // дописать сюда те редьюсеры, что не нужно в LocalStorage сохранять)
+};
+
+const rootReducer = combineReducers({
+  db: dbReducer,
+  // сюда дописывать новые редьюсеры
 });
 
-export type RootState = ReturnType<typeof store.getState>;
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+const store = configureStore({
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
+});
+
+export type RootState = ReturnType<typeof rootReducer>;
+
 export type AppDispatch = typeof store.dispatch;
+
+export const useDispatch: () => AppDispatch = () => dispatchHook();
+export const useSelector: TypedUseSelectorHook<RootState> = selectorHook;
+
+export const persistor = persistStore(store);
+export default store;
