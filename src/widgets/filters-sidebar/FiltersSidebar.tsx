@@ -12,6 +12,7 @@ import { Checkbox } from '@shared/ui/checkbox';
 import { SUBCATEGORIES } from '@shared/lib/constants/subcategories';
 import clsx from 'clsx';
 import type { TFilterValues, TCategoriesSelected } from '@features/filters/model/types';
+import { countAppliedFilters } from '@features/filters/model/utils';
 
 // т.к. у нас категорию нельзя выбрать, если не выбрана подкатегория
 // делаем объект с id всех категорий - ключами,
@@ -31,6 +32,8 @@ const defaultFilterValues: TFilterValues = {
 };
 
 export const FiltersSidebar = () => {
+  // const categories = useSelector(getCategories);  // TODO: реализовать
+  // const defaultFilterValues = createDefaultFilterValues(categories);
   const [filterValues, setFilterValues] = useState(defaultFilterValues);
   const [appliedFiltersCount, setAppliedFiltersCount] = useState(0);
   const [isCitiesExpanded, setIsCitiesExpanded] = useState(false);
@@ -39,31 +42,13 @@ export const FiltersSidebar = () => {
   const [visibleCategoryCount, setVisibleCategoryCount] = useState(6);
   const [visibleCitiesCount, setVisibleCitiesCount] = useState(5);
 
-  const countAppliedFilters = (filters: TFilterValues): number => {
-    let count = 0;
-    if (filters.offerType !== SKILL_TYPE[0].value) {
-      count++;
-    }
-    Object.values(filters.categories).forEach((subcategories) => {
-      if (subcategories.length > 0) {
-        count += subcategories.length;
-      }
-    });
-    if (filters.gender !== GENDER[0].value) {
-      count++;
-    }
-    count += filters.cities.length;
-
-    return count;
-  };
-
   const handleFilterChange = (name: string, value: string | string[] | TCategoriesSelected) => {
     setFilterValues((prevValues) => {
       const newFilterValues = {
         ...prevValues,
         [name]: value,
       };
-      setAppliedFiltersCount(countAppliedFilters(newFilterValues));
+      setAppliedFiltersCount(countAppliedFilters(newFilterValues, defaultFilterValues));
       return newFilterValues;
     });
   };
