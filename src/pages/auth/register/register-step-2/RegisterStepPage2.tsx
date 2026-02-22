@@ -1,6 +1,10 @@
 import { RegisterStep2Form } from '@features/auth/ui/register-step-2-form';
-import styles from './RegisterStep2.module.css';
+import styles from './RegisterStepPage2.module.css';
+import PersonImage from '@shared/assets/images/auth/registration_person.svg';
+import { ContentSection } from '@shared/ui/content-section/ContentSection';
+import { StepProgress } from '@shared/ui/step-progress/StepProgress';
 
+/* данные для проверки, потом уберем*/
 const genderOptions = [
   { value: '', label: 'Не указан' },
   { value: 'm', label: 'Мужской' },
@@ -76,25 +80,39 @@ const skillSubcategoryLearnOptions = [
   { value: 'decor_diy', label: 'Декор и DIY' },
 ];
 
-export default function RegisterStep2() {
-  return (
-    <div className={styles.page}>
-      <RegisterStep2Form
-        values={{
-          name: '',
-          birthDate: null,
-          gender: '',
-          city: null,
-          skillCategoryLearn: [],
-          skillSubcategoryLearn: [],
-        }}
-        genderOptions={genderOptions}
-        cityOptions={cityOptions}
-        skillCategoryLearnOptions={skillCategoryLearnOptions}
-        skillSubcategoryLearnOptions={skillSubcategoryLearnOptions}
-        onSubmit={(data) => console.log('Submit:', data)}
-        onBack={() => console.log('Back')}
-      />
+export const RegisterStep2Page: React.FC = () => {
+  const heroText = (
+    <div className={styles.heroContainer}>
+      <h2 className={styles.heroTitle}>Расскажите немного о себе</h2>
+      <p>Это поможет другим людям лучше вас узнать, чтобы выбрать для обмена</p>
     </div>
   );
-}
+
+  return (
+    <>
+      <StepProgress currentStep={2} totalSteps={3} className={styles.stepProgress} />
+      <ContentSection
+        main={
+          <RegisterStep2Form
+            values={{
+              name: '',
+              birthDate: null,
+              gender: '',
+              city: null,
+              skillCategoryLearn: [],
+              skillSubcategoryLearn: [],
+            }}
+            genderOptions={genderOptions}
+            cityOptions={cityOptions}
+            skillCategoryLearnOptions={skillCategoryLearnOptions}
+            skillSubcategoryLearnOptions={skillSubcategoryLearnOptions}
+            onSubmit={(data) => console.log('Submit:', data)}
+            onBack={() => console.log('Back')}
+          />
+        }
+        heroText={heroText}
+        heroImage={<img src={PersonImage} alt="Картинка" />}
+      />
+    </>
+  );
+};
