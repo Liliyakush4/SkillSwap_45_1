@@ -41,7 +41,7 @@
 
 .secondary:hover:not(:disabled) {
   border-color: var(--color-hover, #deebc5);
-  color: var(--color-border,#69735d);  
+  color: var(--color-border, #69735d);
 }
 
 .secondary:focus-visible {
@@ -50,16 +50,18 @@
 }
 
 .secondary:active:not(:disabled) {
-  border-color:  var(--color-accent, #508826);  
+  border-color: var(--color-accent, #508826);
+  color: var(--color-text, #253017);
 }
 .ghost {
   border: none;
   color: var(--color-text, #253017);
   background-color: var(--color-secondary, #ffffff);
+  outline: 2px solid var(--color-secondary, #ffffff);
 }
 
 .ghost:hover:not(:disabled) {
-  background-color: var(--color-hover, #deebc5);
+  outline: 2px solid var(--color-hover, #deebc5);
 }
 
 .ghost:focus-visible {
