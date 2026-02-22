@@ -10,11 +10,11 @@ export interface SkillPreviewModalProps {
   onClose: () => void;
   title?: string;
   description?: string;
-  skillData?: SkillCardProps; // Данные для карточки навыка
+  skillData: SkillCardProps; // Данные для карточки навыка
   onEdit?: () => void; // Добавляем проп для обработчика редактирования
   onConfirm?: () => void; // Добавляем проп для обработчика подтверждения
   className?: string;
-  variant?: ImageGalleryProps; //для отключения интерактива
+  variant?: ImageGalleryProps['variant']; //для отключения интерактива
 }
 
 export const SkillPreviewModal: FC<SkillPreviewModalProps> = ({

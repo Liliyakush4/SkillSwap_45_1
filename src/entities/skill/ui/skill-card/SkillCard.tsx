@@ -13,7 +13,7 @@ export interface SkillCardProps {
   images: SkillGalleryImage[];
   actions?: React.ReactNode;
   className?: string;
-  variant?: ImageGalleryProps; //для отключения интерактива
+  variant?: ImageGalleryProps['variant']; //для отключения интерактива
 }
 
 export const SkillCard: React.FC<SkillCardProps> = ({
