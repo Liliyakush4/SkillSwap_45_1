@@ -20,7 +20,7 @@ import storage from 'redux-persist/lib/storage';
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: [], // дописать сюда те редьюсеры, что не нужно в LocalStorage сохранять)
+  blacklist: ['db'], // дописать сюда те редьюсеры, что не нужно в LocalStorage сохранять)
 };
 
 const rootReducer = combineReducers({
