@@ -1,6 +1,5 @@
 import React from 'react';
-import { ImageGallery } from '@shared/ui/ImageGallery';
-import { Button } from '@shared/ui/Button';
+import { ImageGallery, type ImageGalleryProps } from '@shared/ui/ImageGallery';
 import styles from './SkillCard.module.css';
 import clsx from 'clsx';
 
@@ -14,6 +13,7 @@ export interface SkillCardProps {
   images: SkillGalleryImage[];
   actions?: React.ReactNode;
   className?: string;
+  variant?: ImageGalleryProps;
 }
 
 export const SkillCard: React.FC<SkillCardProps> = ({
@@ -44,7 +44,7 @@ export const SkillCard: React.FC<SkillCardProps> = ({
         </div>
 
         <div className={styles.galleryColumn}>
-          <ImageGallery images={images} variant={images.length > 4 ? 'static' : 'interactive'} />
+          <ImageGallery images={images} variant="interactive" />
         </div>
       </div>
     </div>
