@@ -62,62 +62,78 @@ export const AuthForm: FC<AuthFormProps> = ({
       onSubmit={handleSubmit(submitHandler)}
     >
       <div className={styles.authFormContent}>
-        <div className={styles.socialButtons}>
-          <Button variant="ghost" fullWidth type="button" disabled={isFormDisabled}>
-            <img src={googleIcon} alt="" className={styles.socialIcon} />
-            Продолжить с Google
-          </Button>
-          <Button variant="ghost" fullWidth type="button" disabled={isFormDisabled}>
-            <img src={appleIcon} alt="" className={styles.socialIcon} />
-            Продолжить с Apple
-          </Button>
-        </div>
-
-        <div className={styles.divider}>
-          <span>или</span>
-        </div>
-
-        <Controller
-          name="email"
-          control={control}
-          rules={{
-            required: 'Email обязателен',
-            pattern: {
-              value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-              message: 'Некорректный email',
-            },
-          }}
-          render={({ field }) => (
-            <Input
-              label="Email"
-              placeholder="Введите email"
-              {...field}
+        <div className={styles.informationFromUser}>
+          <div className={styles.socialButtons}>
+            <Button
+              variant="ghost"
+              fullWidth
+              type="button"
               disabled={isFormDisabled}
-              errorText={errors.email?.message}
-            />
-          )}
-        />
-
-        <Controller
-          name="password"
-          control={control}
-          rules={{
-            required: 'Пароль обязателен',
-            minLength: {
-              value: 8,
-              message: 'Пароль должен содержать не менее 8 символов',
-            },
-          }}
-          render={({ field }) => (
-            <PasswordInput
-              label="Пароль"
-              placeholder={isLogin ? 'Введите ваш пароль' : 'Придумайте надежный пароль'}
-              {...field}
+              className={styles.socialButton}
+            >
+              <img src={googleIcon} alt="" className={styles.socialIcon} />
+              <span>Продолжить с Google </span>
+            </Button>
+            <Button
+              variant="ghost"
+              fullWidth
+              type="button"
               disabled={isFormDisabled}
-              errorText={errors.password?.message}
+              className={styles.socialButton}
+            >
+              <img src={appleIcon} alt="" className={styles.socialIcon} />
+              <span>Продолжить с Apple </span>
+            </Button>
+          </div>
+
+          <div className={styles.divider}>
+            <span>или</span>
+          </div>
+
+          <div className={styles.inputsGroup}>
+            <Controller
+              name="email"
+              control={control}
+              rules={{
+                required: 'Email обязателен',
+                pattern: {
+                  value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                  message: 'Некорректный email',
+                },
+              }}
+              render={({ field }) => (
+                <Input
+                  label="Email"
+                  placeholder="Введите email"
+                  {...field}
+                  disabled={isFormDisabled}
+                  errorText={errors.email?.message}
+                />
+              )}
             />
-          )}
-        />
+
+            <Controller
+              name="password"
+              control={control}
+              rules={{
+                required: 'Пароль обязателен',
+                minLength: {
+                  value: 8,
+                  message: 'Пароль должен содержать не менее 8 символов',
+                },
+              }}
+              render={({ field }) => (
+                <PasswordInput
+                  label="Пароль"
+                  placeholder={isLogin ? 'Введите ваш пароль' : 'Придумайте надежный пароль'}
+                  {...field}
+                  disabled={isFormDisabled}
+                  errorText={errors.password?.message}
+                />
+              )}
+            />
+          </div>
+        </div>
 
         <Button type="submit" variant="primary" fullWidth disabled={!isValid || isFormDisabled}>
           {isLogin ? 'Войти' : 'Далее'}
