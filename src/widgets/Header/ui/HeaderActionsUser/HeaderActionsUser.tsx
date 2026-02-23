@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
-import { IconButton } from '../../../../shared/ui/icon-button';
-import bellIcon from '../../../../shared/assets/icons/common/icon_bell_nosize.svg';
+import { IconButton } from '@shared/ui/icon-button';
+import bellIcon from '@shared/assets/icons/common/icon_bell_nosize.svg';
 import { NotificationsPopover } from '../../../notificationsPopover';
 import styles from './HeaderActionsUser.module.css';
 

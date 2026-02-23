@@ -148,3 +148,9 @@
 .saveButton {
   margin-top: var(--space-8, 8px);
 }
+
+@media (max-width: 1440px) {
+  .formLayout {
+    gap: 196px;
+  }
+}

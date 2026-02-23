@@ -1,9 +1,9 @@
 import type { FC } from 'react';
 import styles from './SkillPreviewModal.module.css';
-import { Modal } from '../../../shared/ui/Modal';
 import { SkillCard, type SkillCardProps } from '@entities/skill/ui/skill-card';
 import { Button } from '@shared/ui/Button';
 import type { ImageGalleryProps } from '@shared/ui/ImageGallery';
+import { Modal } from '@shared/ui/Modal';
 
 export interface SkillPreviewModalProps {
   isOpen: boolean;

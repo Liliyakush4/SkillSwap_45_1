@@ -1,7 +1,7 @@
 import { type FC } from 'react';
-import { Modal } from '../../../shared/ui/Modal';
-import { Button } from '../../../shared/ui/Button';
-import iconOkay from '../../../shared/assets/icons/common/icon_okay_nosize.svg';
+import { Modal } from '@shared/ui/Modal';
+import { Button } from '@shared/ui/Button';
+import iconOkay from '@shared/assets/icons/common/icon_okay_nosize.svg';
 import styles from './OfferCreatedModal.module.css';
 
 export interface OfferCreatedModalProps {

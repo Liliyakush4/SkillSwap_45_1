@@ -26,3 +26,9 @@
 .logo:focus-visible {
   text-decoration: none;
 }
+
+@media (max-width: 385px) {
+  .text {
+    display: none;
+  }
+}

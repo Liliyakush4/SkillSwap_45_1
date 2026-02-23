@@ -1,7 +1,7 @@
 import { type FC, type RefObject } from 'react';
-import { Popover } from '../../shared/ui/Popover';
-import { Button } from '../../shared/ui/Button';
-import iconLightbulb from '../../shared/assets/icons/common/icon_lightbulb_nosize.svg';
+import { Popover } from '@shared/ui/Popover';
+import { Button } from '@shared/ui/Button';
+import iconLightbulb from '@shared/assets/icons/common/icon_lightbulb_nosize.svg';
 import styles from './NotificationsPopover.module.css';
 
 export interface NotificationsPopoverProps {

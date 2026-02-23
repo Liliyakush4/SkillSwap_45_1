@@ -62,14 +62,32 @@
   flex: 1;
 }
 
+@media (max-width: 1200px) {
+  .form {
+    padding: 20px 30px;
+  }
+}
+
 @media (max-width: 1023px) {
+  .formContent {
+    gap: 8px;
+  }
+
   .twoColRow {
     flex-direction: column;
     align-items: stretch;
-    gap: 16px;
+    gap: 8px;
   }
 
   .twoColRow .field {
     min-width: unset;
+  }
+
+  .form {
+    padding: 5px 30px;
+  }
+
+  .buttonsWrapper {
+    margin-top: 0;
   }
 }

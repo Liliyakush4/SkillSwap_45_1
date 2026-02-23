@@ -1,10 +1,10 @@
 import { type FC, useRef, useState, useCallback, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Popover } from '../../shared/ui/Popover';
-import { Avatar } from '../../shared/ui/Avatar';
+import { Popover } from '@shared/ui/Popover';
+import { Avatar } from '@shared/ui/Avatar';
 import styles from './ProfileMenu.module.css';
 import clsx from 'clsx';
-import IconExit from '../../shared/assets/icons/ui/icon_exit.svg';
+import IconExit from '@shared/assets/icons/ui/icon_exit.svg';
 
 interface ProfileMenuProps {
   avatarUrl?: string;
