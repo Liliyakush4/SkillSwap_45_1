@@ -1,36 +1,63 @@
-import { useState } from 'react';
-import { SkillPreviewModal } from '@widgets/modals/skill-preview-modal';
-import type { SkillCardProps } from '@entities/skill/ui/skill-card';
+import { useMemo } from 'react';
+import styles from './MainPage.module.css';
+import { FiltersSidebar } from '@widgets/filters-sidebar';
+import { CatalogSections } from '@widgets/catalog-sections';
+import { UserCardSection } from '@widgets/user-card-section';
+import { mapUserToUserCardProps } from '@entities/user/model/mappers';
+import { useAppSelector } from '@shared/lib/storeHooks';
+import { selectDb } from '@app/store/db/selectors';
+import { selectFilters, selectFilteredUsers } from '@features/filters/model/selectors';
+import { countAppliedFilters, createDefaultFilterValues } from '@features/filters/model/utils';
 
 export default function MainPage() {
-  const [isOpen, setIsOpen] = useState(true);
+  const db = useAppSelector(selectDb);
+  const filters = useAppSelector(selectFilters);
+  const filteredUsers = useAppSelector(selectFilteredUsers);
 
-  const skillData: SkillCardProps = {
-    title: 'Тест SkillCard в модалке',
-    category: 'Менеджмент',
-    subcategory: 'PM',
-    description:
-      'Проверяем, что модалка открывается, SkillCard рендерится, а картинки в галерее отображаются.',
-    images: [
-      { src: 'https://picsum.photos/seed/skillswap2/900/600', alt: 'Demo 2' },
-      { src: 'https://picsum.photos/seed/skillswap3/900/600', alt: 'Demo 3' },
-      { src: 'https://picsum.photos/seed/skillswap2/900/600', alt: 'Demo 2' },
-      { src: 'https://picsum.photos/seed/skillswap3/900/600', alt: 'Demo 3' },
-    ],
-  };
+  const appliedFiltersCount = useMemo(() => {
+    if (!db) return 0;
+    const defaults = createDefaultFilterValues(db.categories);
+    return countAppliedFilters(filters, defaults);
+  }, [db, filters]);
+
+  const hasAppliedFilters = appliedFiltersCount > 0;
+
+  const filteredItems = useMemo(() => {
+    if (!db) return [];
+    return filteredUsers.map((user) => mapUserToUserCardProps(db, user));
+  }, [db, filteredUsers]);
 
   return (
-    <div style={{ padding: 24 }}>
-      <button onClick={() => setIsOpen(true)}>Открыть модалку</button>
+    <div className={styles.page}>
+      <aside className={styles.sidebar}>
+        <FiltersSidebar />
+      </aside>
 
-      <SkillPreviewModal
-        isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
-        skillData={skillData}
-        variant="static"
-        onEdit={() => console.log('edit')}
-        onConfirm={() => console.log('confirm')}
-      />
+      <main className={styles.content}>
+        {!db && <div className={styles.state}>Загрузка каталога...</div>}
+
+        {db && !hasAppliedFilters && (
+          <div className={styles.catalogWrap}>
+            <CatalogSections />
+          </div>
+        )}
+
+        {db && hasAppliedFilters && (
+          <section className={styles.resultsSection}>
+            {filteredItems.length > 0 ? (
+              <UserCardSection
+                title=""
+                items={filteredItems}
+                variant="grid"
+                renderHeader={false}
+                className={styles.resultsGrid}
+              />
+            ) : (
+              <div className={styles.emptyState}>Ничего не найдено по выбранным фильтрам</div>
+            )}
+          </section>
+        )}
+      </main>
     </div>
   );
 }
