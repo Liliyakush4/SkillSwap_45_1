@@ -1,4 +1,4 @@
-import React from 'react';
+/*import React from 'react';
 import { Popover } from '@shared/ui/Popover';
 import styles from './SkillsCatalogPopover.module.css';
 
@@ -12,7 +12,7 @@ import PersonalDevelopmentIcon from '../../shared/assets/icons/common/icon_book.
 export interface SkillsCatalogPopoverProps {
   isOpen: boolean;
   onClose: () => void;
-  anchorRef: React.RefObject<HTMLElement>;
+  anchorRef: React.RefObject<HTMLElement | null>;
 }
 
 // Объединённый массив категорий с подкатегориями пока такой вариант как заглушка
@@ -145,3 +145,4 @@ export const SkillsCatalogPopover: React.FC<SkillsCatalogPopoverProps> = ({
     </Popover>
   );
 };
+*/
