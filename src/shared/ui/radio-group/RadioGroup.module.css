@@ -17,6 +17,8 @@
 
 .input {
   margin: 0;
+  accent-color: var(--color-accent);
+  cursor: pointer;
 }
 
 /* Focus состояние*/
