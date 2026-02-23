@@ -21,7 +21,7 @@ import { favoritesReducer } from '@features/favorites/model';
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['db'], // дописать сюда те редьюсеры, что не нужно в LocalStorage сохранять)
+  blacklist: ['db', 'favorites'], // дописать сюда те редьюсеры, что не нужно в LocalStorage сохранять)
 };
 
 const rootReducer = combineReducers({
