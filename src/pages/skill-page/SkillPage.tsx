@@ -253,7 +253,7 @@ export default function SkillPage() {
             images={skillData.images}
             className={styles.skillSectionCard}
             actions={actions} // Передаем кнопки в SkillCard
-            // variant='interactiv'
+            variant="interactive"
           />
         </div>
       </div>

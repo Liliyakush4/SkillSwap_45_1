@@ -9,6 +9,7 @@
   display: flex;
   flex-direction: row;
   gap: var(--space-24);
+  justify-content: space-between;
 }
 
 .skillSectionUserCard {
@@ -16,10 +17,6 @@
   align-content: space-between;
   max-width: 324px;
   height: auto;
-}
-
-.skillSectionUserCard :global(.userCard) {
-  height: 100%;
 }
 
 .skillContainer {
@@ -66,7 +63,7 @@
 }
 
 .skillSectionCard {
-  min-width: 916px;
+  max-width: 916px;
 }
 
 .section.section {
@@ -79,4 +76,11 @@
   scroll-snap-type: none;
   overflow-x: hidden;
   padding: 0px;
+}
+
+/* Планшеты */
+@media (max-width: 1450px) {
+  .skillSection {
+    max-width: 100%;
+  }
 }

@@ -24,6 +24,7 @@ export const SkillCard: React.FC<SkillCardProps> = ({
   images,
   actions,
   className,
+  variant = 'interactive',
 }) => {
   return (
     <div className={clsx(styles.skillCard, className)}>
@@ -44,7 +45,7 @@ export const SkillCard: React.FC<SkillCardProps> = ({
         </div>
 
         <div className={styles.galleryColumn}>
-          <ImageGallery images={images} variant="interactive" />
+          <ImageGallery images={images} variant={variant} />
         </div>
       </div>
     </div>
