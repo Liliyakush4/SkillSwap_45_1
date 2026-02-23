@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { RegisterStep3Form } from '@features/auth/ui/register-step-3-form';
 import styles from './RegisterStep3Page.module.css';
 import RegistrBoardImage from '@shared/assets/images/auth/registration_board.svg';
@@ -25,6 +26,8 @@ const skillSubcategoryLearnOptions = [
 ];
 
 export const RegisterStep3Page: React.FC = () => {
+  const navigate = useNavigate();
+
   const heroText = (
     <div className={styles.heroContainer}>
       <h2 className={styles.heroTitle}>Укажите, чем вы готовы поделиться</h2>
@@ -48,6 +51,8 @@ export const RegisterStep3Page: React.FC = () => {
               }}
               categoryOptions={skillCategoryLearnOptions}
               subcategoryOptions={skillSubcategoryLearnOptions}
+              onSubmit={() => navigate('/', { replace: true })}
+              onBack={() => navigate('/auth/register/step-2')}
             />
           </>
         }

@@ -22,7 +22,7 @@ p {
   gap: 8px;
 }
 
-.title {
+.titleModal {
   font-family: var(--font-family-primary, 'Jost', sans-serif);
   font-weight: var(--font-weight-medium, 500);
   font-size: 24px;
@@ -31,7 +31,7 @@ p {
   color: var(--color-text, #253017);
 }
 
-.description {
+.descriptionModal {
   font-family: var(--font-family-base, 'Roboto', sans-serif);
   font-weight: var(--font-weight-regular, 400);
   font-size: 12px;
@@ -40,7 +40,28 @@ p {
   color: var(--color-text, #253017);
 }
 
-.content {
-  max-height: 324px;
-  width: 100%;
+.actions {
+  display: flex;
+  gap: var(--space-12);
+  justify-content: space-between;
+  width: 100%; /* Контейнер занимает всю ширину */
+}
+
+.actions button {
+  flex: 1; /* Каждая кнопка занимает равную ширину */
+}
+
+.editButton {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.editButton svg {
+  width: 24px;
+  height: 24px;
+}
+
+.navButton {
+  display: none;
 }

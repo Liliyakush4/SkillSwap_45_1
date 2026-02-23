@@ -1,5 +1,6 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { dbReducer } from '@app/store/db/dbSlice';
+import { sortReducer } from '@features/sort/model';
 import {
   type TypedUseSelectorHook,
   useDispatch as dispatchHook,
@@ -21,11 +22,12 @@ import { favoritesReducer } from '@features/favorites/model';
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['db'], // дописать сюда те редьюсеры, что не нужно в LocalStorage сохранять)
+  blacklist: ['db', 'favorites'], // дописать сюда те редьюсеры, что не нужно в LocalStorage сохранять)
 };
 
 const rootReducer = combineReducers({
   db: dbReducer,
+  sort: sortReducer,
   favorites: favoritesReducer,
   // сюда дописывать новые редьюсеры
 });

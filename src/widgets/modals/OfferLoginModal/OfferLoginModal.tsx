@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Modal } from '@shared/ui/Modal/Modal';
 import { Button } from '@shared/ui/Button/Button';
 import PersonalIcon from '@shared/assets/icons/common/icon_person_circle_nosize.svg';
@@ -10,8 +11,16 @@ export interface OfferLoginModalProps {
 }
 
 export const OfferLoginModal: React.FC<OfferLoginModalProps> = ({ isOpen, onClose }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const handleClose = () => {
     onClose();
+  };
+
+  const handleLogin = () => {
+    onClose();
+    navigate('/auth/login', { state: { from: location.pathname } });
   };
 
   return (
@@ -34,7 +43,7 @@ export const OfferLoginModal: React.FC<OfferLoginModalProps> = ({ isOpen, onClos
             </Button>
           </div>
           <div className={styles.buttonWrapper}>
-            <Button fullWidth onClick={handleClose} variant="primary">
+            <Button fullWidth onClick={handleLogin} variant="primary">
               Войти
             </Button>
           </div>
