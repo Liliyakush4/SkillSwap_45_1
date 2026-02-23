@@ -18,6 +18,7 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { favoritesReducer } from '@features/favorites/model';
+import filtersReducer from '@features/filters/model/filtersSlice';
 
 const persistConfig = {
   key: 'root',
@@ -29,6 +30,7 @@ const rootReducer = combineReducers({
   db: dbReducer,
   sort: sortReducer,
   favorites: favoritesReducer,
+  filters: filtersReducer,
   // сюда дописывать новые редьюсеры
 });
 

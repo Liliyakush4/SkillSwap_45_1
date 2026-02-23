@@ -96,6 +96,10 @@ h3 {
   outline: none;
 }
 
+.arrowBtn:disabled {
+  display: none;
+}
+
 .icon {
   width: 24px;
   height: 24px;

@@ -20,7 +20,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
       'aria-label': ariaLabel,
       ...props
     },
-    ref
+    ref,
   ) => {
     if (!ariaLabel) {
       console.warn('IconButton требует aria-label для доступности');
@@ -49,7 +49,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
         <span className={styles.iconWrapper}>{icon}</span>
       </button>
     );
-  }
+  },
 );
 
 IconButton.displayName = 'IconButton';
