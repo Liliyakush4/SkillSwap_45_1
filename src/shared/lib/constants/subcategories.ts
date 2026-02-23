@@ -1,4 +1,4 @@
-import type { Option } from '../types/option';
+import type { Option } from '@shared/types';
 
 type SubCategoriesOption = {
   [key: number]: Option[]; // key - id категории на number?

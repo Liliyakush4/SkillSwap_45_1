@@ -12,3 +12,9 @@
 .stepProgress {
   margin-bottom: var(--space-32);
 }
+
+@media (max-width: 768px) {
+  .stepProgress {
+    margin-bottom: var(--space-16);
+  }
+}

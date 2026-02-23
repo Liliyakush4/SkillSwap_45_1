@@ -1,6 +1,6 @@
 import type { FC, ReactNode } from 'react';
 import styles from './SkillPreviewModal.module.css';
-import { Modal } from '../../../shared/ui/Modal';
+import { Modal } from '@shared/ui/Modal';
 
 export interface SkillPreviewModalProps {
   isOpen: boolean;

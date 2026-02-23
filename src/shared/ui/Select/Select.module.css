@@ -101,3 +101,9 @@
   background-color: var(--color-primary);
   font-weight: var(--font-weight-medium);
 }
+
+@media (max-widht: 375px) {
+  .label {
+    font-size: 12px;
+  }
+}

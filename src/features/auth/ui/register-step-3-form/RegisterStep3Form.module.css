@@ -1,5 +1,5 @@
 .registerForm {
-  width: 556px;
+  width: 100%;
   max-width: 100%;
   margin: 0 auto;
   border-radius: 12px;
@@ -23,4 +23,20 @@
 
 .buttonsContainer button {
   flex: 1;
+}
+
+@media (max-width: 1023px) {
+  .registerForm {
+    padding: 10px 30px;
+  }
+
+  .fieldsGroup {
+    gap: 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .registerForm {
+    gap: 8px;
+  }
 }

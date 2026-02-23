@@ -56,3 +56,13 @@
     padding: 20px;
   }
 }
+
+@media (max-width: 768px) {
+  .card {
+    gap: 10px;
+  }
+  .main,
+  .hero {
+    padding: 10px;
+  }
+}
