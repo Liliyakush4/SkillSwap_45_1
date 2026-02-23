@@ -47,6 +47,7 @@ export default function AppRouter() {
         <Route index element={<Navigate to="/auth/login" replace />} />
 
         <Route path="login" element={<LoginPage />} />
+        <Route path="register" element={<Navigate to="/auth/register/step-1" replace />} />
         <Route path="register/step-1" element={<RegisterStep1Page />} />
         <Route path="register/step-2" element={<RegisterStep2Page />} />
         <Route path="register/step-3" element={<RegisterStep3Page />} />

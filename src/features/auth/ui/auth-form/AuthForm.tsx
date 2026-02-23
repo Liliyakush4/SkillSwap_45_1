@@ -1,4 +1,5 @@
 import { type FC, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
 import { Button } from '@shared/ui/Button';
 import { Input } from '@shared/ui/input';
@@ -32,6 +33,7 @@ export const AuthForm: FC<AuthFormProps> = ({
   isLoading = false,
   isDisabled = false,
 }) => {
+  const navigate = useNavigate();
   const [showInfoText, setShowInfoText] = useState(false);
   const isLogin = mode === 'login';
 
@@ -143,7 +145,12 @@ export const AuthForm: FC<AuthFormProps> = ({
 
         {isLogin && (
           <div className={styles.registerLink}>
-            <button type="button" className={styles.linkButton} disabled={isFormDisabled}>
+            <button
+              type="button"
+              className={styles.linkButton}
+              disabled={isFormDisabled}
+              onClick={() => navigate('/auth/register/step-1')}
+            >
               Зарегистрироваться
             </button>
           </div>

@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { RegisterStep2Form } from '@features/auth/ui/register-step-2-form';
 import styles from './RegisterStepPage2.module.css';
 import PersonImage from '@shared/assets/images/auth/registration_person.svg';
@@ -81,6 +82,8 @@ const skillSubcategoryLearnOptions = [
 ];
 
 export const RegisterStep2Page: React.FC = () => {
+  const navigate = useNavigate();
+
   const heroText = (
     <div className={styles.heroContainer}>
       <h2 className={styles.heroTitle}>Расскажите немного о себе</h2>
@@ -106,8 +109,8 @@ export const RegisterStep2Page: React.FC = () => {
             cityOptions={cityOptions}
             skillCategoryLearnOptions={skillCategoryLearnOptions}
             skillSubcategoryLearnOptions={skillSubcategoryLearnOptions}
-            onSubmit={(data) => console.log('Submit:', data)}
-            onBack={() => console.log('Back')}
+            onSubmit={() => navigate('/auth/register/step-3')}
+            onBack={() => navigate('/auth/register/step-1')}
           />
         }
         heroText={heroText}
