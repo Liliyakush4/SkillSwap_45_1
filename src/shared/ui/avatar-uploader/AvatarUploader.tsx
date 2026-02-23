@@ -85,6 +85,7 @@ export const AvatarUploader: React.FC<AvatarUploaderProps> = ({
         <Avatar src={previewUrl || src} alt={alt} size={size} />
 
         <button
+          type="button"
           aria-label={src ? 'Изменить аватар' : 'Добавить аватар'}
           onClick={(e) => {
             e.stopPropagation();
