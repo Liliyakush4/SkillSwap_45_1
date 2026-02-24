@@ -9,7 +9,7 @@
   align-items: center;
   gap: var(--space-8, 8px);
   cursor: pointer;
-  font-family: var(--font-family-primary);
+  font-family: var(--font-family-base);
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-regular);
   color: var(--color-text);
@@ -20,7 +20,7 @@
   width: 20px;
   height: 20px;
   margin: 0;
-  border: 1px solid var(--color-border);
+  border: 1px solid #000;
   border-radius: 6px;
   background-color: var(--color-secondary);
   appearance: none;
@@ -73,7 +73,7 @@
 }
 
 .labelText {
-  line-height: 20px;
+  line-height: 24px;
   user-select: none;
 }
 

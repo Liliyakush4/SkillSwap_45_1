@@ -30,6 +30,7 @@ export function RadioGroup({
             disabled={disabled}
             className={styles.input}
           />
+          <span className={styles.customRadio}></span>
           <span>{option.label}</span>
         </label>
       ))}
