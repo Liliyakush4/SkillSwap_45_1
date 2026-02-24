@@ -55,7 +55,7 @@ export const mapUserToUserCardProps = (
     age,
     skillsOffered,
     skillsWanted,
-    about: user.about,
+    ...(opts?.about !== undefined ? { about: opts.about } : {}),
   };
 
   const finalProps: UserCardProps = {
