@@ -4,8 +4,6 @@ h1 {
 
 .skillCard {
   background-color: var(--color-surface);
-  max-width: 916px;
-  min-width: 904px;
 }
 
 .contentContainer {
@@ -13,7 +11,7 @@ h1 {
   right: 0;
   left: 0;
   display: grid;
-  gap: 20px 0;
+  gap: 20px;
   grid-template-areas:
     'header gallery'
     'description gallery'
@@ -26,7 +24,7 @@ h1 {
 
 .headerColumn {
   grid-area: header;
-  height: 60px;
+  min-height: 60px;
 }
 
 .descriptionColumn {
@@ -84,7 +82,20 @@ h1 {
   grid-area: gallery;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1400px) {
+  .contentContainer {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    min-height: 324px;
+    height: fit-content;
+  }
+
+  .descriptionColumn {
+    max-height: 100%;
+  }
+}
+
+@media (max-width: 1200px) {
   .skillCard {
     height: auto;
     max-width: max-content;
@@ -93,7 +104,7 @@ h1 {
   .contentContainer {
     grid-template-areas: 'gallery' 'header' 'description' 'actions';
     grid-template-columns: 1fr;
-    grid-template-rows: 598px 60px auto 48px;
+    grid-template-rows: auto;
     height: auto;
     width: 100%;
   }
@@ -103,5 +114,12 @@ h1 {
   .galleryColumn,
   .descriptionColumn {
     max-width: 440px;
+  }
+}
+
+@media (max-width: 900px) {
+  .galleryColumn.galleryColumn {
+    min-width: 100%;
+    background-color: var(--color-surface);
   }
 }
