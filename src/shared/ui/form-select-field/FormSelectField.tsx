@@ -175,7 +175,7 @@ export function FormSelectField({
             isOpen && focusedIndex >= 0 ? `option-${options[focusedIndex]?.value}` : undefined
           }
         >
-          <span className={selected ? styles.value : styles.placeholder}>
+          <span className={selected && selected.value !== '' ? styles.value : styles.placeholder}>
             {selected ? selected.label : placeholder}
           </span>
           <span

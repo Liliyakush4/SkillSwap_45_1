@@ -114,3 +114,9 @@
 .disabled .triggerDisabled {
   opacity: 1;
 }
+
+@media (max-widht: 375px) {
+  .label {
+    font-size: 12px;
+  }
+}

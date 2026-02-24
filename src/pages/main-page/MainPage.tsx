@@ -1,68 +1,63 @@
-import { useState } from 'react';
-import { UserCard } from '@entities/user/ui/user-card';
+import { useMemo } from 'react';
+import styles from './MainPage.module.css';
+import { FiltersSidebar } from '@widgets/filters-sidebar';
+import { CatalogSections } from '@widgets/catalog-sections';
+import { UserCardSection } from '@widgets/user-card-section';
+import { mapUserToUserCardProps } from '@entities/user/model/mappers';
+import { useAppSelector } from '@shared/lib/storeHooks';
+import { selectDb } from '@app/store/db/selectors';
+import { selectFilters, selectFilteredUsers } from '@features/filters/model/selectors';
+import { countAppliedFilters, createDefaultFilterValues } from '@features/filters/model/utils';
 
 export default function MainPage() {
-  const [liked, setLiked] = useState(false);
-  const [likes, setLikes] = useState(12);
+  const db = useAppSelector(selectDb);
+  const filters = useAppSelector(selectFilters);
+  const filteredUsers = useAppSelector(selectFilteredUsers);
+
+  const appliedFiltersCount = useMemo(() => {
+    if (!db) return 0;
+    const defaults = createDefaultFilterValues(db.categories);
+    return countAppliedFilters(filters, defaults);
+  }, [db, filters]);
+
+  const hasAppliedFilters = appliedFiltersCount > 0;
+
+  const filteredItems = useMemo(() => {
+    if (!db) return [];
+    return filteredUsers.map((user) => mapUserToUserCardProps(db, user));
+  }, [db, filteredUsers]);
 
   return (
-    <div style={{ padding: 24 }}>
-      <h1>Главная страница</h1>
+    <div className={styles.page}>
+      <aside className={styles.sidebar}>
+        <FiltersSidebar />
+      </aside>
 
-      <div
-        style={{
-          marginTop: 24,
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(324px, 1fr))',
-          gap: 16,
-          alignItems: 'start',
-        }}
-      >
-        {/* Вариант 1: с описанием и БЕЗ лайка */}
-        <UserCard
-          avatarSrc="https://i.pravatar.cc/150?img=32"
-          name="Аня"
-          city="Москва"
-          age={26}
-          about="Frontend-разработка, люблю аккуратные компоненты и ненавижу непредсказуемые отступы. Могу научить базовой архитектуре и стилю кода."
-          skillsOffered={[
-            { id: 1, text: 'React' },
-            { id: 2, text: 'TypeScript' },
-            { id: 3, text: 'CSS Modules' },
-            { id: 4, text: 'Storybook' },
-          ]}
-          skillsWanted={[
-            { id: 101, text: 'Figma' },
-            { id: 102, text: 'UX' },
-          ]}
-          showLike={false}
-        />
+      <main className={styles.content}>
+        {!db && <div className={styles.state}>Загрузка каталога...</div>}
 
-        {/* Вариант 2: С лайком и БЕЗ описания */}
-        <UserCard
-          avatarSrc="https://i.pravatar.cc/150?img=12"
-          name="Игорь"
-          city="Рига"
-          skillsOffered={[
-            { id: 11, text: 'Node.js' },
-            { id: 12, text: 'PostgreSQL' },
-          ]}
-          skillsWanted={[
-            { id: 201, text: 'React' },
-            { id: 202, text: 'Redux' },
-            { id: 203, text: 'Testing' },
-          ]}
-          showLike
-          isLiked={liked}
-          likesCount={likes}
-          onLikeClick={() => {
-            setLiked((v) => !v);
-            setLikes((c) => (liked ? Math.max(0, c - 1) : c + 1));
-          }}
-          onMore={() => console.log('Подробнее')}
-          moreLabel="Подробнее"
-        />
-      </div>
+        {db && !hasAppliedFilters && (
+          <div className={styles.catalogWrap}>
+            <CatalogSections />
+          </div>
+        )}
+
+        {db && hasAppliedFilters && (
+          <section className={styles.resultsSection}>
+            {filteredItems.length > 0 ? (
+              <UserCardSection
+                title=""
+                items={filteredItems}
+                variant="grid"
+                renderHeader={false}
+                className={styles.resultsGrid}
+              />
+            ) : (
+              <div className={styles.emptyState}>Ничего не найдено по выбранным фильтрам</div>
+            )}
+          </section>
+        )}
+      </main>
     </div>
   );
 }

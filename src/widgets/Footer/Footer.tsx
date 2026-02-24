@@ -1,10 +1,8 @@
 import React from 'react';
-import { Logo } from '../../shared/ui/Logo';
+import { Logo } from '@shared/ui/Logo';
 import styles from './Footer.module.css';
 
-export type FooterProps = {};
-
-export const Footer: React.FC<FooterProps> = () => {
+export const Footer: React.FC = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>

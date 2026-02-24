@@ -17,3 +17,9 @@
   line-height: 28px;
   margin-bottom: var(--space-32);
 }
+
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: 20px;
+  }
+}

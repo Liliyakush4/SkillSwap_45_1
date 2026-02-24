@@ -2,88 +2,71 @@ import { useState } from 'react';
 import { RadioGroup } from '@shared/ui/radio-group/RadioGroup';
 import { CheckboxGroup } from '@shared/ui/checkbox-group/CheckboxGroup';
 import { Button } from '@shared/ui/Button/Button';
-import { CITIES } from '@shared/lib/constants/cities';
-import { CATEGORIES } from '@shared/lib/constants/categories';
-import { SKILL_TYPE, GENDER } from '@shared/lib/constants/filters';
+import { SKILL_TYPE, GENDER } from '@features/filters/model/defaults';
 import iconArrowDown from '@shared/assets/icons/ui/icon_arrow_up.svg';
 import styles from './FiltersSidebar.module.css';
 import iconCross from '@shared/assets/icons/ui/icon_close.svg';
 import { Checkbox } from '@shared/ui/checkbox';
-import { SUBCATEGORIES } from '@shared/lib/constants/subcategories';
 import clsx from 'clsx';
+import type { TCategoriesSelected } from '@features/filters/model/types';
+import {
+  convertCitiesToOptions,
+  countAppliedFilters,
+  createDefaultFilterValues,
+  groupSubcategoriesByCategoryId,
+} from '@features/filters/model/utils';
+import { useDispatch, useSelector } from '@app/store/store';
+import {
+  resetFilters,
+  setCategories,
+  setCities,
+  setGender,
+  setOfferType,
+} from '@features/filters/model/filtersSlice';
+import { selectFilters } from '@features/filters/model/selectors';
+import { selectDb } from '@app/store/db/selectors';
 
-// т.к. у нас категорию нельзя выбрать, если не выбрана подкатегория
-// делаем объект с id всех категорий - ключами,
-// а список айди подкатегорий - значениями
-// айди подкатегорий строки из-за чекбокса
-type TCategoriesSelected = {
-  [key: number]: string[];
-};
-
-type FilterValues = {
-  offerType: string;
-  categories: TCategoriesSelected;
-  gender: string;
-  cities: string[];
-};
-
-const categories: TCategoriesSelected = CATEGORIES.reduce((acc, category) => {
-  acc[category.id] = [];
-  return acc;
-}, {} as TCategoriesSelected);
-
-const defaultFilterValues: FilterValues = {
-  offerType: SKILL_TYPE[0].value,
-  categories: categories,
-  gender: GENDER[0].value,
-  cities: [],
-};
+const VISIBLE_CATEGORIES = 6;
+const VISIBLE_CITIES = 5;
 
 export const FiltersSidebar = () => {
-  const [filterValues, setFilterValues] = useState(defaultFilterValues);
-  const [appliedFiltersCount, setAppliedFiltersCount] = useState(0);
-  const [isCitiesExpanded, setIsCitiesExpanded] = useState(false);
-  const [isCategoriesExpanded, setIsCategoriesExpanded] = useState(false);
-  const [expandedCategories, setExpandedCategories] = useState<number[]>([]);
-  const [visibleCategoryCount, setVisibleCategoryCount] = useState(6);
-  const [visibleCitiesCount, setVisibleCitiesCount] = useState(5);
+  const dispatch = useDispatch();
+  const filterValues = useSelector(selectFilters);
+  const db = useSelector(selectDb);
+  const categories = db ? db.categories : [];
+  const subcategories = groupSubcategoriesByCategoryId(db ? db.subcategories : []);
+  const cities = convertCitiesToOptions(db ? db.cities : []);
 
-  const countAppliedFilters = (filters: FilterValues): number => {
-    let count = 0;
-    if (filters.offerType !== SKILL_TYPE[0].value) {
-      count++;
-    }
-    Object.values(filters.categories).forEach((subcategories) => {
-      if (subcategories.length > 0) {
-        count += subcategories.length;
-      }
-    });
-    if (filters.gender !== GENDER[0].value) {
-      count++;
-    }
-    count += filters.cities.length;
+  const defaultFilterValues = createDefaultFilterValues(db ? db.categories : []);
+  const appliedFiltersCount = countAppliedFilters(filterValues, defaultFilterValues); // Счетчик примененных фильтров
+  const [isCitiesExpanded, setIsCitiesExpanded] = useState(false); // Флаг раскрытия Все города
+  const [isCategoriesExpanded, setIsCategoriesExpanded] = useState(false); // Флаг раскрытия Все категории
+  const [expandedCategories, setExpandedCategories] = useState<number[]>([]); // Индексы раскрытых категорий
+  const [visibleCategoryCount, setVisibleCategoryCount] = useState(VISIBLE_CATEGORIES); // Видимое количество категорий до раскрытия
+  const [visibleCitiesCount, setVisibleCitiesCount] = useState(VISIBLE_CITIES); // Видимое количество городов
 
-    return count;
+  const handleOfferTypeChange = (value: string) => {
+    dispatch(setOfferType(value));
   };
 
-  const handleFilterChange = (name: string, value: string | string[] | TCategoriesSelected) => {
-    setFilterValues((prevValues) => {
-      const newFilterValues = {
-        ...prevValues,
-        [name]: value,
-      };
-      setAppliedFiltersCount(countAppliedFilters(newFilterValues));
-      return newFilterValues;
-    });
+  const handleCategoriesChange = (value: TCategoriesSelected) => {
+    dispatch(setCategories(value));
   };
 
+  const handleGenderChange = (value: string) => {
+    dispatch(setGender(value));
+  };
+
+  const handleCitiesChange = (value: string[]) => {
+    dispatch(setCities(value));
+  };
   const toggleCategoriesVisibility = () => {
     if (isCategoriesExpanded) {
       setIsCategoriesExpanded(false);
       setVisibleCategoryCount(6);
     } else {
       setIsCategoriesExpanded(true);
-      setVisibleCategoryCount(CATEGORIES.length);
+      setVisibleCategoryCount(db ? db.categories.length : 0);
     }
   };
 
@@ -93,7 +76,15 @@ export const FiltersSidebar = () => {
       setVisibleCitiesCount(5);
     } else {
       setIsCitiesExpanded(true);
-      setVisibleCitiesCount(CITIES.length);
+      setVisibleCitiesCount(db ? db.cities.length : 0);
+    }
+  };
+
+  const handleCategoryToggle = (categoryId: number) => {
+    if (expandedCategories.includes(categoryId)) {
+      setExpandedCategories(expandedCategories.filter((id) => id !== categoryId));
+    } else {
+      setExpandedCategories([...expandedCategories, categoryId]);
     }
   };
 
@@ -107,8 +98,7 @@ export const FiltersSidebar = () => {
           <Button
             variant="ghost"
             onClick={() => {
-              setFilterValues(defaultFilterValues);
-              setAppliedFiltersCount(0);
+              dispatch(resetFilters());
               setExpandedCategories([]);
             }}
             className={styles.resetBtn}
@@ -124,23 +114,22 @@ export const FiltersSidebar = () => {
             name="offerType"
             options={SKILL_TYPE}
             value={filterValues.offerType}
-            onChange={(value) => handleFilterChange('offerType', value)}
+            onChange={handleOfferTypeChange}
           />
         </div>
 
         <div className={styles.section}>
           <h3 className={styles.sectionTitle}>Навыки</h3>
           <div className={styles.checkboxGroup}>
-            {CATEGORIES.slice(0, visibleCategoryCount).map((category) => (
+            {categories.slice(0, visibleCategoryCount).map((category) => (
               <div key={category.id}>
                 <Checkbox
                   label={category.name}
-                  checked={expandedCategories.includes(category.id)}
-                  onChange={(checked) =>
-                    checked
-                      ? setExpandedCategories((prev) => [...prev, category.id])
-                      : setExpandedCategories((prev) => prev.filter((id) => id !== category.id))
+                  checked={
+                    expandedCategories.includes(category.id) ||
+                    (filterValues.categories[category.id]?.length ?? 0) > 0
                   }
+                  onChange={() => handleCategoryToggle(category.id)}
                   checkedMark="dash"
                 />
                 <div
@@ -151,20 +140,22 @@ export const FiltersSidebar = () => {
                 >
                   <CheckboxGroup
                     name="subCategories"
-                    options={SUBCATEGORIES[category.id]}
+                    options={subcategories[category.id]}
                     value={filterValues.categories[category.id]}
-                    onChange={(values) =>
-                      handleFilterChange('categories', {
+                    onChange={(values) => {
+                      const newCategories = {
                         ...filterValues.categories,
                         [category.id]: values,
-                      })
-                    }
+                      };
+                      handleCategoriesChange(newCategories);
+                    }}
                   />
                 </div>
               </div>
             ))}
             <Button
               variant="ghost"
+              disabled={categories.length <= VISIBLE_CATEGORIES}
               className={styles.arrowBtn}
               aria-label={isCategoriesExpanded ? 'Свернуть категории' : 'Показать все категории'}
               onClick={toggleCategoriesVisibility}
@@ -185,7 +176,7 @@ export const FiltersSidebar = () => {
             name="gender"
             options={GENDER}
             value={filterValues.gender}
-            onChange={(value) => handleFilterChange('gender', value)}
+            onChange={handleGenderChange}
           />
         </div>
 
@@ -194,12 +185,13 @@ export const FiltersSidebar = () => {
           <div className={styles.checkboxGroup}>
             <CheckboxGroup
               name="cities"
-              options={CITIES.slice(0, visibleCitiesCount)}
+              options={cities.slice(0, visibleCitiesCount)}
               value={filterValues.cities}
-              onChange={(values) => handleFilterChange('cities', values)}
+              onChange={handleCitiesChange}
             />
             <Button
               variant="ghost"
+              disabled={cities.length <= VISIBLE_CITIES}
               className={styles.arrowBtn}
               aria-label={isCitiesExpanded ? 'Свернуть города' : 'Показать все города'}
               onClick={toggleCitiesVisibility}

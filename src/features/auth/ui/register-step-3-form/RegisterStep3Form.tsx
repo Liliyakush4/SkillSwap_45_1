@@ -17,17 +17,19 @@ export type RegisterStep3FormValues = {
 export interface RegisterStep3FormProps {
   values: RegisterStep3FormValues;
   onSubmit?: (data: RegisterStep3FormValues) => void;
+  onBack?: () => void;
   className?: string;
   categoryOptions: Array<{ value: string; label: string }>;
   subcategoryOptions: Array<{ value: string; label: string }>;
 }
 
-export const RegisterStep3Form: FC<RegisterStep3FormProps> = ({ 
-  values, 
-  onSubmit, 
+export const RegisterStep3Form: FC<RegisterStep3FormProps> = ({
+  values,
+  onSubmit,
+  onBack,
   className,
   categoryOptions,
-  subcategoryOptions 
+  subcategoryOptions,
 }) => {
   const [skillName, setSkillName] = useState(values.skillName);
   const [category, setCategory] = useState(values.category);
@@ -75,16 +77,12 @@ export const RegisterStep3Form: FC<RegisterStep3FormProps> = ({
           rows={4}
         />
 
-        <FileDropzone
-          onChange={setPhotos}
-          multiple={true}
-          accept="image/*"
-        />
+        <FileDropzone onChange={setPhotos} multiple={true} accept="image/*" />
       </div>
 
       {/* Кнопки — отдельный блок */}
       <div className={styles.buttonsContainer}>
-        <Button variant="secondary" fullWidth type="button">
+        <Button variant="secondary" fullWidth type="button" onClick={onBack}>
           Назад
         </Button>
         <Button type="submit" variant="primary" fullWidth>

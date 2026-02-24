@@ -1,103 +1,61 @@
+import { useMemo, useState, useCallback } from 'react';
 import { UserCardSection } from '@widgets/user-card-section';
-import type { UserCardProps } from '@entities/user/ui/user-card';
+import { useAppDispatch, useAppSelector } from '@shared/lib/storeHooks';
+import { selectFavoriteUserIds, toggleFavorite } from '@features/favorites/model/favoritesSlice';
+import { mapUserToUserCardProps } from '@entities/user/model';
 import styles from './FavoritesPage.module.css';
+import { selectDb } from '@app/store/db/selectors';
 
 export default function FavoritesPage() {
-  // Демо данные - в реальном приложении их нужно будет получать с сервера
-  const users: Array<UserCardProps & { id: number }> = [
-    {
-      id: 1,
-      avatarSrc: 'https://i.pravatar.cc/150?img=32',
-      name: 'Аня',
-      city: 'Москва',
-      age: 26,
-      about: 'Frontend-разработка',
-      skillsOffered: [
-        { id: 1, text: 'React' },
-        { id: 2, text: 'TypeScript' },
-      ],
-      skillsWanted: [
-        { id: 101, text: 'Figma' },
-        { id: 102, text: 'UX' },
-      ],
-      showLike: true,
-      isLiked: true,
-      likesCount: 12,
-    },
-    {
-      id: 2,
-      avatarSrc: 'https://i.pravatar.cc/150?img=12',
-      name: 'Игорь',
-      city: 'Рига',
-      skillsOffered: [
-        { id: 11, text: 'Node.js' },
-        { id: 12, text: 'PostgreSQL' },
-      ],
-      skillsWanted: [
-        { id: 201, text: 'React' },
-        { id: 202, text: 'Redux' },
-      ],
-      showLike: true,
-      isLiked: true,
-      likesCount: 8,
-    },
-    {
-      id: 3,
-      avatarSrc: 'https://i.pravatar.cc/150?img=20',
-      name: 'Мария',
-      city: 'Санкт-Петербург',
-      age: 28,
-      about: 'Дизайнер интерфейсов',
-      skillsOffered: [
-        { id: 31, text: 'Figma' },
-        { id: 32, text: 'Adobe XD' },
-      ],
-      skillsWanted: [{ id: 301, text: 'React' }],
-      showLike: true,
-      isLiked: false,
-      likesCount: 24,
-    },
-    {
-      id: 4,
-      avatarSrc: 'https://i.pravatar.cc/150?img=8',
-      name: 'Алексей',
-      city: 'Новосибирск',
-      skillsOffered: [
-        { id: 41, text: 'Python' },
-        { id: 42, text: 'Django' },
-      ],
-      skillsWanted: [
-        { id: 401, text: 'JavaScript' },
-        { id: 402, text: 'React' },
-      ],
-      showLike: true,
-      isLiked: true,
-      likesCount: 5,
-    },
-    {
-      id: 5,
-      avatarSrc: 'https://i.pravatar.cc/150?img=25',
-      name: 'Елена',
-      city: 'Екатеринбург',
-      age: 30,
-      about: 'PM с 5-летним опытом',
-      skillsOffered: [
-        { id: 51, text: 'Управление проектами' },
-        { id: 52, text: 'Agile' },
-      ],
-      skillsWanted: [{ id: 501, text: 'SQL' }],
-      showLike: true,
-      isLiked: false,
-      likesCount: 18,
-    },
-  ];
+  const dispatch = useAppDispatch();
+  const db = useAppSelector(selectDb);
+  const favoriteUserIds = useAppSelector(selectFavoriteUserIds);
 
-  const favoriteUsers = users.filter((user) => user.isLiked);
+  const favoriteIdsSet = useMemo(() => new Set(favoriteUserIds.map(Number)), [favoriteUserIds]);
+
+  const [removingIds, setRemovingIds] = useState<number[]>([]);
+
+  const handleUnlike = useCallback(
+    (userId: number) => {
+      if (removingIds.includes(userId)) return;
+
+      setRemovingIds((prev) => [...prev, userId]);
+
+      window.setTimeout(() => {
+        dispatch(toggleFavorite(userId));
+        setRemovingIds((prev) => prev.filter((id) => id !== userId));
+      }, 200);
+    },
+    [dispatch, removingIds],
+  );
+
+  if (!db) {
+    return <div className={styles.empty}>Загрузка...</div>;
+  }
+
+  const users = db.users;
+
+  const items = users
+    .filter((user) => favoriteIdsSet.has(user.id))
+    .map((user) => {
+      const isRemoving = removingIds.includes(user.id);
+
+      return mapUserToUserCardProps(db, user, {
+        showLike: true,
+        isLiked: !isRemoving,
+        onLikeClick: () => handleUnlike(user.id),
+        className: isRemoving ? styles.removingCard : undefined,
+      });
+    });
+
+  if (items.length === 0) {
+    return <div className={styles.empty}>Вы не добавили ни одного пользователя</div>;
+  }
 
   return (
     <UserCardSection
       title=""
-      items={favoriteUsers}
+      items={items}
       variant="grid"
       className={styles.container}
       renderHeader={false}

@@ -48,6 +48,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             {label}
           </label>
         )}
+
         <div className={[cls.inputContainer, rightSlot ? cls.hasRightSlot : ''].join(' ')}>
           <input
             ref={ref}

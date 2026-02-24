@@ -10,25 +10,25 @@
 }
 
 .input {
+  box-sizing: border-box;
+  width: 100%;
   height: 48px;
-  padding: 0 12px;
-  border-radius: 10px;
   border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 0px 20px;
   outline: none;
+  background: #fff;
   transition:
     border 0.2s ease,
     box-shadow 0.2s ease;
-  background: #fff;
   caret-color: var(--color-accent);
-  box-sizing: border-box;
-  width: 100%;
 }
 
 .inputContainer {
   position: relative;
-  width: 100%;
   display: flex;
   align-items: center;
+  width: 100%;
 }
 
 .hasRightSlot .input {
@@ -36,13 +36,9 @@
 }
 
 .rightSlot {
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   pointer-events: auto;
 }
 
@@ -55,9 +51,9 @@
 }
 
 .disabled .input {
+  color: #98a2b3;
   background: #f2f4f7;
   cursor: not-allowed;
-  color: #98a2b3;
 }
 
 .error .input {
@@ -65,10 +61,11 @@
 }
 
 .errorText {
-  font-size: 12px;
-  font-weight: var(--font-weight-regular);
-  color: var(--color-error);
   min-height: 16px;
+  margin-top: -4px;
+  color: var(--color-error);
+  font-weight: var(--font-weight-regular);
+  font-size: 12px;
 }
 
 .input::placeholder {

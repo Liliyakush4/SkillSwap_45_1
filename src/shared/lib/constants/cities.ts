@@ -6,7 +6,7 @@
 Новосибирск, Екатеринбург, Казань, Нижний Новгород, Челябинск, Самара, 
 Омск, Ростов-на-Дону, Уфа, Красноярск, Пермь, Воронеж, Волгоград */
 
-import type { Option } from '..//types/option';
+import type { Option } from '@shared/types';
 
 export const CITIES: Option[] = [
   { value: '1', label: 'Москва' },

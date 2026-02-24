@@ -53,18 +53,22 @@ h1 {
   font-size: 32px;
   line-height: 40px;
   margin-bottom: var(--space-4);
+  text-align: left; /* Выравнивание по левому краю */
 }
 
 .category {
   color: var(--color-border);
   font-size: var(--font-size-xs);
   line-height: 16px;
+  text-align: left; /* Выравнивание по левому краю */
 }
 
 .description {
   word-break: break-word;
   overflow: hidden;
   line-height: 1.5;
+  /* margin-bottom: 32px; */
+  text-align: left; /* Выравнивание по левому краю */
 }
 
 .actionsContainer {
