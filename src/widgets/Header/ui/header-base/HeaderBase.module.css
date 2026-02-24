@@ -42,3 +42,9 @@
 .skillsButton:hover {
   color: var(--color-accent);
 }
+
+@media (max-width: 480px) {
+  .nav {
+    display: none;
+  }
+}
