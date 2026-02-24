@@ -28,11 +28,18 @@ export type User = {
   skillsWantedIds: Id[];
 };
 
+export type Credential = {
+  userId: Id;
+  email: string;
+  passwordHash: string; // "sha256:<hex>"
+};
+
 export type UsersPayload = { users: User[] };
 export type SkillsPayload = { skills: Skill[] };
 export type CitiesPayload = { cities: City[] };
 export type CategoriesPayload = { categories: Category[] };
 export type SubcategoriesPayload = { subcategories: Subcategory[] };
+export type CredentialsPayload = { credentials: Credential[] };
 
 export type MockData = {
   users: User[];

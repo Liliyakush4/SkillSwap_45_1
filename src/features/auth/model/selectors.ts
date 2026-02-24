@@ -1,5 +1,7 @@
 import type { RootState } from '@app/store/store';
 
+export const selectAuthIsInitialized = (state: RootState) => state.auth.isInitialized;
+
 export const selectIsAuthenticated = (state: RootState) => state.auth.isAuthenticated;
 
 export const selectCurrentUserId = (state: RootState) => state.auth.currentUserId;
