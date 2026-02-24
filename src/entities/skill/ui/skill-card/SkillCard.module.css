@@ -32,11 +32,12 @@ h1 {
   max-height: 144px;
   max-width: 420px;
   overflow: hidden;
+  align-content: end;
 }
 
 .galleryColumn {
   grid-area: gallery;
-  height: 324px;
+  /* min-height: 324px; */
   min-width: 440px;
   max-width: 440px;
 }
@@ -45,6 +46,7 @@ h1 {
   grid-area: actions;
   min-height: 48px;
   max-width: 420px;
+  align-content: end;
 }
 
 .title {
@@ -117,9 +119,8 @@ h1 {
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 960px) {
   .galleryColumn.galleryColumn {
-    min-width: 100%;
-    background-color: var(--color-surface);
+    min-width: fit-content;
   }
 }

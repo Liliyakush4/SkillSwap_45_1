@@ -3,7 +3,7 @@
   gap: 24px;
   width: 100%;
   max-width: 600px;
-  background-color: var(--color-bg, #f9faf7);
+  background-color: var(--color-surface);
   border-radius: 12px;
   box-sizing: border-box;
 }

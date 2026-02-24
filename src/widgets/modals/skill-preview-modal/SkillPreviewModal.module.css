@@ -11,6 +11,9 @@ p {
   text-align: center;
   width: 100%;
   gap: 40px;
+  max-height: 95vh; /* Ограничиваем максимальную высоту */
+  overflow-y: auto; /* Включаем вертикальную прокрутку */
+  overflow-x: hidden;
 }
 
 .header {
@@ -64,4 +67,31 @@ p {
 
 .navButton {
   display: none;
+}
+
+/* Планшеты */
+@media (max-width: 1200px) {
+  .modal.modal {
+    width: max-content;
+    max-width: 80vw;
+    min-width: max-content;
+    max-height: 95vh; /* Ограничиваем максимальную высоту */
+    overflow-y: auto; /* Включаем вертикальную прокрутку */
+  }
+}
+
+@media (max-width: 768px) {
+  .modal.modal {
+    width: max-content;
+    max-width: 80vw;
+    min-width: 400px;
+    max-height: fit-content;
+    max-height: 95vh; /* Ограничиваем максимальную высоту */
+    overflow-y: auto; /* Включаем вертикальную прокрутку */
+  }
+
+  .content {
+    overflow-y: auto;
+    height: 100%;
+  }
 }
