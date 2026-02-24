@@ -26,7 +26,9 @@ import profileReducer from '@features/profile/model/profileSlice';
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['db', 'favorites'], // дописать сюда те редьюсеры, что не нужно в LocalStorage сохранять)
+  blacklist: ['db', 'favorites', 'auth'], // дописать сюда те редьюсеры, что не нужно в LocalStorage сохранять)
+  ignoredActions: ['profile/updateProfile'],
+  ignoredPaths: ['profile.profile.birthDate'],
 };
 
 const rootReducer = combineReducers({
@@ -52,8 +54,7 @@ const store = configureStore({
     }),
 });
 
-export type RootState = ReturnType<typeof rootReducer>;
-
+export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
 export const useDispatch: () => AppDispatch = () => dispatchHook();
