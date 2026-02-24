@@ -26,9 +26,7 @@ import profileReducer from '@features/profile/model/profileSlice';
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['db', 'favorites'],
-  ignoredActions: ['profile/updateProfile'],
-  ignoredPaths: ['profile.profile.birthDate'], // дописать сюда те редьюсеры, что не нужно в LocalStorage сохранять)
+  blacklist: ['db', 'favorites'], // дописать сюда те редьюсеры, что не нужно в LocalStorage сохранять)
 };
 
 const rootReducer = combineReducers({

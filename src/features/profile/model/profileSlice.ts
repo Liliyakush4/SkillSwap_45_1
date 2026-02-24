@@ -1,4 +1,5 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import type { IsoDate } from '@shared/types';
 
 export interface ProfileImage {
   src: string;
@@ -9,7 +10,7 @@ export interface ProfileState {
   profile: {
     email: string;
     name: string;
-    birthDate: Date | null;
+    birthDate: IsoDate | null;
     gender: string;
     city: string;
     about: string;
@@ -55,7 +56,7 @@ interface CreateProfilePayload {
 interface UpdateProfilePayload {
   email?: string;
   name?: string;
-  birthDate?: Date | null;
+  birthDate?: IsoDate | null; // Исправлено: Date → IsoDate
   gender?: string;
   city?: string;
   about?: string;
@@ -80,57 +81,68 @@ export const profileSlice = createSlice({
       state.profile = action.payload.profile;
       state.skill = action.payload.skill;
     },
-
     updateProfile: (state, action: PayloadAction<UpdateProfilePayload>) => {
-      if (action.payload.email !== undefined) {
-        state.profile.email = action.payload.email;
-      }
-      if (action.payload.name !== undefined) {
-        state.profile.name = action.payload.name;
-      }
-      if (action.payload.birthDate !== undefined) {
-        state.profile.birthDate = action.payload.birthDate;
-      }
-      if (action.payload.gender !== undefined) {
-        state.profile.gender = action.payload.gender;
-      }
-      if (action.payload.city !== undefined) {
-        state.profile.city = action.payload.city;
-      }
-      if (action.payload.about !== undefined) {
-        state.profile.about = action.payload.about;
-      }
-      if (action.payload.avatarSrc !== undefined) {
-        state.profile.avatarSrc = action.payload.avatarSrc;
-      }
+      const { payload } = action;
+
+      // тогда здесь переделала, учитывая что birthDate?: IsoDate | null;
+      if (payload.email !== undefined) state.profile.email = payload.email;
+      if (payload.name !== undefined) state.profile.name = payload.name;
+      if (payload.birthDate !== undefined) state.profile.birthDate = payload.birthDate;
+      if (payload.gender !== undefined) state.profile.gender = payload.gender;
+      if (payload.city !== undefined) state.profile.city = payload.city;
+      if (payload.about !== undefined) state.profile.about = payload.about;
+      if (payload.avatarSrc !== undefined) state.profile.avatarSrc = payload.avatarSrc;
+    },
+    updateProfileSkill: (state, action: PayloadAction<UpdateProfileSkillPayload>) => {
+      const { payload } = action;
+
+      if (payload.title !== undefined) state.skill.title = payload.title;
+      if (payload.description !== undefined) state.skill.description = payload.description;
+      if (payload.level !== undefined) state.skill.level = payload.level;
+      if (payload.category !== undefined) state.skill.category = payload.category;
+      if (payload.images !== undefined) state.skill.images = payload.images;
+      if (payload.tags !== undefined) state.skill.tags = payload.tags;
+      if (payload.isPublic !== undefined) state.skill.isPublic = payload.isPublic;
     },
 
-    updateProfileSkill: (state, action: PayloadAction<UpdateProfileSkillPayload>) => {
-      if (action.payload.title !== undefined) {
-        state.skill.title = action.payload.title;
+    resetProfile: (state) => {
+      state.profile = initialState.profile;
+      state.skill = initialState.skill;
+    },
+    resetProfileOnly: (state) => {
+      state.profile = initialState.profile;
+    },
+    resetSkillOnly: (state) => {
+      state.skill = initialState.skill;
+    },
+    addSkillImage: (state, action: PayloadAction<ProfileImage>) => {
+      state.skill.images.push(action.payload);
+    },
+    removeSkillImage: (state, action: PayloadAction<number>) => {
+      state.skill.images.splice(action.payload, 1);
+    },
+    addSkillTag: (state, action: PayloadAction<string>) => {
+      if (!state.skill.tags.includes(action.payload)) {
+        state.skill.tags.push(action.payload);
       }
-      if (action.payload.description !== undefined) {
-        state.skill.description = action.payload.description;
-      }
-      if (action.payload.level !== undefined) {
-        state.skill.level = action.payload.level;
-      }
-      if (action.payload.category !== undefined) {
-        state.skill.category = action.payload.category;
-      }
-      if (action.payload.images !== undefined) {
-        state.skill.images = action.payload.images;
-      }
-      if (action.payload.tags !== undefined) {
-        state.skill.tags = action.payload.tags;
-      }
-      if (action.payload.isPublic !== undefined) {
-        state.skill.isPublic = action.payload.isPublic;
-      }
+    },
+    removeSkillTag: (state, action: PayloadAction<string>) => {
+      state.skill.tags = state.skill.tags.filter((tag) => tag !== action.payload);
     },
   },
 });
 
-export const { createProfile, updateProfile, updateProfileSkill } = profileSlice.actions;
+export const {
+  createProfile,
+  updateProfile,
+  updateProfileSkill,
+  resetProfile,
+  resetProfileOnly,
+  resetSkillOnly,
+  addSkillImage,
+  removeSkillImage,
+  addSkillTag,
+  removeSkillTag,
+} = profileSlice.actions;
 
 export default profileSlice.reducer;
