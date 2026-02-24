@@ -19,6 +19,7 @@ import {
 import storage from 'redux-persist/lib/storage';
 import { favoritesReducer } from '@features/favorites/model';
 import filtersReducer from '@features/filters/model/filtersSlice';
+import { searchReducer } from '@features/search/model/searchSlice';
 
 const persistConfig = {
   key: 'root',
@@ -31,6 +32,7 @@ const rootReducer = combineReducers({
   sort: sortReducer,
   favorites: favoritesReducer,
   filters: filtersReducer,
+  search: searchReducer,
   // сюда дописывать новые редьюсеры
 });
 
