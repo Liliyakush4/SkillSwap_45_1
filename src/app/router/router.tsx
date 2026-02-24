@@ -9,7 +9,7 @@ import ProfilePage from '@pages/profile/ProfilePage';
 import FavoritesPage from '@pages/favorites/FavoritesPage';
 import { ErrorPage404 } from '@pages/error404/ErrorPage404';
 import { ErrorPage500 } from '@pages/error500/ErrorPage500';
-
+import { RequireAuth } from './RequireAuth';
 import { AuthLayout } from '../layouts/AuthLayout';
 import { LoginPage } from '@pages/auth/login/LoginPage';
 import { RegisterStep1Page } from '@pages/auth/register/register-step-1/RegisterStep1Page';
@@ -60,7 +60,14 @@ export default function AppRouter() {
 
         {/* Основные страницы */}
         <Route path="skill/:id" element={<SkillPage />} />
-        <Route path="profile" element={<ProfileLayout />}>
+        <Route
+          path="profile"
+          element={
+            <RequireAuth>
+              <ProfileLayout />
+            </RequireAuth>
+          }
+        >
           <Route index element={<ProfilePage />} />
           <Route path="favorites" element={<FavoritesPage />} />
         </Route>

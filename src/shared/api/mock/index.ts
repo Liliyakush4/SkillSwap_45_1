@@ -1,4 +1,5 @@
 import { getJson } from './client';
+import type { CredentialsPayload, Credential } from './types';
 import { DB } from './endpoints';
 import type {
   UsersPayload,
@@ -34,6 +35,11 @@ export const mockApi = {
   async getSubcategories(): Promise<Subcategory[]> {
     const data = await getJson<SubcategoriesPayload>(DB.subcategories);
     return data.subcategories;
+  },
+
+  async getCredentials(): Promise<Credential[]> {
+    const data = await getJson<CredentialsPayload>(DB.credentials);
+    return data.credentials;
   },
 
   async getAll(): Promise<MockData> {

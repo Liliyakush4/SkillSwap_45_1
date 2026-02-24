@@ -1,7 +1,7 @@
-// features/auth/model/authSlice.ts
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
 export interface AuthState {
+  isInitialized: boolean;
   isAuthenticated: boolean;
   currentUserId: number | null;
   status: 'idle' | 'loading' | 'success' | 'error';
@@ -9,6 +9,7 @@ export interface AuthState {
 }
 
 const initialState: AuthState = {
+  isInitialized: false,
   isAuthenticated: false,
   currentUserId: null,
   status: 'idle',
@@ -19,6 +20,9 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
+    initAuthDone(state) {
+      state.isInitialized = true;
+    },
     loginStart(state) {
       state.status = 'loading';
       state.error = null;
@@ -45,6 +49,7 @@ const authSlice = createSlice({
   },
 });
 
-export const { loginStart, loginSuccess, loginFailure, logout, clearAuthError } = authSlice.actions;
+export const { initAuthDone, loginStart, loginSuccess, loginFailure, logout, clearAuthError } =
+  authSlice.actions;
 
 export default authSlice.reducer;

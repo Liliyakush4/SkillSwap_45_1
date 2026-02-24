@@ -4,4 +4,5 @@ export const DB = {
   cities: '/db/cities.json',
   categories: '/db/categories.json',
   subcategories: '/db/subcategories.json',
+  credentials: '/db/credentials.json',
 } as const;
