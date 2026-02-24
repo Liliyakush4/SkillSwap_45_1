@@ -45,12 +45,12 @@ export const UserCard: React.FC<UserCardProps> = ({
   }, []);
 
   return (
-    <Card 
+    <Card
       className={clsx(styles.userCard, className)}
       data-height={height} // data-атрибут для управления высотой
     >
       <div className={styles.header}>
-        <Avatar src={avatarSrc} size={100} alt={`Аватар пользователя ${name}`} />
+        <Avatar src={avatarSrc} size={130} alt={`Аватар пользователя ${name}`} />
         <div className={styles.userInfo}>
           <h2 className={styles.name}>{name}</h2>
           <div className={styles.cityAge}>{age === undefined ? `${city}` : `${city}, ${age}`}</div>

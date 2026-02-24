@@ -9,9 +9,14 @@ export interface AvatarProps {
   className?: string;
 }
 
-export const Avatar: React.FC<AvatarProps> = ({ src, alt = 'Аватар', size, className = '' }) => {
+export const Avatar: React.FC<AvatarProps> = ({
+  src,
+  alt = 'Аватар',
+  size = 65,
+  className = '',
+}) => {
   const [imgError, setImgError] = useState(false);
-  const sizeStyle = size ? { width: size, height: size } : {};
+  const sizeStyle = { width: size, height: size };
 
   const showPlaceholder = !src || imgError;
 
