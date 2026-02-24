@@ -21,11 +21,14 @@ import { favoritesReducer } from '@features/favorites/model';
 import filtersReducer from '@features/filters/model/filtersSlice';
 import authReducer from '@features/auth/model/authSlice';
 import RegistrationReducer from '@features/auth/model/registrationSlice';
+import profileReducer from '@features/profile/model/profileSlice';
 
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['db', 'favorites'], // дописать сюда те редьюсеры, что не нужно в LocalStorage сохранять)
+  blacklist: ['db', 'favorites', 'auth'], // дописать сюда те редьюсеры, что не нужно в LocalStorage сохранять)
+  ignoredActions: ['profile/updateProfile'],
+  ignoredPaths: ['profile.profile.birthDate'],
 };
 
 const rootReducer = combineReducers({
@@ -35,6 +38,7 @@ const rootReducer = combineReducers({
   filters: filtersReducer,
   auth: authReducer, // добавила
   registration: RegistrationReducer,
+  profile: profileReducer,
   // сюда дописывать новые редьюсеры
 });
 
@@ -50,8 +54,7 @@ const store = configureStore({
     }),
 });
 
-export type RootState = ReturnType<typeof rootReducer>;
-
+export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
 export const useDispatch: () => AppDispatch = () => dispatchHook();
