@@ -3,6 +3,7 @@ import { type InputProps } from '@shared/ui/input';
 import cls from './SearchInput.module.css';
 import searchIcon from '@shared/assets/icons/ui/icon_search.svg';
 import { useRef } from 'react';
+import clearIcon from '@shared/assets/icons/ui/icon_close.svg';
 
 export type SearchInputProps = Pick<
   InputProps,
@@ -51,18 +52,19 @@ export const SearchInput = ({
             handleSearch();
           }
         }}
+        rightSlot={
+          value ? (
+            <button
+              type="button"
+              className={cls.clearButton}
+              aria-label="Очистить поиск"
+              onClick={handleClear}
+            >
+              <img src={clearIcon} alt="" aria-hidden="true" className={cls.closeImage} />
+            </button>
+          ) : null
+        }
       />
-
-      {value && (
-        <button
-          type="button"
-          className={cls.clearButton}
-          aria-label="Очистить поиск"
-          onClick={handleClear}
-        >
-          Л
-        </button>
-      )}
     </div>
   );
 };
