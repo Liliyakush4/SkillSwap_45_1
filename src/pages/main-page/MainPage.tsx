@@ -1,29 +1,48 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useCallback } from 'react';
 import styles from './MainPage.module.css';
 import { FiltersSidebar } from '@widgets/filters-sidebar';
 import { CatalogSections } from '@widgets/catalog-sections';
 import { UserCardSection } from '@widgets/user-card-section';
 import { mapUserToUserCardProps } from '@entities/user/model/mappers';
-import { useAppSelector } from '@shared/lib/storeHooks';
+import { useAppDispatch, useAppSelector } from '@shared/lib/storeHooks';
 import { selectDb } from '@app/store/db/selectors';
 import { selectFilters, selectFilteredUsers } from '@features/filters/model/selectors';
 import { countAppliedFilters, createDefaultFilterValues } from '@features/filters/model/utils';
 import { useNavigate } from 'react-router-dom';
+import { AppliedFiltersChips } from '@features/filters/ui';
+import { buildAppliedBadges, removeBadge, type TBadge } from '@features/filters/model/badges';
+import { setFilters } from '@features/filters/model/filtersSlice';
 
 type SortOrder = 'newest' | 'oldest';
 
 export default function MainPage() {
   const db = useAppSelector(selectDb);
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const filters = useAppSelector(selectFilters);
   const filteredUsers = useAppSelector(selectFilteredUsers);
   const [sortOrder, setSortOrder] = useState<SortOrder>('newest');
 
+  const defaults = useMemo(() => {
+    if (!db) return null;
+    return createDefaultFilterValues(db.categories);
+  }, [db]);
+
   const appliedFiltersCount = useMemo(() => {
-    if (!db) return 0;
-    const defaults = createDefaultFilterValues(db.categories);
+    if (!db || !defaults) return 0;
     return countAppliedFilters(filters, defaults);
-  }, [db, filters]);
+  }, [db, defaults, filters]);
+
+  const badges = useMemo(() => buildAppliedBadges(filters, db), [filters, db]);
+
+  const handleRemoveBadge = useCallback(
+    (badge: TBadge) => {
+      if (!defaults) return;
+      const next = removeBadge(filters, defaults, badge);
+      dispatch(setFilters(next));
+    },
+    [defaults, filters, dispatch],
+  );
 
   const hasAppliedFilters = appliedFiltersCount > 0;
 
@@ -69,6 +88,11 @@ export default function MainPage() {
 
         {db && hasAppliedFilters && (
           <section className={styles.resultsSection}>
+            <AppliedFiltersChips
+              badges={badges}
+              onRemove={handleRemoveBadge}
+              className={styles.resultsBadges}
+            />
             {filteredItems.length > 0 ? (
               <UserCardSection
                 title={`Подходящие предложения: ${filteredItems.length}`}
