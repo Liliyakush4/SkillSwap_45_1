@@ -1,4 +1,6 @@
 import { useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '@shared/lib/storeHooks';
+import { finishRegistration } from '@features/auth/model/registrationThunks';
 import { RegisterStep3Form } from '@features/auth/ui/register-step-3-form';
 import styles from './RegisterStep3Page.module.css';
 import RegistrBoardImage from '@shared/assets/images/auth/registration_board.svg';
@@ -27,6 +29,7 @@ const skillSubcategoryLearnOptions = [
 
 export const RegisterStep3Page: React.FC = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const heroText = (
     <div className={styles.heroContainer}>
@@ -34,6 +37,20 @@ export const RegisterStep3Page: React.FC = () => {
       <p>Так другие люди смогут увидеть ваши предложения и предложить вам обмен!</p>
     </div>
   );
+
+  // Обработчик завершения регистрации
+  const handleFinishRegistration = async () => {
+    try {
+      // Диспатчим thunk и ждем его завершения
+      await dispatch(finishRegistration()).unwrap();
+
+      // После успешного завершения выполняем переход
+      navigate('/profile', { replace: true });
+    } catch (error) {
+      // Обработка ошибки
+      console.error('Ошибка при завершении регистрации:', error);
+    }
+  };
 
   return (
     <>
@@ -51,7 +68,7 @@ export const RegisterStep3Page: React.FC = () => {
               }}
               categoryOptions={skillCategoryLearnOptions}
               subcategoryOptions={skillSubcategoryLearnOptions}
-              onSubmit={() => navigate('/', { replace: true })}
+              onSubmit={handleFinishRegistration} // Используем новый обработчик
               onBack={() => navigate('/auth/register/step-2')}
             />
           </>

@@ -1,3 +1,4 @@
+// C:\Users\Ekaterina.Kharina\dev\SkillSwap_45_1\src\features\auth\model\registrationSlice.ts
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import type { Category, Subcategory } from '@shared/api/mock/types';
 import type { IsoDate, Url } from '@shared/types';
