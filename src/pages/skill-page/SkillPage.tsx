@@ -260,7 +260,7 @@ export default function SkillPage() {
       <UserCardSection
         title="Похожие предложения"
         items={cardsWithHandlers}
-        limit={10}
+        limit={100}
         className={styles.section}
         variant="row"
         cardListClassName={styles.similarUserCard}
