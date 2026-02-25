@@ -38,7 +38,7 @@
   justify-content: flex-end;
   gap: 16px;
   height: 48px;
-  flex-shrink: 0; /* не даём сжиматься */
+  flex-shrink: 0;
 }
 
 /* Планшеты (768px - 1024px) */
@@ -58,59 +58,80 @@
 
   .actions {
     gap: 8px;
+    padding-right: 20px;
   }
 }
 
-/* Мобилки (до 768px) */
-@media (max-width: 768px) {
+@media (max-width: 768px) and (min-width: 481px) {
   .header {
-    height: auto;
-    min-height: 80px;
-    padding: 12px 0;
+    height: 80px;
   }
 
   .container {
-    display: grid;
+    flex-wrap: nowrap;
     gap: 12px;
-    justify-items: center;
   }
 
   .baseHeader {
-    width: auto;
-    flex-shrink: 1;
+    order: 0;
+    flex-shrink: 0;
+  }
+
+  .actions {
+    order: 1;
+    margin-left: 0;
+    flex-shrink: 0;
   }
 
   .headerCenter {
-    order: 3;
-    flex: 1 1 100%;
-    width: 100%;
-    min-width: 100%;
+    order: 2;
+    flex: 1 1 200px;
+    min-width: 140px;
+    margin-left: auto;
+    padding-right: 20px;
+  }
+
+  .baseHeader :global(.logo span) {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    height: 70px;
+    padding: 8px 0;
+  }
+
+  .container {
+    flex-wrap: nowrap;
+    gap: 8px;
+    padding: 0 12px;
+  }
+
+  .baseHeader {
+    flex-shrink: 0;
+  }
+
+  .baseHeader :global(.nav) {
+    display: none;
+  }
+
+  .headerCenter {
+    display: none;
   }
 
   .actions {
     margin-left: auto;
-  }
-}
-
-/* Маленькие мобилки (до 480px) */
-@media (max-width: 480px) {
-  .container {
-    flex-direction: column;
-    align-items: stretch;
+    flex-shrink: 0;
+    gap: 8px;
   }
 
-  .baseHeader {
-    width: 100%;
-    justify-content: center;
+  .actions :global(.button) {
+    padding: 6px 10px;
+    font-size: 13px;
   }
 
-  .actions {
-    width: 100%;
-    justify-content: center;
-    margin-left: 0;
-  }
-
-  .headerCenter {
-    order: 2; /* поиск между логотипом и кнопками */
+  .baseHeader :global(.logo span) {
+    display: none;
   }
 }

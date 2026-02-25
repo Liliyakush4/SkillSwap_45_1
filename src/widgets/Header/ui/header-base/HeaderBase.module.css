@@ -11,6 +11,13 @@
   text-decoration: none;
 }
 
+/* Скрываем название на мобилках */
+@media (max-width: 768px) {
+  .logo span {
+    display: none;
+  }
+}
+
 .nav {
   display: flex;
   align-items: center;
@@ -43,6 +50,7 @@
   color: var(--color-accent);
 }
 
+/* На очень маленьких экранах скрываем навигацию */
 @media (max-width: 480px) {
   .nav {
     display: none;
