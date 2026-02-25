@@ -7,7 +7,10 @@ import { useRef } from 'react';
 export type SearchInputProps = Pick<
   InputProps,
   'value' | 'onChange' | 'placeholder' | 'className'
-> & { onSearch?: () => void };
+> & {
+  onSearch?: () => void;
+  onClear?: () => void;
+};
 
 export const SearchInput = ({
   value,
@@ -15,6 +18,7 @@ export const SearchInput = ({
   placeholder,
   className,
   onSearch,
+  onClear,
 }: SearchInputProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -22,6 +26,11 @@ export const SearchInput = ({
     inputRef.current?.focus();
     if (!value.trim()) return;
     onSearch?.();
+  };
+
+  const handleClear = () => {
+    onClear?.();
+    inputRef.current?.focus();
   };
 
   return (
@@ -43,6 +52,17 @@ export const SearchInput = ({
           }
         }}
       />
+
+      {value && (
+        <button
+          type="button"
+          className={cls.clearButton}
+          aria-label="Очистить поиск"
+          onClick={handleClear}
+        >
+          Л
+        </button>
+      )}
     </div>
   );
 };

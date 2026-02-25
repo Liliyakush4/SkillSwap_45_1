@@ -1,7 +1,7 @@
 import cls from './HeaderCenter.module.css';
 import { SearchInput } from '@shared/ui/search-input';
 import { useAppDispatch, useAppSelector } from '@shared/lib/storeHooks';
-import { selectSearchQuery, setQuery } from '@features/search/model/searchSlice';
+import { clearQuery, selectSearchQuery, setQuery } from '@features/search/model/searchSlice';
 
 export const HeaderCenter = () => {
   //const [search, setSearch] = useState('');
@@ -13,14 +13,19 @@ export const HeaderCenter = () => {
     dispatch(setQuery(value));
   };
 
-  // const handleClear = () => {
-  //   dispatch(clearQuery());
-  // };
+  const handleClear = () => {
+    dispatch(clearQuery());
+  };
 
   return (
     <div className={cls.center}>
       <div className={cls.searchWrapper}>
-        <SearchInput value={query} onChange={handleChange} placeholder="Искать навык" />
+        <SearchInput
+          value={query}
+          onChange={handleChange}
+          onClear={handleClear}
+          placeholder="Искать навык"
+        />
       </div>
     </div>
   );

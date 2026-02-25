@@ -1,14 +1,21 @@
 import { createSelector } from '@reduxjs/toolkit';
-import { selectSearchQuery } from '@features/search/model';
-import { selectAllSkills } from '@app/store/db/selectors';
+import type { RootState } from '@app/store/store';
+import { selectSearchQuery } from './searchSlice';
+import { selectFilteredUsers } from '@features/filters/model/selectors';
 
-export const selectFilteredSkills = createSelector(
-  [selectAllSkills, selectSearchQuery],
-  (skills, query) => {
-    if (!query.trim()) return skills;
+export const selectUsersByFiltersAndSearch = createSelector(
+  [selectFilteredUsers, selectSearchQuery, (state: RootState) => state.db.db],
+  (filteredUsers, query, db) => {
+    if (!db) return filteredUsers;
+
+    if (!query.trim()) return filteredUsers;
 
     const lowerQuery = query.toLowerCase();
 
-    return skills?.filter((skill) => skill.title.toLowerCase().includes(lowerQuery));
+    return filteredUsers.filter((user) => {
+      const userSkills = db.skillsByOwnerUserId[user.id] ?? [];
+
+      return userSkills.some((skill) => skill.title.toLowerCase().includes(lowerQuery));
+    });
   },
 );
