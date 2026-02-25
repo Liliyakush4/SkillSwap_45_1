@@ -45,7 +45,7 @@ export const UserCard: React.FC<UserCardProps> = ({
   }, []);
 
   return (
-    <Card 
+    <Card
       className={clsx(styles.userCard, className)}
       data-height={height} // data-атрибут для управления высотой
     >

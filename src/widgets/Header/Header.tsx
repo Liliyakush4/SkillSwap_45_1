@@ -4,13 +4,12 @@ import { HeaderActionsPublic } from '@widgets/header/ui/header-actions-public';
 import { HeaderActionsUser } from '@widgets/header/ui/header-actions-user';
 import { HeaderCenter } from '@widgets/header/ui/header-center/HeaderCenter';
 
-export type HeaderActionsType = 'public' | 'user';
+import { useAppSelector } from '@shared/lib/storeHooks';
+import { selectIsAuthenticated } from '@features/auth/model/selectors';
 
-interface HeaderProps {
-  actions?: HeaderActionsType;
-}
+export const Header = () => {
+  const isAuth = useAppSelector(selectIsAuthenticated);
 
-export const Header = ({ actions = 'public' }: HeaderProps) => {
   return (
     <header className={cls.header}>
       <div className={cls.container}>
@@ -23,8 +22,7 @@ export const Header = ({ actions = 'public' }: HeaderProps) => {
         </div>
 
         <div className={cls.actions}>
-          {actions === 'public' && <HeaderActionsPublic />}
-          {actions === 'user' && <HeaderActionsUser />}
+          {isAuth ? <HeaderActionsUser /> : <HeaderActionsPublic />}
         </div>
       </div>
     </header>

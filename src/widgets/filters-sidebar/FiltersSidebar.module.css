@@ -51,6 +51,7 @@ h3 {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  width: 100%;
 }
 
 .section h3 {
@@ -68,6 +69,25 @@ h3 {
   flex-direction: column;
   align-items: start;
   gap: 12px;
+}
+
+.categoryItem {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 12px;
+}
+
+.categoryContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 8px;
+}
+
+.categoryCheckbox:hover + img {
+  display: inline;
 }
 
 .subcategoriesContainer {
@@ -90,24 +110,26 @@ h3 {
 
 .arrowBtn:hover:not(:disabled) {
   background-color: transparent;
+  outline: none;
 }
 
 .arrowBtn:focus-visible {
   outline: none;
 }
 
-.arrowBtn:disabled {
-  display: none;
-}
-
 .icon {
   width: 24px;
   height: 24px;
+  margin-right: 2px;
 }
 
 .iconRotated {
   transform: rotate(180deg);
   transition: transform 0.3s ease;
+}
+
+.iconVisible {
+  display: inline;
 }
 
 .hidden {

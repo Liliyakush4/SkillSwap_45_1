@@ -12,6 +12,9 @@ export const filtersSlice = createSlice({
   name: 'filters',
   initialState,
   reducers: {
+    setFilters: (_state, action: PayloadAction<TFilterValues>) => {
+      return action.payload;
+    },
     setOfferType: (state, action: PayloadAction<string>) => {
       state.offerType = action.payload;
     },
@@ -30,6 +33,6 @@ export const filtersSlice = createSlice({
   },
 });
 
-export const { resetFilters, setOfferType, setCategories, setGender, setCities } =
+export const { setFilters, resetFilters, setOfferType, setCategories, setGender, setCities } =
   filtersSlice.actions;
 export default filtersSlice.reducer;

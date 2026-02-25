@@ -27,6 +27,12 @@
   text-decoration: none;
 }
 
+@media (max-width: 768px) {
+  .text {
+    display: none;
+  }
+}
+
 @media (max-width: 385px) {
   .text {
     display: none;

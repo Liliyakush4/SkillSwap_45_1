@@ -109,3 +109,7 @@ https://disk.yandex.ru/i/D7eaUTIc01-ZiA
 ### Правила работы с репозиторием
 
 https://docs.google.com/document/d/1evH9V1HqvNgLLKDQ0EDHdiksHdS7FEwz8FxTVqBYZCw/edit?tab=t.0#heading=h.u1a3q1nahslf
+
+### Mock password for all users:
+
+SkillSwap123!

@@ -3,7 +3,7 @@ import { RadioGroup } from '@shared/ui/radio-group/RadioGroup';
 import { CheckboxGroup } from '@shared/ui/checkbox-group/CheckboxGroup';
 import { Button } from '@shared/ui/Button/Button';
 import { SKILL_TYPE, GENDER } from '@features/filters/model/defaults';
-import iconArrowDown from '@shared/assets/icons/ui/icon_arrow_up.svg';
+import iconArrowDown from '@shared/assets/icons/ui/icon_arrow_down.svg';
 import styles from './FiltersSidebar.module.css';
 import iconCross from '@shared/assets/icons/ui/icon_close.svg';
 import { Checkbox } from '@shared/ui/checkbox';
@@ -122,16 +122,29 @@ export const FiltersSidebar = () => {
           <h3 className={styles.sectionTitle}>Навыки</h3>
           <div className={styles.checkboxGroup}>
             {categories.slice(0, visibleCategoryCount).map((category) => (
-              <div key={category.id}>
-                <Checkbox
-                  label={category.name}
-                  checked={
-                    expandedCategories.includes(category.id) ||
-                    (filterValues.categories[category.id]?.length ?? 0) > 0
-                  }
-                  onChange={() => handleCategoryToggle(category.id)}
-                  checkedMark="dash"
-                />
+              <div key={category.id} className={styles.categoryItem}>
+                <div className={styles.categoryContainer}>
+                  <Checkbox
+                    label={category.name}
+                    checked={
+                      expandedCategories.includes(category.id) ||
+                      (filterValues.categories[category.id]?.length ?? 0) > 0
+                    }
+                    onChange={() => handleCategoryToggle(category.id)}
+                    checkedMark="dash"
+                    className={styles.categoryCheckbox}
+                  />
+                  <img
+                    src={iconArrowDown}
+                    className={clsx(
+                      styles.icon,
+                      expandedCategories.includes(category.id)
+                        ? [styles.iconRotated, styles.iconVisible]
+                        : styles.hidden,
+                    )}
+                    alt="Развернуть/свернуть"
+                  />
+                </div>
                 <div
                   className={clsx(
                     styles.subcategoriesContainer,
@@ -155,7 +168,6 @@ export const FiltersSidebar = () => {
             ))}
             <Button
               variant="ghost"
-              disabled={categories.length <= VISIBLE_CATEGORIES}
               className={styles.arrowBtn}
               aria-label={isCategoriesExpanded ? 'Свернуть категории' : 'Показать все категории'}
               onClick={toggleCategoriesVisibility}

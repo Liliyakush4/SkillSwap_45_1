@@ -1,30 +1,54 @@
-import { useMemo } from 'react';
+import { useMemo, useState, useCallback } from 'react';
 import styles from './MainPage.module.css';
 import { FiltersSidebar } from '@widgets/filters-sidebar';
 import { CatalogSections } from '@widgets/catalog-sections';
 import { UserCardSection } from '@widgets/user-card-section';
 import { mapUserToUserCardProps } from '@entities/user/model/mappers';
-import { useAppSelector } from '@shared/lib/storeHooks';
+import { useAppDispatch, useAppSelector } from '@shared/lib/storeHooks';
 import { selectDb } from '@app/store/db/selectors';
 import { selectFilters } from '@features/filters/model/selectors';
 import { countAppliedFilters, createDefaultFilterValues } from '@features/filters/model/utils';
+import { useNavigate } from 'react-router-dom';
+import { AppliedFiltersChips } from '@features/filters/ui';
+import { buildAppliedBadges, removeBadge, type TBadge } from '@features/filters/model/badges';
+import { setFilters } from '@features/filters/model/filtersSlice';
+
+type SortOrder = 'newest' | 'oldest';
 
 import { selectSearchQuery } from '@features/search/model';
 import { selectUsersByFiltersAndSearch } from '@features/search/model/searchSelectors';
 
 export default function MainPage() {
   const db = useAppSelector(selectDb);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const filters = useAppSelector(selectFilters);
 
   const filteredUsers = useAppSelector(selectUsersByFiltersAndSearch);
 
   const searchQuery = useAppSelector(selectSearchQuery);
+  const [sortOrder, setSortOrder] = useState<SortOrder>('newest');
+
+  const defaults = useMemo(() => {
+    if (!db) return null;
+    return createDefaultFilterValues(db.categories);
+  }, [db]);
 
   const appliedFiltersCount = useMemo(() => {
-    if (!db) return 0;
-    const defaults = createDefaultFilterValues(db.categories);
+    if (!db || !defaults) return 0;
     return countAppliedFilters(filters, defaults);
-  }, [db, filters]);
+  }, [db, defaults, filters]);
+
+  const badges = useMemo(() => buildAppliedBadges(filters, db), [filters, db]);
+
+  const handleRemoveBadge = useCallback(
+    (badge: TBadge) => {
+      if (!defaults) return;
+      const next = removeBadge(filters, defaults, badge);
+      dispatch(setFilters(next));
+    },
+    [defaults, filters, dispatch],
+  );
 
   const hasAppliedFilters = appliedFiltersCount > 0;
 
@@ -33,9 +57,29 @@ export default function MainPage() {
   const shouldShowResults = hasAppliedFilters || hasSearch;
 
   const filteredItems = useMemo(() => {
-    if (!db) return [];
-    return filteredUsers.map((user) => mapUserToUserCardProps(db, user));
-  }, [db, filteredUsers]);
+    if (!db || !filteredUsers) return [];
+
+    // Сортируем пользователей по дате регистрации (предполагаем, что есть поле createdAt)
+    const sortedUsers = [...filteredUsers].sort((a, b) => {
+      const dateA = new Date(a.createdAt || 0).getTime();
+      const dateB = new Date(b.createdAt || 0).getTime();
+      return sortOrder === 'newest' ? dateB - dateA : dateA - dateB;
+    });
+
+    return sortedUsers.map((user) =>
+      mapUserToUserCardProps(db, user, {
+        onMore: () => navigate(`/skill/${user.id}`),
+        moreLabel: 'Подробнее',
+        showLike: true,
+      }),
+    );
+  }, [db, filteredUsers, navigate, sortOrder]);
+
+  const handleSortToggle = () => {
+    setSortOrder((prev: string) => (prev === 'newest' ? 'oldest' : 'newest'));
+  };
+
+  const sortActionLabel = sortOrder === 'newest' ? 'Сначала новые' : 'Сначала старые';
 
   return (
     <div className={styles.page}>
@@ -54,13 +98,21 @@ export default function MainPage() {
 
         {db && shouldShowResults && (
           <section className={styles.resultsSection}>
+            <AppliedFiltersChips
+              badges={badges}
+              onRemove={handleRemoveBadge}
+              className={styles.resultsBadges}
+            />
             {filteredItems.length > 0 ? (
               <UserCardSection
-                title=""
+                title={`Подходящие предложения: ${filteredItems.length}`}
                 items={filteredItems}
                 variant="grid"
-                renderHeader={false}
+                renderHeader={true}
                 className={styles.resultsGrid}
+                onActionClick={handleSortToggle}
+                actionLabel={sortActionLabel}
+                allGrid={true}
               />
             ) : (
               <div className={styles.emptyState}>Ничего не найдено</div>
