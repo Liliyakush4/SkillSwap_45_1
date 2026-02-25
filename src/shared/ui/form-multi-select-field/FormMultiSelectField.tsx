@@ -1,9 +1,12 @@
 import { useState, useRef, useEffect, useId } from 'react';
+import { createPortal } from 'react-dom';
 import clsx from 'clsx';
 import styles from './FormMultiSelectField.module.css';
 import { CheckboxGroup } from '@shared/ui/checkbox-group';
 import iconArrowDown from '../../assets/icons/ui/icon_arrow_down.svg';
 import iconArrowUp from '../../assets/icons/ui/icon_arrow_up.svg';
+
+const DROPDOWN_MAX_HEIGHT_PX = 180;
 
 export type MultiSelectOption = {
   value: string;
@@ -35,7 +38,14 @@ export function FormMultiSelectField({
   className,
 }: FormMultiSelectFieldProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [dropdownRect, setDropdownRect] = useState<{
+    top: number;
+    left: number;
+    width: number;
+  } | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const listId = useId();
   const errorId = useId();
   const hasError = Boolean(errorText);
@@ -46,15 +56,30 @@ export function FormMultiSelectField({
   };
 
   useEffect(() => {
+    if (!isOpen || !triggerRef.current) return;
+    const rect = triggerRef.current.getBoundingClientRect();
+    setDropdownRect({
+      top: rect.bottom,
+      left: rect.left,
+      width: rect.width,
+    });
+  }, [isOpen]);
+
+  useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+      const target = e.target as Node;
+      const inContainer = containerRef.current?.contains(target);
+      const inDropdown = dropdownRef.current?.contains(target);
+      if (!inContainer && !inDropdown) {
         setIsOpen(false);
+        setDropdownRect(null);
       }
     };
 
     const handleKeyDown = (e: globalThis.KeyboardEvent) => {
       if (e.key === 'Escape') {
         setIsOpen(false);
+        setDropdownRect(null);
       }
     };
 
@@ -77,6 +102,7 @@ export function FormMultiSelectField({
       {label && <label className={styles.label}>{label}</label>}
 
       <button
+        ref={triggerRef}
         type="button"
         className={clsx(
           styles.trigger,
@@ -95,19 +121,35 @@ export function FormMultiSelectField({
         <img src={ArrowIcon} alt="" aria-hidden className={styles.arrow} />
       </button>
 
-      {isOpen && (
-        <div id={listId} className={styles.dropdown}>
-          <div className={styles.dropdownContent}>
-            <CheckboxGroup
-              options={options}
-              value={value}
-              onChange={onChange}
-              disabled={disabled}
-              name={name}
-            />
-          </div>
-        </div>
-      )}
+      {isOpen &&
+        dropdownRect &&
+        createPortal(
+          <div
+            ref={dropdownRef}
+            id={listId}
+            className={styles.dropdown}
+            style={{
+              position: 'fixed',
+              top: dropdownRect.top,
+              left: dropdownRect.left,
+              width: dropdownRect.width,
+              maxHeight: DROPDOWN_MAX_HEIGHT_PX,
+              overflowY: 'auto',
+              overflowX: 'hidden',
+            }}
+          >
+            <div className={styles.dropdownContent}>
+              <CheckboxGroup
+                options={options}
+                value={value}
+                onChange={onChange}
+                disabled={disabled}
+                name={name}
+              />
+            </div>
+          </div>,
+          document.body,
+        )}
 
       {hasError && (
         <p id={errorId} className={styles.errorText}>

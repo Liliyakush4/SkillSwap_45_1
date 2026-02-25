@@ -77,7 +77,7 @@ export const RegisterStep3Form: FC<RegisterStep3FormProps> = ({
           rows={4}
         />
 
-        <FileDropzone onChange={setPhotos} multiple={true} accept="image/*" />
+        <FileDropzone value={photos} onChange={setPhotos} multiple={true} accept="image/*" />
       </div>
 
       {/* Кнопки — отдельный блок */}
