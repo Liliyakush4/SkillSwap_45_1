@@ -9,20 +9,15 @@ import { selectDb } from '@app/store/db/selectors';
 import { selectFilters } from '@features/filters/model/selectors';
 import { countAppliedFilters, createDefaultFilterValues } from '@features/filters/model/utils';
 
-import {
-  // 🔥 NEW — объединённый селектор
-  selectSearchQuery, // 🔥 NEW — чтобы понимать, есть ли поиск
-} from '@features/search/model';
+import { selectSearchQuery } from '@features/search/model';
 import { selectUsersByFiltersAndSearch } from '@features/search/model/searchSelectors';
 
 export default function MainPage() {
   const db = useAppSelector(selectDb);
   const filters = useAppSelector(selectFilters);
 
-  // 🔁 CHANGED — теперь берём объединённый результат
   const filteredUsers = useAppSelector(selectUsersByFiltersAndSearch);
 
-  // 🔥 NEW — нужен для логики отображения
   const searchQuery = useAppSelector(selectSearchQuery);
 
   const appliedFiltersCount = useMemo(() => {
@@ -33,10 +28,8 @@ export default function MainPage() {
 
   const hasAppliedFilters = appliedFiltersCount > 0;
 
-  // 🔥 NEW — проверяем, есть ли текст поиска
   const hasSearch = searchQuery.trim().length > 0;
 
-  // 🔥 NEW — теперь результаты показываем, если есть фильтры ИЛИ поиск
   const shouldShowResults = hasAppliedFilters || hasSearch;
 
   const filteredItems = useMemo(() => {
@@ -53,14 +46,12 @@ export default function MainPage() {
       <main className={styles.content}>
         {!db && <div className={styles.state}>Загрузка каталога...</div>}
 
-        {/* 🔁 CHANGED — теперь учитываем поиск тоже */}
         {db && !shouldShowResults && (
           <div className={styles.catalogWrap}>
             <CatalogSections />
           </div>
         )}
 
-        {/* 🔁 CHANGED — показываем результаты если есть фильтры или поиск */}
         {db && shouldShowResults && (
           <section className={styles.resultsSection}>
             {filteredItems.length > 0 ? (
