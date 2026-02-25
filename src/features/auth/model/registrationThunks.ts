@@ -30,15 +30,11 @@ interface ProfilePayload {
   };
 }
 
-// Исправленная функция createProfileApi
 async function createProfileApi(profilePayload?: ProfilePayload): Promise<string> {
-  // Логируем переданные данные профиля
   console.log('Создаем профиль с данными:', profilePayload);
 
-  // Имитация задержки, как будто происходит вызов API
   await new Promise((resolve) => setTimeout(resolve, 500));
 
-  // Возвращаем фиктивный userId
   return 'mocked-user-id-12345';
 }
 
