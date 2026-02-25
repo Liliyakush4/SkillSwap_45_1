@@ -63,3 +63,10 @@
   color: var(--color-accent);
   user-select: none;
 }
+
+.selectedCount {
+  font-size: var(--font-size-base, 16px);
+  font-weight: var(--font-weight-regular, 400);
+  color: var(--color-text);
+  margin: var(--space-4, 4px) 0 0;
+}
