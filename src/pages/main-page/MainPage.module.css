@@ -49,6 +49,10 @@
   opacity: 0.45;
 }
 
+.resultsBadges {
+  margin-bottom: 16px;
+}
+
 @media (max-width: 900px) {
   .page {
     grid-template-columns: 1fr;
