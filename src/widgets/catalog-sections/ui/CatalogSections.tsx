@@ -26,15 +26,40 @@ export const CatalogSections: React.FC = () => {
   const sortedByNew = [...users].sort(
     (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
   );
-  const newItems = sortedByNew.map((user) => mapUserToUserCardProps(db, user));
 
-  const recommendedItems = users.map((user) => mapUserToUserCardProps(db, user));
+  const newItems = sortedByNew.map((user) =>
+    mapUserToUserCardProps(db, user, {
+      onMore: () => navigate(`/skill/${user.id}`),
+      moreLabel: 'Подробнее',
+      showLike: true,
+    }),
+  );
+
+  const recommendedItems = users.map((user) =>
+    mapUserToUserCardProps(db, user, {
+      onMore: () => navigate(`/skill/${user.id}`),
+      moreLabel: 'Подробнее',
+      showLike: true,
+    }),
+  );
 
   return (
-    <div>
-      <UserCardSection title="Популярное" items={popularItems} variant="row" />
-      <UserCardSection title="Новое" items={newItems} variant="row" />
+    <>
+      <UserCardSection
+        title="Популярное"
+        items={popularItems}
+        variant="row"
+        onActionClick={() => {}}
+        actionLabel="Смотреть все"
+      />
+      <UserCardSection
+        title="Новое"
+        items={newItems}
+        variant="row"
+        onActionClick={() => {}}
+        actionLabel="Смотреть все"
+      />
       <UserCardSection title="Рекомендуем" items={recommendedItems} variant="grid" />
-    </div>
+    </>
   );
 };

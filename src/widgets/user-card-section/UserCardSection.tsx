@@ -14,6 +14,7 @@ export interface UserCardSectionProps {
   renderHeader?: boolean;
   cardListClassName?: string; // добавили новый проп для управления со страницы
   showNavigation?: boolean; // добавили новый проп для показа кнопок навигации
+  allGrid?: boolean; // добавили проп для фильтрованных карточек
 }
 
 // Иконка стрелки > (оптимизированный SVG)
@@ -49,20 +50,45 @@ const ArrowRightIcon = () => (
 export const UserCardSection: React.FC<UserCardSectionProps> = ({
   title,
   items,
-  variant = 'row',
+  variant: initialVariant = 'row',
   limit = 3,
-  actionLabel = 'Смотреть все',
+  actionLabel = '',
   onActionClick,
   className = '',
   renderHeader = true,
   cardListClassName, // добавили новый проп для управления со страницы
   showNavigation = false, // по умолчанию отключено
+  allGrid = false,
 }) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [showLeftButton, setShowLeftButton] = useState(false);
   const [showRightButton, setShowRightButton] = useState(false);
 
-  const displayedItems = variant === 'row' ? items.slice(0, limit) : items;
+  // Состояние для управления режимом отображения
+  const [currentVariant, setCurrentVariant] = useState<'row' | 'grid'>(initialVariant);
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  // Определяем, какие элементы показывать
+  const displayedItems = currentVariant === 'row' ? items.slice(0, limit) : items;
+
+  const buttonLabel = isExpanded && !allGrid ? 'Свернуть' : actionLabel;
+
+  const handleActionClick = () => {
+    if (isExpanded && !allGrid) {
+      // Если развернуто - сворачиваем обратно в row режим
+      setCurrentVariant('row');
+      setIsExpanded(false);
+    } else {
+      // Если свернуто - переключаем в grid режим
+      setCurrentVariant('grid');
+      setIsExpanded(true);
+    }
+
+    // Вызываем внешний обработчик, если он предоставлен
+    if (onActionClick) {
+      onActionClick();
+    }
+  };
 
   // Функция для проверки видимости кнопок навигации
   const checkScrollButtons = () => {
@@ -90,10 +116,16 @@ export const UserCardSection: React.FC<UserCardSectionProps> = ({
     }
   };
 
+  // Синхронизируем внутреннее состояние с пропсом variant
+  useEffect(() => {
+    setCurrentVariant(initialVariant);
+    setIsExpanded(initialVariant === 'grid');
+  }, [initialVariant]);
+
   // Добавляем обработчик скролла
   useEffect(() => {
     const scrollContainer = scrollContainerRef.current;
-    if (scrollContainer && showNavigation && variant === 'row') {
+    if (scrollContainer && showNavigation && currentVariant === 'row') {
       checkScrollButtons();
       scrollContainer.addEventListener('scroll', checkScrollButtons);
       window.addEventListener('resize', checkScrollButtons);
@@ -103,7 +135,7 @@ export const UserCardSection: React.FC<UserCardSectionProps> = ({
         window.removeEventListener('resize', checkScrollButtons);
       };
     }
-  }, [showNavigation, variant, displayedItems]);
+  }, [showNavigation, currentVariant, displayedItems]);
 
   return (
     <section className={`${styles.section} ${className}`}>
@@ -112,9 +144,9 @@ export const UserCardSection: React.FC<UserCardSectionProps> = ({
           <h2 className={styles.title}>{title}</h2>
 
           {onActionClick && (
-            <Button variant="ghost" onClick={onActionClick} className={styles.actionButton}>
+            <Button variant="ghost" onClick={handleActionClick} className={styles.actionButton}>
               <span className={styles.buttonContent}>
-                {actionLabel}
+                {buttonLabel}
                 <ArrowIcon />
               </span>
             </Button>
@@ -124,7 +156,7 @@ export const UserCardSection: React.FC<UserCardSectionProps> = ({
 
       {displayedItems.length > 0 && (
         <div className={styles.cardsContainer}>
-          {showNavigation && variant === 'row' && showLeftButton && (
+          {showNavigation && currentVariant === 'row' && showLeftButton && (
             <Button
               variant="ghost"
               onClick={scrollLeft}
@@ -137,14 +169,14 @@ export const UserCardSection: React.FC<UserCardSectionProps> = ({
 
           <div
             ref={scrollContainerRef}
-            className={`${cardListClassName} ${variant === 'grid' ? styles.grid : styles.row} ${showNavigation ? styles.scrollable : ''}`}
+            className={`${cardListClassName} ${currentVariant === 'grid' ? styles.grid : styles.row} ${showNavigation && currentVariant === 'row' ? styles.scrollable : ''}`}
           >
             {displayedItems.map(({ id, ...cardProps }) => (
               <UserCard key={id} {...cardProps} />
             ))}
           </div>
 
-          {showNavigation && variant === 'row' && showRightButton && (
+          {showNavigation && currentVariant === 'row' && showRightButton && (
             <Button
               variant="ghost"
               onClick={scrollRight}

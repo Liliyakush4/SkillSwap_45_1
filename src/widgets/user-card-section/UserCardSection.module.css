@@ -1,15 +1,18 @@
 @import '../../app/styles/tokens.css';
 
 .section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-32);
   width: 100%;
+  padding: 0;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: var(--space-32);
-  max-width: calc((324px * 3) + (var(--space-24) * 2));
+  max-width: 100%;
 }
 
 .title {
@@ -26,29 +29,10 @@
 .row {
   display: flex;
   gap: var(--space-24);
-  overflow-x: auto;
-  padding-bottom: var(--space-8);
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-primary) var(--color-border);
-  max-width: calc((324px * 3) + (var(--space-24) * 2));
-}
-
-.row::-webkit-scrollbar {
-  height: 6px;
-}
-
-.row::-webkit-scrollbar-track {
-  background: var(--color-border);
-  border-radius: var(--radius-small);
-}
-
-.row::-webkit-scrollbar-thumb {
-  background: var(--color-primary);
-  border-radius: var(--radius-small);
-}
-
-.row::-webkit-scrollbar-thumb:hover {
-  background: var(--color-accent);
+  scroll-snap-type: none;
+  overflow-x: hidden;
+  padding: 0px;
+  max-width: 100%;
 }
 
 /* Grid-режим */
@@ -56,7 +40,7 @@
   display: grid;
   grid-template-columns: repeat(3, 324px);
   gap: var(--space-24);
-  max-width: calc((324px * 3) + (var(--space-24) * 2));
+  max-width: 100%;
 }
 
 .actionButton {
@@ -147,50 +131,17 @@
 @media (max-width: 1400px) {
   .grid {
     grid-template-columns: repeat(2, 324px);
-    max-width: calc((324px * 2) + var(--space-24));
-  }
-
-  .header {
-    max-width: calc((324px * 2) + var(--space-24));
-  }
-
-  .row {
-    max-width: calc((324px * 2) + var(--space-24));
+    max-width: 100%;
   }
 }
 
-@media (max-width: 1024px) {
-  .section {
-    padding-left: 100px;
-  }
-}
-
-@media (max-width: 900px) {
+@media (max-width: 1060px) {
   .grid {
-    grid-template-columns: 324px;
-    max-width: 324px;
-  }
-
-  .header {
-    max-width: 324px;
-  }
-
-  .row {
-    max-width: 324px;
+    grid-template-columns: repeat(1, 324px);
   }
 }
 
 @media (max-width: 768px) {
-  .section {
-    padding-left: var(--space-24);
-    padding-right: var(--space-24);
-  }
-
-  .grid {
-    grid-template-columns: 1fr;
-    max-width: 100%;
-  }
-
   .header {
     max-width: 100%;
     flex-direction: column;
@@ -212,25 +163,5 @@
   /* Глобальный стиль для кнопки (если нужен) */
   .header :global(.button) {
     width: 100%;
-  }
-
-  .row {
-    max-width: 100%;
-  }
-}
-
-@media (max-width: 480px) {
-  .section {
-    padding: var(--space-16) 0;
-    padding-left: var(--space-16);
-    padding-right: var(--space-16);
-  }
-
-  .grid {
-    gap: var(--space-12);
-  }
-
-  .row {
-    gap: var(--space-12);
   }
 }

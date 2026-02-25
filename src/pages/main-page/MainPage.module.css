@@ -17,7 +17,11 @@
 }
 
 .catalogWrap {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-40);
+  width: 100%;
+  max-width: 1020px;
 }
 
 .resultsSection {
@@ -45,7 +49,7 @@
   opacity: 0.45;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 900px) {
   .page {
     grid-template-columns: 1fr;
     gap: 16px;
