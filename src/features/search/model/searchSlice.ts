@@ -1,5 +1,4 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import type { RootState } from '@app/store/store';
 
 export type SearchState = {
   query: string;
@@ -24,9 +23,3 @@ const searchSlice = createSlice({
 
 export const { setQuery, clearQuery } = searchSlice.actions;
 export const searchReducer = searchSlice.reducer;
-
-/* ================== SELECTORS ================== */
-
-export const selectSearchQuery = (state: RootState): string => state.search.query;
-
-export const selectHasQuery = (state: RootState): boolean => state.search.query.trim().length > 0;

@@ -1,7 +1,7 @@
 import cls from './HeaderCenter.module.css';
 import { SearchInput } from '@shared/ui/search-input';
 import { useAppDispatch, useAppSelector } from '@shared/lib/storeHooks';
-import { clearQuery, selectSearchQuery, setQuery } from '@features/search/model/searchSlice';
+import { clearQuery, selectSearchQuery, setQuery } from '@features/search/model';
 
 export const HeaderCenter = () => {
   //const [search, setSearch] = useState('');

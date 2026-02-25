@@ -13,7 +13,7 @@ import {
   // 🔥 NEW — объединённый селектор
   selectSearchQuery, // 🔥 NEW — чтобы понимать, есть ли поиск
 } from '@features/search/model';
-import { selectUsersByFiltersAndSearch } from '@features/search/model/selectors';
+import { selectUsersByFiltersAndSearch } from '@features/search/model/searchSelectors';
 
 export default function MainPage() {
   const db = useAppSelector(selectDb);
