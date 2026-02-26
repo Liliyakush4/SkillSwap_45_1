@@ -22,6 +22,7 @@ import filtersReducer from '@features/filters/model/filtersSlice';
 import authReducer from '@features/auth/model/authSlice';
 import RegistrationReducer from '@features/auth/model/registrationSlice';
 import profileReducer from '@features/profile/model/profileSlice';
+import { searchReducer } from '@features/search/model';
 
 const persistConfig = {
   key: 'root',
@@ -39,6 +40,7 @@ const rootReducer = combineReducers({
   auth: authReducer, // добавила
   registration: RegistrationReducer,
   profile: profileReducer,
+  search: searchReducer,
   // сюда дописывать новые редьюсеры
 });
 
