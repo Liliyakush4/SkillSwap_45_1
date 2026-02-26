@@ -16,13 +16,14 @@ export interface RegistrationStep2 {
   subcategorySkill: Subcategory;
 }
 
+// Обновленный интерфейс для третьего шага
 export interface RegistrationStep3 {
   skillName: string;
-  categorySkill: Category;
-  subcategorySkill: Subcategory;
+  category: string[];
+  subcategory: string[];
   description: string;
-  photoPreviewUrl?: Url; // ссылка на предпросмотр
-  photoMetadata?: Record<string, unknown>; // метаданные, если нужны
+  photos: File[];
+  photoPreviewUrl?: Url;
 }
 
 interface RegistrationState {
@@ -63,6 +64,7 @@ const registrationSlice = createSlice({
 
 export const { selectRegistrationStep1, selectRegistrationStep2, selectRegistrationStep3 } =
   registrationSlice.selectors;
+
 export const { saveStep1, saveStep2, saveStep3, resetRegistrationDraft } =
   registrationSlice.actions;
 

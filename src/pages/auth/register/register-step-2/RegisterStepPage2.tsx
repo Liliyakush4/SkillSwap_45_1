@@ -1,18 +1,24 @@
 import { useNavigate } from 'react-router-dom';
-import { RegisterStep2Form } from '@features/auth/ui/register-step-2-form';
+import { useAppDispatch } from '@shared/lib/storeHooks';
+import { saveStep2 } from '@features/auth/model/registrationSlice';
+import {
+  RegisterStep2Form,
+  type RegisterStep2FormValues,
+} from '@features/auth/ui/register-step-2-form';
 import styles from './RegisterStepPage2.module.css';
 import PersonImage from '@shared/assets/images/auth/registration_person.svg';
 import { ContentSection } from '@shared/ui/content-section/ContentSection';
 import { StepProgress } from '@shared/ui/step-progress/StepProgress';
+import React from 'react';
 
 /* данные для проверки, потом уберем*/
-const genderOptions = [
+const genderOptions: Array<{ value: string; label: string; disabled?: boolean }> = [
   { value: '', label: 'Не указан' },
   { value: 'm', label: 'Мужской' },
   { value: 'f', label: 'Женский' },
 ];
 
-const cityOptions = [
+const cityOptions: Array<{ value: string; label: string; disabled?: boolean }> = [
   { value: 'msk', label: 'Москва' },
   { value: 'spb', label: 'Санкт-Петербург' },
   { value: 'samara', label: 'Самара' },
@@ -62,27 +68,130 @@ const cityOptions = [
   { value: 'simferopol', label: 'Симферополь' },
 ];
 
-const skillCategoryLearnOptions = [
-  { value: 'business', label: 'Бизнес и карьера' },
-  { value: 'creativity', label: 'Творчество и искусство' },
-  { value: 'languages', label: 'Иностранные языки' },
-  { value: 'health', label: 'Здоровье и лайфстайл' },
-  { value: 'home', label: 'Дом и уют' },
+// Проверяем тип MultiSelectOption из формы
+type MultiSelectOption = { value: string; label: string };
+
+// ВАЖНО: значения должны быть числами в виде строк, чтобы можно было преобразовать в number
+const skillCategoryLearnOptions: MultiSelectOption[] = [
+  { value: '1', label: 'Бизнес и карьера' },
+  { value: '2', label: 'Творчество и искусство' },
+  { value: '3', label: 'Иностранные языки' },
+  { value: '4', label: 'Здоровье и лайфстайл' },
+  { value: '5', label: 'Дом и уют' },
 ];
 
-const skillSubcategoryLearnOptions = [
-  { value: 'drawing', label: 'Рисование и иллюстрация' },
-  { value: 'photography', label: 'Фотография' },
-  { value: 'video', label: 'Видеомонтаж' },
-  { value: 'music_sound', label: 'Музыка и звук' },
-  { value: 'acting', label: 'Актёрское мастерство' },
-  { value: 'writing', label: 'Креативное письмо' },
-  { value: 'art_therapy', label: 'Арт-терапия' },
-  { value: 'decor_diy', label: 'Декор и DIY' },
+const skillSubcategoryLearnOptions: MultiSelectOption[] = [
+  { value: '101', label: 'Рисование и иллюстрация' },
+  { value: '102', label: 'Фотография' },
+  { value: '103', label: 'Видеомонтаж' },
+  { value: '104', label: 'Музыка и звук' },
+  { value: '105', label: 'Актёрское мастерство' },
+  { value: '106', label: 'Креативное письмо' },
+  { value: '107', label: 'Арт-терапия' },
+  { value: '108', label: 'Декор и DIY' },
 ];
 
 export const RegisterStep2Page: React.FC = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const [formData, setFormData] = React.useState<RegisterStep2FormValues>(() => {
+    const savedData = localStorage.getItem('registerStep2Data');
+    if (savedData) {
+      try {
+        const parsed = JSON.parse(savedData);
+        if (parsed.birthDate) {
+          parsed.birthDate = new Date(parsed.birthDate);
+        }
+        return parsed;
+      } catch (e) {
+        console.error('Failed to parse saved form data:', e);
+      }
+    }
+
+    return {
+      name: '',
+      birthDate: null,
+      gender: '',
+      city: null,
+      skillCategoryLearn: [],
+      skillSubcategoryLearn: [],
+    };
+  });
+
+  // Функция для сохранения данных в localStorage
+  const saveFormData = (data: RegisterStep2FormValues) => {
+    setFormData(data);
+    // Сохраняем в localStorage, преобразуя Date в строку
+    const dataToSave = {
+      ...data,
+      birthDate: data.birthDate ? data.birthDate.toISOString() : null,
+    };
+    localStorage.setItem('registerStep2Data', JSON.stringify(dataToSave));
+  };
+
+  // Обработчик для перехода вперед
+  const handleContinue = (data: RegisterStep2FormValues) => {
+    saveFormData(data);
+
+    // Берем первую выбранную категорию (или пустую строку)
+    const selectedCategoryIdStr =
+      data.skillCategoryLearn.length > 0 ? data.skillCategoryLearn[0] : '';
+
+    // Берем первую выбранную подкатегорию (или пустую строку)
+    const selectedSubcategoryIdStr =
+      data.skillSubcategoryLearn.length > 0 ? data.skillSubcategoryLearn[0] : '';
+
+    // Преобразуем string в number (Id)
+    const selectedCategoryId = selectedCategoryIdStr ? parseInt(selectedCategoryIdStr, 10) : 0;
+    const selectedSubcategoryId = selectedSubcategoryIdStr
+      ? parseInt(selectedSubcategoryIdStr, 10)
+      : 0;
+
+    // Находим соответствующие названия
+    const categoryName = selectedCategoryIdStr
+      ? skillCategoryLearnOptions.find((opt) => opt.value === selectedCategoryIdStr)?.label || ''
+      : '';
+
+    const subcategoryName = selectedSubcategoryIdStr
+      ? skillSubcategoryLearnOptions.find((opt) => opt.value === selectedSubcategoryIdStr)?.label ||
+        ''
+      : '';
+
+    // Сохраняем данные второго шага в Redux store
+    dispatch(
+      saveStep2({
+        name: data.name,
+        birthDate: data.birthDate ? data.birthDate.toISOString() : null,
+        gender: data.gender,
+        city: data.city || '',
+        categorySkill: {
+          id: selectedCategoryId, // ← Теперь number!
+          name: categoryName,
+          color: '', // ← Нужно добавить цвет (или сделать его опциональным в типе)
+        },
+        subcategorySkill: {
+          id: selectedSubcategoryId, // ← Теперь number!
+          name: subcategoryName,
+          categoryId: selectedCategoryId, // ← Нужно добавить categoryId
+        },
+      }),
+    );
+
+    navigate('/auth/register/step-3');
+  };
+
+  // Обработчик для перехода назад
+  const handleBack = (data: RegisterStep2FormValues) => {
+    saveFormData(data);
+    navigate('/auth/register/step-1');
+  };
+
+  // Обработчик для загрузки аватара (заглушка)
+  const handleAvatarChange = (file: File) => {
+    console.log('Avatar file selected:', file);
+    // Здесь можно добавить логику загрузки на сервер
+  };
 
   const heroText = (
     <div className={styles.heroContainer}>
@@ -97,20 +206,15 @@ export const RegisterStep2Page: React.FC = () => {
       <ContentSection
         main={
           <RegisterStep2Form
-            values={{
-              name: '',
-              birthDate: null,
-              gender: '',
-              city: null,
-              skillCategoryLearn: [],
-              skillSubcategoryLearn: [],
-            }}
+            values={formData} // Передаём текущие данные формы
             genderOptions={genderOptions}
             cityOptions={cityOptions}
             skillCategoryLearnOptions={skillCategoryLearnOptions}
             skillSubcategoryLearnOptions={skillSubcategoryLearnOptions}
-            onSubmit={() => navigate('/auth/register/step-3')}
-            onBack={() => navigate('/auth/register/step-1')}
+            onSubmit={handleContinue} // Для кнопки "Продолжить"
+            onBack={() => handleBack(formData)} // Для кнопки "Назад" - передаем текущие данные
+            onAvatarChange={handleAvatarChange} // Обработчик загрузки аватара
+            // avatarSrc можно передать, если есть загруженный аватар
           />
         }
         heroText={heroText}

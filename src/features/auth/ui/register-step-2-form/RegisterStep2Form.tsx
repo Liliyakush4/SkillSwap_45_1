@@ -21,7 +21,7 @@ export type RegisterStep2FormValues = {
 export interface RegisterStep2FormProps {
   values: RegisterStep2FormValues;
   onSubmit?: (data: RegisterStep2FormValues) => void;
-  onBack?: () => void;
+  onBack?: (data: RegisterStep2FormValues) => void;
   onAvatarChange?: (file: File) => void;
   avatarSrc?: string;
   genderOptions: Array<{ value: string; label: string; disabled?: boolean }>;
@@ -43,106 +43,104 @@ export const RegisterStep2Form: FC<RegisterStep2FormProps> = ({
   skillSubcategoryLearnOptions,
   className,
 }) => {
-  const [name, setName] = useState(values.name);
-  const [birthDate, setBirthDate] = useState<Date | null>(values.birthDate);
-  const [gender, setGender] = useState(values.gender);
-  const [city, setCity] = useState(values.city);
-  const [skillCategoryLearn, setSkillCategoryLearn] = useState(values.skillCategoryLearn);
-  const [skillSubcategoryLearn, setSkillSubcategoryLearn] = useState(values.skillSubcategoryLearn);
+  const [formData, setFormData] = useState<RegisterStep2FormValues>(values);
 
-  // Обновление состояний при изменении пропсов
   useEffect(() => {
-    setName(values.name);
-    setBirthDate(values.birthDate);
-    setGender(values.gender);
-    setCity(values.city);
-    setSkillCategoryLearn(values.skillCategoryLearn);
-    setSkillSubcategoryLearn(values.skillSubcategoryLearn);
+    setFormData(values);
   }, [values]);
 
-  const formData: RegisterStep2FormValues = {
-    name,
-    birthDate,
-    gender,
-    city,
-    skillCategoryLearn,
-    skillSubcategoryLearn,
-  };
+  const { name, birthDate, gender, city, skillCategoryLearn, skillSubcategoryLearn } = formData;
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    onSubmit?.(formData);
+  const handleChange = <K extends keyof RegisterStep2FormValues>(
+    key: K,
+    value: RegisterStep2FormValues[K],
+  ) => {
+    setFormData((prev) => ({ ...prev, [key]: value }));
   };
 
   const handleContinue = () => {
     onSubmit?.(formData);
   };
 
+  const handleBack = () => {
+    onBack?.(formData);
+  };
+
   return (
-    <form className={`${styles.form} ${className ?? ''}`} onSubmit={handleSubmit} noValidate>
+    <form
+      className={`${styles.form} ${className ?? ''}`}
+      onSubmit={(e) => {
+        e.preventDefault();
+        handleContinue();
+      }}
+      noValidate
+    >
       <div className={styles.formContent}>
         <div className={styles.avatarWrap}>
           <AvatarUploader src={avatarSrc} alt="Аватар" size={72} onAddPhoto={onAvatarChange} />
         </div>
-
         <div className={styles.field}>
-          <Input label="Имя" placeholder="Введите ваше имя" value={name} onChange={setName} />
+          <Input
+            label="Имя"
+            placeholder="Введите ваше имя"
+            value={name}
+            onChange={(value) => handleChange('name', value)}
+          />
         </div>
-
         <div className={styles.twoColRow}>
           <div className={styles.field}>
             <span className={styles.standaloneLabel}>Дата рождения</span>
-            <BirthDateInput value={birthDate} onChange={setBirthDate} disabled={false} />
+            <BirthDateInput
+              value={birthDate}
+              onChange={(date) => handleChange('birthDate', date)}
+              disabled={false}
+            />
           </div>
           <div className={styles.field}>
             <FormSelectField
               label="Пол"
               placeholder="Не указан"
               value={gender}
-              onChange={setGender}
+              onChange={(value) => handleChange('gender', value)}
               options={genderOptions}
               disabled={false}
               className={styles.genderField}
             />
           </div>
         </div>
-
         <div className={styles.field}>
           <FormAutocompleteField
             label="Город"
             placeholder="Не указан"
             value={city}
-            onChange={setCity}
+            onChange={(value) => handleChange('city', value)}
             options={cityOptions}
             disabled={false}
           />
         </div>
-
         <div className={styles.field}>
           <FormMultiSelectField
             label="Категория навыка, которому хотите научиться"
             placeholder="Выберите категорию"
             value={skillCategoryLearn}
-            onChange={setSkillCategoryLearn}
+            onChange={(value) => handleChange('skillCategoryLearn', value)}
             options={skillCategoryLearnOptions}
             disabled={false}
           />
         </div>
-
         <div className={styles.field}>
           <FormMultiSelectField
             label="Подкатегория навыка, которому хотите научиться"
             placeholder="Выберите подкатегорию"
             value={skillSubcategoryLearn}
-            onChange={setSkillSubcategoryLearn}
+            onChange={(value) => handleChange('skillSubcategoryLearn', value)}
             options={skillSubcategoryLearnOptions}
             disabled={false}
           />
         </div>
-
         <div className={styles.buttonsWrapper}>
           <div className={styles.buttonsRow}>
-            <Button type="button" variant="secondary" fullWidth onClick={onBack}>
+            <Button type="button" variant="secondary" fullWidth onClick={handleBack}>
               Назад
             </Button>
             <Button type="button" variant="primary" fullWidth onClick={handleContinue}>
