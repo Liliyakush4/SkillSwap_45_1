@@ -19,6 +19,7 @@ import {
 import storage from 'redux-persist/lib/storage';
 import { favoritesReducer } from '@features/favorites/model';
 import filtersReducer from '@features/filters/model/filtersSlice';
+import { searchReducer } from '@features/search/model/searchSlice';
 import authReducer from '@features/auth/model/authSlice';
 import RegistrationReducer from '@features/auth/model/registrationSlice';
 import profileReducer from '@features/profile/model/profileSlice';
@@ -36,6 +37,7 @@ const rootReducer = combineReducers({
   sort: sortReducer,
   favorites: favoritesReducer,
   filters: filtersReducer,
+  search: searchReducer,
   auth: authReducer, // добавила
   registration: RegistrationReducer,
   profile: profileReducer,

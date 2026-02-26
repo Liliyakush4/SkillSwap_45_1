@@ -27,7 +27,7 @@ export const AppliedFiltersChips: React.FC<AppliedFiltersChipsProps> = ({
         <div key={badge.id} className={styles.chip}>
           <span className={styles.label}>{badge.label}</span>
           <IconButton
-            icon={<img src={iconCross} alt="" aria-hidden="true"/>}
+            icon={<img src={iconCross} alt="" aria-hidden="true" />}
             variant="ghost"
             aria-label="Удалить фильтр"
             onClick={() => onRemove(badge)}

@@ -6,7 +6,7 @@ import { UserCardSection } from '@widgets/user-card-section';
 import { mapUserToUserCardProps } from '@entities/user/model/mappers';
 import { useAppDispatch, useAppSelector } from '@shared/lib/storeHooks';
 import { selectDb } from '@app/store/db/selectors';
-import { selectFilters, selectFilteredUsers } from '@features/filters/model/selectors';
+import { selectFilters } from '@features/filters/model/selectors';
 import { countAppliedFilters, createDefaultFilterValues } from '@features/filters/model/utils';
 import { useNavigate } from 'react-router-dom';
 import { AppliedFiltersChips } from '@features/filters/ui';
@@ -17,13 +17,19 @@ import { useSelector } from 'react-redux';
 
 type SortOrder = 'newest' | 'oldest';
 
+import { selectSearchQuery } from '@features/search/model';
+import { selectUsersByFiltersAndSearch } from '@features/search/model/searchSelectors';
+
 export default function MainPage() {
   const db = useAppSelector(selectDb);
   const isLikedData = useSelector(selectFavoriteUserIds);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const filters = useAppSelector(selectFilters);
-  const filteredUsers = useAppSelector(selectFilteredUsers);
+
+  const filteredUsers = useAppSelector(selectUsersByFiltersAndSearch);
+
+  const searchQuery = useAppSelector(selectSearchQuery);
   const [sortOrder, setSortOrder] = useState<SortOrder>('newest');
 
   const defaults = useMemo(() => {
@@ -55,6 +61,10 @@ export default function MainPage() {
   );
 
   const hasAppliedFilters = appliedFiltersCount > 0;
+
+  const hasSearch = searchQuery.trim().length > 0;
+
+  const shouldShowResults = hasAppliedFilters || hasSearch;
 
   const filteredItems = useMemo(() => {
     if (!db || !filteredUsers) return [];
@@ -93,13 +103,13 @@ export default function MainPage() {
       <main className={styles.content}>
         {!db && <div className={styles.state}>Загрузка каталога...</div>}
 
-        {db && !hasAppliedFilters && (
+        {db && !shouldShowResults && (
           <div className={styles.catalogWrap}>
             <CatalogSections />
           </div>
         )}
 
-        {db && hasAppliedFilters && (
+        {db && shouldShowResults && (
           <section className={styles.resultsSection}>
             <AppliedFiltersChips
               badges={badges}
@@ -118,7 +128,7 @@ export default function MainPage() {
                 allGrid={true}
               />
             ) : (
-              <div className={styles.emptyState}>Ничего не найдено по выбранным фильтрам</div>
+              <div className={styles.emptyState}>Ничего не найдено</div>
             )}
           </section>
         )}
