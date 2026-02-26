@@ -6,7 +6,6 @@ import shareIcon from '@shared/assets/icons/ui/icon_copy_link.svg';
 import ellipsisIcon from '@shared/assets/icons/ui/icon_ellipsis.svg';
 import { Button } from '@shared/ui/Button';
 import { useCallback, useState } from 'react';
-import { OfferCreatedModal } from '@widgets/modals/OfferCreatedModal';
 import { UserCardSection } from '@widgets/user-card-section';
 import { useSelector } from 'react-redux';
 import { mapUserToUserCardProps } from '@entities/user/model';
@@ -16,14 +15,20 @@ import { useAppDispatch } from '@shared/lib/storeHooks';
 import { selectFavoriteUserIds, toggleFavorite } from '@features/favorites/model/favoritesSlice';
 import { selectDb } from '@app/store/db/selectors';
 import { FavoriteToggle } from '@shared/ui/favorite-toggle';
+import { selectIsAuthenticated } from '@features/auth/model/selectors';
+import { OfferLoginModal } from '@widgets/modals/OfferLoginModal';
+import { OfferPreviewModal } from '@widgets/modals/OfferPreviewModal';
+import clockIcon from '@shared/assets/icons/common/icon_clock.svg';
 
 export default function SkillPage() {
   const db = useSelector(selectDb);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isOfferSent, setIsOfferSent] = useState(false);
   const { id } = useParams<{ id: string }>();
   const isLikedData = useSelector(selectFavoriteUserIds);
+  const isAuthenticated = useSelector(selectIsAuthenticated);
 
   const handlerLike = useCallback(
     (id: number) => {
@@ -32,7 +37,6 @@ export default function SkillPage() {
     [dispatch],
   );
 
-  // 2. Проверки и ранние return — только ПОСЛЕ всех хуков
   if (!db) {
     return <div>Загрузка данных...</div>;
   }
@@ -61,31 +65,68 @@ export default function SkillPage() {
       onMore: () => navigate(`/skill/${user.id}`),
       onLikeClick: () => handlerLike(user.id),
       showLike: true,
-      likesCount: isLikedData.includes(user.id) ? 1 : undefined, // можно юзерам добавить поле со списком лайкнувших и приплюсовать сюда
+      likesCount: isLikedData.includes(user.id) ? 1 : undefined,
       isLiked: isLikedData.includes(user.id),
       moreLabel: 'Подробнее',
     }),
   );
 
-  // Функция для открытия модального окна
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
 
-  // Функция для закрытия модального окна
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
 
-  // Создаем кнопку с использованием компонента Button
+  const handleSendOffer = () => {
+    if (isAuthenticated) {
+      setIsOfferSent(true);
+      // Здесь можно добавить логику отправки предложения на сервер
+    }
+  };
+
+  // Новый обработчик для клика по кнопке
+  const handleButtonClick = () => {
+    if (isOfferSent) {
+      // Если предложение уже отправлено - переходим на главную
+      navigate('/');
+    } else {
+      // Если предложение еще не отправлено - открываем модальное окно
+      handleOpenModal();
+    }
+  };
+
+  // Определяем текст и вариант кнопки в зависимости от состояния
+  const getButtonConfig = () => {
+    if (isAuthenticated && isOfferSent) {
+      return {
+        text: 'Обмен предложен',
+        variant: 'secondary' as const,
+        disabled: false,
+        icon: <img src={clockIcon} alt="" className={styles.buttonIcon} />,
+      };
+    }
+    return {
+      text: 'Предложить обмен',
+      variant: 'primary' as const,
+      disabled: false,
+      icon: null,
+    };
+  };
+
+  const buttonConfig = getButtonConfig();
+
   const actions = (
     <div className={styles.actions}>
       <Button
-        variant="primary"
-        className={styles.editButton}
-        onClick={handleOpenModal} // Передаем функцию открытия
+        variant={buttonConfig.variant}
+        className={`${styles.editButton} ${isOfferSent ? styles.sentButton : ''}`}
+        onClick={handleButtonClick} // Используем новый обработчик
+        disabled={buttonConfig.disabled}
       >
-        Предложить обмен
+        {buttonConfig.icon && <span className={styles.iconWrapper}>{buttonConfig.icon}</span>}
+        {buttonConfig.text}
       </Button>
     </div>
   );
@@ -138,7 +179,7 @@ export default function SkillPage() {
             description={skillData.description}
             images={skillData.images}
             className={styles.skillSectionCard}
-            actions={actions} // Передаем кнопки в SkillCard
+            actions={actions}
             variant="interactive"
           />
         </div>
@@ -153,8 +194,16 @@ export default function SkillPage() {
         showNavigation={true}
       />
 
-      {/* Добавляем модальное окно */}
-      <OfferCreatedModal isOpen={isModalOpen} onClose={handleCloseModal} />
+      {isAuthenticated && (
+        <OfferPreviewModal
+          isOpen={isModalOpen}
+          onClose={() => {
+            handleCloseModal();
+            handleSendOffer(); // Вызываем при закрытии модального окна
+          }}
+        />
+      )}
+      {!isAuthenticated && <OfferLoginModal isOpen={isModalOpen} onClose={handleCloseModal} />}
     </div>
   );
 }
