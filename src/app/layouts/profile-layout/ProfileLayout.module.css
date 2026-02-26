@@ -44,15 +44,17 @@
   }
 }
 
+@media (max-width: 1023px) {
+  .main {
+    padding: 40px;
+  }
+}
+
 /* Tablet: фото, боковое меню, форма — вертикальный порядок */
 @media (min-width: 768px) and (max-width: 1023px) {
   .layout {
     grid-template-areas:
       'sidebar'
       'main';
-  }
-
-  .main {
-    padding: 40px;
   }
 }
