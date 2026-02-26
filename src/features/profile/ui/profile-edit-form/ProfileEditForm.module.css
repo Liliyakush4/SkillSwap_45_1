@@ -153,3 +153,13 @@
     gap: 196px;
   }
 }
+
+@media (max-width: 1024px) {
+  .fieldsGeneral {
+    width: 100%;
+  }
+
+  .fieldsColumn {
+    width: 100%;
+  }
+}
