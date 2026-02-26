@@ -104,6 +104,11 @@
   outline-offset: 2px;
 }
 
+.sentButton {
+  display: flex !important;
+  gap: var(--space-8) !important;
+}
+
 /* Планшеты */
 @media (max-width: 1450px) {
   .skillSection {
