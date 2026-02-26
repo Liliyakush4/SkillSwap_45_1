@@ -1,9 +1,10 @@
 import React, { useState, useMemo } from 'react';
 import styles from './ImageGallery.module.css';
+import type { SkillImage } from '@shared/api/mock/types';
 
 export interface ImageGalleryProps {
   /** Массив изображений */
-  images: string[];
+  images: SkillImage[];
   /** Вариант отображения: interactive (интерактивный) или static (статический) */
   variant?: 'interactive' | 'static';
   /** Дополнительный CSS класс */
@@ -29,22 +30,25 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
   }, [activeIndex, images.length]);
 
   // Если нет изображений — показываем заглушку
-  if (images.length === 0) {
-    images = [
-      { src: '/images/skills/placeholders/111_4.jpg' },
-      { src: '/images/skills/placeholders/111_6.jpg' },
-      { src: '/images/skills/placeholders/111_8.jpg' },
-      { src: '/images/skills/placeholders/111_10.jpg' },
-    ];
-  }
+  const displayImages = useMemo(() => {
+    if (images.length === 0) {
+      return [
+        { src: '/images/skills/placeholders/111_4.jpg' },
+        { src: '/images/skills/placeholders/111_6.jpg' },
+        { src: '/images/skills/placeholders/111_8.jpg' },
+        { src: '/images/skills/placeholders/111_10.jpg' },
+      ];
+    }
+    return images;
+  }, [images]);
 
   const isInteractive = variant === 'interactive';
 
-  const mainImage = isInteractive ? images[correctedActiveIndex] : images[0];
+  const mainImage = isInteractive ? displayImages[correctedActiveIndex] : displayImages[0];
 
-  const thumbnails = images.slice(1, 4);
+  const thumbnails = displayImages.slice(1, 4);
 
-  const remainingCount = images.length - 4;
+  const remainingCount = displayImages.length - 4;
 
   const showOverlay = remainingCount > 0 && thumbnails.length === 3;
 
@@ -55,7 +59,7 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
   };
 
   const handleNext = () => {
-    if (isInteractive && correctedActiveIndex < images.length - 1) {
+    if (isInteractive && correctedActiveIndex < displayImages.length - 1) {
       setActiveIndex(correctedActiveIndex + 1);
     }
   };
@@ -72,12 +76,12 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
     <div className={`${styles.gallery} ${className}`}>
       <div className={styles.mainContainer}>
         <img
-          src={mainImage}
+          src={mainImage.src}
           alt={isInteractive ? `Изображение ${correctedActiveIndex + 1}` : 'Главное изображение'}
           className={styles.mainImage}
         />
 
-        {isInteractive && images.length > 1 && (
+        {isInteractive && displayImages.length > 1 && (
           <>
             <button
               type="button"
@@ -104,10 +108,10 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
             <button
               type="button"
               className={`${styles.navButton} ${styles.nextButton} ${
-                correctedActiveIndex === images.length - 1 ? styles.disabled : ''
+                correctedActiveIndex === displayImages.length - 1 ? styles.disabled : ''
               }`}
               onClick={handleNext}
-              disabled={correctedActiveIndex === images.length - 1}
+              disabled={correctedActiveIndex === displayImages.length - 1}
               aria-label="Следующее изображение"
             >
               <svg
@@ -142,7 +146,11 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
               role={isClickable ? 'button' : undefined}
               tabIndex={isClickable ? 0 : undefined}
             >
-              <img src={image} alt={`Миниатюра ${index + 2}`} className={styles.thumbnailImage} />
+              <img
+                src={image.src}
+                alt={`Миниатюра ${index + 2}`}
+                className={styles.thumbnailImage}
+              />
 
               {isLastWithOverlay && (
                 <div className={styles.overlay}>

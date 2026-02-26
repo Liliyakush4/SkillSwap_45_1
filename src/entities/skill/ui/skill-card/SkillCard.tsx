@@ -2,13 +2,14 @@ import React from 'react';
 import { ImageGallery, type ImageGalleryProps } from '@shared/ui/ImageGallery';
 import styles from './SkillCard.module.css';
 import clsx from 'clsx';
+import type { SkillImage } from '@shared/api/mock/types';
 
 export interface SkillCardProps {
   title: string;
   category: string;
   subcategory?: string;
   description: string;
-  images: string[];
+  images: SkillImage[];
   actions?: React.ReactNode;
   className?: string;
   variant?: ImageGalleryProps['variant']; //для отключения интерактива

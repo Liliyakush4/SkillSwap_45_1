@@ -50,10 +50,7 @@
       "subcategoryId": 2,
       "ownerUserId": 1,
       "description": "Работа с микроконтроллерами, схемы, компоненты.",
-      "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
-      ]
+      "images": []
     },
     {
       "id": 105,
@@ -71,10 +68,7 @@
       "subcategoryId": 23,
       "ownerUserId": 1,
       "description": "Основы композиции, съемки, настройка камеры.",
-      "images": [
-      "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
-      ]
+      "images": []
     },
     {
       "id": 107,
@@ -98,10 +92,7 @@
       "subcategoryId": 29,
       "ownerUserId": 6,
       "description": "Фото, видео, тексты для Instagram, TikTok.",
-      "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
-      ]
+      "images": []
     },
     {
       "id": 109,
@@ -124,10 +115,7 @@
       "subcategoryId": 9,
       "ownerUserId": 7,
       "description": "Базовая грамматика, разговорные фразы.",
-      "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
-      ]
+      "images": []
     },
     {
       "id": 111,
@@ -180,10 +168,7 @@
       "subcategoryId": 36,
       "ownerUserId": 10,
       "description": "Общие принципы здоровья, тренировки.",
-      "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
-      ]
+      "images": []
     },
     {
       "id": 115,
@@ -220,10 +205,7 @@
       "subcategoryId": 3,
       "ownerUserId": 12,
       "description": "Swift, Xcode, создание приложений.",
-      "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
-      ]
+      "images": []
     },
     {
       "id": 118,
@@ -259,10 +241,7 @@
       "subcategoryId": 3,
       "ownerUserId": 14,
       "description": "Настройка и программирование систем автоматизации.",
-      "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
-      ]
+      "images": []
     },
     {
       "id": 121,
@@ -287,8 +266,10 @@
       "ownerUserId": 16,
       "description": "Обучение игре на скрипке, практика.",
       "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+        { "src": "/images/skills/122_1.jpg" },
+        { "src": "/images/skills/122_2.jpg" },
+        { "src": "/images/skills/122_3.jpg" },
+        { "src": "/images/skills/122_4.jpg" }
       ]
     },
     {
@@ -298,10 +279,7 @@
       "subcategoryId": 41,
       "ownerUserId": 16,
       "description": "Индивидуальные тренировки для начинающих.",
-      "images": [
-      "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
-      ]
+      "images": []
     },
     {
       "id": 124,
@@ -318,15 +296,12 @@
     },
     {
       "id": 125,
-      "title": "Монтаж видео для YouTube",
+      "title": "Монтаж видео для You***",
       "categoryId": 4,
       "subcategoryId": 23,
       "ownerUserId": 17,
       "description": "Обработка видео, оформление канала.",
-      "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
-      ]
+      "images": []
     },
     {
       "id": 126,
@@ -348,10 +323,7 @@
       "subcategoryId": 3,
       "ownerUserId": 18,
       "description": "Создание серверных приложений.",
-      "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
-      ]
+      "images": []
     },
     {
       "id": 128,
@@ -375,10 +347,7 @@
       "subcategoryId": 26,
       "ownerUserId": 20,
       "description": "Обучение игре на скрипке.",
-      "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
-      ]
+      "images": []
     },
     {
       "id": 130,
@@ -400,10 +369,7 @@
       "subcategoryId": 40,
       "ownerUserId": 21,
       "description": "Тренировки и советы по питанию.",
-      "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
-      ]
+      "images": []
     },
     {
       "id": 132,
@@ -425,10 +391,7 @@
       "subcategoryId": 28,
       "ownerUserId": 22,
       "description": "Правка текстов, подготовка к публикации.",
-      "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
-      ]
+      "images": []
     },
     {
       "id": 134,
@@ -453,8 +416,11 @@
       "ownerUserId": 24,
       "description": "Проектирование электроники, схемотехника.",
       "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+        { "src": "/images/skills/135_1.jpg" },
+        { "src": "/images/skills/135_2.jpg" },
+        { "src": "/images/skills/135_3.jpg" },
+        { "src": "/images/skills/135_4.jpg" },
+        { "src": "/images/skills/135_5.jpg" }
       ]
     },
     {
@@ -464,10 +430,7 @@
       "subcategoryId": 4,
       "ownerUserId": 24,
       "description": "Проектирование систем автоматизации.",
-      "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
-      ]
+      "images": []
     },
     {
       "id": 137,
@@ -476,10 +439,7 @@
       "subcategoryId": 23,
       "ownerUserId": 25,
       "description": "Обучение игре на скрипке.",
-      "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
-      ]
+      "images": [{ "src": "/images/skills/137_1.jpg" }, { "src": "/images/skills/137_2.jpg" }]
     },
     {
       "id": 138,
@@ -503,10 +463,7 @@
       "subcategoryId": 5,
       "ownerUserId": 26,
       "description": "Создание схем и устройств.",
-      "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
-      ]
+      "images": []
     },
     {
       "id": 140,
@@ -569,10 +526,7 @@
       "subcategoryId": 38,
       "ownerUserId": 30,
       "description": "Тренировки и советы по питанию.",
-      "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
-      ]
+      "images": []
     },
     {
       "id": 145,
@@ -595,10 +549,7 @@
       "subcategoryId": 2,
       "ownerUserId": 31,
       "description": "Таргетинг, сторис, реклама.",
-      "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
-      ]
+      "images": []
     },
     {
       "id": 147,
@@ -622,10 +573,7 @@
       "subcategoryId": 6,
       "ownerUserId": 32,
       "description": "Swift, Xcode.",
-      "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
-      ]
+      "images": []
     },
     {
       "id": 149,
@@ -717,10 +665,7 @@
       "subcategoryId": 26,
       "ownerUserId": 39,
       "description": "Поставим руки, разберем упражнения и первые простые произведения.",
-      "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
-      ]
+      "images": []
     },
     {
       "id": 156,
