@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 import styles from './ImageGallery.module.css';
 
 export interface ImageGalleryProps {
   /** Массив изображений */
-  images: { src: string; alt?: string }[];
+  images: string[];
   /** Вариант отображения: interactive (интерактивный) или static (статический) */
   variant?: 'interactive' | 'static';
   /** Дополнительный CSS класс */
@@ -23,13 +23,12 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
 }) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
-  useEffect(() => {
-    if (activeIndex >= images.length) {
-      setActiveIndex(0);
-    }
-  }, [images.length, activeIndex]);
+  const correctedActiveIndex = useMemo(() => {
+    if (images.length === 0) return 0;
+    return activeIndex >= images.length ? 0 : activeIndex;
+  }, [activeIndex, images.length]);
 
-  // Если нет изображений - показываем заглушку
+  // Если нет изображений — показываем заглушку
   if (images.length === 0) {
     return (
       <div className={`${styles.empty} ${className}`}>
@@ -40,7 +39,7 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
 
   const isInteractive = variant === 'interactive';
 
-  const mainImage = isInteractive ? images[activeIndex] : images[0];
+  const mainImage = isInteractive ? images[correctedActiveIndex] : images[0];
 
   const thumbnails = images.slice(1, 4);
 
@@ -49,14 +48,14 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
   const showOverlay = remainingCount > 0 && thumbnails.length === 3;
 
   const handlePrev = () => {
-    if (isInteractive && activeIndex > 0) {
-      setActiveIndex(activeIndex - 1);
+    if (isInteractive && correctedActiveIndex > 0) {
+      setActiveIndex(correctedActiveIndex - 1);
     }
   };
 
   const handleNext = () => {
-    if (isInteractive && activeIndex < images.length - 1) {
-      setActiveIndex(activeIndex + 1);
+    if (isInteractive && correctedActiveIndex < images.length - 1) {
+      setActiveIndex(correctedActiveIndex + 1);
     }
   };
 
@@ -72,11 +71,8 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
     <div className={`${styles.gallery} ${className}`}>
       <div className={styles.mainContainer}>
         <img
-          src={mainImage.src}
-          alt={
-            mainImage.alt ||
-            (isInteractive ? `Изображение ${activeIndex + 1}` : 'Главное изображение')
-          }
+          src={mainImage}
+          alt={isInteractive ? `Изображение ${correctedActiveIndex + 1}` : 'Главное изображение'}
           className={styles.mainImage}
         />
 
@@ -85,10 +81,10 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
             <button
               type="button"
               className={`${styles.navButton} ${styles.prevButton} ${
-                activeIndex === 0 ? styles.disabled : ''
+                correctedActiveIndex === 0 ? styles.disabled : ''
               }`}
               onClick={handlePrev}
-              disabled={activeIndex === 0}
+              disabled={correctedActiveIndex === 0}
               aria-label="Предыдущее изображение"
             >
               <svg
@@ -107,10 +103,10 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
             <button
               type="button"
               className={`${styles.navButton} ${styles.nextButton} ${
-                activeIndex === images.length - 1 ? styles.disabled : ''
+                correctedActiveIndex === images.length - 1 ? styles.disabled : ''
               }`}
               onClick={handleNext}
-              disabled={activeIndex === images.length - 1}
+              disabled={correctedActiveIndex === images.length - 1}
               aria-label="Следующее изображение"
             >
               <svg
@@ -145,11 +141,7 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
               role={isClickable ? 'button' : undefined}
               tabIndex={isClickable ? 0 : undefined}
             >
-              <img
-                src={image.src}
-                alt={image.alt || `Миниатюра ${index + 2}`}
-                className={styles.thumbnailImage}
-              />
+              <img src={image} alt={`Миниатюра ${index + 2}`} className={styles.thumbnailImage} />
 
               {isLastWithOverlay && (
                 <div className={styles.overlay}>

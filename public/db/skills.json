@@ -6,7 +6,11 @@
       "categoryId": 1,
       "subcategoryId": 7,
       "ownerUserId": 1,
-      "description": "Разберем роли, планирование, риски и статусы. На примерах из реальных проектов."
+      "description": "Разберем роли, планирование, риски и статусы. На примерах из реальных проектов.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 102,
@@ -14,7 +18,11 @@
       "categoryId": 6,
       "subcategoryId": 36,
       "ownerUserId": 3,
-      "description": "Мягкая практика, дыхание и расслабление. Подойдет, если давно хотел(а) начать."
+      "description": "Мягкая практика, дыхание и расслабление. Подойдет, если давно хотел(а) начать.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 103,
@@ -22,7 +30,11 @@
       "categoryId": 5,
       "subcategoryId": 32,
       "ownerUserId": 3,
-      "description": "Основы HTML, CSS, создание адаптивных сайтов."
+      "description": "Основы HTML, CSS, создание адаптивных сайтов.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 104,
@@ -30,7 +42,11 @@
       "categoryId": 1,
       "subcategoryId": 2,
       "ownerUserId": 1,
-      "description": "Работа с микроконтроллерами, схемы, компоненты."
+      "description": "Работа с микроконтроллерами, схемы, компоненты.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 105,
@@ -38,7 +54,11 @@
       "categoryId": 1,
       "subcategoryId": 7,
       "ownerUserId": 4,
-      "description": "Работа с Arduino, ESP8266 и др."
+      "description": "Работа с Arduino, ESP8266 и др.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 106,
@@ -46,7 +66,11 @@
       "categoryId": 4,
       "subcategoryId": 23,
       "ownerUserId": 1,
-      "description": "Основы композиции, съемки, настройка камеры."
+      "description": "Основы композиции, съемки, настройка камеры.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 107,
@@ -54,7 +78,11 @@
       "categoryId": 1,
       "subcategoryId": 3,
       "ownerUserId": 6,
-      "description": "Базовые конструкции, работу с файлами и библиотеками."
+      "description": "Базовые конструкции, работу с файлами и библиотеками.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 108,
@@ -62,7 +90,11 @@
       "categoryId": 4,
       "subcategoryId": 29,
       "ownerUserId": 6,
-      "description": "Фото, видео, тексты для Instagram, TikTok."
+      "description": "Фото, видео, тексты для Instagram, TikTok.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 109,
@@ -70,7 +102,11 @@
       "categoryId": 1,
       "subcategoryId": 2,
       "ownerUserId": 7,
-      "description": "Продвижение в соцсетях, таргетинг."
+      "description": "Продвижение в соцсетях, таргетинг.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 110,
@@ -78,7 +114,11 @@
       "categoryId": 2,
       "subcategoryId": 9,
       "ownerUserId": 7,
-      "description": "Базовая грамматика, разговорные фразы."
+      "description": "Базовая грамматика, разговорные фразы.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 111,
@@ -86,7 +126,11 @@
       "categoryId": 4,
       "subcategoryId": 22,
       "ownerUserId": 8,
-      "description": "Работа с Photoshop, иллюстрации."
+      "description": "Работа с Photoshop, иллюстрации.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 112,
@@ -94,7 +138,11 @@
       "categoryId": 4,
       "subcategoryId": 25,
       "ownerUserId": 9,
-      "description": "Основы игры, аккорды, ритм."
+      "description": "Основы игры, аккорды, ритм.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 113,
@@ -102,7 +150,11 @@
       "categoryId": 6,
       "subcategoryId": 36,
       "ownerUserId": 10,
-      "description": "Интенсивные тренировки для силы и выносливости."
+      "description": "Интенсивные тренировки для силы и выносливости.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 114,
@@ -110,7 +162,11 @@
       "categoryId": 6,
       "subcategoryId": 36,
       "ownerUserId": 10,
-      "description": "Общие принципы здоровья, тренировки."
+      "description": "Общие принципы здоровья, тренировки.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 115,
@@ -118,7 +174,11 @@
       "categoryId": 4,
       "subcategoryId": 24,
       "ownerUserId": 11,
-      "description": "Adobe Premiere, DaVinci Resolve."
+      "description": "Adobe Premiere, DaVinci Resolve.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 116,
@@ -126,7 +186,11 @@
       "categoryId": 1,
       "subcategoryId": 3,
       "ownerUserId": 12,
-      "description": "Java, Kotlin, создание приложений."
+      "description": "Java, Kotlin, создание приложений.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 117,
@@ -134,7 +198,11 @@
       "categoryId": 1,
       "subcategoryId": 3,
       "ownerUserId": 12,
-      "description": "Swift, Xcode, создание приложений."
+      "description": "Swift, Xcode, создание приложений.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 118,
@@ -142,7 +210,12 @@
       "categoryId": 4,
       "subcategoryId": 28,
       "ownerUserId": 13,
-      "description": "Создаем одежду, игрушки, аксессуары."
+      "description": "Создаем одежду, игрушки, аксессуары.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg",
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg"
+      ]
     },
     {
       "id": 119,
@@ -150,7 +223,11 @@
       "categoryId": 1,
       "subcategoryId": 1,
       "ownerUserId": 14,
-      "description": "Работа с PLC, SCADA."
+      "description": "Работа с PLC, SCADA.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 120,
@@ -158,7 +235,11 @@
       "categoryId": 1,
       "subcategoryId": 3,
       "ownerUserId": 14,
-      "description": "Настройка и программирование систем автоматизации."
+      "description": "Настройка и программирование систем автоматизации.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 121,
@@ -166,7 +247,11 @@
       "categoryId": 4,
       "subcategoryId": 24,
       "ownerUserId": 15,
-      "description": "Основы графики, техника рисования."
+      "description": "Основы графики, техника рисования.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 122,
@@ -174,7 +259,11 @@
       "categoryId": 4,
       "subcategoryId": 29,
       "ownerUserId": 16,
-      "description": "Обучение игре на скрипке, практика."
+      "description": "Обучение игре на скрипке, практика.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 123,
@@ -182,7 +271,11 @@
       "categoryId": 6,
       "subcategoryId": 41,
       "ownerUserId": 16,
-      "description": "Индивидуальные тренировки для начинающих."
+      "description": "Индивидуальные тренировки для начинающих.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 124,
@@ -190,7 +283,11 @@
       "categoryId": 4,
       "subcategoryId": 28,
       "ownerUserId": 17,
-      "description": "Видеоблогинг, монтаж, сценарии."
+      "description": "Видеоблогинг, монтаж, сценарии.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 125,
@@ -198,7 +295,11 @@
       "categoryId": 4,
       "subcategoryId": 23,
       "ownerUserId": 17,
-      "description": "Обработка видео, оформление канала."
+      "description": "Обработка видео, оформление канала.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 126,
@@ -206,7 +307,11 @@
       "categoryId": 1,
       "subcategoryId": 5,
       "ownerUserId": 18,
-      "description": "Создание игр, программирование."
+      "description": "Создание игр, программирование.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 127,
@@ -214,7 +319,11 @@
       "categoryId": 1,
       "subcategoryId": 3,
       "ownerUserId": 18,
-      "description": "Создание серверных приложений."
+      "description": "Создание серверных приложений.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 128,
@@ -222,7 +331,11 @@
       "categoryId": 4,
       "subcategoryId": 28,
       "ownerUserId": 19,
-      "description": "Создаю одежду и аксессуары."
+      "description": "Создаю одежду и аксессуары.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 129,
@@ -230,7 +343,11 @@
       "categoryId": 4,
       "subcategoryId": 26,
       "ownerUserId": 20,
-      "description": "Обучение игре на скрипке."
+      "description": "Обучение игре на скрипке.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 130,
@@ -238,7 +355,11 @@
       "categoryId": 6,
       "subcategoryId": 42,
       "ownerUserId": 21,
-      "description": "Тренировки для новичков."
+      "description": "Тренировки для новичков.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 131,
@@ -246,7 +367,11 @@
       "categoryId": 6,
       "subcategoryId": 40,
       "ownerUserId": 21,
-      "description": "Тренировки и советы по питанию."
+      "description": "Тренировки и советы по питанию.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 132,
@@ -254,7 +379,11 @@
       "categoryId": 4,
       "subcategoryId": 22,
       "ownerUserId": 22,
-      "description": "Создание и редактирование текстов, сценариев."
+      "description": "Создание и редактирование текстов, сценариев.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 133,
@@ -262,7 +391,11 @@
       "categoryId": 4,
       "subcategoryId": 28,
       "ownerUserId": 22,
-      "description": "Правка текстов, подготовка к публикации."
+      "description": "Правка текстов, подготовка к публикации.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 134,
@@ -270,7 +403,11 @@
       "categoryId": 4,
       "subcategoryId": 23,
       "ownerUserId": 23,
-      "description": "Создание контента для соцсетей."
+      "description": "Создание контента для соцсетей.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 135,
@@ -278,7 +415,11 @@
       "categoryId": 1,
       "subcategoryId": 1,
       "ownerUserId": 24,
-      "description": "Проектирование электроники, схемотехника."
+      "description": "Проектирование электроники, схемотехника.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 136,
@@ -286,7 +427,11 @@
       "categoryId": 1,
       "subcategoryId": 4,
       "ownerUserId": 24,
-      "description": "Проектирование систем автоматизации."
+      "description": "Проектирование систем автоматизации.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 137,
@@ -294,7 +439,11 @@
       "categoryId": 4,
       "subcategoryId": 23,
       "ownerUserId": 25,
-      "description": "Обучение игре на скрипке."
+      "description": "Обучение игре на скрипке.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 138,
@@ -302,7 +451,11 @@
       "categoryId": 1,
       "subcategoryId": 6,
       "ownerUserId": 26,
-      "description": "Работа с микроконтроллерами, схемы."
+      "description": "Работа с микроконтроллерами, схемы.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 139,
@@ -310,7 +463,11 @@
       "categoryId": 1,
       "subcategoryId": 5,
       "ownerUserId": 26,
-      "description": "Создание схем и устройств."
+      "description": "Создание схем и устройств.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 140,
@@ -318,7 +475,11 @@
       "categoryId": 1,
       "subcategoryId": 1,
       "ownerUserId": 27,
-      "description": "Основы Python, библиотеки, автоматизация."
+      "description": "Основы Python, библиотеки, автоматизация.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 141,
@@ -326,7 +487,11 @@
       "categoryId": 4,
       "subcategoryId": 25,
       "ownerUserId": 28,
-      "description": "Adobe Premiere, DaVinci Resolve."
+      "description": "Adobe Premiere, DaVinci Resolve.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 142,
@@ -334,7 +499,11 @@
       "categoryId": 4,
       "subcategoryId": 27,
       "ownerUserId": 29,
-      "description": "Обучение игре, аккорды."
+      "description": "Обучение игре, аккорды.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 143,
@@ -342,7 +511,11 @@
       "categoryId": 6,
       "subcategoryId": 37,
       "ownerUserId": 30,
-      "description": "Обучение для начинающих."
+      "description": "Обучение для начинающих.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 144,
@@ -350,7 +523,11 @@
       "categoryId": 6,
       "subcategoryId": 38,
       "ownerUserId": 30,
-      "description": "Тренировки и советы по питанию."
+      "description": "Тренировки и советы по питанию.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 145,
@@ -358,7 +535,11 @@
       "categoryId": 4,
       "subcategoryId": 28,
       "ownerUserId": 31,
-      "description": "Фото, видео, тексты для соцсетей."
+      "description": "Фото, видео, тексты для соцсетей.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 146,
@@ -366,7 +547,11 @@
       "categoryId": 1,
       "subcategoryId": 2,
       "ownerUserId": 31,
-      "description": "Таргетинг, сторис, реклама."
+      "description": "Таргетинг, сторис, реклама.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 147,
@@ -374,7 +559,11 @@
       "categoryId": 1,
       "subcategoryId": 3,
       "ownerUserId": 32,
-      "description": "Java, Kotlin, создание приложений."
+      "description": "Java, Kotlin, создание приложений.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 148,
@@ -382,7 +571,11 @@
       "categoryId": 1,
       "subcategoryId": 6,
       "ownerUserId": 32,
-      "description": "Swift, Xcode."
+      "description": "Swift, Xcode.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 149,
@@ -390,7 +583,12 @@
       "categoryId": 4,
       "subcategoryId": 28,
       "ownerUserId": 33,
-      "description": "Создаем одежду, игрушки, аксессуары."
+      "description": "Создаем одежду, игрушки, аксессуары.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg",
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg"
+      ]
     },
     {
       "id": 150,
@@ -398,7 +596,11 @@
       "categoryId": 4,
       "subcategoryId": 26,
       "ownerUserId": 34,
-      "description": "Обучение игре на скрипке."
+      "description": "Обучение игре на скрипке.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 151,
@@ -406,7 +608,11 @@
       "categoryId": 6,
       "subcategoryId": 36,
       "ownerUserId": 35,
-      "description": "Тренировки для новичков."
+      "description": "Тренировки для новичков.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 152,
@@ -414,7 +620,11 @@
       "categoryId": 4,
       "subcategoryId": 28,
       "ownerUserId": 36,
-      "description": "Помогу писать понятные тексты: структура, заголовки, стиль, правки."
+      "description": "Помогу писать понятные тексты: структура, заголовки, стиль, правки.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 153,
@@ -422,7 +632,11 @@
       "categoryId": 4,
       "subcategoryId": 24,
       "ownerUserId": 37,
-      "description": "Склейки, звук, титры и базовая цветокоррекция в популярных редакторах."
+      "description": "Склейки, звук, титры и базовая цветокоррекция в популярных редакторах.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 154,
@@ -430,7 +644,11 @@
       "categoryId": 1,
       "subcategoryId": 4,
       "ownerUserId": 38,
-      "description": "Помогу упаковать опыт, подобрать кейсы и подготовиться к техническим вопросам."
+      "description": "Помогу упаковать опыт, подобрать кейсы и подготовиться к техническим вопросам.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 155,
@@ -438,7 +656,11 @@
       "categoryId": 4,
       "subcategoryId": 26,
       "ownerUserId": 39,
-      "description": "Поставим руки, разберем упражнения и первые простые произведения."
+      "description": "Поставим руки, разберем упражнения и первые простые произведения.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     },
     {
       "id": 156,
@@ -446,7 +668,11 @@
       "categoryId": 1,
       "subcategoryId": 2,
       "ownerUserId": 40,
-      "description": "Научу паять, читать простые схемы и собирать макет на плате."
+      "description": "Научу паять, читать простые схемы и собирать макет на плате.",
+      "images": [
+        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+      ]
     }
   ]
 }

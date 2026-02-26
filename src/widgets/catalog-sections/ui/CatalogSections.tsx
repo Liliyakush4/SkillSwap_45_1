@@ -1,23 +1,34 @@
 import React from 'react';
-import { useAppSelector } from '@shared/lib/storeHooks';
+import { useAppDispatch, useAppSelector } from '@shared/lib/storeHooks';
 import { selectDb } from '@app/store/db/selectors';
 import { mapUserToUserCardProps } from '@entities/user/model/mappers';
 import { UserCardSection } from '@widgets/user-card-section';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectFavoriteUserIds, toggleFavorite } from '@features/favorites/model';
 
 export const CatalogSections: React.FC = () => {
   const db = useAppSelector(selectDb);
+  const isLikedData = useSelector(selectFavoriteUserIds);
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   if (!db) {
     return null;
   }
+
+  const handlerLike = (id: number) => {
+    dispatch(toggleFavorite(id));
+  };
 
   const users = db.users;
 
   const popularItems = users.map((user) =>
     mapUserToUserCardProps(db, user, {
       onMore: () => navigate(`/skill/${user.id}`),
+      onLikeClick: () => handlerLike(user.id),
+      isLiked: isLikedData.includes(user.id),
+      likesCount: isLikedData.includes(user.id) ? 1 : undefined,
       moreLabel: 'Подробнее',
       showLike: true,
     }),
@@ -30,6 +41,9 @@ export const CatalogSections: React.FC = () => {
   const newItems = sortedByNew.map((user) =>
     mapUserToUserCardProps(db, user, {
       onMore: () => navigate(`/skill/${user.id}`),
+      onLikeClick: () => handlerLike(user.id),
+      isLiked: isLikedData.includes(user.id),
+      likesCount: isLikedData.includes(user.id) ? 1 : undefined,
       moreLabel: 'Подробнее',
       showLike: true,
     }),
@@ -38,6 +52,9 @@ export const CatalogSections: React.FC = () => {
   const recommendedItems = users.map((user) =>
     mapUserToUserCardProps(db, user, {
       onMore: () => navigate(`/skill/${user.id}`),
+      onLikeClick: () => handlerLike(user.id),
+      isLiked: isLikedData.includes(user.id),
+      likesCount: isLikedData.includes(user.id) ? 1 : undefined,
       moreLabel: 'Подробнее',
       showLike: true,
     }),

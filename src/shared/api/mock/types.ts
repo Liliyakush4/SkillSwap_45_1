@@ -13,6 +13,7 @@ export type Skill = {
   subcategoryId: Id;
   ownerUserId: Id;
   description: string;
+  images: string[];
 };
 
 export type User = {
