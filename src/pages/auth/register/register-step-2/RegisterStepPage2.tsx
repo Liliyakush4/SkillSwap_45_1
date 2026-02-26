@@ -68,10 +68,8 @@ const cityOptions: Array<{ value: string; label: string; disabled?: boolean }> =
   { value: 'simferopol', label: 'Симферополь' },
 ];
 
-// Проверяем тип MultiSelectOption из формы
 type MultiSelectOption = { value: string; label: string };
 
-// ВАЖНО: значения должны быть числами в виде строк, чтобы можно было преобразовать в number
 const skillCategoryLearnOptions: MultiSelectOption[] = [
   { value: '1', label: 'Бизнес и карьера' },
   { value: '2', label: 'Творчество и искусство' },
@@ -119,10 +117,8 @@ export const RegisterStep2Page: React.FC = () => {
     };
   });
 
-  // Функция для сохранения данных в localStorage
   const saveFormData = (data: RegisterStep2FormValues) => {
     setFormData(data);
-    // Сохраняем в localStorage, преобразуя Date в строку
     const dataToSave = {
       ...data,
       birthDate: data.birthDate ? data.birthDate.toISOString() : null,
@@ -130,25 +126,20 @@ export const RegisterStep2Page: React.FC = () => {
     localStorage.setItem('registerStep2Data', JSON.stringify(dataToSave));
   };
 
-  // Обработчик для перехода вперед
   const handleContinue = (data: RegisterStep2FormValues) => {
     saveFormData(data);
 
-    // Берем первую выбранную категорию (или пустую строку)
     const selectedCategoryIdStr =
       data.skillCategoryLearn.length > 0 ? data.skillCategoryLearn[0] : '';
 
-    // Берем первую выбранную подкатегорию (или пустую строку)
     const selectedSubcategoryIdStr =
       data.skillSubcategoryLearn.length > 0 ? data.skillSubcategoryLearn[0] : '';
 
-    // Преобразуем string в number (Id)
     const selectedCategoryId = selectedCategoryIdStr ? parseInt(selectedCategoryIdStr, 10) : 0;
     const selectedSubcategoryId = selectedSubcategoryIdStr
       ? parseInt(selectedSubcategoryIdStr, 10)
       : 0;
 
-    // Находим соответствующие названия
     const categoryName = selectedCategoryIdStr
       ? skillCategoryLearnOptions.find((opt) => opt.value === selectedCategoryIdStr)?.label || ''
       : '';
@@ -158,7 +149,6 @@ export const RegisterStep2Page: React.FC = () => {
         ''
       : '';
 
-    // Сохраняем данные второго шага в Redux store
     dispatch(
       saveStep2({
         name: data.name,
@@ -166,14 +156,14 @@ export const RegisterStep2Page: React.FC = () => {
         gender: data.gender,
         city: data.city || '',
         categorySkill: {
-          id: selectedCategoryId, // ← Теперь number!
+          id: selectedCategoryId,
           name: categoryName,
-          color: '', // ← Нужно добавить цвет (или сделать его опциональным в типе)
+          color: '',
         },
         subcategorySkill: {
-          id: selectedSubcategoryId, // ← Теперь number!
+          id: selectedSubcategoryId,
           name: subcategoryName,
-          categoryId: selectedCategoryId, // ← Нужно добавить categoryId
+          categoryId: selectedCategoryId,
         },
       }),
     );
@@ -181,16 +171,13 @@ export const RegisterStep2Page: React.FC = () => {
     navigate('/auth/register/step-3');
   };
 
-  // Обработчик для перехода назад
   const handleBack = (data: RegisterStep2FormValues) => {
     saveFormData(data);
     navigate('/auth/register/step-1');
   };
 
-  // Обработчик для загрузки аватара (заглушка)
   const handleAvatarChange = (file: File) => {
     console.log('Avatar file selected:', file);
-    // Здесь можно добавить логику загрузки на сервер
   };
 
   const heroText = (
@@ -206,15 +193,14 @@ export const RegisterStep2Page: React.FC = () => {
       <ContentSection
         main={
           <RegisterStep2Form
-            values={formData} // Передаём текущие данные формы
+            values={formData}
             genderOptions={genderOptions}
             cityOptions={cityOptions}
             skillCategoryLearnOptions={skillCategoryLearnOptions}
             skillSubcategoryLearnOptions={skillSubcategoryLearnOptions}
-            onSubmit={handleContinue} // Для кнопки "Продолжить"
-            onBack={() => handleBack(formData)} // Для кнопки "Назад" - передаем текущие данные
-            onAvatarChange={handleAvatarChange} // Обработчик загрузки аватара
-            // avatarSrc можно передать, если есть загруженный аватар
+            onSubmit={handleContinue}
+            onBack={() => handleBack(formData)}
+            onAvatarChange={handleAvatarChange}
           />
         }
         heroText={heroText}

@@ -4,8 +4,8 @@ import {
   selectRegistrationStep2,
   selectRegistrationStep3,
   resetRegistrationDraft,
-  saveStep3, // Изменено: используем saveStep3 вместо setRegistrationStep3
-  type RegistrationStep3, // Добавлено: импорт типа
+  saveStep3,
+  type RegistrationStep3,
 } from './registrationSlice';
 import { loginSuccess } from './authSlice';
 import { profileSlice } from '../../profile/model/profileSlice';
@@ -32,7 +32,6 @@ interface ProfilePayload {
   };
 }
 
-// Тип для данных третьего шага (совместим с RegistrationStep3)
 export interface Step3Data {
   skillName: string;
   category: string[];
@@ -48,7 +47,6 @@ async function createProfileApi(profilePayload?: ProfilePayload): Promise<string
   return 'mocked-user-id-12345';
 }
 
-// Thunk для сохранения данных третьего шага
 export const saveRegistrationStep3 = createAsyncThunk<
   void,
   Step3Data,
@@ -59,12 +57,10 @@ export const saveRegistrationStep3 = createAsyncThunk<
   }
 >('auth/saveRegistrationStep3', async (step3Data, { dispatch, rejectWithValue }) => {
   try {
-    // Здесь можно добавить валидацию данных
     if (!step3Data.skillName.trim()) {
       return rejectWithValue('Название навыка обязательно');
     }
 
-    // Преобразуем Step3Data в RegistrationStep3
     const registrationStep3: RegistrationStep3 = {
       skillName: step3Data.skillName,
       category: step3Data.category,
@@ -74,7 +70,6 @@ export const saveRegistrationStep3 = createAsyncThunk<
       photoPreviewUrl: step3Data.photoPreviewUrl,
     };
 
-    // Сохраняем данные в Redux store
     dispatch(saveStep3(registrationStep3));
     return;
   } catch (error) {
@@ -82,7 +77,6 @@ export const saveRegistrationStep3 = createAsyncThunk<
   }
 });
 
-// Thunk для завершения регистрации
 export const finishRegistration = createAsyncThunk<
   void,
   void,
@@ -107,7 +101,6 @@ export const finishRegistration = createAsyncThunk<
     return rejectWithValue(`Заполнены не все шаги регистрации: ${missingSteps.join(', ')}`);
   }
 
-  // Проверяем обязательные поля третьего шага
   if (!step3.skillName?.trim()) {
     return rejectWithValue('Название навыка обязательно');
   }
@@ -130,7 +123,7 @@ export const finishRegistration = createAsyncThunk<
       title: step3.skillName || '',
       description: step3.description || '',
       level: 1,
-      category: step3.category.join(', '), // Преобразуем массив в строку
+      category: step3.category.join(', '),
       images: step3.photoPreviewUrl
         ? [
             {
