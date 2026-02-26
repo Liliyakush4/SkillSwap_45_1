@@ -20,6 +20,11 @@ export const validateDb = (db: Db) => {
       warn(`skill ${s.id}: categoryId ${s.categoryId} not found`);
     if (!db.subcategoriesById[s.subcategoryId])
       warn(`skill ${s.id}: subcategoryId ${s.subcategoryId} not found`);
+
+    // Проверка поля images - всегда должно быть массивом (даже пустым)
+    if (!Array.isArray(s.images)) {
+      warn(`skill ${s.id}: images is not an array`);
+    }
   }
 
   for (const sub of db.subcategories) {

@@ -43,3 +43,19 @@
 .input input:focus {
   border-color: transparent;
 }
+
+.clearButton {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 1px;
+}
+
+.closeImage {
+  width: 24px;
+  height: 24px;
+}

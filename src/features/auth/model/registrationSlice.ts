@@ -1,6 +1,5 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import type { Category, Subcategory } from '@shared/api/mock/types';
-import type { IsoDate, Url } from '@shared/types';
+import type { Url } from '@shared/types';
 
 export interface RegistrationStep1 {
   email: string;
@@ -9,11 +8,11 @@ export interface RegistrationStep1 {
 
 export interface RegistrationStep2 {
   name: string;
-  birthDate: IsoDate | null;
+  birthDate: string | null; // временно исправила с IsoDate | null
   gender: string;
-  city: string;
-  categorySkill: Category;
-  subcategorySkill: Subcategory;
+  city: string | null;
+  categorySkill: string[]; // изменено на строковый тип
+  subcategorySkill: string[]; // изменено на строковый тип
 }
 
 // Обновленный интерфейс для третьего шага

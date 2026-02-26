@@ -1,4 +1,4 @@
-import { type FC, useState, useEffect } from 'react';
+import { type FC, useState, useEffect, useMemo } from 'react';
 import { AvatarUploader } from '@shared/ui/avatar-uploader/AvatarUploader';
 import { Input } from '@shared/ui/input';
 import { BirthDateInput } from '@shared/ui/birth-date-input';
@@ -7,6 +7,7 @@ import { FormAutocompleteField } from '@shared/ui/form-autocomplete-field';
 import { FormMultiSelectField } from '@shared/ui/form-multi-select-field';
 import { Button } from '@shared/ui/Button';
 import type { MultiSelectOption } from '@shared/ui/form-multi-select-field';
+import { getLinkedOptions, sanitizeLinkedSelection } from '@shared/lib/linkedMultiselect';
 import styles from './RegisterStep2Form.module.css';
 
 export type RegisterStep2FormValues = {
@@ -24,10 +25,13 @@ export interface RegisterStep2FormProps {
   onBack?: (data: RegisterStep2FormValues) => void;
   onAvatarChange?: (file: File) => void;
   avatarSrc?: string;
+
   genderOptions: Array<{ value: string; label: string; disabled?: boolean }>;
   cityOptions: Array<{ value: string; label: string; disabled?: boolean }>;
+
   skillCategoryLearnOptions: MultiSelectOption[];
-  skillSubcategoryLearnOptions: MultiSelectOption[];
+  subcategoryOptionsByCategoryId: Record<string, MultiSelectOption[]>;
+
   className?: string;
 }
 
@@ -40,7 +44,7 @@ export const RegisterStep2Form: FC<RegisterStep2FormProps> = ({
   genderOptions,
   cityOptions,
   skillCategoryLearnOptions,
-  skillSubcategoryLearnOptions,
+  subcategoryOptionsByCategoryId,
   className,
 }) => {
   const [formData, setFormData] = useState<RegisterStep2FormValues>(values);
@@ -49,7 +53,24 @@ export const RegisterStep2Form: FC<RegisterStep2FormProps> = ({
     setFormData(values);
   }, [values]);
 
-  const { name, birthDate, gender, city, skillCategoryLearn, skillSubcategoryLearn } = formData;
+  // 1) доступные подкатегории = только для выбранных категорий
+  const filteredSubcategoryOptions = useMemo(() => {
+    return getLinkedOptions(skillCategoryLearn, subcategoryOptionsByCategoryId);
+  }, [skillCategoryLearn, subcategoryOptionsByCategoryId]);
+
+  // 2) если категории поменялись, чистим выбранные подкатегории от невалидных
+  useEffect(() => {
+    setSkillSubcategoryLearn((prev) => sanitizeLinkedSelection(prev, filteredSubcategoryOptions));
+  }, [filteredSubcategoryOptions]);
+
+  const formData: RegisterStep2FormValues = {
+    name,
+    birthDate,
+    gender,
+    city,
+    skillCategoryLearn,
+    skillSubcategoryLearn,
+  };
 
   const handleChange = <K extends keyof RegisterStep2FormValues>(
     key: K,
@@ -131,11 +152,15 @@ export const RegisterStep2Form: FC<RegisterStep2FormProps> = ({
         <div className={styles.field}>
           <FormMultiSelectField
             label="Подкатегория навыка, которому хотите научиться"
-            placeholder="Выберите подкатегорию"
+            placeholder={
+              skillCategoryLearn.length === 0
+                ? 'Сначала выберите категорию'
+                : 'Выберите подкатегорию'
+            }
             value={skillSubcategoryLearn}
-            onChange={(value) => handleChange('skillSubcategoryLearn', value)}
-            options={skillSubcategoryLearnOptions}
-            disabled={false}
+            onChange={setSkillSubcategoryLearn}
+            options={filteredSubcategoryOptions}
+            disabled={skillCategoryLearn.length === 0}
           />
         </div>
         <div className={styles.buttonsWrapper}>
