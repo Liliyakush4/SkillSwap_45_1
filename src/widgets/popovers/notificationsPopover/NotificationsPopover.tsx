@@ -9,6 +9,8 @@ export interface NotificationsPopoverProps {
   onClose: () => void;
   anchorRef: RefObject<HTMLElement | null>;
   hasNew?: boolean;
+  offsetX?: number;
+  offsetY?: number;
 }
 
 export const NotificationsPopover: FC<NotificationsPopoverProps> = ({
@@ -18,8 +20,15 @@ export const NotificationsPopover: FC<NotificationsPopoverProps> = ({
   hasNew = true,
 }) => {
   return (
-    <Popover isOpen={isOpen} onClose={onClose} anchorRef={anchorRef}>
-      <div className={styles.root}>
+    <Popover
+      isOpen={isOpen}
+      onClose={onClose}
+      anchorRef={anchorRef}
+      className={styles.root}
+      offsetX={-250}
+      offsetY={20}
+    >
+      <div className={styles.content}>
         <div className={styles.sectionHeader}>
           <h4 className={styles.title}>Новые уведомления</h4>
           <button type="button" className={styles.headerAction}>
@@ -53,11 +62,6 @@ export const NotificationsPopover: FC<NotificationsPopoverProps> = ({
                   <span className={styles.itemDate}>сегодня</span>
                 </div>
                 <p className={styles.itemSubtext}>Примите обмен, чтобы обсудить детали</p>
-              </div>
-              <div className={styles.itemActions}>
-                <Button variant="primary" className={styles.itemButton}>
-                  Перейти
-                </Button>
               </div>
             </li>
           </ul>

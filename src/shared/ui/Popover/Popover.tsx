@@ -11,6 +11,8 @@ export interface PopoverProps {
   placement?: 'bottom-start' | 'bottom-end';
   className?: string;
   role?: React.AriaRole;
+  offsetX?: number;
+  offsetY?: number;
 }
 
 export const Popover: FC<PopoverProps> = ({
@@ -21,14 +23,14 @@ export const Popover: FC<PopoverProps> = ({
   placement = 'bottom-start',
   className,
   role = 'dialog',
+  offsetX = 0,
+  offsetY = 8,
 }) => {
   const popoverRef = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState<{ top: number; left: number } | null>(null);
 
-  // Вычисление позиции панели
   useEffect(() => {
     if (!isOpen || !anchorRef.current) {
-      setPosition(null);
       return;
     }
 
@@ -36,16 +38,13 @@ export const Popover: FC<PopoverProps> = ({
       if (!anchorRef.current) return;
 
       const anchorRect = anchorRef.current.getBoundingClientRect();
-      const offset = 8; // Отступ от триггера
-
+      const top = anchorRect.bottom + offsetY;
       let left = 0;
-      const top = anchorRect.bottom + offset;
 
       if (placement === 'bottom-start') {
-        left = anchorRect.left;
+        left = anchorRect.left + offsetX;
       } else if (placement === 'bottom-end') {
-        // Правый край панели = правый край триггера; выравнивание через transform: translateX(-100%)
-        left = anchorRect.right;
+        left = anchorRect.right + offsetX;
       }
 
       setPosition({ top, left });
@@ -53,7 +52,6 @@ export const Popover: FC<PopoverProps> = ({
 
     updatePosition();
 
-    // Обновляем позицию при скролле и ресайзе
     window.addEventListener('scroll', updatePosition, true);
     window.addEventListener('resize', updatePosition);
 
@@ -61,7 +59,7 @@ export const Popover: FC<PopoverProps> = ({
       window.removeEventListener('scroll', updatePosition, true);
       window.removeEventListener('resize', updatePosition);
     };
-  }, [isOpen, anchorRef, placement]);
+  }, [isOpen, anchorRef, placement, offsetX, offsetY]);
 
   // Обработка клика вне панели
   useEffect(() => {
@@ -70,7 +68,6 @@ export const Popover: FC<PopoverProps> = ({
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Node;
 
-      // Проверяем, что клик не по панели и не по триггеру
       if (
         popoverRef.current &&
         !popoverRef.current.contains(target) &&
@@ -81,7 +78,6 @@ export const Popover: FC<PopoverProps> = ({
       }
     };
 
-    // Используем capture фазу для более раннего перехвата
     document.addEventListener('mousedown', handleClickOutside, true);
 
     return () => {
