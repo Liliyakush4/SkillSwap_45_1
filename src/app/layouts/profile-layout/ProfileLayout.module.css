@@ -56,3 +56,10 @@
     padding: 40px;
   }
 }
+
+@media (max-width: 1439px) {
+  .avatarColumn {
+    flex-shrink: 0;
+    display: none;
+  }
+}

@@ -154,6 +154,13 @@
   }
 }
 
+@media (max-width: 1439px) {
+  .avatarColumn {
+    flex-shrink: 0;
+    display: none;
+  }
+}
+
 @media (max-width: 1024px) {
   .fieldsGeneral {
     width: 100%;
