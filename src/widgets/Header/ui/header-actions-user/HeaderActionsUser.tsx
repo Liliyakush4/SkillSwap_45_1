@@ -1,4 +1,3 @@
-import { useAppSelector } from '@shared/lib/storeHooks';
 import { IconButton } from '@shared/ui/icon-button';
 import cls from './HeaderActionsUser.module.css';
 import iconThemeDark from '@shared/assets/icons/ui/icon_theme_dark.svg';
