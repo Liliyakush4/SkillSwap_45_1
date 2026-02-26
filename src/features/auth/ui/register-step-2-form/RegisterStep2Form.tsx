@@ -1,4 +1,4 @@
-import { type FC, useState, useEffect, useMemo } from 'react';
+import { type FC, useState, useEffect } from 'react';
 import { AvatarUploader } from '@shared/ui/avatar-uploader/AvatarUploader';
 import { Input } from '@shared/ui/input';
 import { BirthDateInput } from '@shared/ui/birth-date-input';
@@ -7,7 +7,6 @@ import { FormAutocompleteField } from '@shared/ui/form-autocomplete-field';
 import { FormMultiSelectField } from '@shared/ui/form-multi-select-field';
 import { Button } from '@shared/ui/Button';
 import type { MultiSelectOption } from '@shared/ui/form-multi-select-field';
-import { getLinkedOptions, sanitizeLinkedSelection } from '@shared/lib/linkedMultiselect';
 import styles from './RegisterStep2Form.module.css';
 
 export type RegisterStep2FormValues = {
@@ -22,16 +21,13 @@ export type RegisterStep2FormValues = {
 export interface RegisterStep2FormProps {
   values: RegisterStep2FormValues;
   onSubmit?: (data: RegisterStep2FormValues) => void;
-  onBack?: (data: RegisterStep2FormValues) => void;
+  onBack?: () => void;
   onAvatarChange?: (file: File) => void;
   avatarSrc?: string;
-
   genderOptions: Array<{ value: string; label: string; disabled?: boolean }>;
   cityOptions: Array<{ value: string; label: string; disabled?: boolean }>;
-
   skillCategoryLearnOptions: MultiSelectOption[];
-  subcategoryOptionsByCategoryId: Record<string, MultiSelectOption[]>;
-
+  skillSubcategoryLearnOptions: MultiSelectOption[];
   className?: string;
 }
 
@@ -44,24 +40,25 @@ export const RegisterStep2Form: FC<RegisterStep2FormProps> = ({
   genderOptions,
   cityOptions,
   skillCategoryLearnOptions,
-  subcategoryOptionsByCategoryId,
+  skillSubcategoryLearnOptions,
   className,
 }) => {
-  const [formData, setFormData] = useState<RegisterStep2FormValues>(values);
+  const [name, setName] = useState(values.name);
+  const [birthDate, setBirthDate] = useState<Date | null>(values.birthDate);
+  const [gender, setGender] = useState(values.gender);
+  const [city, setCity] = useState(values.city);
+  const [skillCategoryLearn, setSkillCategoryLearn] = useState(values.skillCategoryLearn);
+  const [skillSubcategoryLearn, setSkillSubcategoryLearn] = useState(values.skillSubcategoryLearn);
 
+  // Обновление состояний при изменении пропсов
   useEffect(() => {
-    setFormData(values);
+    setName(values.name);
+    setBirthDate(values.birthDate);
+    setGender(values.gender);
+    setCity(values.city);
+    setSkillCategoryLearn(values.skillCategoryLearn);
+    setSkillSubcategoryLearn(values.skillSubcategoryLearn);
   }, [values]);
-
-  // 1) доступные подкатегории = только для выбранных категорий
-  const filteredSubcategoryOptions = useMemo(() => {
-    return getLinkedOptions(skillCategoryLearn, subcategoryOptionsByCategoryId);
-  }, [skillCategoryLearn, subcategoryOptionsByCategoryId]);
-
-  // 2) если категории поменялись, чистим выбранные подкатегории от невалидных
-  useEffect(() => {
-    setSkillSubcategoryLearn((prev) => sanitizeLinkedSelection(prev, filteredSubcategoryOptions));
-  }, [filteredSubcategoryOptions]);
 
   const formData: RegisterStep2FormValues = {
     name,
@@ -72,100 +69,80 @@ export const RegisterStep2Form: FC<RegisterStep2FormProps> = ({
     skillSubcategoryLearn,
   };
 
-  const handleChange = <K extends keyof RegisterStep2FormValues>(
-    key: K,
-    value: RegisterStep2FormValues[K],
-  ) => {
-    setFormData((prev) => ({ ...prev, [key]: value }));
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    onSubmit?.(formData);
   };
 
   const handleContinue = () => {
     onSubmit?.(formData);
   };
 
-  const handleBack = () => {
-    onBack?.(formData);
-  };
-
   return (
-    <form
-      className={`${styles.form} ${className ?? ''}`}
-      onSubmit={(e) => {
-        e.preventDefault();
-        handleContinue();
-      }}
-      noValidate
-    >
+    <form className={`${styles.form} ${className ?? ''}`} onSubmit={handleSubmit} noValidate>
       <div className={styles.formContent}>
         <div className={styles.avatarWrap}>
           <AvatarUploader src={avatarSrc} alt="Аватар" size={72} onAddPhoto={onAvatarChange} />
         </div>
+
         <div className={styles.field}>
-          <Input
-            label="Имя"
-            placeholder="Введите ваше имя"
-            value={name}
-            onChange={(value) => handleChange('name', value)}
-          />
+          <Input label="Имя" placeholder="Введите ваше имя" value={name} onChange={setName} />
         </div>
+
         <div className={styles.twoColRow}>
           <div className={styles.field}>
             <span className={styles.standaloneLabel}>Дата рождения</span>
-            <BirthDateInput
-              value={birthDate}
-              onChange={(date) => handleChange('birthDate', date)}
-              disabled={false}
-            />
+            <BirthDateInput value={birthDate} onChange={setBirthDate} disabled={false} />
           </div>
           <div className={styles.field}>
             <FormSelectField
               label="Пол"
               placeholder="Не указан"
               value={gender}
-              onChange={(value) => handleChange('gender', value)}
+              onChange={setGender}
               options={genderOptions}
               disabled={false}
               className={styles.genderField}
             />
           </div>
         </div>
+
         <div className={styles.field}>
           <FormAutocompleteField
             label="Город"
             placeholder="Не указан"
             value={city}
-            onChange={(value) => handleChange('city', value)}
+            onChange={setCity}
             options={cityOptions}
             disabled={false}
           />
         </div>
+
         <div className={styles.field}>
           <FormMultiSelectField
             label="Категория навыка, которому хотите научиться"
             placeholder="Выберите категорию"
             value={skillCategoryLearn}
-            onChange={(value) => handleChange('skillCategoryLearn', value)}
+            onChange={setSkillCategoryLearn}
             options={skillCategoryLearnOptions}
             disabled={false}
           />
         </div>
+
         <div className={styles.field}>
           <FormMultiSelectField
             label="Подкатегория навыка, которому хотите научиться"
-            placeholder={
-              skillCategoryLearn.length === 0
-                ? 'Сначала выберите категорию'
-                : 'Выберите подкатегорию'
-            }
+            placeholder="Выберите подкатегорию"
             value={skillSubcategoryLearn}
             onChange={setSkillSubcategoryLearn}
-            options={filteredSubcategoryOptions}
-            disabled={skillCategoryLearn.length === 0}
+            options={skillSubcategoryLearnOptions}
+            disabled={false}
           />
         </div>
+
         <div className={styles.buttonsWrapper}>
           <div className={styles.buttonsRow}>
-            <Button type="button" variant="secondary" fullWidth onClick={handleBack}>
+            <Button type="button" variant="secondary" fullWidth onClick={onBack}>
               Назад
             </Button>
             <Button type="button" variant="primary" fullWidth onClick={handleContinue}>

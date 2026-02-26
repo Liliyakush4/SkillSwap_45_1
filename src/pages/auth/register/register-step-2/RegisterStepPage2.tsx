@@ -1,74 +1,88 @@
-import React, { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {
-  RegisterStep2Form,
-  type RegisterStep2FormValues,
-} from '@features/auth/ui/register-step-2-form';
+import { RegisterStep2Form } from '@features/auth/ui/register-step-2-form';
 import styles from './RegisterStepPage2.module.css';
 import PersonImage from '@shared/assets/images/auth/registration_person.svg';
 import { ContentSection } from '@shared/ui/content-section/ContentSection';
 import { StepProgress } from '@shared/ui/step-progress/StepProgress';
-import { useAppDispatch, useAppSelector } from '@shared/lib/storeHooks';
-import { saveStep2 } from '@features/auth/model/registrationSlice';
-import { selectDb } from '@app/store/db/selectors';
-import type { MultiSelectOption } from '@shared/ui/form-multi-select-field';
-import { GENDER } from '@features/filters/model/defaults';
-import type { Option } from '@shared/types';
 
-const buildGenderOptionsForForm = (gender: Option[]) => [
+/* данные для проверки, потом уберем*/
+const genderOptions = [
   { value: '', label: 'Не указан' },
-  ...gender.filter((g) => g.value !== 'all').map((g) => ({ value: g.value, label: g.label })),
+  { value: 'm', label: 'Мужской' },
+  { value: 'f', label: 'Женский' },
 ];
 
-// чтобы предотвратить сдвиг даты из-за timezone при toISOString()
-const toYYYYMMDD = (d: Date) => {
-  const yyyy = d.getFullYear();
-  const mm = String(d.getMonth() + 1).padStart(2, '0');
-  const dd = String(d.getDate()).padStart(2, '0');
-  return `${yyyy}-${mm}-${dd}`;
-};
+const cityOptions = [
+  { value: 'msk', label: 'Москва' },
+  { value: 'spb', label: 'Санкт-Петербург' },
+  { value: 'samara', label: 'Самара' },
+  { value: 'saratov', label: 'Саратов' },
+  { value: 'ekb', label: 'Екатеринбург' },
+  { value: 'nnov', label: 'Нижний Новгород' },
+  { value: 'kzn', label: 'Казань' },
+  { value: 'chelyabinsk', label: 'Челябинск' },
+  { value: 'omsk', label: 'Омск' },
+  { value: 'rostov', label: 'Ростов-на-Дону' },
+  { value: 'ufa', label: 'Уфа' },
+  { value: 'krasnoyarsk', label: 'Красноярск' },
+  { value: 'voronezh', label: 'Воронеж' },
+  { value: 'perm', label: 'Пермь' },
+  { value: 'volgograd', label: 'Волгоград' },
+  { value: 'krasnodar', label: 'Краснодар' },
+  { value: 'tyumen', label: 'Тюмень' },
+  { value: 'tolyatti', label: 'Тольятти' },
+  { value: 'izhevsk', label: 'Ижевск' },
+  { value: 'barnaul', label: 'Барнаул' },
+  { value: 'ulyanovsk', label: 'Ульяновск' },
+  { value: 'irkutsk', label: 'Иркутск' },
+  { value: 'khabarovsk', label: 'Хабаровск' },
+  { value: 'yaroslavl', label: 'Ярославль' },
+  { value: 'vladivostok', label: 'Владивосток' },
+  { value: 'makhachkala', label: 'Махачкала' },
+  { value: 'tomsk', label: 'Томск' },
+  { value: 'orenburg', label: 'Оренбург' },
+  { value: 'kemerovo', label: 'Кемерово' },
+  { value: 'novokuznetsk', label: 'Новокузнецк' },
+  { value: 'ryazan', label: 'Рязань' },
+  { value: 'astrakhan', label: 'Астрахань' },
+  { value: 'naberezhnye', label: 'Набережные Челны' },
+  { value: 'penza', label: 'Пенза' },
+  { value: 'lipetsk', label: 'Липецк' },
+  { value: 'tula', label: 'Тула' },
+  { value: 'kirov', label: 'Киров' },
+  { value: 'cheboksary', label: 'Чебоксары' },
+  { value: 'kaliningrad', label: 'Калининград' },
+  { value: 'bryansk', label: 'Брянск' },
+  { value: 'kursk', label: 'Курск' },
+  { value: 'ivanovo', label: 'Иваново' },
+  { value: 'magnitogorsk', label: 'Магнитогорск' },
+  { value: 'tver', label: 'Тверь' },
+  { value: 'stavropol', label: 'Ставрополь' },
+  { value: 'sochi', label: 'Сочи' },
+  { value: 'simferopol', label: 'Симферополь' },
+];
+
+const skillCategoryLearnOptions = [
+  { value: 'business', label: 'Бизнес и карьера' },
+  { value: 'creativity', label: 'Творчество и искусство' },
+  { value: 'languages', label: 'Иностранные языки' },
+  { value: 'health', label: 'Здоровье и лайфстайл' },
+  { value: 'home', label: 'Дом и уют' },
+];
+
+const skillSubcategoryLearnOptions = [
+  { value: 'drawing', label: 'Рисование и иллюстрация' },
+  { value: 'photography', label: 'Фотография' },
+  { value: 'video', label: 'Видеомонтаж' },
+  { value: 'music_sound', label: 'Музыка и звук' },
+  { value: 'acting', label: 'Актёрское мастерство' },
+  { value: 'writing', label: 'Креативное письмо' },
+  { value: 'art_therapy', label: 'Арт-терапия' },
+  { value: 'decor_diy', label: 'Декор и DIY' },
+];
 
 export const RegisterStep2Page: React.FC = () => {
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-  const db = useAppSelector(selectDb);
-
-  const genderOptions = useMemo(() => buildGenderOptionsForForm(GENDER), []);
-
-  const cityOptions = useMemo(() => {
-    if (!db) return [];
-    return db.cities.map((city) => ({ value: String(city.id), label: city.name }));
-  }, [db]);
-
-  const skillCategoryLearnOptions = useMemo<MultiSelectOption[]>(() => {
-    if (!db) return [];
-    return db.categories.map((cat) => ({ value: String(cat.id), label: cat.name }));
-  }, [db]);
-
-  const subcategoryOptionsByCategoryId = useMemo<Record<string, MultiSelectOption[]>>(() => {
-    if (!db) return {};
-    return Object.fromEntries(
-      Object.entries(db.subcategoriesByCategoryId).map(([categoryId, subs]) => [
-        String(categoryId),
-        subs.map((sub) => ({ value: String(sub.id), label: sub.name })),
-      ]),
-    );
-  }, [db]);
-
-  const handleSubmit = (data: RegisterStep2FormValues) => {
-    dispatch(
-      saveStep2({
-        name: data.name,
-        birthDate: data.birthDate ? toYYYYMMDD(data.birthDate) : null,
-        gender: data.gender,
-        city: data.city, // строковый id города
-        categorySkill: data.skillCategoryLearn, // строковые id категорий
-        subcategorySkill: data.skillSubcategoryLearn, // строковые id подкатегорий
-      }),
-    );
-
-    navigate('/auth/register/step-3');
-  };
 
   const heroText = (
     <div className={styles.heroContainer}>
@@ -77,20 +91,25 @@ export const RegisterStep2Page: React.FC = () => {
     </div>
   );
 
-  if (!db) return null;
-
   return (
     <>
       <StepProgress currentStep={2} totalSteps={3} className={styles.stepProgress} />
       <ContentSection
         main={
           <RegisterStep2Form
-            values={formData}
+            values={{
+              name: '',
+              birthDate: null,
+              gender: '',
+              city: null,
+              skillCategoryLearn: [],
+              skillSubcategoryLearn: [],
+            }}
             genderOptions={genderOptions}
             cityOptions={cityOptions}
             skillCategoryLearnOptions={skillCategoryLearnOptions}
-            subcategoryOptionsByCategoryId={subcategoryOptionsByCategoryId}
-            onSubmit={handleSubmit}
+            skillSubcategoryLearnOptions={skillSubcategoryLearnOptions}
+            onSubmit={() => navigate('/auth/register/step-3')}
             onBack={() => navigate('/auth/register/step-1')}
           />
         }

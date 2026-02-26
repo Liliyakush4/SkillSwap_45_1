@@ -1,17 +1,12 @@
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '@shared/lib/storeHooks';
-import { saveStep1 } from '@features/auth/model/registrationSlice';
 import styles from './RegisterStep1Page.module.css';
 import RegistrBoardImage from '@shared/assets/images/auth/registration_lightbulb.svg';
 import { ContentSection } from '@shared/ui/content-section/ContentSection';
 import { AuthForm } from '@features/auth/ui/auth-form/AuthForm';
 import { StepProgress } from '@shared/ui/step-progress/StepProgress';
-import { useAppDispatch } from '@shared/lib/storeHooks';
-import { saveStep1 } from '@features/auth/model/registrationSlice';
 
 export const RegisterStep1Page: React.FC = () => {
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
 
   const heroText = (
     <div className={styles.heroContainer}>
@@ -21,7 +16,7 @@ export const RegisterStep1Page: React.FC = () => {
   );
 
   const handleSubmit = (data: { email: string; password: string }) => {
-    dispatch(saveStep1(data));
+    console.log('Register data:', data);
     navigate('/auth/register/step-2');
   };
 
