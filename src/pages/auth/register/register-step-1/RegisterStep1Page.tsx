@@ -1,4 +1,6 @@
 import { useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '@shared/lib/storeHooks';
+import { saveStep1 } from '@features/auth/model/registrationSlice';
 import styles from './RegisterStep1Page.module.css';
 import RegistrBoardImage from '@shared/assets/images/auth/registration_lightbulb.svg';
 import { ContentSection } from '@shared/ui/content-section/ContentSection';

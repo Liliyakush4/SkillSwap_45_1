@@ -1,3 +1,4 @@
+//C:\Users\Ekaterina.Kharina\dev\SkillSwap_45_1\src\features\profile\model\profileSlice.ts
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import type { IsoDate } from '@shared/types';
 

@@ -19,7 +19,7 @@ export type RegisterStep3FormValues = {
 export interface RegisterStep3FormProps {
   values: RegisterStep3FormValues;
   onSubmit?: (data: RegisterStep3FormValues) => void;
-  onBack?: () => void;
+  onBack?: (data: RegisterStep3FormValues) => void;
   className?: string;
   categoryOptions: MultiSelectOption[];
   subcategoryOptionsByCategoryId: Record<string, MultiSelectOption[]>;
@@ -33,11 +33,20 @@ export const RegisterStep3Form: FC<RegisterStep3FormProps> = ({
   categoryOptions,
   subcategoryOptionsByCategoryId,
 }) => {
-  const [skillName, setSkillName] = useState(values.skillName);
-  const [category, setCategory] = useState(values.category);
-  const [subcategory, setSubcategory] = useState(values.subcategory);
-  const [description, setDescription] = useState(values.description);
-  const [photos, setPhotos] = useState(values.photos);
+  const [formData, setFormData] = useState<RegisterStep3FormValues>(values);
+
+  useEffect(() => {
+    setFormData(values);
+  }, [values]);
+
+  const { skillName, category, subcategory, description, photos } = formData;
+
+  const handleChange = <K extends keyof RegisterStep3FormValues>(
+    key: K,
+    value: RegisterStep3FormValues[K],
+  ) => {
+    setFormData((prev) => ({ ...prev, [key]: value }));
+  };
 
   // синхронизация со значениями из стора/пропсов при переключении по шагам
   useEffect(() => {
@@ -60,28 +69,29 @@ export const RegisterStep3Form: FC<RegisterStep3FormProps> = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit?.({ skillName, category, subcategory, description, photos });
+    onSubmit?.(formData);
+  };
+
+  const handleBack = () => {
+    onBack?.(formData);
   };
 
   return (
     <form className={`${styles.registerForm} ${className || ''}`} onSubmit={handleSubmit}>
-      {/* Группа полей — все поля внутри одного div */}
       <div className={styles.fieldsGroup}>
         <Input
           label="Название навыка"
           placeholder="Введите название вашего навыка"
           value={skillName}
-          onChange={setSkillName}
+          onChange={(value) => handleChange('skillName', value)}
         />
-
         <FormMultiSelectField
           label="Категория навыка"
           placeholder="Выберите категорию навыка"
           value={category}
-          onChange={setCategory}
+          onChange={(value) => handleChange('category', value)}
           options={categoryOptions}
         />
-
         <FormMultiSelectField
           label="Подкатегория навыка"
           placeholder={
@@ -92,21 +102,23 @@ export const RegisterStep3Form: FC<RegisterStep3FormProps> = ({
           options={filteredSubcategoryOptions}
           disabled={category.length === 0}
         />
-
         <Textarea
           label="Описание"
           placeholder="Коротко опишите, чему можете научить"
           value={description}
-          onChange={setDescription}
+          onChange={(value) => handleChange('description', value)}
           rows={4}
         />
-
-        <FileDropzone value={photos} onChange={setPhotos} multiple={true} accept="image/*" />
+        <FileDropzone
+          value={photos}
+          onChange={(value) => handleChange('photos', value)}
+          multiple={true}
+          accept="image/*"
+        />
       </div>
 
-      {/* Кнопки — отдельный блок */}
       <div className={styles.buttonsContainer}>
-        <Button variant="secondary" fullWidth type="button" onClick={onBack}>
+        <Button variant="secondary" fullWidth type="button" onClick={handleBack}>
           Назад
         </Button>
         <Button type="submit" variant="primary" fullWidth>

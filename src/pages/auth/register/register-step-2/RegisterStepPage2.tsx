@@ -85,14 +85,7 @@ export const RegisterStep2Page: React.FC = () => {
       <ContentSection
         main={
           <RegisterStep2Form
-            values={{
-              name: '',
-              birthDate: null,
-              gender: '',
-              city: null,
-              skillCategoryLearn: [],
-              skillSubcategoryLearn: [],
-            }}
+            values={formData}
             genderOptions={genderOptions}
             cityOptions={cityOptions}
             skillCategoryLearnOptions={skillCategoryLearnOptions}

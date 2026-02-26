@@ -1,3 +1,4 @@
+//C:\Users\Ekaterina.Kharina\dev\SkillSwap_45_1\src\features\auth\model\authSlice.ts
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
 export interface AuthState {

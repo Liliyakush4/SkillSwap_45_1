@@ -37,14 +37,14 @@ export const mapUserToUserCardProps = (
   const skillsOffered: SkillBadge[] = user.skillsOfferedIds
     .map((skillId) => {
       const skill = db.skillsById[skillId];
-      return skill ? { id: skill.id, text: skill.title } : null;
+      return skill ? { id: skill.id, text: skill.title, categoryId: skill.categoryId } : null;
     })
     .filter((skill): skill is SkillBadge => skill !== null);
 
   const skillsWanted: SkillBadge[] = user.skillsWantedIds
     .map((skillId) => {
       const skill = db.skillsById[skillId];
-      return skill ? { id: skill.id, text: skill.title } : null;
+      return skill ? { id: skill.id, text: skill.title, categoryId: skill.categoryId } : null;
     })
     .filter((skill): skill is SkillBadge => skill !== null);
 
