@@ -46,7 +46,6 @@
 .actionButton {
   position: relative;
   bottom: 5px;
-  width: 187px;
   height: 48px;
   padding: 12px 24px;
   border-radius: var(--radius-large); /* 12px из токенов */
