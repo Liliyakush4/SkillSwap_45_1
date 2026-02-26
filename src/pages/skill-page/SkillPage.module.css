@@ -95,10 +95,6 @@
   box-sizing: border-box;
 }
 
-.favoriteToggle:hover:not(:disabled) {
-  background-color: var(--color-hover, #deebc5);
-}
-
 .favoriteToggle:focus-visible {
   outline: 2px solid var(--color-accent, #508826);
   outline-offset: 2px;

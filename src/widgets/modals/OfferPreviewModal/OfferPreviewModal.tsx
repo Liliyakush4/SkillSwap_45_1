@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal } from '@shared/ui/Modal/Modal';
 import { Button } from '@shared/ui/Button/Button';
-import NosizeIcon from '@shared/assets/icons/common/icon_bell_nosize.svg';
+import NosizeIcon from '@shared/assets/icons/common/icon_bell_nosize_new.svg';
 import styles from './OfferPreviewModal.module.css';
 
 export interface OfferPreviewModalProps {
