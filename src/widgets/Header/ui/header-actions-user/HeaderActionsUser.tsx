@@ -1,4 +1,5 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { IconButton } from '@shared/ui/icon-button';
 import cls from './HeaderActionsUser.module.css';
 import iconThemeDark from '@shared/assets/icons/ui/icon_theme_dark.svg';
@@ -6,13 +7,21 @@ import iconHeart from '@shared/assets/icons/ui/icon_heart.svg';
 import iconBell from '@shared/assets/icons/common/icon_bell_nosize.svg';
 import { NotificationsPopover } from '@widgets/popovers/notificationsPopover';
 import { ProfileMenu } from '@widgets/popovers/profile-menu/ProfileMenu.tsx';
-import { useAppSelector } from '@shared/lib/storeHooks';
+import { useAppSelector, useAppDispatch } from '@shared/lib/storeHooks';
 import { selectProfileName } from '@features/profile/model/selectors';
+import { logoutThunk } from '@features/auth/model/authThunks';
 
 export const HeaderActionsUser = () => {
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const bellRef = useRef<HTMLButtonElement>(null);
   const userName = useAppSelector(selectProfileName);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = useCallback(() => {
+    dispatch(logoutThunk());
+    navigate('/');
+  }, [dispatch, navigate]);
 
   return (
     <div className={cls.wrapper}>
@@ -33,7 +42,7 @@ export const HeaderActionsUser = () => {
         <ProfileMenu
           userName={userName || 'Гость'}
           profilePath="/profile"
-          onLogoutClick={() => console.log('Logout clicked')}
+          onLogoutClick={handleLogout}
         />
       </div>
 
