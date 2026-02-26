@@ -31,11 +31,12 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
 
   // Если нет изображений - показываем заглушку
   if (images.length === 0) {
-    return (
-      <div className={`${styles.empty} ${className}`}>
-        <span className={styles.emptyText}>Нет изображений</span>
-      </div>
-    );
+    images = [
+      { src: '/images/skills/placeholders/111_4.jpg' },
+      { src: '/images/skills/placeholders/111_6.jpg' },
+      { src: '/images/skills/placeholders/111_8.jpg' },
+      { src: '/images/skills/placeholders/111_10.jpg' },
+    ];
   }
 
   const isInteractive = variant === 'interactive';
