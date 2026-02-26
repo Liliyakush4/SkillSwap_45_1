@@ -5,7 +5,7 @@
 
 .gridContainer {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 488px);
   grid-template-rows: repeat(3, auto);
   gap: 40px;
 }

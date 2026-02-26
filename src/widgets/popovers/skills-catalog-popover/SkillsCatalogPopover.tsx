@@ -15,7 +15,6 @@ export interface SkillsCatalogPopoverProps {
   anchorRef: React.RefObject<HTMLElement | null>;
 }
 
-// Объединённый массив категорий с подкатегориями пока такой вариант как заглушка
 const categories = [
   {
     id: 1,
@@ -120,6 +119,8 @@ export const SkillsCatalogPopover: React.FC<SkillsCatalogPopoverProps> = ({
       anchorRef={anchorRef}
       onClose={onClose}
       className={styles.popover_skill}
+      offsetX={-450} // как смогла сдвинуть
+      offsetY={20}
     >
       <div className={styles.content}>
         <div className={styles.gridContainer}>
