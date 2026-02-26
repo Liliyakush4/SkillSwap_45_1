@@ -29,10 +29,8 @@ export const Popover: FC<PopoverProps> = ({
   const popoverRef = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState<{ top: number; left: number } | null>(null);
 
-  // Вычисление позиции панели
   useEffect(() => {
     if (!isOpen || !anchorRef.current) {
-      // Не вызываем setPosition тут
       return;
     }
 
@@ -54,7 +52,6 @@ export const Popover: FC<PopoverProps> = ({
 
     updatePosition();
 
-    // Обновляем позицию при скролле и ресайзе
     window.addEventListener('scroll', updatePosition, true);
     window.addEventListener('resize', updatePosition);
 
