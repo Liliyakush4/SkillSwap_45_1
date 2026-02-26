@@ -1,13 +1,13 @@
-/*import React from 'react';
+import React from 'react';
 import { Popover } from '@shared/ui/Popover';
 import styles from './SkillsCatalogPopover.module.css';
 
-import BusinessIcon from '../../shared/assets/icons/common/icon_work.svg';
-import HealthIcon from '../../shared/assets/icons/common/icon_health.svg';
-import DesignIcon from '../../shared/assets/icons/common/icon_art.svg';
-import HomeIcon from '../../shared/assets/icons/common/icon_home.svg';
-import LanguageIcon from '../../shared/assets/icons/common/icon_earth.svg';
-import PersonalDevelopmentIcon from '../../shared/assets/icons/common/icon_book.svg';
+import BusinessIcon from '../../../shared/assets/icons/common/icon_work.svg';
+import HealthIcon from '../../../shared/assets/icons/common/icon_health.svg';
+import DesignIcon from '../../../shared/assets/icons/common/icon_art.svg';
+import HomeIcon from '../../../shared/assets/icons/common/icon_home.svg';
+import LanguageIcon from '../../../shared/assets/icons/common/icon_earth.svg';
+import PersonalDevelopmentIcon from '../../../shared/assets/icons/common/icon_book.svg';
 
 export interface SkillsCatalogPopoverProps {
   isOpen: boolean;
@@ -15,7 +15,6 @@ export interface SkillsCatalogPopoverProps {
   anchorRef: React.RefObject<HTMLElement | null>;
 }
 
-// Объединённый массив категорий с подкатегориями пока такой вариант как заглушка
 const categories = [
   {
     id: 1,
@@ -120,6 +119,8 @@ export const SkillsCatalogPopover: React.FC<SkillsCatalogPopoverProps> = ({
       anchorRef={anchorRef}
       onClose={onClose}
       className={styles.popover_skill}
+      offsetX={-450} // как смогла сдвинуть
+      offsetY={20}
     >
       <div className={styles.content}>
         <div className={styles.gridContainer}>
@@ -145,4 +146,3 @@ export const SkillsCatalogPopover: React.FC<SkillsCatalogPopoverProps> = ({
     </Popover>
   );
 };
-*/

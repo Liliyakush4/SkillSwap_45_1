@@ -1,4 +1,8 @@
-export type SkillBadge = { id: number; text: string };
+export type SkillBadge = {
+  id: number;
+  text: string;
+  categoryId: number;
+};
 
 export type CardHeight = 'regular' | 'compact' | 'auto' | 'full';
 // regular - В каталоге (обычная высота)

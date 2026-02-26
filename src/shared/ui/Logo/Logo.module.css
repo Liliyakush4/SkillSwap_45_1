@@ -27,6 +27,13 @@
   text-decoration: none;
 }
 
+@media (max-width: 960px) {
+  .text {
+    flex-shrink: 0;
+    display: none;
+  }
+}
+
 @media (max-width: 768px) {
   .text {
     display: none;

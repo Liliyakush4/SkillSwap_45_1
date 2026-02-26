@@ -37,3 +37,9 @@
   border-radius: 50%;
   background-color: #ccc;
 }
+
+@media (max-width: 960px) {
+  .wrapper {
+    gap: 0px;
+  }
+}

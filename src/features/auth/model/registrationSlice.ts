@@ -17,8 +17,8 @@ export interface RegistrationStep2 {
 
 export interface RegistrationStep3 {
   skillName: string;
-  categorySkill: string[]; // изменено на строковый тип
-  subcategorySkill: string[]; // изменено на строковый тип
+  categorySkill: Category;
+  subcategorySkill: Subcategory;
   description: string;
   photoPreviewUrl?: Url; // ссылка на предпросмотр
   photoMetadata?: Record<string, unknown>; // метаданные, если нужны

@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import clsx from 'clsx';
 import type { UserCardProps, SkillBadge } from './UserCard.types';
 import styles from './UserCard.module.css';
@@ -7,6 +7,9 @@ import { Avatar } from '@shared/ui/Avatar';
 import { LikesCounter } from '@features/favorites/ui/LikesCounter';
 import { SkillPlate } from '@shared/ui/skill-plate/SkillPlate';
 import { Button } from '@shared/ui/Button';
+import { getSkillColorVar } from '@shared/ui/skill-plate/utils/getSkillColorVar';
+
+const SKILLS_VISIBLE_LIMIT = 2;
 
 export const UserCard: React.FC<UserCardProps> = ({
   avatarSrc,
@@ -23,37 +26,51 @@ export const UserCard: React.FC<UserCardProps> = ({
   onMore,
   moreLabel = 'Подробнее',
   className,
-  height = 'regular', // новый проп с дефолтным значением
+  height = 'regular',
 }) => {
+  // Функция для рендера навыков
   const renderSkills = useCallback((skills: SkillBadge[]) => {
-    if (skills.length === 0) {
+    // если навыков нет - покажет заглушку
+    if (!skills || skills.length === 0) {
       return <SkillPlate className={styles.emptySkill} variant="default" text="Нет навыков" />;
     }
-    if (skills.length < 3) {
-      return skills.map((skill) => (
-        <SkillPlate key={skill.id} variant="default" text={skill.text} />
-      ));
-    }
+
+    const visible = skills.slice(0, SKILLS_VISIBLE_LIMIT);
+    const hiddenCount = skills.length - SKILLS_VISIBLE_LIMIT;
+
     return (
       <>
-        {skills.slice(0, 2).map((skill) => (
-          <SkillPlate key={skill.id} variant="default" text={skill.text} />
+        {visible.map((skill) => (
+          <SkillPlate
+            key={skill.id}
+            variant="default"
+            text={skill.text}
+            colorVar={getSkillColorVar(skill.categoryId)}
+          />
         ))}
-        <SkillPlate variant="count" text={`${skills.length - 2}`} />
+
+        {hiddenCount > 0 && <SkillPlate variant="count" text={`${hiddenCount}`} />}
       </>
     );
   }, []);
 
+  // Мемоизируем отрендеренные навыки для оптимизации
+  const renderedOfferedSkills = useMemo(
+    () => renderSkills(skillsOffered),
+    [skillsOffered, renderSkills],
+  );
+  const renderedWantedSkills = useMemo(
+    () => renderSkills(skillsWanted),
+    [skillsWanted, renderSkills],
+  );
+
   return (
-    <Card
-      className={clsx(styles.userCard, className)}
-      data-height={height} // data-атрибут для управления высотой
-    >
+    <Card className={clsx(styles.userCard, className)} data-height={height}>
       <div className={styles.header}>
         <Avatar src={avatarSrc} size={100} alt={`Аватар пользователя ${name}`} />
         <div className={styles.userInfo}>
           <h2 className={styles.name}>{name}</h2>
-          <div className={styles.cityAge}>{age === undefined ? `${city}` : `${city}, ${age}`}</div>
+          <div className={styles.cityAge}>{age === undefined ? city : `${city}, ${age}`}</div>
         </div>
         {showLike && (
           <LikesCounter
@@ -69,18 +86,20 @@ export const UserCard: React.FC<UserCardProps> = ({
 
       <div className={styles.skillsSection}>
         {about && !onMore && <div className={styles.about}>{about}</div>}
+
         <div className={styles.skill}>
           <h4 className={styles.skillsLabel}>Может научить:</h4>
-          <div className={styles.skillsRow}>{renderSkills(skillsOffered)}</div>
+          <div className={styles.skillsRow}>{renderedOfferedSkills}</div>
         </div>
+
         <div className={styles.skill}>
           <h4 className={styles.skillsLabel}>Хочет научиться:</h4>
-          <div className={styles.skillsRow}>{renderSkills(skillsWanted)}</div>
+          <div className={styles.skillsRow}>{renderedWantedSkills}</div>
         </div>
       </div>
 
       {onMore && (
-        <Button fullWidth={true} onClick={onMore}>
+        <Button fullWidth onClick={onMore}>
           {moreLabel}
         </Button>
       )}

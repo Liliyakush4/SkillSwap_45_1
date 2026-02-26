@@ -12,7 +12,6 @@
 }
 
 .userName {
-  margin-left: 8px;
   font-weight: 500;
 }
 
@@ -28,7 +27,7 @@
   background: var(--color-secondary);
   border-radius: 4px;
   padding: 40px;
-  min-width: 160px;
+  min-width: 260px;
   display: flex;
   gap: 24px;
   flex-direction: column;
@@ -45,4 +44,11 @@
 
 .menuItemIcon {
   margin-left: 8px;
+}
+
+@media (max-width: 960px) {
+  .userName {
+    flex-shrink: 0;
+    display: none;
+  }
 }

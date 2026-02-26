@@ -1,201 +1,132 @@
 import { SkillCard } from '@entities/skill/ui/skill-card';
 import styles from './SkillPage.module.css';
-import { UserCard, type UserCardProps } from '@entities/user/ui/user-card';
+import { UserCard } from '@entities/user/ui/user-card';
 import { IconButton } from '@shared/ui/icon-button';
-import heartIcon from '@shared/assets/icons/ui/icon_heart.svg';
 import shareIcon from '@shared/assets/icons/ui/icon_copy_link.svg';
 import ellipsisIcon from '@shared/assets/icons/ui/icon_ellipsis.svg';
 import { Button } from '@shared/ui/Button';
-import { useState } from 'react';
-import { OfferCreatedModal } from '@widgets/modals/OfferCreatedModal';
+import { useCallback, useState } from 'react';
 import { UserCardSection } from '@widgets/user-card-section';
+import { useSelector } from 'react-redux';
+import { mapUserToUserCardProps } from '@entities/user/model';
+import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { useAppDispatch } from '@shared/lib/storeHooks';
+import { selectFavoriteUserIds, toggleFavorite } from '@features/favorites/model/favoritesSlice';
+import { selectDb } from '@app/store/db/selectors';
+import { FavoriteToggle } from '@shared/ui/favorite-toggle';
+import { selectIsAuthenticated } from '@features/auth/model/selectors';
+import { OfferLoginModal } from '@widgets/modals/OfferLoginModal';
+import { OfferPreviewModal } from '@widgets/modals/OfferPreviewModal';
+import clockIcon from '@shared/assets/icons/common/icon_clock.svg';
 
 export default function SkillPage() {
-  // Состояние для управления модальным окном
+  const db = useSelector(selectDb);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isOfferSent, setIsOfferSent] = useState(false);
+  const { id } = useParams<{ id: string }>();
+  const isLikedData = useSelector(selectFavoriteUserIds);
+  const isAuthenticated = useSelector(selectIsAuthenticated);
 
-  // Состояние для выбранного пользователя
-  const [selectedUser, setSelectedUser] = useState<UserCardProps | null>(null);
+  const handlerLike = useCallback(
+    (id: number) => {
+      dispatch(toggleFavorite(id));
+    },
+    [dispatch],
+  );
 
-  // Моковые данные для заполнения карточки навыков
-  const skillData = {
-    title: 'Игра на барабанах',
-    category: 'Творчество и искусство',
-    subcategory: 'Музыка и звук',
-    description:
-      'Привет! Я играю на барабанах уже больше 10 лет —от репетиций в гараже до выступлений на сцене с живыми группами. Научу основам техники (и как не отбить себе пальцы), играть любимые ритмы и разбирать песни, импровизировать и звучать уверенно даже без паритуры',
-    images: [
-      { src: '/image1.jpg', alt: 'Скриншот проекта 1' },
-      { src: '/image2.jpg', alt: 'Скриншот проекта 2' },
-      { src: '/image2.jpg', alt: 'Скриншот проекта 2' },
-      { src: '/image2.jpg', alt: 'Скриншот проекта 2' },
-      { src: '/image1.jpg', alt: 'Скриншот проекта 1' },
-      { src: '/image2.jpg', alt: 'Скриншот проекта 2' },
-    ],
-  };
+  if (!db) {
+    return <div>Загрузка данных...</div>;
+  }
 
-  // Моковые данные для заполнения карточки пользователя (по умолчанию)
-  const defaultUserData = {
-    avatarSrc: 'https://i.pravatar.cc/150?img=32',
-    name: 'Аня',
-    city: 'Москва',
-    age: 26,
-    about:
-      'Frontend-разработка, люблю аккуратные компоненты и ненавижу непредсказуемые отступы. Могу научить базовой архитектуре и стилю кода.',
-    skillsOffered: [
-      { id: 1, text: 'React' },
-      { id: 2, text: 'TypeScript' },
-      { id: 3, text: 'CSS Modules' },
-      { id: 4, text: 'Storybook' },
-    ],
-    skillsWanted: [
-      { id: 101, text: 'Figma' },
-      { id: 102, text: 'UX' },
-    ],
+  const user = db.usersById[Number(id)];
+
+  const userData = mapUserToUserCardProps(db, user, {
+    onLikeClick: () => dispatch(toggleFavorite(user.id)),
     showLike: false,
-  };
+  });
 
-  // Используем выбранного пользователя или данные по умолчанию
-  const userData = selectedUser || defaultUserData;
+  const skillData = db.skillsById[user.skillsOfferedIds[0]];
+  const skillCategory = db.categoriesById[skillData.categoryId];
+  const skillSubcategory = db.subcategoriesById[skillData.subcategoryId];
 
-  // Моковые данные для карточек
-  const cards: Array<UserCardProps & { id: string | number }> = [
-    {
-      id: 1,
-      name: 'Анна Иванова',
-      city: 'Москва',
-      age: 25,
-      skillsOffered: [
-        { id: 1, text: 'React' },
-        { id: 2, text: 'TypeScript' },
-        { id: 3, text: 'Next.js' },
-      ],
-      skillsWanted: [
-        { id: 4, text: 'Vue.js' },
-        { id: 5, text: 'Node.js' },
-      ],
-      about: 'Frontend разработчик с опытом работы 3 года',
-      showLike: true,
-      likesCount: 15,
-      isLiked: false,
-      height: 'regular',
-    },
-    {
-      id: 2,
-      name: 'Петр Сидоров',
-      city: 'Санкт-Петербург',
-      age: 30,
-      skillsOffered: [
-        { id: 6, text: 'Python' },
-        { id: 7, text: 'Django' },
-        { id: 8, text: 'PostgreSQL' },
-      ],
-      skillsWanted: [
-        { id: 9, text: 'React' },
-        { id: 10, text: 'Docker' },
-      ],
-      about: 'Backend разработчик, ищу команду для интересных проектов',
-      showLike: true,
-      likesCount: 8,
-      isLiked: true,
-      height: 'regular',
-    },
-    {
-      id: 3,
-      name: 'Елена Козлова',
-      city: 'Казань',
-      age: 28,
-      skillsOffered: [
-        { id: 11, text: 'UI/UX дизайн' },
-        { id: 12, text: 'Figma' },
-        { id: 13, text: 'Adobe XD' },
-      ],
-      skillsWanted: [
-        { id: 14, text: 'HTML/CSS' },
-        { id: 15, text: 'JavaScript' },
-      ],
-      about: 'Продуктовый дизайнер, хочу прокачать фронтенд',
-      showLike: true,
-      likesCount: 23,
-      isLiked: false,
-      height: 'regular',
-    },
-    {
-      id: 4,
-      name: 'Михаил Новиков',
-      city: 'Новосибирск',
-      age: 32,
-      skillsOffered: [
-        { id: 16, text: 'Java' },
-        { id: 17, text: 'Spring' },
-        { id: 18, text: 'Kotlin' },
-      ],
-      skillsWanted: [
-        { id: 19, text: 'Go' },
-        { id: 20, text: 'Kubernetes' },
-      ],
-      about: 'Senior Java разработчик, интересуюсь микросервисами',
-      showLike: true,
-      likesCount: 42,
-      isLiked: false,
-      height: 'regular',
-    },
-    {
-      id: 5,
-      name: 'Анна Иванова',
-      city: 'Москва',
-      age: 54,
-      skillsOffered: [
-        { id: 1, text: 'React' },
-        { id: 2, text: 'TypeScript' },
-        { id: 3, text: 'Next.js' },
-      ],
-      skillsWanted: [
-        { id: 4, text: 'Vue.js' },
-        { id: 5, text: 'Node.js' },
-      ],
-      about: 'Frontend разработчик с опытом работы 3 года',
-      showLike: true,
-      likesCount: 15,
-      isLiked: false,
-      height: 'regular',
-    },
-  ];
+  const users = db.users.filter((user) => {
+    const hasOfferedSkill = user.skillsOfferedIds.some((id) => id === skillData.id);
+    const hasWantedSkill = user.skillsWantedIds.some((id) => id === skillData.id);
+    const notMe = user.id !== userData.id;
+    const sameCity = user.cityId === Number(userData.city);
+    return (notMe && hasOfferedSkill) || hasWantedSkill || sameCity;
+  });
 
-  // Функция для открытия модального окна
+  const cards = users.map((user) =>
+    mapUserToUserCardProps(db, user, {
+      onMore: () => navigate(`/skill/${user.id}`),
+      onLikeClick: () => handlerLike(user.id),
+      showLike: true,
+      likesCount: isLikedData.includes(user.id) ? 1 : undefined,
+      isLiked: isLikedData.includes(user.id),
+      moreLabel: 'Подробнее',
+    }),
+  );
+
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
 
-  // Функция для закрытия модального окна
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
 
-  // Функция для обработки клика по кнопке "Подробнее"
-  const handleUserMoreClick = (userData: UserCardProps) => {
-    setSelectedUser({
-      ...userData,
-      showLike: false, // Убираем лайк в верхней карточке
-    });
+  const handleSendOffer = () => {
+    if (isAuthenticated) {
+      setIsOfferSent(true);
+      // Здесь можно добавить логику отправки предложения на сервер
+    }
   };
 
-  // Подготавливаем карточки с обработчиком onMore
-  const cardsWithHandlers = cards.map((card) => ({
-    ...card,
-    onMore: () => handleUserMoreClick(card),
-    moreLabel: 'Подробнее', // Добавляем текст кнопки
-  }));
+  // Новый обработчик для клика по кнопке
+  const handleButtonClick = () => {
+    if (isOfferSent) {
+      // Если предложение уже отправлено - переходим на главную
+      navigate('/');
+    } else {
+      // Если предложение еще не отправлено - открываем модальное окно
+      handleOpenModal();
+    }
+  };
 
-  // Создаем кнопку с использованием компонента Button
+  // Определяем текст и вариант кнопки в зависимости от состояния
+  const getButtonConfig = () => {
+    if (isAuthenticated && isOfferSent) {
+      return {
+        text: 'Обмен предложен',
+        variant: 'secondary' as const,
+        disabled: false,
+        icon: <img src={clockIcon} alt="" className={styles.buttonIcon} />,
+      };
+    }
+    return {
+      text: 'Предложить обмен',
+      variant: 'primary' as const,
+      disabled: false,
+      icon: null,
+    };
+  };
+
+  const buttonConfig = getButtonConfig();
+
   const actions = (
     <div className={styles.actions}>
       <Button
-        variant="primary"
-        className={styles.editButton}
-        onClick={handleOpenModal} // Передаем функцию открытия
+        variant={buttonConfig.variant}
+        className={`${styles.editButton} ${isOfferSent ? styles.sentButton : ''}`}
+        onClick={handleButtonClick} // Используем новый обработчик
+        disabled={buttonConfig.disabled}
       >
-        Предложить обмен
+        {buttonConfig.icon && <span className={styles.iconWrapper}>{buttonConfig.icon}</span>}
+        {buttonConfig.text}
       </Button>
     </div>
   );
@@ -217,14 +148,10 @@ export default function SkillPage() {
         />
         <div className={styles.skillContainer}>
           <div className={styles.smallIconButton}>
-            <IconButton
-              icon={<img src={heartIcon} alt="" />}
-              variant="ghost"
-              isActive={false}
-              className=""
-              type="button"
-              disabled={false}
-              aria-label="ariaLabel"
+            <FavoriteToggle
+              isActive={isLikedData.includes(userData.id)}
+              onClick={() => handlerLike(userData.id)}
+              className={styles.favoriteToggle}
             />
             <IconButton
               icon={<img src={shareIcon} alt="" />}
@@ -247,19 +174,19 @@ export default function SkillPage() {
           </div>
           <SkillCard
             title={skillData.title}
-            category={skillData.category}
-            subcategory={skillData.subcategory}
+            category={skillCategory.name}
+            subcategory={skillSubcategory.name}
             description={skillData.description}
             images={skillData.images}
             className={styles.skillSectionCard}
-            actions={actions} // Передаем кнопки в SkillCard
+            actions={actions}
             variant="interactive"
           />
         </div>
       </div>
       <UserCardSection
         title="Похожие предложения"
-        items={cardsWithHandlers}
+        items={cards}
         limit={100}
         className={styles.section}
         variant="row"
@@ -267,8 +194,16 @@ export default function SkillPage() {
         showNavigation={true}
       />
 
-      {/* Добавляем модальное окно */}
-      <OfferCreatedModal isOpen={isModalOpen} onClose={handleCloseModal} />
+      {isAuthenticated && (
+        <OfferPreviewModal
+          isOpen={isModalOpen}
+          onClose={() => {
+            handleCloseModal();
+            handleSendOffer(); // Вызываем при закрытии модального окна
+          }}
+        />
+      )}
+      {!isAuthenticated && <OfferLoginModal isOpen={isModalOpen} onClose={handleCloseModal} />}
     </div>
   );
 }

@@ -1,9 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {
-  RegisterStep3Form,
-  type RegisterStep3FormValues,
-} from '@features/auth/ui/register-step-3-form';
+import { RegisterStep3Form } from '@features/auth/ui/register-step-3-form';
 import styles from './RegisterStep3Page.module.css';
 import RegistrBoardImage from '@shared/assets/images/auth/registration_board.svg';
 import { ContentSection } from '@shared/ui/content-section/ContentSection';
@@ -84,8 +81,6 @@ export const RegisterStep3Page: React.FC = () => {
     </div>
   );
 
-  if (!db) return null;
-
   return (
     <>
       <StepProgress currentStep={3} totalSteps={3} className={styles.stepProgress} />
@@ -95,10 +90,16 @@ export const RegisterStep3Page: React.FC = () => {
             {submitError && <div className={styles.formError}>{submitError}</div>}
 
             <RegisterStep3Form
-              values={initialValues}
-              categoryOptions={categoryOptions}
-              subcategoryOptionsByCategoryId={subcategoryOptionsByCategoryId}
-              onSubmit={handleSubmit}
+              values={{
+                skillName: '',
+                category: [],
+                subcategory: [],
+                description: '',
+                photos: [],
+              }}
+              categoryOptions={skillCategoryLearnOptions}
+              subcategoryOptions={skillSubcategoryLearnOptions}
+              onSubmit={() => navigate('/', { replace: true })}
               onBack={() => navigate('/auth/register/step-2')}
             />
           </>

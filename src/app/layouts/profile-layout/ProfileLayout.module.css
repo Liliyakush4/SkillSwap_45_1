@@ -1,6 +1,5 @@
 .layout {
   display: grid;
-  min-height: 100vh;
   grid-template-columns: 1fr;
   grid-template-rows: auto auto 1fr;
   grid-template-areas:
@@ -22,6 +21,7 @@
   overflow: auto;
   box-sizing: border-box;
   background-color: var(--color-secondary);
+  max-height: 752px;
 }
 
 /* Desktop: 2 колонки (sidebar + content)*/
@@ -41,6 +41,12 @@
 
   .main {
     border-radius: 24px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .main {
+    padding: 40px;
   }
 }
 

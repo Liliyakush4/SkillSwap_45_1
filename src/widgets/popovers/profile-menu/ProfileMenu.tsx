@@ -168,8 +168,8 @@ export const ProfileMenu: FC<ProfileMenuProps> = ({
         }}
         className={styles.triggerButton}
       >
-        <Avatar src={avatarUrl} alt="Профиль" />
         {userName && <span className={styles.userName}>{userName}</span>}
+        <Avatar src={avatarUrl} alt="Профиль" />
       </button>
 
       <Popover
