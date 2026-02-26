@@ -1,4 +1,5 @@
 .skillPlate {
+  background: var(--skill-plate-bg, var(--color-tag-plus));
   display: inline-block;
   font-family: var(--font-family-base);
   font-weight: var(--font-weight-regular);
@@ -14,11 +15,6 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-}
-
-.default {
-  /* Вставили цвет серый по умолчанию, чтобы увидеть проблемы в передаче цвета родителем */
-  background-color: rgb(192, 192, 192);
 }
 
 .count {

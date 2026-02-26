@@ -7,6 +7,9 @@ import { Avatar } from '@shared/ui/Avatar';
 import { LikesCounter } from '@features/favorites/ui/LikesCounter';
 import { SkillPlate } from '@shared/ui/skill-plate/SkillPlate';
 import { Button } from '@shared/ui/Button';
+import { getSkillColorVar } from '@shared/ui/skill-plate/utils/getSkillColorVar';
+
+const SKILLS_VISIBLE_LIMIT = 2;
 
 export const UserCard: React.FC<UserCardProps> = ({
   avatarSrc,
@@ -29,17 +32,22 @@ export const UserCard: React.FC<UserCardProps> = ({
     if (skills.length === 0) {
       return <SkillPlate className={styles.emptySkill} variant="default" text="Нет навыков" />;
     }
-    if (skills.length < 3) {
-      return skills.map((skill) => (
-        <SkillPlate key={skill.id} variant="default" text={skill.text} />
-      ));
-    }
+
+    const visible = skills.slice(0, SKILLS_VISIBLE_LIMIT);
+    const hiddenCount = skills.length - SKILLS_VISIBLE_LIMIT;
+
     return (
       <>
-        {skills.slice(0, 2).map((skill) => (
-          <SkillPlate key={skill.id} variant="default" text={skill.text} />
+        {visible.map((skill) => (
+          <SkillPlate
+            key={skill.id}
+            variant="default"
+            text={skill.text}
+            colorVar={getSkillColorVar(skill.categoryId)}
+          />
         ))}
-        <SkillPlate variant="count" text={`${skills.length - 2}`} />
+
+        {hiddenCount > 0 && <SkillPlate variant="count" text={`${hiddenCount}`} />}
       </>
     );
   }, []);
