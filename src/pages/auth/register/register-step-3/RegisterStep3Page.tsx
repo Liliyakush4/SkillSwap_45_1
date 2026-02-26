@@ -1,32 +1,78 @@
+import React, { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { RegisterStep3Form } from '@features/auth/ui/register-step-3-form';
 import styles from './RegisterStep3Page.module.css';
 import RegistrBoardImage from '@shared/assets/images/auth/registration_board.svg';
 import { ContentSection } from '@shared/ui/content-section/ContentSection';
 import { StepProgress } from '@shared/ui/step-progress/StepProgress';
-
-/* времененные данные чтобы проверить вывод данных в полях при регистрации*/
-const skillCategoryLearnOptions = [
-  { value: 'business', label: 'Бизнес и карьера' },
-  { value: 'creativity', label: 'Творчество и искусство' },
-  { value: 'languages', label: 'Иностранные языки' },
-  { value: 'health', label: 'Здоровье и лайфстайл' },
-  { value: 'home', label: 'Дом и уют' },
-];
-
-const skillSubcategoryLearnOptions = [
-  { value: 'drawing', label: 'Рисование и иллюстрация' },
-  { value: 'photography', label: 'Фотография' },
-  { value: 'video', label: 'Видеомонтаж' },
-  { value: 'music_sound', label: 'Музыка и звук' },
-  { value: 'acting', label: 'Актёрское мастерство' },
-  { value: 'writing', label: 'Креативное письмо' },
-  { value: 'art_therapy', label: 'Арт-терапия' },
-  { value: 'decor_diy', label: 'Декор и DIY' },
-];
+import { useAppDispatch, useAppSelector } from '@shared/lib/storeHooks';
+import { selectDb } from '@app/store/db/selectors';
+import type { MultiSelectOption } from '@shared/ui/form-multi-select-field';
+import { selectRegistrationStep3 } from '@features/auth/model/registrationSelectors';
+import { finishRegistrationFromStep3 } from '@features/auth/model/registrationThunks';
 
 export const RegisterStep3Page: React.FC = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const db = useAppSelector(selectDb);
+  const step3Draft = useAppSelector(selectRegistrationStep3);
+
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
+  const categoryOptions = useMemo<MultiSelectOption[]>(() => {
+    if (!db) return [];
+    return db.categories.map((cat) => ({ value: String(cat.id), label: cat.name }));
+  }, [db]);
+
+  const subcategoryOptionsByCategoryId = useMemo<Record<string, MultiSelectOption[]>>(() => {
+    if (!db) return {};
+    return Object.fromEntries(
+      Object.entries(db.subcategoriesByCategoryId).map(([categoryId, subs]) => [
+        String(categoryId),
+        subs.map((sub) => ({ value: String(sub.id), label: sub.name })),
+      ]),
+    );
+  }, [db]);
+
+  const initialValues = useMemo<RegisterStep3FormValues>(() => {
+    if (!step3Draft) {
+      return {
+        skillName: '',
+        category: [],
+        subcategory: [],
+        description: '',
+        photos: [],
+      };
+    }
+
+    return {
+      skillName: step3Draft.skillName ?? '',
+      category: step3Draft.categorySkill ?? [],
+      subcategory: step3Draft.subcategorySkill ?? [],
+      description: step3Draft.description ?? '',
+      photos: [],
+    };
+  }, [step3Draft]);
+
+  const handleSubmit = async (data: RegisterStep3FormValues) => {
+    setSubmitError(null);
+
+    try {
+      await dispatch(
+        finishRegistrationFromStep3({
+          skillName: data.skillName,
+          category: data.category,
+          subcategory: data.subcategory,
+          description: data.description,
+          photos: data.photos,
+        }),
+      ).unwrap();
+
+      navigate('/', { replace: true });
+    } catch (e) {
+      setSubmitError(typeof e === 'string' ? e : 'Ошибка регистрации');
+    }
+  };
 
   const heroText = (
     <div className={styles.heroContainer}>
@@ -41,6 +87,8 @@ export const RegisterStep3Page: React.FC = () => {
       <ContentSection
         main={
           <>
+            {submitError && <div className={styles.formError}>{submitError}</div>}
+
             <RegisterStep3Form
               values={{
                 skillName: '',

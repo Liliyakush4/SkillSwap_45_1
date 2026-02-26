@@ -53,15 +53,8 @@ const registrationSlice = createSlice({
       Object.assign(state, initialState);
     },
   },
-  selectors: {
-    selectRegistrationStep1: (state: RegistrationState) => state.step1,
-    selectRegistrationStep2: (state: RegistrationState) => state.step2,
-    selectRegistrationStep3: (state: RegistrationState) => state.step3,
-  },
 });
 
-export const { selectRegistrationStep1, selectRegistrationStep2, selectRegistrationStep3 } =
-  registrationSlice.selectors;
 export const { saveStep1, saveStep2, saveStep3, resetRegistrationDraft } =
   registrationSlice.actions;
 
