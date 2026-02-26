@@ -2,38 +2,45 @@
   "skills": [
     {
       "id": 101,
-      "title": "Проектное управление для новичков",
+      "title": "Проектное управление",
       "categoryId": 1,
       "subcategoryId": 7,
       "ownerUserId": 1,
       "description": "Разберем роли, планирование, риски и статусы. На примерах из реальных проектов.",
       "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+        { "src": "/images/skills/101_1.jpg" },
+        { "src": "/images/skills/101_2.jpg" },
+        { "src": "/images/skills/101_3.jpg" },
+        { "src": "/images/skills/101_4.jpg" },
+        { "src": "/images/skills/101_5.jpg" }
       ]
     },
     {
       "id": 102,
-      "title": "Йога и медитация для начинающих",
+      "title": "Йога и медитация",
       "categoryId": 6,
       "subcategoryId": 36,
       "ownerUserId": 3,
       "description": "Мягкая практика, дыхание и расслабление. Подойдет, если давно хотел(а) начать.",
       "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+        { "src": "/images/skills/102_1.jpg" },
+        { "src": "/images/skills/102_2.jpg" },
+        { "src": "/images/skills/102_3.jpg" },
+        { "src": "/images/skills/102_4.jpg" },
+        { "src": "/images/skills/102_5.jpg" }
       ]
     },
     {
       "id": 103,
-      "title": "Фронтенд-разработка на HTML и CSS",
+      "title": "Фронтенд-разработка",
       "categoryId": 5,
       "subcategoryId": 32,
       "ownerUserId": 3,
       "description": "Основы HTML, CSS, создание адаптивных сайтов.",
       "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+        { "src": "/images/skills/103_1.jpg" },
+        { "src": "/images/skills/103_2.jpg" },
+        { "src": "/images/skills/103_3.jpg" }
       ]
     },
     {
@@ -50,25 +57,22 @@
     },
     {
       "id": 105,
-      "title": "Программирование микроконтроллеров",
+      "title": "Программирование чипов",
       "categoryId": 1,
       "subcategoryId": 7,
       "ownerUserId": 4,
       "description": "Работа с Arduino, ESP8266 и др.",
-      "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
-      ]
+      "images": [{ "src": "/images/skills/105_1.jpg" }, { "src": "/images/skills/105_2.jpg" }]
     },
     {
       "id": 106,
-      "title": "Фотография для начинающих",
+      "title": "Фотография для новичков",
       "categoryId": 4,
       "subcategoryId": 23,
       "ownerUserId": 1,
       "description": "Основы композиции, съемки, настройка камеры.",
       "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+      "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
         "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
       ]
     },
@@ -80,13 +84,16 @@
       "ownerUserId": 6,
       "description": "Базовые конструкции, работу с файлами и библиотеками.",
       "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+        { "src": "/images/skills/107_1.jpg" },
+        { "src": "/images/skills/107_2.jpg" },
+        { "src": "/images/skills/107_3.jpg" },
+        { "src": "/images/skills/107_4.jpg" },
+        { "src": "/images/skills/107_5.jpg" }
       ]
     },
     {
       "id": 108,
-      "title": "Создание контента для соцсетей",
+      "title": "Создание контента",
       "categoryId": 4,
       "subcategoryId": 29,
       "ownerUserId": 6,
@@ -104,13 +111,15 @@
       "ownerUserId": 7,
       "description": "Продвижение в соцсетях, таргетинг.",
       "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+        { "src": "/images/skills/109_1.jpg" },
+        { "src": "/images/skills/109_2.jpg" },
+        { "src": "/images/skills/109_3.jpg" },
+        { "src": "/images/skills/109_4.jpg" }
       ]
     },
     {
       "id": 110,
-      "title": "Английский язык для начинающих",
+      "title": "Английский язык",
       "categoryId": 2,
       "subcategoryId": 9,
       "ownerUserId": 7,
@@ -128,8 +137,14 @@
       "ownerUserId": 8,
       "description": "Работа с Photoshop, иллюстрации.",
       "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+        { "src": "/images/skills/111_1.jpg" },
+        { "src": "/images/skills/111_2.jpg" },
+        { "src": "/images/skills/111_3.jpg" },
+        { "src": "/images/skills/111_5.jpg" },
+        { "src": "/images/skills/111_7.jpg" },
+        { "src": "/images/skills/111_9.jpg" },
+        { "src": "/images/skills/111_11.jpg" },
+        { "src": "/images/skills/111_12.jpg" }
       ]
     },
     {
@@ -140,8 +155,9 @@
       "ownerUserId": 9,
       "description": "Основы игры, аккорды, ритм.",
       "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+        { "src": "/images/skills/112_1.jpg" },
+        { "src": "/images/skills/112_2.jpg" },
+        { "src": "/images/skills/112_3.jpg" }
       ]
     },
     {
@@ -152,8 +168,9 @@
       "ownerUserId": 10,
       "description": "Интенсивные тренировки для силы и выносливости.",
       "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+        { "src": "/images/skills/113_1.jpg" },
+        { "src": "/images/skills/113_2.jpg" },
+        { "src": "/images/skills/113_3.jpg" }
       ]
     },
     {
@@ -176,8 +193,9 @@
       "ownerUserId": 11,
       "description": "Adobe Premiere, DaVinci Resolve.",
       "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+        { "src": "/images/skills/115_1.jpg" },
+        { "src": "/images/skills/115_2.jpg" },
+        { "src": "/images/skills/115_3.jpg" }
       ]
     },
     {
@@ -188,8 +206,11 @@
       "ownerUserId": 12,
       "description": "Java, Kotlin, создание приложений.",
       "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+        { "src": "/images/skills/116_1.jpg" },
+        { "src": "/images/skills/116_2.jpg" },
+        { "src": "/images/skills/116_3.jpg" },
+        { "src": "/images/skills/116_4.jpg" },
+        { "src": "/images/skills/116_5.jpg" }
       ]
     },
     {
@@ -212,9 +233,9 @@
       "ownerUserId": 13,
       "description": "Создаем одежду, игрушки, аксессуары.",
       "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg",
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg"
+        { "src": "/images/skills/118_1.jpg" },
+        { "src": "/images/skills/118_2.jpg" },
+        { "src": "/images/skills/118_3.jpg" }
       ]
     },
     {
@@ -225,8 +246,10 @@
       "ownerUserId": 14,
       "description": "Работа с PLC, SCADA.",
       "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+        { "src": "/images/skills/119_1.jpg" },
+        { "src": "/images/skills/119_2.jpg" },
+        { "src": "/images/skills/119_3.jpg" },
+        { "src": "/images/skills/119_4.jpg" }
       ]
     },
     {
@@ -243,19 +266,22 @@
     },
     {
       "id": 121,
-      "title": "Рисование для начинающих",
+      "title": "Рисование для новичков",
       "categoryId": 4,
       "subcategoryId": 24,
       "ownerUserId": 15,
       "description": "Основы графики, техника рисования.",
       "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+        { "src": "/images/skills/121_1.jpg" },
+        { "src": "/images/skills/121_2.jpg" },
+        { "src": "/images/skills/121_3.jpg" },
+        { "src": "/images/skills/121_4.jpg" },
+        { "src": "/images/skills/121_5.jpg" }
       ]
     },
     {
       "id": 122,
-      "title": "Учусь играть на скрипке",
+      "title": "Учу игре на скрипке",
       "categoryId": 4,
       "subcategoryId": 29,
       "ownerUserId": 16,
@@ -267,13 +293,13 @@
     },
     {
       "id": 123,
-      "title": "Персональный тренинг по фитнесу",
+      "title": "Тренинг по фитнесу",
       "categoryId": 6,
       "subcategoryId": 41,
       "ownerUserId": 16,
       "description": "Индивидуальные тренировки для начинающих.",
       "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
+      "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
         "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
       ]
     },
@@ -285,8 +311,9 @@
       "ownerUserId": 17,
       "description": "Видеоблогинг, монтаж, сценарии.",
       "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+        { "src": "/images/skills/124_1.jpg" },
+        { "src": "/images/skills/124_2.jpg" },
+        { "src": "/images/skills/124_3.jpg" }
       ]
     },
     {
@@ -309,13 +336,14 @@
       "ownerUserId": 18,
       "description": "Создание игр, программирование.",
       "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+        { "src": "/images/skills/126_1.jpg" },
+        { "src": "/images/skills/126_2.jpg" },
+        { "src": "/images/skills/126_3.jpg" }
       ]
     },
     {
       "id": 127,
-      "title": "Backend-разработка на Node.js",
+      "title": "Разработка на Node.js",
       "categoryId": 1,
       "subcategoryId": 3,
       "ownerUserId": 18,
@@ -333,13 +361,16 @@
       "ownerUserId": 19,
       "description": "Создаю одежду и аксессуары.",
       "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+        { "src": "/images/skills/128_1.jpg" },
+        { "src": "/images/skills/128_2.jpg" },
+        { "src": "/images/skills/128_3.jpg" },
+        { "src": "/images/skills/128_4.jpg" },
+        { "src": "/images/skills/128_5.jpg" }
       ]
     },
     {
       "id": 129,
-      "title": "Игра на скрипке для начинающих",
+      "title": "Игра на скрипке",
       "categoryId": 4,
       "subcategoryId": 26,
       "ownerUserId": 20,
@@ -351,14 +382,15 @@
     },
     {
       "id": 130,
-      "title": "Кроссфит тренировки для начинающих",
+      "title": "Кроссфит для всех",
       "categoryId": 6,
       "subcategoryId": 42,
       "ownerUserId": 21,
       "description": "Тренировки для новичков.",
       "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+        { "src": "/images/skills/113_1.jpg" },
+        { "src": "/images/skills/113_2.jpg" },
+        { "src": "/images/skills/113_3.jpg" }
       ]
     },
     {
@@ -375,14 +407,15 @@
     },
     {
       "id": 132,
-      "title": "Редактирование текста для блогов",
+      "title": "Редактирование текста",
       "categoryId": 4,
       "subcategoryId": 22,
       "ownerUserId": 22,
       "description": "Создание и редактирование текстов, сценариев.",
       "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+        { "src": "/images/skills/132_1.jpg" },
+        { "src": "/images/skills/132_2.jpg" },
+        { "src": "/images/skills/132_3.jpg" }
       ]
     },
     {
@@ -405,8 +438,11 @@
       "ownerUserId": 23,
       "description": "Создание контента для соцсетей.",
       "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+        { "src": "/images/skills/134_1.jpg" },
+        { "src": "/images/skills/134_2.jpg" },
+        { "src": "/images/skills/134_3.jpg" },
+        { "src": "/images/skills/134_4.jpg" },
+        { "src": "/images/skills/134_5.jpg" }
       ]
     },
     {
@@ -435,7 +471,7 @@
     },
     {
       "id": 137,
-      "title": "Игра на скрипке для начинающих",
+      "title": "Игра на баяне",
       "categoryId": 4,
       "subcategoryId": 23,
       "ownerUserId": 25,
@@ -447,14 +483,17 @@
     },
     {
       "id": 138,
-      "title": "Электроника и схемотехника",
+      "title": "Электроника вычислений",
       "categoryId": 1,
       "subcategoryId": 6,
       "ownerUserId": 26,
       "description": "Работа с микроконтроллерами, схемы.",
       "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+        { "src": "/images/skills/138_1.jpg" },
+        { "src": "/images/skills/138_2.jpg" },
+        { "src": "/images/skills/138_3.jpg" },
+        { "src": "/images/skills/138_4.jpg" },
+        { "src": "/images/skills/138_5.jpg" }
       ]
     },
     {
@@ -471,14 +510,16 @@
     },
     {
       "id": 140,
-      "title": "Python программирование",
+      "title": "Java программирование",
       "categoryId": 1,
       "subcategoryId": 1,
       "ownerUserId": 27,
-      "description": "Основы Python, библиотеки, автоматизация.",
+      "description": "Основы Java, библиотеки, автоматизация.",
       "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+        { "src": "/images/skills/140_1.jpg" },
+        { "src": "/images/skills/140_2.jpg" },
+        { "src": "/images/skills/140_3.jpg" },
+        { "src": "/images/skills/140_4.jpg" }
       ]
     },
     {
@@ -489,8 +530,9 @@
       "ownerUserId": 28,
       "description": "Adobe Premiere, DaVinci Resolve.",
       "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+        { "src": "/images/skills/141_1.jpg" },
+        { "src": "/images/skills/141_2.jpg" },
+        { "src": "/images/skills/141_3.jpg" }
       ]
     },
     {
@@ -501,25 +543,28 @@
       "ownerUserId": 29,
       "description": "Обучение игре, аккорды.",
       "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+        { "src": "/images/skills/142_1.jpg" },
+        { "src": "/images/skills/142_2.jpg" },
+        { "src": "/images/skills/142_3.jpg" },
+        { "src": "/images/skills/142_4.jpg" }
       ]
     },
     {
       "id": 143,
-      "title": "Кроссфит тренер",
+      "title": "Пауэрлифтинг",
       "categoryId": 6,
       "subcategoryId": 37,
       "ownerUserId": 30,
       "description": "Обучение для начинающих.",
       "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+        { "src": "/images/skills/143_1.jpg" },
+        { "src": "/images/skills/143_2.jpg" },
+        { "src": "/images/skills/143_3.jpg" }
       ]
     },
     {
       "id": 144,
-      "title": "Фитнес-тренировки для женщин",
+      "title": "Фитнес для женщин",
       "categoryId": 6,
       "subcategoryId": 38,
       "ownerUserId": 30,
@@ -531,19 +576,21 @@
     },
     {
       "id": 145,
-      "title": "Создание контента для Instagram",
+      "title": "Контент для Insta***",
       "categoryId": 4,
       "subcategoryId": 28,
       "ownerUserId": 31,
       "description": "Фото, видео, тексты для соцсетей.",
       "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+        { "src": "/images/skills/145_1.jpg" },
+        { "src": "/images/skills/145_2.jpg" },
+        { "src": "/images/skills/145_3.jpg" },
+        { "src": "/images/skills/145_4.jpg" }
       ]
     },
     {
       "id": 146,
-      "title": "Продвижение в Instagram",
+      "title": "Продвижение в Insta***",
       "categoryId": 1,
       "subcategoryId": 2,
       "ownerUserId": 31,
@@ -555,19 +602,22 @@
     },
     {
       "id": 147,
-      "title": "Мобильная разработка на Android",
+      "title": "Мобильная разработка",
       "categoryId": 1,
       "subcategoryId": 3,
       "ownerUserId": 32,
       "description": "Java, Kotlin, создание приложений.",
       "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+        { "src": "/images/skills/147_1.jpg" },
+        { "src": "/images/skills/147_2.jpg" },
+        { "src": "/images/skills/147_3.jpg" },
+        { "src": "/images/skills/147_4.jpg" },
+        { "src": "/images/skills/147_5.jpg" }
       ]
     },
     {
       "id": 148,
-      "title": "Разработка приложений на iOS",
+      "title": "Разработка для iOS",
       "categoryId": 1,
       "subcategoryId": 6,
       "ownerUserId": 32,
@@ -579,80 +629,90 @@
     },
     {
       "id": 149,
-      "title": "Шитье одежды и аксессуаров",
+      "title": "Шитье аксессуаров",
       "categoryId": 4,
       "subcategoryId": 28,
       "ownerUserId": 33,
       "description": "Создаем одежду, игрушки, аксессуары.",
       "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg",
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg"
+        { "src": "/images/skills/149_1.jpg" },
+        { "src": "/images/skills/149_2.jpg" },
+        { "src": "/images/skills/149_3.jpg" },
+        { "src": "/images/skills/149_4.jpg" }
       ]
     },
     {
       "id": 150,
-      "title": "Игра на скрипке для начинающих",
+      "title": "Игра на балалайке",
       "categoryId": 4,
       "subcategoryId": 26,
       "ownerUserId": 34,
-      "description": "Обучение игре на скрипке.",
+      "description": "Обучение игре на балалайке.",
       "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+        { "src": "/images/skills/150_1.jpg" },
+        { "src": "/images/skills/150_2.jpg" },
+        { "src": "/images/skills/150_3.jpg" }
       ]
     },
     {
       "id": 151,
-      "title": "Кроссфит для начинающих",
+      "title": "Лыжи для всех",
       "categoryId": 6,
       "subcategoryId": 36,
       "ownerUserId": 35,
       "description": "Тренировки для новичков.",
       "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+        { "src": "/images/skills/151_1.jpg" },
+        { "src": "/images/skills/151_2.jpg" },
+        { "src": "/images/skills/151_3.jpg" },
+        { "src": "/images/skills/151_4.jpg" }
       ]
     },
     {
       "id": 152,
-      "title": "Копирайтинг: тексты для блогов",
+      "title": "Копирайтинг",
       "categoryId": 4,
       "subcategoryId": 28,
       "ownerUserId": 36,
       "description": "Помогу писать понятные тексты: структура, заголовки, стиль, правки.",
       "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+        { "src": "/images/skills/152_1.jpg" },
+        { "src": "/images/skills/152_2.jpg" },
+        { "src": "/images/skills/152_3.jpg" },
+        { "src": "/images/skills/152_4.jpg" },
+        { "src": "/images/skills/152_5.jpg" }
       ]
     },
     {
       "id": 153,
-      "title": "Видеомонтаж: базовые приемы",
+      "title": "Монтаж звука и видео",
       "categoryId": 4,
       "subcategoryId": 24,
       "ownerUserId": 37,
       "description": "Склейки, звук, титры и базовая цветокоррекция в популярных редакторах.",
       "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+        { "src": "/images/skills/153_1.jpg" },
+        { "src": "/images/skills/153_2.jpg" },
+        { "src": "/images/skills/153_3.jpg" }
       ]
     },
     {
       "id": 154,
-      "title": "Инженерное резюме и подготовка к интервью",
+      "title": "Подготовка к интервью",
       "categoryId": 1,
       "subcategoryId": 4,
       "ownerUserId": 38,
       "description": "Помогу упаковать опыт, подобрать кейсы и подготовиться к техническим вопросам.",
       "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+        { "src": "/images/skills/154_1.jpg" },
+        { "src": "/images/skills/154_2.jpg" },
+        { "src": "/images/skills/154_3.jpg" },
+        { "src": "/images/skills/154_4.jpg" }
       ]
     },
     {
       "id": 155,
-      "title": "Скрипка: постановка рук и первые пьесы",
+      "title": "Скрипка: постановка рук",
       "categoryId": 4,
       "subcategoryId": 26,
       "ownerUserId": 39,
@@ -664,14 +724,16 @@
     },
     {
       "id": 156,
-      "title": "Пайка и сборка простых схем",
+      "title": "Пайка схем",
       "categoryId": 1,
       "subcategoryId": 2,
       "ownerUserId": 40,
       "description": "Научу паять, читать простые схемы и собирать макет на плате.",
       "images": [
-        "https://i.pinimg.com/736x/7a/1b/34/7a1b34920a9d5440ac3151de25926cd8.jpg",
-        "https://i.pinimg.com/originals/44/e2/e8/44e2e865ac445cabd7a40b79950e61d6.jpg"
+        { "src": "/images/skills/156_1.jpg" },
+        { "src": "/images/skills/156_2.jpg" },
+        { "src": "/images/skills/156_3.jpg" },
+        { "src": "/images/skills/156_4.jpg" }
       ]
     }
   ]

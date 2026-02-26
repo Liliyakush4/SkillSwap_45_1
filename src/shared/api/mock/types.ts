@@ -5,6 +5,7 @@ export type Gender = 'male' | 'female';
 export type Category = { id: Id; name: string; color: string };
 export type City = { id: Id; name: string };
 export type Subcategory = { id: Id; name: string; categoryId: Id };
+export type SkillImage = { src: string };
 
 export type Skill = {
   id: Id;
@@ -13,7 +14,7 @@ export type Skill = {
   subcategoryId: Id;
   ownerUserId: Id;
   description: string;
-  images: string[];
+  images: SkillImage[]; // Добавлено поле images
 };
 
 export type User = {
