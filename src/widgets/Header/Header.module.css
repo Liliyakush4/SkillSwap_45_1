@@ -96,7 +96,7 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 520px) {
   .header {
     height: 70px;
     padding: 8px 0;

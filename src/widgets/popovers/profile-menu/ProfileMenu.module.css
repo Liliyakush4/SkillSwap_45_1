@@ -46,3 +46,10 @@
 .menuItemIcon {
   margin-left: 8px;
 }
+
+@media (max-width: 960px) {
+  .userName {
+    flex-shrink: 0;
+    display: none;
+  }
+}
