@@ -179,7 +179,7 @@ export function FormAutocompleteField({
       onChange(option.value);
       setFilterText(option.label);
       setIsOpen(false);
-      inputRef.current?.focus();
+      /* Не фокусируем инпут после выбора — иначе onFocus снова открывает список */
     }
   };
 

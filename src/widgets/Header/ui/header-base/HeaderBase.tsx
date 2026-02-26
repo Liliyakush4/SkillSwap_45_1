@@ -1,7 +1,13 @@
 import cls from './HeaderBase.module.css';
 import { Logo } from '@shared/ui/Logo';
+import { useRef, useState } from 'react';
+import { SkillsCatalogPopover } from '@widgets/popovers/skills-catalog-popover';
+import arrowDownIcon from '@shared/assets/icons/ui/icon_arrow_down.svg';
 
 export const HeaderBase = () => {
+  const [isSkillsOpen, setIsSkillsOpen] = useState(false);
+  const skillsButtonRef = useRef<HTMLButtonElement>(null);
+
   return (
     <div className={cls.base}>
       <Logo />
@@ -9,15 +15,23 @@ export const HeaderBase = () => {
       <nav className={cls.nav}>
         <span className={cls.about}>О проекте</span>
 
-        <button type="button" className={cls.skillsButton}>
+        <button
+          type="button"
+          className={cls.skillsButton}
+          ref={skillsButtonRef}
+          onClick={() => setIsSkillsOpen(!isSkillsOpen)}
+          aria-expanded={isSkillsOpen}
+          aria-haspopup="true"
+        >
           <span>Все навыки</span>
-          <svg width="24" height="24" viewBox="0 0 24 24">
-            <path
-              d="M12 15.935a2.52 2.52 0 0 1-1.781-.738L4.2 9.179a.696.696 0 0 1 0-.978.696.696 0 0 1 .978 0l6.018 6.018a1.136 1.136 0 0 0 1.606 0L18.821 8.2a.696.696 0 0 1 .978 0 .696.696 0 0 1 0 .978l-6.018 6.018a2.5 2.5 0 0 1-1.781.738"
-              fill="currentColor"
-            />
-          </svg>
+          <img src={arrowDownIcon} alt="" width="24" height="24" />
         </button>
+
+        <SkillsCatalogPopover
+          isOpen={isSkillsOpen}
+          onClose={() => setIsSkillsOpen(false)}
+          anchorRef={skillsButtonRef}
+        />
       </nav>
     </div>
   );

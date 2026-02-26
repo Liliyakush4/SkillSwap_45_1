@@ -1,13 +1,13 @@
-/*import React from 'react';
+import React from 'react';
 import { Popover } from '@shared/ui/Popover';
 import styles from './SkillsCatalogPopover.module.css';
 
-import BusinessIcon from '../../shared/assets/icons/common/icon_work.svg';
-import HealthIcon from '../../shared/assets/icons/common/icon_health.svg';
-import DesignIcon from '../../shared/assets/icons/common/icon_art.svg';
-import HomeIcon from '../../shared/assets/icons/common/icon_home.svg';
-import LanguageIcon from '../../shared/assets/icons/common/icon_earth.svg';
-import PersonalDevelopmentIcon from '../../shared/assets/icons/common/icon_book.svg';
+import BusinessIcon from '../../../shared/assets/icons/common/icon_work.svg';
+import HealthIcon from '../../../shared/assets/icons/common/icon_health.svg';
+import DesignIcon from '../../../shared/assets/icons/common/icon_art.svg';
+import HomeIcon from '../../../shared/assets/icons/common/icon_home.svg';
+import LanguageIcon from '../../../shared/assets/icons/common/icon_earth.svg';
+import PersonalDevelopmentIcon from '../../../shared/assets/icons/common/icon_book.svg';
 
 export interface SkillsCatalogPopoverProps {
   isOpen: boolean;
@@ -145,4 +145,3 @@ export const SkillsCatalogPopover: React.FC<SkillsCatalogPopoverProps> = ({
     </Popover>
   );
 };
-*/

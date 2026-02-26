@@ -10,6 +10,8 @@ import iconPhotoAdd from '../../assets/icons/ui/icon_photo_add.svg';
 
 export interface FileDropzoneProps {
   onChange: (files: File[]) => void;
+  /** Текущий список загруженных файлов (для отображения "Выбрано: N") */
+  value?: File[];
   multiple?: boolean;
   accept?: string;
   disabled?: boolean;
@@ -41,12 +43,14 @@ const isAcceptedFileType = (file: File, accept: string): boolean => {
 
 export const FileDropzone: React.FC<FileDropzoneProps> = ({
   onChange,
+  value,
   multiple = true,
   accept = 'image/*',
   disabled = false,
   className = '',
   errorText,
 }) => {
+  const fileCount = value?.length ?? 0;
   const [isDragActive, setIsDragActive] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -152,6 +156,8 @@ export const FileDropzone: React.FC<FileDropzoneProps> = ({
           <span className={styles.selectImageText}>Выбрать изображения</span>
         </div>
       </div>
+
+      {fileCount > 0 && <p className={styles.selectedCount}>Выбрано: {fileCount}</p>}
 
       {errorText && <span className={styles.errorMessage}>{errorText}</span>}
     </>
