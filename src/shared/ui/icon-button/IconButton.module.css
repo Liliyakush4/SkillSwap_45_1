@@ -70,3 +70,10 @@
 .iconButton:disabled {
   pointer-events: none;
 }
+
+@media (max-width: 960px) {
+  .iconButton {
+    flex-shrink: 0;
+    display: none;
+  }
+}
