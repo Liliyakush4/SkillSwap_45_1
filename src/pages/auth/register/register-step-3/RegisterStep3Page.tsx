@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   RegisterStep3Form,
@@ -11,29 +11,16 @@ import { StepProgress } from '@shared/ui/step-progress/StepProgress';
 import { useAppDispatch, useAppSelector } from '@shared/lib/storeHooks';
 import { selectDb } from '@app/store/db/selectors';
 import type { MultiSelectOption } from '@shared/ui/form-multi-select-field';
-import { saveStep3, selectRegistrationStep3 } from '@features/auth/model/registrationSlice';
-
-const buildPhotoPayload = (files: File[]) => {
-  const first = files[0];
-  if (!first) return {};
-
-  const photoPreviewUrl = URL.createObjectURL(first);
-
-  const photoMetadata: Record<string, unknown> = {
-    name: first.name,
-    size: first.size,
-    type: first.type,
-    lastModified: first.lastModified,
-  };
-
-  return { photoPreviewUrl, photoMetadata };
-};
+import { selectRegistrationStep3 } from '@features/auth/model/registrationSelectors';
+import { finishRegistrationFromStep3 } from '@features/auth/model/registrationThunks';
 
 export const RegisterStep3Page: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const db = useAppSelector(selectDb);
   const step3Draft = useAppSelector(selectRegistrationStep3);
+
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const categoryOptions = useMemo<MultiSelectOption[]>(() => {
     if (!db) return [];
@@ -70,23 +57,24 @@ export const RegisterStep3Page: React.FC = () => {
     };
   }, [step3Draft]);
 
-  const handleSubmit = (data: RegisterStep3FormValues) => {
-    if (data.category.length === 0 || data.subcategory.length === 0) return;
-    const { photoPreviewUrl, photoMetadata } = buildPhotoPayload(data.photos);
+  const handleSubmit = async (data: RegisterStep3FormValues) => {
+    setSubmitError(null);
 
-    dispatch(
-      saveStep3({
-        skillName: data.skillName,
-        categorySkill: data.category,
-        subcategorySkill: data.subcategory,
-        description: data.description,
-        photoPreviewUrl,
-        photoMetadata,
-      }),
-    );
+    try {
+      await dispatch(
+        finishRegistrationFromStep3({
+          skillName: data.skillName,
+          category: data.category,
+          subcategory: data.subcategory,
+          description: data.description,
+          photos: data.photos,
+        }),
+      ).unwrap();
 
-    // после готовности thunk делать submit на "createUser" и только потом navigate.
-    navigate('/', { replace: true });
+      navigate('/', { replace: true });
+    } catch (e) {
+      setSubmitError(typeof e === 'string' ? e : 'Ошибка регистрации');
+    }
   };
 
   const heroText = (
@@ -104,6 +92,8 @@ export const RegisterStep3Page: React.FC = () => {
       <ContentSection
         main={
           <>
+            {submitError && <div className={styles.formError}>{submitError}</div>}
+
             <RegisterStep3Form
               values={initialValues}
               categoryOptions={categoryOptions}

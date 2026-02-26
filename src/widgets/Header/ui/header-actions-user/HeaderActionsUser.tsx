@@ -1,3 +1,4 @@
+import { useAppSelector } from '@shared/lib/storeHooks';
 import { IconButton } from '@shared/ui/icon-button';
 import cls from './HeaderActionsUser.module.css';
 import iconThemeDark from '@shared/assets/icons/ui/icon_theme_dark.svg';
@@ -6,6 +7,11 @@ import iconBell from '@shared/assets/icons/common/icon_bell_nosize.svg';
 import { Avatar } from '@shared/ui/Avatar';
 
 export const HeaderActionsUser = () => {
+  const { isAuthenticated } = useAppSelector((s) => s.auth);
+  const profileName = useAppSelector((s) => s.profile.profile.name);
+
+  const name = isAuthenticated ? profileName || 'Пользователь' : 'Гость';
+
   return (
     <div className={cls.wrapper}>
       <div className={cls.buttonGroup}>
@@ -20,7 +26,7 @@ export const HeaderActionsUser = () => {
       </div>
       <div className={cls.profile}>
         <button type="button" className={cls.profileButton} aria-label="Профиль">
-          <span className={cls.name}>Иван</span>
+          <span className={cls.name}>{name}</span>
           <Avatar />
         </button>
       </div>

@@ -26,9 +26,7 @@ import profileReducer from '@features/profile/model/profileSlice';
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['db', 'favorites', 'auth'], // дописать сюда те редьюсеры, что не нужно в LocalStorage сохранять)
-  ignoredActions: ['profile/updateProfile'],
-  ignoredPaths: ['profile.profile.birthDate'],
+  blacklist: ['db'], // дописать сюда те редьюсеры, что не нужно в LocalStorage сохранять)
 };
 
 const rootReducer = combineReducers({
@@ -50,6 +48,7 @@ const store = configureStore({
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        ignoredPaths: ['profile.profile.birthDate'],
       },
     }),
 });

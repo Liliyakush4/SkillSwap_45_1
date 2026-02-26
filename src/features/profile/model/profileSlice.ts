@@ -19,7 +19,6 @@ export interface ProfileState {
   skill: {
     title: string;
     description: string;
-    level: number;
     category: string;
     images: ProfileImage[];
     tags: string[];
@@ -40,7 +39,6 @@ const initialState: ProfileState = {
   skill: {
     title: '',
     description: '',
-    level: 1,
     category: '',
     images: [],
     tags: [],
@@ -98,7 +96,6 @@ export const profileSlice = createSlice({
 
       if (payload.title !== undefined) state.skill.title = payload.title;
       if (payload.description !== undefined) state.skill.description = payload.description;
-      if (payload.level !== undefined) state.skill.level = payload.level;
       if (payload.category !== undefined) state.skill.category = payload.category;
       if (payload.images !== undefined) state.skill.images = payload.images;
       if (payload.tags !== undefined) state.skill.tags = payload.tags;
