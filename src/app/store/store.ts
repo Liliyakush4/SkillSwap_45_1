@@ -23,6 +23,7 @@ import authReducer from '@features/auth/model/authSlice';
 import RegistrationReducer from '@features/auth/model/registrationSlice';
 import profileReducer from '@features/profile/model/profileSlice';
 import { searchReducer } from '@features/search/model';
+import exchangeReducer from '@features/exchange/model/exchangeSlice';
 
 const persistConfig = {
   key: 'root',
@@ -35,10 +36,11 @@ const rootReducer = combineReducers({
   sort: sortReducer,
   favorites: favoritesReducer,
   filters: filtersReducer,
-  auth: authReducer, // добавила
+  auth: authReducer,
   registration: RegistrationReducer,
   profile: profileReducer,
   search: searchReducer,
+  exchange: exchangeReducer,
   // сюда дописывать новые редьюсеры
 });
 

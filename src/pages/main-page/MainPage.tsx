@@ -13,7 +13,9 @@ import { AppliedFiltersChips } from '@features/filters/ui';
 import { buildAppliedBadges, removeBadge, type TBadge } from '@features/filters/model/badges';
 import { setFilters } from '@features/filters/model/filtersSlice';
 import { selectFavoriteUserIds, toggleFavorite } from '@features/favorites/model/favoritesSlice';
+import { selectIsAuthenticated } from '@features/auth/model/selectors';
 import { useSelector } from 'react-redux';
+import type { RootState } from '@app/store/store'; // Импортируem тип RootState из вашего store
 
 type SortOrder = 'newest' | 'oldest';
 
@@ -26,6 +28,9 @@ export default function MainPage() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const filters = useAppSelector(selectFilters);
+  const isAuthenticated = useSelector(selectIsAuthenticated);
+  // Получаем все статусы предложений обмена
+  const exchangeOfferedMap = useSelector((state: RootState) => state.exchange.offeredExchanges);
 
   const filteredUsers = useAppSelector(selectUsersByFiltersAndSearch);
 
@@ -84,9 +89,19 @@ export default function MainPage() {
         likesCount: isLikedData.includes(user.id) ? 1 : undefined,
         moreLabel: 'Подробнее',
         showLike: true,
+        exchangeOffered: isAuthenticated ? exchangeOfferedMap[user.id] || false : false, // добавляем статус предложения обмена
       }),
     );
-  }, [db, filteredUsers, navigate, sortOrder, isLikedData, handlerLike]);
+  }, [
+    db,
+    filteredUsers,
+    navigate,
+    sortOrder,
+    isLikedData,
+    handlerLike,
+    isAuthenticated,
+    exchangeOfferedMap,
+  ]);
 
   const handleSortToggle = () => {
     setSortOrder((prev: string) => (prev === 'newest' ? 'oldest' : 'newest'));

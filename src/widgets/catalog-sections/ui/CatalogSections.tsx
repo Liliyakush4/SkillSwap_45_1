@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectFavoriteUserIds, toggleFavorite } from '@features/favorites/model';
 import { selectIsAuthenticated } from '@features/auth/model/selectors';
+import type { RootState } from '@app/store/store'; // Импортируem тип RootState из вашего store
 
 export const CatalogSections: React.FC = () => {
   const db = useAppSelector(selectDb);
@@ -14,6 +15,8 @@ export const CatalogSections: React.FC = () => {
   const isAuthenticated = useSelector(selectIsAuthenticated); // Получаем статус авторизации
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  // Получаем все статусы предложений обмена
+  const exchangeOfferedMap = useSelector((state: RootState) => state.exchange.offeredExchanges);
 
   if (!db) {
     return null;
@@ -34,6 +37,7 @@ export const CatalogSections: React.FC = () => {
       likesCount: isLikedData.includes(user.id) ? 1 : undefined,
       moreLabel: 'Подробнее',
       showLike: true,
+      exchangeOffered: isAuthenticated ? exchangeOfferedMap[user.id] || false : false, // добавляем статус предложения обмена
     });
 
   // Популярные (или точное совпадение для авторизованных)

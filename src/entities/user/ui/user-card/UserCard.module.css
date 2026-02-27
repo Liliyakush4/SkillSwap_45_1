@@ -13,17 +13,17 @@
 }
 
 /* Модификаторы высоты через data-атрибут */
-.userCard[data-height="compact"] {
+.userCard[data-height='compact'] {
   height: 300px; /* или другая высота для страницы навыка */
 }
 
-.userCard[data-height="auto"] {
+.userCard[data-height='auto'] {
   height: auto;
   min-height: 368px;
   max-height: 444px;
 }
 
-.userCard[data-height="full"] {
+.userCard[data-height='full'] {
   height: 100%;
   min-height: 368px;
   max-height: 444px;
@@ -50,7 +50,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 180px; /* Подберите под макет */
+  max-width: 180px;
 }
 
 .cityAge {
@@ -103,4 +103,9 @@
   position: absolute;
   top: 0;
   right: 0;
+}
+
+.sentButton {
+  display: flex !important;
+  gap: var(--space-8) !important;
 }

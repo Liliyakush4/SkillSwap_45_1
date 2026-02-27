@@ -13,6 +13,7 @@ export interface MapUserToUserCardOpts {
   moreLabel?: string;
   height?: CardHeight;
   className?: string;
+  exchangeOffered?: boolean; // Добавляем новый опциональный параметр
 }
 
 export const mapUserToUserCardProps = (
@@ -61,6 +62,8 @@ export const mapUserToUserCardProps = (
   const finalProps: UserCardProps = {
     ...baseProps,
     ...opts,
+    // Явно добавляем exchangeOffered, если он есть в opts
+    ...(opts?.exchangeOffered !== undefined ? { exchangeOffered: opts.exchangeOffered } : {}),
   };
 
   return {

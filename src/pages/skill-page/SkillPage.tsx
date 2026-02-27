@@ -19,6 +19,9 @@ import { selectIsAuthenticated } from '@features/auth/model/selectors';
 import { OfferLoginModal } from '@widgets/modals/OfferLoginModal';
 import { OfferPreviewModal } from '@widgets/modals/OfferPreviewModal';
 import clockIcon from '@shared/assets/icons/common/icon_clock.svg';
+import { selectExchangeOffered } from '@features/exchange/model'; // импортируем новый слайс
+import { setExchangeOffered, removeExchangeOffer } from '@features/exchange/model/exchangeSlice';
+import type { RootState } from '@app/store/store'; // Импортируem тип RootState из вашего store
 
 export default function SkillPage() {
   const db = useSelector(selectDb);
@@ -29,6 +32,11 @@ export default function SkillPage() {
   const { id } = useParams<{ id: string }>();
   const isLikedData = useSelector(selectFavoriteUserIds);
   const isAuthenticated = useSelector(selectIsAuthenticated);
+
+  // Получаем статус предложения для текущего пользователя
+  const exchangeOffered = useSelector((state: RootState) =>
+    selectExchangeOffered(state, Number(id)),
+  );
 
   const handlerLike = useCallback(
     (id: number) => {
@@ -60,6 +68,12 @@ export default function SkillPage() {
     return (notMe && hasOfferedSkill) || hasWantedSkill || sameCity;
   });
 
+  // Получаем статус exchange для каждого пользователя
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const exchangeStates = useSelector((state: RootState) => ({
+    offeredExchanges: state.exchange.offeredExchanges,
+  }));
+
   const cards = users.map((user) =>
     mapUserToUserCardProps(db, user, {
       onMore: () => navigate(`/skill/${user.id}`),
@@ -68,6 +82,7 @@ export default function SkillPage() {
       likesCount: isLikedData.includes(user.id) ? 1 : undefined,
       isLiked: isLikedData.includes(user.id),
       moreLabel: 'Подробнее',
+      exchangeOffered: isAuthenticated ? exchangeStates.offeredExchanges[user.id] || false : false, // здесь нужно передавать правильное состояние
     }),
   );
 
@@ -81,16 +96,24 @@ export default function SkillPage() {
 
   const handleSendOffer = () => {
     if (isAuthenticated) {
+      // Отправляем предложение в Redux
+      dispatch(setExchangeOffered({ userId: Number(id) }));
       setIsOfferSent(true);
       // Здесь можно добавить логику отправки предложения на сервер
     }
   };
 
+  // Функция для отмены предложения обмена
+  const handleCancelOffer = () => {
+    dispatch(removeExchangeOffer({ userId: Number(id) }));
+    setIsOfferSent(false);
+  };
+
   // Новый обработчик для клика по кнопке
   const handleButtonClick = () => {
-    if (isOfferSent) {
+    if (exchangeOffered || isOfferSent) {
       // Если предложение уже отправлено - переходим на главную
-      navigate('/');
+      handleCancelOffer();
     } else {
       // Если предложение еще не отправлено - открываем модальное окно
       handleOpenModal();
@@ -99,7 +122,7 @@ export default function SkillPage() {
 
   // Определяем текст и вариант кнопки в зависимости от состояния
   const getButtonConfig = () => {
-    if (isAuthenticated && isOfferSent) {
+    if (isAuthenticated && (isOfferSent || exchangeOffered)) {
       return {
         text: 'Обмен предложен',
         variant: 'secondary' as const,
@@ -121,7 +144,7 @@ export default function SkillPage() {
     <div className={styles.actions}>
       <Button
         variant={buttonConfig.variant}
-        className={`${styles.editButton} ${isOfferSent ? styles.sentButton : ''}`}
+        className={`${styles.editButton} ${isOfferSent || exchangeOffered ? styles.sentButton : ''}`}
         onClick={handleButtonClick} // Используем новый обработчик
         disabled={buttonConfig.disabled}
       >
@@ -145,6 +168,7 @@ export default function SkillPage() {
           showLike={userData.showLike}
           className={styles.skillSectionUserCard}
           height="compact"
+          exchangeOffered={exchangeOffered || isOfferSent} // передаем статус предложения
         />
         <div className={styles.skillContainer}>
           <div className={styles.smallIconButton}>
