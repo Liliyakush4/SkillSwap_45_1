@@ -4,7 +4,7 @@ import type {
   TFilterValues,
   TSubCategoriesOption,
 } from '@features/filters/model/types';
-import { GENDER, SKILL_TYPE } from '@features/filters/model/defaults';
+import { GENDER, SKILL_TYPE } from '../../../features/filters/model/defaults';
 import type { City, Option } from '@shared/types';
 
 export const createDefaultCategoriesSelected = (categories: Category[]) =>

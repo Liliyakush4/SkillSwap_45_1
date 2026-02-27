@@ -1,1 +1,1 @@
-export { HeaderActionsUser } from './HeaderActionsUser';
+export { HeaderCenter } from './HeaderCenter';

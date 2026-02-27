@@ -207,6 +207,10 @@ const config: Config = {
       },
     ],
   },
+  moduleNameMapper: {
+    '^@app/(.*)$': '<rootDir>/src/app',
+    '^@shared/(.*)$': '<rootDir>/src/shared',
+  },
 };
 
 export default config;

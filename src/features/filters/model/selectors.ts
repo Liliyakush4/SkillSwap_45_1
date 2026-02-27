@@ -3,7 +3,7 @@ import type { RootState } from '@app/store/store';
 import type { TFilterValues } from './types';
 import type { User } from '@shared/api/mock/types';
 import type { Db } from '@shared/api/mock/normalize';
-import { selectDb } from '@app/store/db/selectors';
+import { selectDb } from '../../../app/store/db/selectors';
 
 export const selectFilters = (state: RootState): TFilterValues => state.filters;
 
