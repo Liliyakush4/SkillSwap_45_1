@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { mockApi } from '@shared/api/mock';
-import { sha256Hex } from '@shared/lib/crypto/sha256';
+import { mockApi } from '../../../shared/api/mock';
+import { sha256Hex } from '../../../shared/lib/crypto/sha256';
 import { loginStart, loginSuccess, loginFailure, logout } from './authSlice';
 import { initAuthDone } from './authSlice';
 
