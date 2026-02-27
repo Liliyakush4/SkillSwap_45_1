@@ -37,6 +37,22 @@ export interface ProfileEditFormProps {
   className?: string;
 }
 
+const cloneValues = (v: ProfileEditFormValues): ProfileEditFormValues => ({
+  ...v,
+  birthDate: v.birthDate ? new Date(v.birthDate.getTime()) : null,
+});
+
+const isSameValues = (a: ProfileEditFormValues, b: ProfileEditFormValues) => {
+  return (
+    a.email === b.email &&
+    a.name === b.name &&
+    a.about === b.about &&
+    a.gender === b.gender &&
+    a.city === b.city &&
+    (a.birthDate?.getTime() ?? null) === (b.birthDate?.getTime() ?? null)
+  );
+};
+
 export const ProfileEditForm: FC<ProfileEditFormProps> = ({
   values,
   onEmailChange,
@@ -56,30 +72,12 @@ export const ProfileEditForm: FC<ProfileEditFormProps> = ({
   const [isEmailEditing, setIsEmailEditing] = useState(false);
   const [isNameEditing, setIsNameEditing] = useState(false);
   const [isAboutEditing, setIsAboutEditing] = useState(false);
-  const [lastSaved, setLastSaved] = useState<ProfileEditFormValues | null>(null);
+  const [lastSaved, setLastSaved] = useState<ProfileEditFormValues>(() => cloneValues(values));
 
-  // Инициализируем «сохранённое» состояние текущими values при первом рендере,
-  // чтобы форма не считалась изменённой до правок пользователя (без чтения ref в рендере и без setState в effect).
-  if (lastSaved === null) {
-    setLastSaved({
-      ...values,
-      birthDate: values.birthDate ? new Date(values.birthDate.getTime()) : null,
-    });
-  }
+  const isDirty = useMemo(() => !isSameValues(values, lastSaved), [values, lastSaved]);
 
-  const isDirty = useMemo(() => {
-    if (!lastSaved) return true;
-    const eq =
-      values.email === lastSaved.email &&
-      values.name === lastSaved.name &&
-      values.about === lastSaved.about &&
-      values.gender === lastSaved.gender &&
-      values.city === lastSaved.city &&
-      (values.birthDate?.getTime() ?? null) === (lastSaved.birthDate?.getTime() ?? null);
-    return !eq;
-  }, [values, lastSaved]);
-
-  const canSave = isEmailEditing || isNameEditing || isAboutEditing || isDirty;
+  const canSave =
+    (isEmailEditing || isNameEditing || isAboutEditing || isDirty) && values.email.trim() !== '';
 
   const handleSave = useCallback(
     (e?: React.FormEvent) => {
@@ -89,10 +87,7 @@ export const ProfileEditForm: FC<ProfileEditFormProps> = ({
       setIsEmailEditing(false);
       setIsNameEditing(false);
       setIsAboutEditing(false);
-      setLastSaved({
-        ...values,
-        birthDate: values.birthDate ? new Date(values.birthDate.getTime()) : null,
-      });
+      setLastSaved(cloneValues(values));
     },
     [onSave, canSave, values],
   );
@@ -100,10 +95,7 @@ export const ProfileEditForm: FC<ProfileEditFormProps> = ({
   return (
     <form
       className={`${styles.form} ${className ?? ''}`}
-      onSubmit={(e) => {
-        e.preventDefault();
-        handleSave(e);
-      }}
+      onSubmit={(e) => handleSave(e)}
       onKeyDown={(e) => {
         if (e.key === 'Escape') {
           setIsEmailEditing(false);
