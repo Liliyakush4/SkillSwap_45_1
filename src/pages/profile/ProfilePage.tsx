@@ -1,34 +1,62 @@
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { useAppDispatch, useAppSelector } from '@shared/lib/storeHooks';
 import {
   ProfileEditForm,
   type ProfileEditFormValues,
 } from '@features/profile/ui/profile-edit-form';
+import { updateProfile } from '@features/profile/model/profileSlice';
+import { selectDb } from '@app/store/db/selectors';
 
-const GENDER_OPTIONS = [
-  { value: 'female', label: 'Женский' },
-  { value: 'male', label: 'Мужской' },
-];
+const toYYYYMMDD = (d: Date) => {
+  const yyyy = d.getFullYear();
+  const mm = String(d.getMonth() + 1).padStart(2, '0');
+  const dd = String(d.getDate()).padStart(2, '0');
+  return `${yyyy}-${mm}-${dd}`;
+};
 
-const CITY_OPTIONS = [
-  { value: 'Москва', label: 'Москва' },
-  { value: 'Санкт-Петербург', label: 'Санкт-Петербург' },
-  { value: 'Казань', label: 'Казань' },
-  { value: 'Новосибирск', label: 'Новосибирск' },
-  { value: 'Екатеринбург', label: 'Екатеринбург' },
-];
-
-const INITIAL_VALUES: ProfileEditFormValues = {
-  email: 'Mariia@gmail.com',
-  name: 'Мария',
-  birthDate: new Date(1995, 9, 28),
-  gender: 'female',
-  city: 'Москва',
-  about:
-    'Люблю учиться новому, особенно если это можно делать за чаем и в пижаме. Всегда готова пообщаться и обменяться чем-то интересным!',
+const isoToDate = (iso: string | null) => {
+  if (!iso) return null;
+  const [y, m, d] = iso.split('-').map(Number);
+  return new Date(y, (m ?? 1) - 1, d ?? 1);
 };
 
 export default function ProfilePage() {
-  const [values, setValues] = useState<ProfileEditFormValues>(INITIAL_VALUES);
+  const dispatch = useAppDispatch();
+  const db = useAppSelector(selectDb);
+
+  const profile = useAppSelector((s) => s.profile.profile);
+  const avatarSrc = useAppSelector((s) => s.profile.profile.avatarSrc);
+
+  const genderOptions = useMemo(
+    () => [
+      { value: '', label: 'Не указан' },
+      { value: 'm', label: 'Мужской' },
+      { value: 'f', label: 'Женский' },
+    ],
+    [],
+  );
+
+  const cityOptions = useMemo(() => {
+    if (!db) return [];
+    return db.cities.map((c) => ({ value: String(c.id), label: c.name }));
+  }, [db]);
+
+  const initialFromStore = useMemo<ProfileEditFormValues>(
+    () => ({
+      email: profile.email ?? '',
+      name: profile.name ?? '',
+      birthDate: isoToDate(profile.birthDate),
+      gender: profile.gender ?? '',
+      city: profile.city ? String(profile.city) : null,
+      about: profile.about ?? '',
+    }),
+    [profile],
+  );
+  const [values, setValues] = useState<ProfileEditFormValues>(initialFromStore);
+
+  useEffect(() => {
+    setValues(initialFromStore);
+  }, [initialFromStore]);
 
   return (
     <div>
@@ -41,14 +69,24 @@ export default function ProfilePage() {
         onGenderChange={(v) => setValues((prev) => ({ ...prev, gender: v }))}
         onCityChange={(v) => setValues((prev) => ({ ...prev, city: v }))}
         onAboutChange={(v) => setValues((prev) => ({ ...prev, about: v }))}
-        onSave={() => {}}
-        onChangePassword={() => {}}
-        onAvatarChange={(file: File) => {
-          void file;
+        onSave={() => {
+          dispatch(
+            updateProfile({
+              email: values.email,
+              name: values.name,
+              birthDate: values.birthDate ? toYYYYMMDD(values.birthDate) : null,
+              gender: values.gender,
+              city: values.city ?? '',
+              about: values.about,
+              avatarSrc,
+            }),
+          );
         }}
-        genderOptions={GENDER_OPTIONS}
-        cityOptions={CITY_OPTIONS}
-        avatarSrc={undefined}
+        onChangePassword={() => {}}
+        onAvatarChange={() => {}}
+        genderOptions={genderOptions}
+        cityOptions={cityOptions}
+        avatarSrc={avatarSrc}
       />
     </div>
   );
