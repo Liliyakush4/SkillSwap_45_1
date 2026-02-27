@@ -1,4 +1,4 @@
-import { type FC, useState, useEffect } from 'react';
+import { type FC, useState, useEffect, useMemo } from 'react';
 import { AvatarUploader } from '@shared/ui/avatar-uploader/AvatarUploader';
 import { Input } from '@shared/ui/input';
 import { BirthDateInput } from '@shared/ui/birth-date-input';
@@ -9,6 +9,7 @@ import { Button } from '@shared/ui/Button';
 import type { MultiSelectOption } from '@shared/ui/form-multi-select-field';
 import styles from './RegisterStep2Form.module.css';
 import type { Url } from '@shared/types';
+import { getLinkedOptions, sanitizeLinkedSelection } from '@shared/lib/linkedMultiselect';
 
 export type RegisterStep2FormValues = {
   name: string;
@@ -30,7 +31,7 @@ export interface RegisterStep2FormProps {
   genderOptions: Array<{ value: string; label: string; disabled?: boolean }>;
   cityOptions: Array<{ value: string; label: string; disabled?: boolean }>;
   skillCategoryLearnOptions: MultiSelectOption[];
-  skillSubcategoryLearnOptions: MultiSelectOption[];
+  subcategoryOptionsByCategoryId: Record<string, MultiSelectOption[]>;
   className?: string;
 }
 
@@ -43,7 +44,7 @@ export const RegisterStep2Form: FC<RegisterStep2FormProps> = ({
   genderOptions,
   cityOptions,
   skillCategoryLearnOptions,
-  skillSubcategoryLearnOptions,
+  subcategoryOptionsByCategoryId,
   className,
 }) => {
   const [name, setName] = useState(values.name);
@@ -71,6 +72,14 @@ export const RegisterStep2Form: FC<RegisterStep2FormProps> = ({
     skillCategoryLearn,
     skillSubcategoryLearn,
   };
+
+  const filteredSubcategoryOptions = useMemo(() => {
+    return getLinkedOptions(skillCategoryLearn, subcategoryOptionsByCategoryId);
+  }, [skillCategoryLearn, subcategoryOptionsByCategoryId]);
+
+  useEffect(() => {
+    setSkillSubcategoryLearn((prev) => sanitizeLinkedSelection(prev, filteredSubcategoryOptions));
+  }, [filteredSubcategoryOptions]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -148,7 +157,7 @@ export const RegisterStep2Form: FC<RegisterStep2FormProps> = ({
             }
             value={skillSubcategoryLearn}
             onChange={setSkillSubcategoryLearn}
-            options={skillSubcategoryLearnOptions}
+            options={filteredSubcategoryOptions}
             disabled={skillCategoryLearn.length === 0}
           />
         </div>
