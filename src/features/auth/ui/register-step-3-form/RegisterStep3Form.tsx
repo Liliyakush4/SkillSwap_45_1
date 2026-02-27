@@ -19,7 +19,7 @@ export type RegisterStep3FormValues = {
 export interface RegisterStep3FormProps {
   values: RegisterStep3FormValues;
   onSubmit?: (data: RegisterStep3FormValues) => void;
-  onBack?: () => void;
+  onBack?: (data: RegisterStep3FormValues) => void;
   className?: string;
   categoryOptions: MultiSelectOption[];
   subcategoryOptionsByCategoryId: Record<string, MultiSelectOption[]>;
@@ -56,13 +56,25 @@ export const RegisterStep3Form: FC<RegisterStep3FormProps> = ({
     setSubcategory((prev) => sanitizeLinkedSelection(prev, filteredSubcategoryOptions));
   }, [filteredSubcategoryOptions]);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    onSubmit?.({ skillName, category, subcategory, description, photos });
+  const canContinue = skillName.trim().length > 0 && category.length > 0 && subcategory.length > 0;
+
+  const submitPayload: RegisterStep3FormValues = {
+    skillName,
+    category,
+    subcategory,
+    description,
+    photos,
   };
 
   return (
-    <form className={`${styles.registerForm} ${className || ''}`} onSubmit={handleSubmit}>
+    <form
+      className={`${styles.registerForm} ${className || ''}`}
+      onSubmit={(e) => {
+        e.preventDefault();
+        onSubmit?.(submitPayload);
+      }}
+      noValidate
+    >
       {/* Группа полей — все поля внутри одного div */}
       <div className={styles.fieldsGroup}>
         <Input
@@ -104,10 +116,10 @@ export const RegisterStep3Form: FC<RegisterStep3FormProps> = ({
 
       {/* Кнопки — отдельный блок */}
       <div className={styles.buttonsContainer}>
-        <Button variant="secondary" fullWidth type="button" onClick={onBack}>
+        <Button variant="secondary" fullWidth type="button" onClick={() => onBack?.(submitPayload)}>
           Назад
         </Button>
-        <Button type="submit" variant="primary" fullWidth>
+        <Button type="submit" variant="primary" fullWidth disabled={!canContinue}>
           Продолжить
         </Button>
       </div>

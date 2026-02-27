@@ -11,6 +11,7 @@ import { useAppDispatch, useAppSelector } from '@shared/lib/storeHooks';
 import { selectDb } from '@app/store/db/selectors';
 import { useMemo, useState } from 'react';
 import { saveStep2 } from '@features/auth/model/registrationSlice';
+import { selectRegistrationStep2 } from '@features/auth/model/registrationSelectors';
 
 const fileToDataUrl = (file: File): Promise<string> =>
   new Promise((resolve, reject) => {
@@ -27,8 +28,15 @@ const toYYYYMMDD = (d: Date) => {
   return `${yyyy}-${mm}-${dd}`;
 };
 
+const isoToDate = (iso: string | null) => {
+  if (!iso) return null;
+  const [y, m, d] = iso.split('-').map(Number);
+  return new Date(y, (m ?? 1) - 1, d ?? 1);
+};
+
 export const RegisterStep2Page: React.FC = () => {
   const db = useAppSelector(selectDb);
+  const step2Draft = useAppSelector(selectRegistrationStep2);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -36,6 +44,28 @@ export const RegisterStep2Page: React.FC = () => {
   const [avatarMetadata, setAvatarMetadata] = useState<Record<string, unknown> | undefined>(
     undefined,
   );
+
+  const values = useMemo<RegisterStep2FormValues>(() => {
+    if (!step2Draft) {
+      return {
+        name: '',
+        birthDate: null,
+        gender: '',
+        city: null,
+        skillCategoryLearn: [],
+        skillSubcategoryLearn: [],
+      };
+    }
+
+    return {
+      name: step2Draft.name ?? '',
+      birthDate: step2Draft.birthDate ? isoToDate(step2Draft.birthDate) : null,
+      gender: step2Draft.gender ?? '',
+      city: step2Draft.city ?? null,
+      skillCategoryLearn: step2Draft.categorySkill ?? [],
+      skillSubcategoryLearn: step2Draft.subcategorySkill ?? [],
+    };
+  }, [step2Draft]);
 
   const handleAvatarChange = async (file: File) => {
     const url = await fileToDataUrl(file);
@@ -86,7 +116,7 @@ export const RegisterStep2Page: React.FC = () => {
     </div>
   );
 
-  const handleSubmit = (data: RegisterStep2FormValues) => {
+  const persistStep2 = (data: RegisterStep2FormValues) => {
     dispatch(
       saveStep2({
         name: data.name,
@@ -99,8 +129,16 @@ export const RegisterStep2Page: React.FC = () => {
         avatarMetadata,
       }),
     );
+  };
 
+  const handleSubmit = (data: RegisterStep2FormValues) => {
+    persistStep2(data);
     navigate('/auth/register/step-3');
+  };
+
+  const handleBack = (data: RegisterStep2FormValues) => {
+    persistStep2(data);
+    navigate('/auth/register/step-1');
   };
 
   return (
@@ -109,14 +147,7 @@ export const RegisterStep2Page: React.FC = () => {
       <ContentSection
         main={
           <RegisterStep2Form
-            values={{
-              name: '',
-              birthDate: null,
-              gender: '',
-              city: null,
-              skillCategoryLearn: [],
-              skillSubcategoryLearn: [],
-            }}
+            values={values}
             genderOptions={genderOptions}
             cityOptions={cityOptions}
             skillCategoryLearnOptions={skillCategoryLearnOptions}
@@ -124,7 +155,7 @@ export const RegisterStep2Page: React.FC = () => {
             onAvatarChange={handleAvatarChange}
             avatarSrc={avatarPreviewUrl}
             onSubmit={handleSubmit}
-            onBack={() => navigate('/auth/register/step-1')}
+            onBack={handleBack}
           />
         }
         heroText={heroText}
