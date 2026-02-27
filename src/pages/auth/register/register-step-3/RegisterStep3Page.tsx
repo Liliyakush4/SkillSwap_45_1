@@ -13,6 +13,32 @@ import { selectDb } from '@app/store/db/selectors';
 import type { MultiSelectOption } from '@shared/ui/form-multi-select-field';
 import { selectRegistrationStep3 } from '@features/auth/model/registrationSelectors';
 import { finishRegistrationFromStep3 } from '@features/auth/model/registrationThunks';
+import { saveStep3, type RegistrationStep3 } from '@features/auth/model/registrationSlice';
+
+const fileToDataUrl = (file: File): Promise<string> =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(String(reader.result));
+    reader.onerror = () => reject(new Error('Не удалось прочитать файл'));
+    reader.readAsDataURL(file);
+  });
+
+const buildPhotoPayload = async (
+  files: File[],
+): Promise<{ photoPreviewUrl?: string; photoMetadata?: Record<string, unknown> }> => {
+  const first = files[0];
+  if (!first) return {};
+
+  const photoPreviewUrl = await fileToDataUrl(first);
+  const photoMetadata: Record<string, unknown> = {
+    name: first.name,
+    size: first.size,
+    type: first.type,
+    lastModified: first.lastModified,
+  };
+
+  return { photoPreviewUrl, photoMetadata };
+};
 
 export const RegisterStep3Page: React.FC = () => {
   const navigate = useNavigate();
@@ -77,6 +103,30 @@ export const RegisterStep3Page: React.FC = () => {
     }
   };
 
+  const handleBack = async (data: RegisterStep3FormValues) => {
+    setSubmitError(null);
+
+    const { photoPreviewUrl, photoMetadata } =
+      data.photos.length > 0
+        ? await buildPhotoPayload(data.photos)
+        : {
+            photoPreviewUrl: step3Draft?.photoPreviewUrl,
+            photoMetadata: step3Draft?.photoMetadata,
+          };
+
+    const draft: RegistrationStep3 = {
+      skillName: data.skillName.trim(),
+      categorySkill: data.category,
+      subcategorySkill: data.subcategory,
+      description: data.description ?? '',
+      photoPreviewUrl,
+      photoMetadata,
+    };
+
+    dispatch(saveStep3(draft));
+    navigate('/auth/register/step-2');
+  };
+
   const heroText = (
     <div className={styles.heroContainer}>
       <h2 className={styles.heroTitle}>Укажите, чем вы готовы поделиться</h2>
@@ -99,7 +149,7 @@ export const RegisterStep3Page: React.FC = () => {
               categoryOptions={categoryOptions}
               subcategoryOptionsByCategoryId={subcategoryOptionsByCategoryId}
               onSubmit={handleSubmit}
-              onBack={() => navigate('/auth/register/step-2')}
+              onBack={handleBack}
             />
           </>
         }

@@ -1,4 +1,4 @@
-import { type FC, useState } from 'react';
+import { type FC, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
 import { Button } from '@shared/ui/Button';
@@ -19,6 +19,7 @@ export type AuthFormData = {
 export interface AuthFormProps {
   mode: AuthFormMode;
   onSubmit?: (data: AuthFormData) => void;
+  initialValues?: Partial<AuthFormData>;
   className?: string;
   infoText?: string;
   isLoading?: boolean;
@@ -32,6 +33,7 @@ export const AuthForm: FC<AuthFormProps> = ({
   infoText,
   isLoading = false,
   isDisabled = false,
+  initialValues,
 }) => {
   const navigate = useNavigate();
   const [showInfoText, setShowInfoText] = useState(false);
@@ -40,6 +42,7 @@ export const AuthForm: FC<AuthFormProps> = ({
   const {
     control,
     handleSubmit,
+    reset,
     formState: { errors, isValid },
   } = useForm<AuthFormData>({
     mode: 'onChange',
@@ -48,6 +51,15 @@ export const AuthForm: FC<AuthFormProps> = ({
       password: '',
     },
   });
+
+  useEffect(() => {
+    if (initialValues) {
+      reset({
+        email: initialValues.email ?? '',
+        password: initialValues.password ?? '',
+      });
+    }
+  }, [initialValues, reset]);
 
   const isFormDisabled = isLoading || isDisabled;
 

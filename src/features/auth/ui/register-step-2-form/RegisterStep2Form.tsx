@@ -24,7 +24,7 @@ export type RegisterStep2FormValues = {
 export interface RegisterStep2FormProps {
   values: RegisterStep2FormValues;
   onSubmit?: (data: RegisterStep2FormValues) => void;
-  onBack?: () => void;
+  onBack?: (data: RegisterStep2FormValues) => void;
   onAvatarChange?: (file: File) => void;
   avatarSrc?: string;
   genderOptions: Array<{ value: string; label: string; disabled?: boolean }>;
@@ -80,6 +80,12 @@ export const RegisterStep2Form: FC<RegisterStep2FormProps> = ({
   const handleContinue = () => {
     onSubmit?.(formData);
   };
+
+  const canContinue =
+    name.trim().length > 0 &&
+    city !== null &&
+    skillCategoryLearn.length > 0 &&
+    skillSubcategoryLearn.length > 0;
 
   return (
     <form className={`${styles.form} ${className ?? ''}`} onSubmit={handleSubmit} noValidate>
@@ -149,10 +155,16 @@ export const RegisterStep2Form: FC<RegisterStep2FormProps> = ({
 
         <div className={styles.buttonsWrapper}>
           <div className={styles.buttonsRow}>
-            <Button type="button" variant="secondary" fullWidth onClick={onBack}>
+            <Button type="button" variant="secondary" fullWidth onClick={() => onBack?.(formData)}>
               Назад
             </Button>
-            <Button type="button" variant="primary" fullWidth onClick={handleContinue}>
+            <Button
+              type="button"
+              variant="primary"
+              fullWidth
+              onClick={handleContinue}
+              disabled={!canContinue}
+            >
               Продолжить
             </Button>
           </div>
