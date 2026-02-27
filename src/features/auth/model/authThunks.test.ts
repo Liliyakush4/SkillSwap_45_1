@@ -6,35 +6,36 @@ import { sha256Hex } from '../../../shared/lib/crypto/sha256';
 jest.mock('../../../shared/api/mock');
 jest.mock('../../../shared/lib/crypto/sha256');
 
+const localStorageMock = {
+  store: {} as Record<string, string>,
+  getItem(key: string) {
+    return this.store[key] ?? null;
+  },
+  setItem(key: string, value: string) {
+    this.store[key] = value;
+  },
+  removeItem(key: string) {
+    delete this.store[key];
+  },
+  clear() {
+    this.store = {};
+  },
+};
+
 beforeAll(() => {
-  Object.defineProperty(window, 'localStorage', {
-    value: {
-      store: {} as Record<string, string>,
-      getItem(key: string) {
-        return this.store[key] || null;
-      },
-      setItem(key: string, value: string) {
-        this.store[key] = value;
-      },
-      removeItem(key: string) {
-        delete this.store[key];
-      },
-      clear() {
-        this.store = {};
-      },
-    },
+  Object.defineProperty(globalThis, 'localStorage', {
+    value: localStorageMock,
     writable: true,
   });
+});
+
+beforeEach(() => {
+  localStorageMock.clear();
 });
 
 describe('authThunks', () => {
   const dispatch = jest.fn();
   const getState = jest.fn();
-
-  beforeEach(() => {
-    dispatch.mockClear();
-    localStorage.clear();
-  });
 
   describe('loginThunk', () => {
     it('success login', async () => {
