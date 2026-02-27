@@ -26,4 +26,5 @@ export interface UserCardProps {
   moreLabel?: string;
   className?: string;
   height?: CardHeight; // новый проп
+  exchangeOffered?: boolean; // новый проп для статуса кнопки
 }
