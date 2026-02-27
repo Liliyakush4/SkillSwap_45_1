@@ -9,8 +9,16 @@ import { ContentSection } from '@shared/ui/content-section/ContentSection';
 import { StepProgress } from '@shared/ui/step-progress/StepProgress';
 import { useAppDispatch, useAppSelector } from '@shared/lib/storeHooks';
 import { selectDb } from '@app/store/db/selectors';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { saveStep2 } from '@features/auth/model/registrationSlice';
+
+const fileToDataUrl = (file: File): Promise<string> =>
+  new Promise((resolve, reject) => {
+    const r = new FileReader();
+    r.onload = () => resolve(String(r.result));
+    r.onerror = () => reject(new Error('Не удалось прочитать файл'));
+    r.readAsDataURL(file);
+  });
 
 const toYYYYMMDD = (d: Date) => {
   const yyyy = d.getFullYear();
@@ -23,6 +31,22 @@ export const RegisterStep2Page: React.FC = () => {
   const db = useAppSelector(selectDb);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  const [avatarPreviewUrl, setAvatarPreviewUrl] = useState<string | undefined>(undefined);
+  const [avatarMetadata, setAvatarMetadata] = useState<Record<string, unknown> | undefined>(
+    undefined,
+  );
+
+  const handleAvatarChange = async (file: File) => {
+    const url = await fileToDataUrl(file);
+    setAvatarPreviewUrl(url);
+    setAvatarMetadata({
+      name: file.name,
+      size: file.size,
+      type: file.type,
+      lastModified: file.lastModified,
+    });
+  };
 
   const genderOptions = useMemo(
     () => [
@@ -71,6 +95,8 @@ export const RegisterStep2Page: React.FC = () => {
         city: data.city,
         categorySkill: data.skillCategoryLearn,
         subcategorySkill: data.skillSubcategoryLearn,
+        avatarPreviewUrl,
+        avatarMetadata,
       }),
     );
 
@@ -95,6 +121,8 @@ export const RegisterStep2Page: React.FC = () => {
             cityOptions={cityOptions}
             skillCategoryLearnOptions={skillCategoryLearnOptions}
             skillSubcategoryLearnOptions={skillSubcategoryLearnOptions}
+            onAvatarChange={handleAvatarChange}
+            avatarSrc={avatarPreviewUrl}
             onSubmit={handleSubmit}
             onBack={() => navigate('/auth/register/step-1')}
           />

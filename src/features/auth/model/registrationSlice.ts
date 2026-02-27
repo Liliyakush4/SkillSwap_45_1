@@ -13,12 +13,14 @@ export interface RegistrationStep2 {
   city: string | null;
   categorySkill: string[]; // изменено на строковый тип
   subcategorySkill: string[]; // изменено на строковый тип
+  avatarPreviewUrl?: Url;
+  avatarMetadata?: Record<string, unknown>;
 }
 
 export interface RegistrationStep3 {
   skillName: string;
-  categorySkill: Category;
-  subcategorySkill: Subcategory;
+  categorySkill: string[];
+  subcategorySkill: string[];
   description: string;
   photoPreviewUrl?: Url; // ссылка на предпросмотр
   photoMetadata?: Record<string, unknown>; // метаданные, если нужны

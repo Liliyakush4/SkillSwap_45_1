@@ -8,6 +8,7 @@ import { FormMultiSelectField } from '@shared/ui/form-multi-select-field';
 import { Button } from '@shared/ui/Button';
 import type { MultiSelectOption } from '@shared/ui/form-multi-select-field';
 import styles from './RegisterStep2Form.module.css';
+import type { Url } from '@shared/types';
 
 export type RegisterStep2FormValues = {
   name: string;
@@ -16,6 +17,8 @@ export type RegisterStep2FormValues = {
   city: string | null;
   skillCategoryLearn: string[];
   skillSubcategoryLearn: string[];
+  avatarPreviewUrl?: Url;
+  avatarMetadata?: Record<string, unknown>;
 };
 
 export interface RegisterStep2FormProps {
@@ -132,11 +135,15 @@ export const RegisterStep2Form: FC<RegisterStep2FormProps> = ({
         <div className={styles.field}>
           <FormMultiSelectField
             label="Подкатегория навыка, которому хотите научиться"
-            placeholder="Выберите подкатегорию"
+            placeholder={
+              skillCategoryLearn.length === 0
+                ? 'Сначала выберите категорию'
+                : 'Выберите подкатегорию'
+            }
             value={skillSubcategoryLearn}
             onChange={setSkillSubcategoryLearn}
             options={skillSubcategoryLearnOptions}
-            disabled={false}
+            disabled={skillCategoryLearn.length === 0}
           />
         </div>
 
