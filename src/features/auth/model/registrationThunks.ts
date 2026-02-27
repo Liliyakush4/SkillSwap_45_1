@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import type { AppDispatch, RootState } from '@app/store/store';
-import type { IsoDate, Url } from '@shared/types';
+import type { IsoDate } from '@shared/types';
 
 import { saveStep3, resetRegistrationDraft, type RegistrationStep3 } from './registrationSlice';
 
@@ -23,13 +23,21 @@ type Step3FormLike = {
   photos: File[];
 };
 
-const buildPhotoPayload = (
+const fileToDataUrl = (file: File): Promise<string> =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(String(reader.result));
+    reader.onerror = () => reject(new Error('Не удалось прочитать файл'));
+    reader.readAsDataURL(file);
+  });
+
+const buildPhotoPayload = async (
   files: File[],
-): { photoPreviewUrl?: Url; photoMetadata?: Record<string, unknown> } => {
+): Promise<{ photoPreviewUrl?: string; photoMetadata?: Record<string, unknown> }> => {
   const first = files[0];
   if (!first) return {};
 
-  const photoPreviewUrl = URL.createObjectURL(first);
+  const photoPreviewUrl = await fileToDataUrl(first);
 
   const photoMetadata: Record<string, unknown> = {
     name: first.name,
@@ -52,7 +60,7 @@ export const finishRegistrationFromStep3 = createAsyncThunk<
     if (form.category.length === 0) return rejectWithValue('Выберите хотя бы одну категорию');
     if (form.subcategory.length === 0) return rejectWithValue('Выберите хотя бы одну подкатегорию');
 
-    const { photoPreviewUrl, photoMetadata } = buildPhotoPayload(form.photos);
+    const { photoPreviewUrl, photoMetadata } = await buildPhotoPayload(form.photos);
 
     const step3: RegistrationStep3 = {
       skillName: form.skillName.trim(),
@@ -139,7 +147,7 @@ export const finishRegistration = createAsyncThunk<
         gender: step2.gender ?? '',
         city: step2.city ?? '',
         about: '',
-        avatarSrc: undefined,
+        avatarSrc: step2.avatarPreviewUrl,
       },
       skill: {
         title: step3.skillName,
