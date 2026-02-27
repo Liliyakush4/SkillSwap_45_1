@@ -64,7 +64,6 @@ interface UpdateProfilePayload {
 interface UpdateProfileSkillPayload {
   title?: string;
   description?: string;
-  level?: number;
   category?: string;
   images?: ProfileImage[];
   tags?: string[];
