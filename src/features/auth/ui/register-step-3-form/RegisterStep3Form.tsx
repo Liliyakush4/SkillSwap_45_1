@@ -1,6 +1,8 @@
-import { type FC, useState } from 'react';
+import { type FC, useState, useEffect, useMemo } from 'react';
 import { Input } from '@shared/ui/input';
 import { FormMultiSelectField } from '@shared/ui/form-multi-select-field';
+import type { MultiSelectOption } from '@shared/ui/form-multi-select-field';
+import { getLinkedOptions, sanitizeLinkedSelection } from '@shared/lib/linkedMultiselect';
 import { Textarea } from '@shared/ui/textarea';
 import { FileDropzone } from '@shared/ui/file-dropzone';
 import { Button } from '@shared/ui/Button';
@@ -19,8 +21,8 @@ export interface RegisterStep3FormProps {
   onSubmit?: (data: RegisterStep3FormValues) => void;
   onBack?: () => void;
   className?: string;
-  categoryOptions: Array<{ value: string; label: string }>;
-  subcategoryOptions: Array<{ value: string; label: string }>;
+  categoryOptions: MultiSelectOption[];
+  subcategoryOptionsByCategoryId: Record<string, MultiSelectOption[]>;
 }
 
 export const RegisterStep3Form: FC<RegisterStep3FormProps> = ({
@@ -29,13 +31,30 @@ export const RegisterStep3Form: FC<RegisterStep3FormProps> = ({
   onBack,
   className,
   categoryOptions,
-  subcategoryOptions,
+  subcategoryOptionsByCategoryId,
 }) => {
   const [skillName, setSkillName] = useState(values.skillName);
   const [category, setCategory] = useState(values.category);
   const [subcategory, setSubcategory] = useState(values.subcategory);
   const [description, setDescription] = useState(values.description);
   const [photos, setPhotos] = useState(values.photos);
+
+  // синхронизация при возврате на шаг / загрузке черновика
+  useEffect(() => {
+    setSkillName(values.skillName);
+    setCategory(values.category);
+    setSubcategory(values.subcategory);
+    setDescription(values.description);
+    setPhotos(values.photos);
+  }, [values]);
+
+  const filteredSubcategoryOptions = useMemo(() => {
+    return getLinkedOptions(category, subcategoryOptionsByCategoryId);
+  }, [category, subcategoryOptionsByCategoryId]);
+
+  useEffect(() => {
+    setSubcategory((prev) => sanitizeLinkedSelection(prev, filteredSubcategoryOptions));
+  }, [filteredSubcategoryOptions]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -63,10 +82,13 @@ export const RegisterStep3Form: FC<RegisterStep3FormProps> = ({
 
         <FormMultiSelectField
           label="Подкатегория навыка"
-          placeholder="Выберите подкатегорию навыка"
+          placeholder={
+            category.length === 0 ? 'Сначала выберите категорию' : 'Выберите подкатегорию'
+          }
           value={subcategory}
           onChange={setSubcategory}
-          options={subcategoryOptions}
+          options={filteredSubcategoryOptions}
+          disabled={category.length === 0}
         />
 
         <Textarea
