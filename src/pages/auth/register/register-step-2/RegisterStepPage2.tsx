@@ -12,6 +12,7 @@ import { selectDb } from '@app/store/db/selectors';
 import { useMemo, useState } from 'react';
 import { saveStep2 } from '@features/auth/model/registrationSlice';
 import { selectRegistrationStep2 } from '@features/auth/model/registrationSelectors';
+import type { MultiSelectOption } from '@shared/ui/form-multi-select-field';
 
 const fileToDataUrl = (file: File): Promise<string> =>
   new Promise((resolve, reject) => {
@@ -97,14 +98,15 @@ export const RegisterStep2Page: React.FC = () => {
     return db.categories.map((cat) => ({ value: String(cat.id), label: cat.name }));
   }, [db]);
 
-  const skillSubcategoryLearnOptions = useMemo(() => {
-    if (!db) return [];
-    return Object.values(db.subcategoriesByCategoryId)
-      .flat()
-      .map((sub) => ({
-        value: String(sub.id),
-        label: sub.name,
-      }));
+  const subcategoryOptionsByCategoryId = useMemo<Record<string, MultiSelectOption[]>>(() => {
+    if (!db) return {};
+
+    return Object.fromEntries(
+      Object.entries(db.subcategoriesByCategoryId).map(([categoryId, subs]) => [
+        String(categoryId),
+        subs.map((sub) => ({ value: String(sub.id), label: sub.name })),
+      ]),
+    );
   }, [db]);
 
   if (!db) return null;
@@ -151,7 +153,7 @@ export const RegisterStep2Page: React.FC = () => {
             genderOptions={genderOptions}
             cityOptions={cityOptions}
             skillCategoryLearnOptions={skillCategoryLearnOptions}
-            skillSubcategoryLearnOptions={skillSubcategoryLearnOptions}
+            subcategoryOptionsByCategoryId={subcategoryOptionsByCategoryId}
             onAvatarChange={handleAvatarChange}
             avatarSrc={avatarPreviewUrl}
             onSubmit={handleSubmit}
