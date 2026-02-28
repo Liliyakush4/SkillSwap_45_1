@@ -13,6 +13,8 @@ export interface RegistrationStep2 {
   city: string | null;
   categorySkill: string[]; // изменено на строковый тип
   subcategorySkill: string[]; // изменено на строковый тип
+  avatarPreviewUrl?: Url;
+  avatarMetadata?: Record<string, unknown>;
 }
 
 export interface RegistrationStep3 {

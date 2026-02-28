@@ -1,4 +1,4 @@
-import { type FC, useState, useEffect } from 'react';
+import { type FC, useState, useEffect, useMemo } from 'react';
 import { AvatarUploader } from '@shared/ui/avatar-uploader/AvatarUploader';
 import { Input } from '@shared/ui/input';
 import { BirthDateInput } from '@shared/ui/birth-date-input';
@@ -8,6 +8,8 @@ import { FormMultiSelectField } from '@shared/ui/form-multi-select-field';
 import { Button } from '@shared/ui/Button';
 import type { MultiSelectOption } from '@shared/ui/form-multi-select-field';
 import styles from './RegisterStep2Form.module.css';
+import type { Url } from '@shared/types';
+import { getLinkedOptions, sanitizeLinkedSelection } from '@shared/lib/linkedMultiselect';
 
 export type RegisterStep2FormValues = {
   name: string;
@@ -16,18 +18,20 @@ export type RegisterStep2FormValues = {
   city: string | null;
   skillCategoryLearn: string[];
   skillSubcategoryLearn: string[];
+  avatarPreviewUrl?: Url;
+  avatarMetadata?: Record<string, unknown>;
 };
 
 export interface RegisterStep2FormProps {
   values: RegisterStep2FormValues;
   onSubmit?: (data: RegisterStep2FormValues) => void;
-  onBack?: () => void;
+  onBack?: (data: RegisterStep2FormValues) => void;
   onAvatarChange?: (file: File) => void;
   avatarSrc?: string;
   genderOptions: Array<{ value: string; label: string; disabled?: boolean }>;
   cityOptions: Array<{ value: string; label: string; disabled?: boolean }>;
   skillCategoryLearnOptions: MultiSelectOption[];
-  skillSubcategoryLearnOptions: MultiSelectOption[];
+  subcategoryOptionsByCategoryId: Record<string, MultiSelectOption[]>;
   className?: string;
 }
 
@@ -40,7 +44,7 @@ export const RegisterStep2Form: FC<RegisterStep2FormProps> = ({
   genderOptions,
   cityOptions,
   skillCategoryLearnOptions,
-  skillSubcategoryLearnOptions,
+  subcategoryOptionsByCategoryId,
   className,
 }) => {
   const [name, setName] = useState(values.name);
@@ -69,6 +73,14 @@ export const RegisterStep2Form: FC<RegisterStep2FormProps> = ({
     skillSubcategoryLearn,
   };
 
+  const filteredSubcategoryOptions = useMemo(() => {
+    return getLinkedOptions(skillCategoryLearn, subcategoryOptionsByCategoryId);
+  }, [skillCategoryLearn, subcategoryOptionsByCategoryId]);
+
+  useEffect(() => {
+    setSkillSubcategoryLearn((prev) => sanitizeLinkedSelection(prev, filteredSubcategoryOptions));
+  }, [filteredSubcategoryOptions]);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onSubmit?.(formData);
@@ -77,6 +89,12 @@ export const RegisterStep2Form: FC<RegisterStep2FormProps> = ({
   const handleContinue = () => {
     onSubmit?.(formData);
   };
+
+  const canContinue =
+    name.trim().length > 0 &&
+    city !== null &&
+    skillCategoryLearn.length > 0 &&
+    skillSubcategoryLearn.length > 0;
 
   return (
     <form className={`${styles.form} ${className ?? ''}`} onSubmit={handleSubmit} noValidate>
@@ -132,20 +150,30 @@ export const RegisterStep2Form: FC<RegisterStep2FormProps> = ({
         <div className={styles.field}>
           <FormMultiSelectField
             label="Подкатегория навыка, которому хотите научиться"
-            placeholder="Выберите подкатегорию"
+            placeholder={
+              skillCategoryLearn.length === 0
+                ? 'Сначала выберите категорию'
+                : 'Выберите подкатегорию'
+            }
             value={skillSubcategoryLearn}
             onChange={setSkillSubcategoryLearn}
-            options={skillSubcategoryLearnOptions}
-            disabled={false}
+            options={filteredSubcategoryOptions}
+            disabled={skillCategoryLearn.length === 0}
           />
         </div>
 
         <div className={styles.buttonsWrapper}>
           <div className={styles.buttonsRow}>
-            <Button type="button" variant="secondary" fullWidth onClick={onBack}>
+            <Button type="button" variant="secondary" fullWidth onClick={() => onBack?.(formData)}>
               Назад
             </Button>
-            <Button type="button" variant="primary" fullWidth onClick={handleContinue}>
+            <Button
+              type="button"
+              variant="primary"
+              fullWidth
+              onClick={handleContinue}
+              disabled={!canContinue}
+            >
               Продолжить
             </Button>
           </div>

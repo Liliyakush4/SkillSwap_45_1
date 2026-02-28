@@ -32,7 +32,7 @@ h1 {
   max-height: 144px;
   max-width: 420px;
   overflow: hidden;
-  align-content: end;
+  align-content: start;
 }
 
 .galleryColumn {

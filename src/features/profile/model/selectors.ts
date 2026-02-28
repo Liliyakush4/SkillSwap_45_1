@@ -22,7 +22,6 @@ export const selectProfileAvatarSrc = (state: RootState) => state.profile.profil
 
 export const selectSkillTitle = (state: RootState) => state.profile.skill.title;
 export const selectSkillDescription = (state: RootState) => state.profile.skill.description;
-//export const selectSkillLevel = (state: RootState) => state.profile.skill.level;
 export const selectSkillCategory = (state: RootState) => state.profile.skill.category;
 export const selectSkillImages = (state: RootState) => state.profile.skill.images;
 export const selectSkillTags = (state: RootState) => state.profile.skill.tags;

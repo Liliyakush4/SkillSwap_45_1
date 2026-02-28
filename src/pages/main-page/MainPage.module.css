@@ -69,3 +69,8 @@
     font-size: 20px;
   }
 }
+
+.sentButton {
+  display: flex !important;
+  gap: var(--space-8) !important;
+}

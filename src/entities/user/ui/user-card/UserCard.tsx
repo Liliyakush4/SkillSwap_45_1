@@ -8,6 +8,7 @@ import { LikesCounter } from '@features/favorites/ui/LikesCounter';
 import { SkillPlate } from '@shared/ui/skill-plate/SkillPlate';
 import { Button } from '@shared/ui/Button';
 import { getSkillColorVar } from '@shared/ui/skill-plate/utils/getSkillColorVar';
+import clockIcon from '@shared/assets/icons/common/icon_clock.svg';
 
 const SKILLS_VISIBLE_LIMIT = 2;
 
@@ -27,6 +28,7 @@ export const UserCard: React.FC<UserCardProps> = ({
   moreLabel = 'Подробнее',
   className,
   height = 'regular',
+  exchangeOffered = false, // новый пропс для статуса кнопки
 }) => {
   // Функция для рендера навыков
   const renderSkills = useCallback((skills: SkillBadge[]) => {
@@ -98,7 +100,18 @@ export const UserCard: React.FC<UserCardProps> = ({
         </div>
       </div>
 
-      {onMore && (
+      {onMore && exchangeOffered && (
+        <Button
+          variant="secondary"
+          fullWidth
+          onClick={onMore}
+          className={`${exchangeOffered ? styles.sentButton : ''}`}
+        >
+          <img src={clockIcon} alt="" className={styles.buttonIcon} /> Обмен предложен
+        </Button>
+      )}
+
+      {onMore && !exchangeOffered && (
         <Button fullWidth onClick={onMore}>
           {moreLabel}
         </Button>
