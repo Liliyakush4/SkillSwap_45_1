@@ -12,5 +12,6 @@
       "@shared/*": ["src/shared/*"],
       "@widgets/*": ["src/widgets/*"]
     }
-  }
+  },
+  "types": ["node", "jest"]
 }

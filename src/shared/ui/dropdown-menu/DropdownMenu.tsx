@@ -41,7 +41,7 @@ export const DropdownMenu: FC<DropdownMenuProps> = ({
 
     let top = 0;
     let left = 0;
-    let width = matchWidth ? anchorRect.width : 0;
+    const width = matchWidth ? anchorRect.width : 0;
 
     switch (placement) {
       case 'bottom-start':
