@@ -40,8 +40,11 @@ export const HeaderActionsUser = () => {
           onClick={() => setIsNotificationsOpen((prev) => !prev)}
           isActive={isNotificationsOpen}
         />
-
-        <IconButton icon={<img src={iconHeart} alt="" />} aria-label="Избранное" />
+        <IconButton
+          icon={<img src={iconHeart} alt="" />}
+          aria-label="Избранное"
+          onClick={() => navigate('profile/favorites')}
+        />
       </div>
 
       <div className={cls.profile}>
