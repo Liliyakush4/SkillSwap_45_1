@@ -17,7 +17,6 @@
 
 .main {
   grid-area: main;
-  padding: 60px;
   overflow: auto;
   box-sizing: border-box;
   background-color: var(--color-secondary);
