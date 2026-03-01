@@ -53,12 +53,14 @@ export default function FavoritesPage() {
   }
 
   return (
-    <UserCardSection
-      title=""
-      items={items}
-      variant="grid"
-      className={styles.container}
-      renderHeader={false}
-    />
+    <div className={styles.backgroundWrapper}>
+      <UserCardSection
+        title=""
+        items={items}
+        variant="grid"
+        className={styles.container}
+        renderHeader={false}
+      />
+    </div>
   );
 }

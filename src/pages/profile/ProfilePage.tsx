@@ -6,6 +6,7 @@ import {
 } from '@features/profile/ui/profile-edit-form';
 import { updateProfile } from '@features/profile/model/profileSlice';
 import { selectDb } from '@app/store/db/selectors';
+import styles from './ProfilePage.module.css';
 
 const toYYYYMMDD = (d: Date) => {
   const yyyy = d.getFullYear();
@@ -59,7 +60,7 @@ export default function ProfilePage() {
   }, [initialFromStore]);
 
   return (
-    <div>
+    <div className={styles.contentWrapper}>
       <h1 className="visually-hidden">Личные данные</h1>
       <ProfileEditForm
         values={values}
