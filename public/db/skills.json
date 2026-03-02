@@ -6,13 +6,13 @@
       "categoryId": 1,
       "subcategoryId": 7,
       "ownerUserId": 1,
-      "description": "Разберем роли, планирование, риски и статусы. На примерах из реальных проектов.",
+      "description": "Помогу разобраться с основами проектного управления на понятных примерах. Разберем роли в команде, планирование, риски, статусы и контроль сроков. Подойдет тем, кто хочет увереннее вести задачи и понимать, как устроена работа проекта целиком.",
       "images": [
-        { "src": "/images/skills/101_1.jpg" },
-        { "src": "/images/skills/101_2.jpg" },
-        { "src": "/images/skills/101_3.jpg" },
-        { "src": "/images/skills/101_4.jpg" },
-        { "src": "/images/skills/101_5.jpg" }
+        { "src": "/images/skills/business_and_career_1.jpg" },
+        { "src": "/images/skills/business_and_career_2.jpg" },
+        { "src": "/images/skills/business_and_career_3.jpg" },
+        { "src": "/images/skills/business_and_career_4.jpg" },
+        { "src": "/images/skills/business_and_career_5.jpg" }
       ]
     },
     {
@@ -21,664 +21,822 @@
       "categoryId": 6,
       "subcategoryId": 36,
       "ownerUserId": 3,
-      "description": "Мягкая практика, дыхание и расслабление. Подойдет, если давно хотел(а) начать.",
+      "description": "Проведу в мягкий формат практики через дыхание, простые асаны и упражнения на внимание. Помогу снять напряжение, лучше почувствовать тело и постепенно выстроить спокойный ритм занятий. Подойдет новичкам и тем, кто хочет добавить больше баланса в повседневность.",
       "images": [
-        { "src": "/images/skills/102_1.jpg" },
-        { "src": "/images/skills/102_2.jpg" },
-        { "src": "/images/skills/102_3.jpg" },
-        { "src": "/images/skills/102_4.jpg" },
-        { "src": "/images/skills/102_5.jpg" }
+        { "src": "/images/skills/health_and_lifestyle_1.jpg" },
+        { "src": "/images/skills/health_and_lifestyle_2.jpg" },
+        { "src": "/images/skills/health_and_lifestyle_3.jpg" },
+        { "src": "/images/skills/health_and_lifestyle_4.jpg" },
+        { "src": "/images/skills/health_and_lifestyle_5.jpg" }
       ]
     },
     {
       "id": 103,
-      "title": "Фронтенд-разработка",
+      "title": "Когнитивные техники",
       "categoryId": 5,
       "subcategoryId": 32,
       "ownerUserId": 3,
-      "description": "Основы HTML, CSS, создание адаптивных сайтов.",
+      "description": "Покажу техники, которые помогают лучше усваивать информацию, структурировать материал и удерживать внимание. Разберем способы запоминания, повторения и работы со сложными темами без перегруза. Это полезно и для учебы, и для самостоятельного развития.",
       "images": [
-        { "src": "/images/skills/103_1.jpg" },
-        { "src": "/images/skills/103_2.jpg" },
-        { "src": "/images/skills/103_3.jpg" }
+        { "src": "/images/skills/education_and_development_1.jpg" },
+        { "src": "/images/skills/education_and_development_2.jpg" },
+        { "src": "/images/skills/education_and_development_3.jpg" },
+        { "src": "/images/skills/education_and_development_4.jpg" }
       ]
     },
     {
       "id": 104,
-      "title": "Электроника и схемотехника",
+      "title": "Маркетинг и реклама",
       "categoryId": 1,
       "subcategoryId": 2,
       "ownerUserId": 1,
-      "description": "Работа с микроконтроллерами, схемы, компоненты.",
-      "images": []
+      "description": "Расскажу, как работает базовый маркетинг и зачем бизнесу реклама на разных этапах роста. Разберем аудиторию, позиционирование, каналы продвижения и логику рекламных сообщений. Подойдет тем, кто хочет понять основы без перегруженной теории.",
+      "images": [
+        { "src": "/images/skills/business_and_career_1.jpg" },
+        { "src": "/images/skills/business_and_career_2.jpg" },
+        { "src": "/images/skills/business_and_career_3.jpg" },
+        { "src": "/images/skills/business_and_career_4.jpg" },
+        { "src": "/images/skills/business_and_career_5.jpg" }
+      ]
     },
     {
       "id": 105,
-      "title": "Программирование чипов",
+      "title": "Проектное управление",
       "categoryId": 1,
       "subcategoryId": 7,
       "ownerUserId": 4,
-      "description": "Работа с Arduino, ESP8266 и др.",
-      "images": [{ "src": "/images/skills/105_1.jpg" }, { "src": "/images/skills/105_2.jpg" }]
+      "description": "Помогу организовать работу над задачами так, чтобы проект двигался предсказуемо и без хаоса. Разберем постановку целей, декомпозицию, приоритизацию и контроль выполнения. Будет полезно тем, кто начинает управлять процессами или небольшой командой.",
+      "images": [
+        { "src": "/images/skills/business_and_career_1.jpg" },
+        { "src": "/images/skills/business_and_career_2.jpg" },
+        { "src": "/images/skills/business_and_career_3.jpg" },
+        { "src": "/images/skills/business_and_career_4.jpg" },
+        { "src": "/images/skills/business_and_career_5.jpg" }
+      ]
     },
     {
       "id": 106,
-      "title": "Фотография для новичков",
+      "title": "Фотография",
       "categoryId": 4,
       "subcategoryId": 23,
       "ownerUserId": 1,
-      "description": "Основы композиции, съемки, настройка камеры.",
-      "images": []
+      "description": "Научу замечать кадр, работать с композицией и увереннее пользоваться камерой или телефоном. Разберем свет, ракурс, базовые настройки и ошибки, которые чаще всего мешают получить хороший результат. Подойдет новичкам, которые хотят начать с практики, а не с сухой теории.",
+      "images": [
+        { "src": "/images/skills/creativity_and_art_1.jpg" },
+        { "src": "/images/skills/creativity_and_art_2.jpg" },
+        { "src": "/images/skills/creativity_and_art_3.jpg" },
+        { "src": "/images/skills/creativity_and_art_4.jpg" },
+        { "src": "/images/skills/creativity_and_art_5.jpg" }
+      ]
     },
     {
       "id": 107,
-      "title": "Кодирование на Python",
+      "title": "Продажи и переговоры",
       "categoryId": 1,
       "subcategoryId": 3,
       "ownerUserId": 6,
-      "description": "Базовые конструкции, работу с файлами и библиотеками.",
+      "description": "Помогу освоить базовые принципы переговоров и уверенного общения с клиентами или партнерами. Разберем, как выявлять потребность, аргументировать, отрабатывать возражения и доводить диалог до договоренности. Полезно для тех, кто хочет чувствовать себя спокойнее в деловом общении.",
       "images": [
-        { "src": "/images/skills/107_1.jpg" },
-        { "src": "/images/skills/107_2.jpg" },
-        { "src": "/images/skills/107_3.jpg" },
-        { "src": "/images/skills/107_4.jpg" },
-        { "src": "/images/skills/107_5.jpg" }
+        { "src": "/images/skills/business_and_career_1.jpg" },
+        { "src": "/images/skills/business_and_career_2.jpg" },
+        { "src": "/images/skills/business_and_career_3.jpg" },
+        { "src": "/images/skills/business_and_career_4.jpg" },
+        { "src": "/images/skills/business_and_career_5.jpg" }
       ]
     },
     {
       "id": 108,
-      "title": "Создание контента",
+      "title": "Декор и DIY",
       "categoryId": 4,
       "subcategoryId": 29,
       "ownerUserId": 6,
-      "description": "Фото, видео, тексты для Instagram, TikTok.",
-      "images": []
+      "description": "Покажу, как создавать простые и красивые вещи своими руками для дома, подарков или личных проектов. Разберем идеи, материалы, сочетания и аккуратную реализацию без лишней сложности. Это хороший формат для тех, кто любит практическое творчество и хочет делать что-то уникальное.",
+      "images": [
+        { "src": "/images/skills/creativity_and_art_1.jpg" },
+        { "src": "/images/skills/creativity_and_art_2.jpg" },
+        { "src": "/images/skills/creativity_and_art_3.jpg" },
+        { "src": "/images/skills/creativity_and_art_4.jpg" },
+        { "src": "/images/skills/creativity_and_art_5.jpg" }
+      ]
     },
     {
       "id": 109,
-      "title": "SMM и продвижение",
+      "title": "Маркетинг и реклама",
       "categoryId": 1,
       "subcategoryId": 2,
       "ownerUserId": 7,
-      "description": "Продвижение в соцсетях, таргетинг.",
+      "description": "Расскажу, как выстраивать продвижение продукта или личного проекта в понятной системе. Разберем аудиторию, ключевое сообщение, рекламные каналы и базовые метрики эффективности. Подойдет тем, кто хочет начать продвигаться осознанно, а не наугад.",
       "images": [
-        { "src": "/images/skills/109_1.jpg" },
-        { "src": "/images/skills/109_2.jpg" },
-        { "src": "/images/skills/109_3.jpg" },
-        { "src": "/images/skills/109_4.jpg" }
+        { "src": "/images/skills/business_and_career_1.jpg" },
+        { "src": "/images/skills/business_and_career_2.jpg" },
+        { "src": "/images/skills/business_and_career_3.jpg" },
+        { "src": "/images/skills/business_and_career_4.jpg" },
+        { "src": "/images/skills/business_and_career_5.jpg" }
       ]
     },
     {
       "id": 110,
-      "title": "Английский язык",
+      "title": "Английский",
       "categoryId": 2,
       "subcategoryId": 9,
       "ownerUserId": 7,
-      "description": "Базовая грамматика, разговорные фразы.",
-      "images": []
+      "description": "Помогу подтянуть английский для повседневного общения, учебы или работы. Разберем базовую грамматику, полезную лексику и разговорные конструкции, которые действительно используются на практике. Занятия можно выстроить в спокойном темпе, если язык давно откладывался.",
+      "images": [
+        { "src": "/images/skills/foreign_languages_1.jpg" },
+        { "src": "/images/skills/foreign_languages_2.jpg" },
+        { "src": "/images/skills/foreign_languages_3.jpg" },
+        { "src": "/images/skills/foreign_languages_4.jpg" },
+        { "src": "/images/skills/foreign_languages_5.jpg" }
+      ]
     },
     {
       "id": 111,
-      "title": "Графический дизайн",
+      "title": "Рисование и иллюстрация",
       "categoryId": 4,
       "subcategoryId": 22,
       "ownerUserId": 8,
-      "description": "Работа с Photoshop, иллюстрации.",
+      "description": "Помогу освоить основы рисования и иллюстрации от простых форм до более уверенной композиции. Разберем цвет, линию, пропорции и способы развивать насмотренность. Подойдет тем, кто хочет рисовать для себя, учебы или небольших творческих проектов.",
       "images": [
-        { "src": "/images/skills/111_1.jpg" },
-        { "src": "/images/skills/111_2.jpg" },
-        { "src": "/images/skills/111_3.jpg" },
-        { "src": "/images/skills/111_5.jpg" },
-        { "src": "/images/skills/111_7.jpg" },
-        { "src": "/images/skills/111_9.jpg" },
-        { "src": "/images/skills/111_11.jpg" },
-        { "src": "/images/skills/111_12.jpg" }
+        { "src": "/images/skills/creativity_and_art_1.jpg" },
+        { "src": "/images/skills/creativity_and_art_2.jpg" },
+        { "src": "/images/skills/creativity_and_art_3.jpg" },
+        { "src": "/images/skills/creativity_and_art_4.jpg" },
+        { "src": "/images/skills/creativity_and_art_5.jpg" }
       ]
     },
     {
       "id": 112,
-      "title": "Игра на гитаре",
+      "title": "Музыка и звук",
       "categoryId": 4,
       "subcategoryId": 25,
       "ownerUserId": 9,
-      "description": "Основы игры, аккорды, ритм.",
+      "description": "Помогу сделать первые шаги в музыке через ритм, слух и простые практические упражнения. Можно разобрать основы игры, работу со звуком и базовые музыкальные элементы без перегруза терминологией. Подойдет начинающим, которым важно войти в тему спокойно и понятно.",
       "images": [
-        { "src": "/images/skills/112_1.jpg" },
-        { "src": "/images/skills/112_2.jpg" },
-        { "src": "/images/skills/112_3.jpg" }
+        { "src": "/images/skills/creativity_and_art_1.jpg" },
+        { "src": "/images/skills/creativity_and_art_2.jpg" },
+        { "src": "/images/skills/creativity_and_art_3.jpg" },
+        { "src": "/images/skills/creativity_and_art_4.jpg" },
+        { "src": "/images/skills/creativity_and_art_5.jpg" }
       ]
     },
     {
       "id": 113,
-      "title": "Кроссфит тренировки",
+      "title": "Йога и медитация",
       "categoryId": 6,
       "subcategoryId": 36,
       "ownerUserId": 10,
-      "description": "Интенсивные тренировки для силы и выносливости.",
+      "description": "Проведу через практики, которые помогают лучше чувствовать тело, выравнивать дыхание и снижать внутреннее напряжение. Разберем не только движения, но и состояние, с которым легче удерживать регулярность. Подойдет тем, кто хочет добавить в жизнь больше устойчивости и внимания к себе.",
       "images": [
-        { "src": "/images/skills/113_1.jpg" },
-        { "src": "/images/skills/113_2.jpg" },
-        { "src": "/images/skills/113_3.jpg" }
+        { "src": "/images/skills/health_and_lifestyle_1.jpg" },
+        { "src": "/images/skills/health_and_lifestyle_2.jpg" },
+        { "src": "/images/skills/health_and_lifestyle_3.jpg" },
+        { "src": "/images/skills/health_and_lifestyle_4.jpg" },
+        { "src": "/images/skills/health_and_lifestyle_5.jpg" }
       ]
     },
     {
       "id": 114,
-      "title": "Фитнес и здоровье",
+      "title": "Йога и медитация",
       "categoryId": 6,
       "subcategoryId": 36,
       "ownerUserId": 10,
-      "description": "Общие принципы здоровья, тренировки.",
-      "images": []
+      "description": "Помогу начать регулярную практику без давления и завышенных ожиданий. Разберем базовые упражнения, дыхательные техники и короткие форматы, которые удобно встроить в обычный день. Хорошо подойдет тем, кто хочет восстановиться и замедлиться.",
+      "images": [
+        { "src": "/images/skills/health_and_lifestyle_1.jpg" },
+        { "src": "/images/skills/health_and_lifestyle_2.jpg" },
+        { "src": "/images/skills/health_and_lifestyle_3.jpg" },
+        { "src": "/images/skills/health_and_lifestyle_4.jpg" },
+        { "src": "/images/skills/health_and_lifestyle_5.jpg" }
+      ]
     },
     {
       "id": 115,
-      "title": "Монтаж видео",
+      "title": "Видеомонтаж",
       "categoryId": 4,
       "subcategoryId": 24,
       "ownerUserId": 11,
-      "description": "Adobe Premiere, DaVinci Resolve.",
+      "description": "Научу собирать видео в цельную и понятную историю, а не просто склеивать куски. Разберем монтаж, ритм, переходы, звук, титры и базовую работу в популярных программах. Подойдет для личных роликов, блога или первых коммерческих задач.",
       "images": [
-        { "src": "/images/skills/115_1.jpg" },
-        { "src": "/images/skills/115_2.jpg" },
-        { "src": "/images/skills/115_3.jpg" }
+        { "src": "/images/skills/creativity_and_art_1.jpg" },
+        { "src": "/images/skills/creativity_and_art_2.jpg" },
+        { "src": "/images/skills/creativity_and_art_3.jpg" },
+        { "src": "/images/skills/creativity_and_art_4.jpg" },
+        { "src": "/images/skills/creativity_and_art_5.jpg" }
       ]
     },
     {
       "id": 116,
-      "title": "Android-разработка",
+      "title": "Продажи и переговоры",
       "categoryId": 1,
       "subcategoryId": 3,
       "ownerUserId": 12,
-      "description": "Java, Kotlin, создание приложений.",
+      "description": "Помогу разобраться, как вести переговоры спокойнее и убедительнее в работе и повседневных задачах. Разберем структуру разговора, вопросы, аргументацию и способы не теряться при возражениях. Это полезно и для продаж, и для любого общения, где важно договориться.",
       "images": [
-        { "src": "/images/skills/116_1.jpg" },
-        { "src": "/images/skills/116_2.jpg" },
-        { "src": "/images/skills/116_3.jpg" },
-        { "src": "/images/skills/116_4.jpg" },
-        { "src": "/images/skills/116_5.jpg" }
+        { "src": "/images/skills/business_and_career_1.jpg" },
+        { "src": "/images/skills/business_and_career_2.jpg" },
+        { "src": "/images/skills/business_and_career_3.jpg" },
+        { "src": "/images/skills/business_and_career_4.jpg" },
+        { "src": "/images/skills/business_and_career_5.jpg" }
       ]
     },
     {
       "id": 117,
-      "title": "iOS-разработка",
+      "title": "Продажи и переговоры",
       "categoryId": 1,
       "subcategoryId": 3,
       "ownerUserId": 12,
-      "description": "Swift, Xcode, создание приложений.",
-      "images": []
+      "description": "Покажу, как выстраивать разговор так, чтобы слышать собеседника, понимать его интерес и вести диалог к результату. Разберем подготовку к встрече, логику аргументов и типичные ошибки в переговорах. Подойдет тем, кто хочет чувствовать себя увереннее в рабочих коммуникациях.",
+      "images": [
+        { "src": "/images/skills/business_and_career_1.jpg" },
+        { "src": "/images/skills/business_and_career_2.jpg" },
+        { "src": "/images/skills/business_and_career_3.jpg" },
+        { "src": "/images/skills/business_and_career_4.jpg" },
+        { "src": "/images/skills/business_and_career_5.jpg" }
+      ]
     },
     {
       "id": 118,
-      "title": "Шитье и рукоделие",
+      "title": "Арт-терапия",
       "categoryId": 4,
       "subcategoryId": 28,
       "ownerUserId": 13,
-      "description": "Создаем одежду, игрушки, аксессуары.",
+      "description": "Помогу использовать творчество как способ расслабиться, выразить эмоции и немного выдохнуть. Это не про идеальный результат, а про процесс, внимание к себе и безопасное исследование состояния через простые творческие практики. Подойдет даже тем, кто считает, что совсем не умеет рисовать или делать что-то руками.",
       "images": [
-        { "src": "/images/skills/118_1.jpg" },
-        { "src": "/images/skills/118_2.jpg" },
-        { "src": "/images/skills/118_3.jpg" }
+        { "src": "/images/skills/creativity_and_art_1.jpg" },
+        { "src": "/images/skills/creativity_and_art_2.jpg" },
+        { "src": "/images/skills/creativity_and_art_3.jpg" },
+        { "src": "/images/skills/creativity_and_art_4.jpg" },
+        { "src": "/images/skills/creativity_and_art_5.jpg" }
       ]
     },
     {
       "id": 119,
-      "title": "Автоматизация производства",
+      "title": "Управление командой",
       "categoryId": 1,
       "subcategoryId": 1,
       "ownerUserId": 14,
-      "description": "Работа с PLC, SCADA.",
+      "description": "Помогу разобраться, как выстраивать работу команды без лишнего хаоса и постоянных авралов. Разберем роли, делегирование, обратную связь, контроль задач и коммуникацию внутри группы. Подойдет тем, кто только начинает руководить людьми или хочет делать это увереннее.",
       "images": [
-        { "src": "/images/skills/119_1.jpg" },
-        { "src": "/images/skills/119_2.jpg" },
-        { "src": "/images/skills/119_3.jpg" },
-        { "src": "/images/skills/119_4.jpg" }
+        { "src": "/images/skills/business_and_career_1.jpg" },
+        { "src": "/images/skills/business_and_career_2.jpg" },
+        { "src": "/images/skills/business_and_career_3.jpg" },
+        { "src": "/images/skills/business_and_career_4.jpg" },
+        { "src": "/images/skills/business_and_career_5.jpg" }
       ]
     },
     {
       "id": 120,
-      "title": "Автоматизация систем",
+      "title": "Продажи и переговоры",
       "categoryId": 1,
       "subcategoryId": 3,
       "ownerUserId": 14,
-      "description": "Настройка и программирование систем автоматизации.",
-      "images": []
+      "description": "Разберем, как готовиться к переговорам, удерживать структуру разговора и искать взаимовыгодное решение. Отдельно посмотрим, как говорить о цене, ожиданиях и спорных вопросах без лишнего напряжения. Полезно для рабочих встреч, продаж и общения с заказчиками.",
+      "images": [
+        { "src": "/images/skills/business_and_career_1.jpg" },
+        { "src": "/images/skills/business_and_career_2.jpg" },
+        { "src": "/images/skills/business_and_career_3.jpg" },
+        { "src": "/images/skills/business_and_career_4.jpg" },
+        { "src": "/images/skills/business_and_career_5.jpg" }
+      ]
     },
     {
       "id": 121,
-      "title": "Рисование для новичков",
+      "title": "Видеомонтаж",
       "categoryId": 4,
       "subcategoryId": 24,
       "ownerUserId": 15,
-      "description": "Основы графики, техника рисования.",
+      "description": "Помогу освоить базовый монтаж видео и научиться собирать материал так, чтобы он смотрелся живо и понятно. Разберем последовательность кадров, звук, титры и типичные ошибки начинающих. Подойдет для личных проектов, коротких роликов и первых публикаций в соцсетях.",
       "images": [
-        { "src": "/images/skills/121_1.jpg" },
-        { "src": "/images/skills/121_2.jpg" },
-        { "src": "/images/skills/121_3.jpg" },
-        { "src": "/images/skills/121_4.jpg" },
-        { "src": "/images/skills/121_5.jpg" }
+        { "src": "/images/skills/creativity_and_art_1.jpg" },
+        { "src": "/images/skills/creativity_and_art_2.jpg" },
+        { "src": "/images/skills/creativity_and_art_3.jpg" },
+        { "src": "/images/skills/creativity_and_art_4.jpg" },
+        { "src": "/images/skills/creativity_and_art_5.jpg" }
       ]
     },
     {
       "id": 122,
-      "title": "Учу игре на скрипке",
+      "title": "Декор и DIY",
       "categoryId": 4,
       "subcategoryId": 29,
       "ownerUserId": 16,
-      "description": "Обучение игре на скрипке, практика.",
+      "description": "Покажу, как создавать декоративные вещи и простые handmade-проекты своими руками. Разберем идеи, материалы, сочетания и аккуратную реализацию, чтобы результат выглядел цельно и приятно. Это хороший формат для тех, кто хочет больше творчества и практики в одном занятии.",
       "images": [
-        { "src": "/images/skills/122_1.jpg" },
-        { "src": "/images/skills/122_2.jpg" },
-        { "src": "/images/skills/122_3.jpg" },
-        { "src": "/images/skills/122_4.jpg" }
+        { "src": "/images/skills/creativity_and_art_1.jpg" },
+        { "src": "/images/skills/creativity_and_art_2.jpg" },
+        { "src": "/images/skills/creativity_and_art_3.jpg" },
+        { "src": "/images/skills/creativity_and_art_4.jpg" },
+        { "src": "/images/skills/creativity_and_art_5.jpg" }
       ]
     },
     {
       "id": 123,
-      "title": "Тренинг по фитнесу",
+      "title": "Сон и восстановление",
       "categoryId": 6,
       "subcategoryId": 41,
       "ownerUserId": 16,
-      "description": "Индивидуальные тренировки для начинающих.",
-      "images": []
+      "description": "Помогу выстроить более бережный режим восстановления, если чувствуешь усталость и перегруз. Разберем привычки, вечерние ритуалы, влияние нагрузки и базовые принципы качественного отдыха. Подойдет тем, кто хочет лучше спать и быстрее возвращать себе ресурс.",
+      "images": [
+        { "src": "/images/skills/health_and_lifestyle_1.jpg" },
+        { "src": "/images/skills/health_and_lifestyle_2.jpg" },
+        { "src": "/images/skills/health_and_lifestyle_3.jpg" },
+        { "src": "/images/skills/health_and_lifestyle_4.jpg" },
+        { "src": "/images/skills/health_and_lifestyle_5.jpg" }
+      ]
     },
     {
       "id": 124,
-      "title": "Создание видеоблогов",
+      "title": "Арт-терапия",
       "categoryId": 4,
       "subcategoryId": 28,
       "ownerUserId": 17,
-      "description": "Видеоблогинг, монтаж, сценарии.",
+      "description": "Используем творчество как способ разгрузиться, собраться и переключиться из постоянной гонки. Разберем простые практики через образы, цвет, коллажи и свободное самовыражение без оценки результата. Это мягкий формат для восстановления и контакта с собой.",
       "images": [
-        { "src": "/images/skills/124_1.jpg" },
-        { "src": "/images/skills/124_2.jpg" },
-        { "src": "/images/skills/124_3.jpg" }
+        { "src": "/images/skills/creativity_and_art_1.jpg" },
+        { "src": "/images/skills/creativity_and_art_2.jpg" },
+        { "src": "/images/skills/creativity_and_art_3.jpg" },
+        { "src": "/images/skills/creativity_and_art_4.jpg" },
+        { "src": "/images/skills/creativity_and_art_5.jpg" }
       ]
     },
     {
       "id": 125,
-      "title": "Монтаж видео для You***",
+      "title": "Фотография",
       "categoryId": 4,
       "subcategoryId": 23,
       "ownerUserId": 17,
-      "description": "Обработка видео, оформление канала.",
-      "images": []
+      "description": "Помогу делать фотографии, которые выглядят живо, чисто и выразительно. Разберем композицию, свет, выбор ракурса и базовую подготовку кадра для личных или рабочих задач. Полезно для тех, кто хочет улучшить визуал без сложной техники.",
+      "images": [
+        { "src": "/images/skills/creativity_and_art_1.jpg" },
+        { "src": "/images/skills/creativity_and_art_2.jpg" },
+        { "src": "/images/skills/creativity_and_art_3.jpg" },
+        { "src": "/images/skills/creativity_and_art_4.jpg" },
+        { "src": "/images/skills/creativity_and_art_5.jpg" }
+      ]
     },
     {
       "id": 126,
-      "title": "Разработка игр на Unity",
+      "title": "Резюме и собеседование",
       "categoryId": 1,
       "subcategoryId": 5,
       "ownerUserId": 18,
-      "description": "Создание игр, программирование.",
+      "description": "Помогу собрать сильное резюме и подготовиться к собеседованию без ощущения, что нужно срочно изобрести новую личность. Разберем структуру опыта, формулировки достижений, ответы на типовые вопросы и самопрезентацию. Подойдет тем, кто ищет работу или хочет выйти на новый уровень.",
       "images": [
-        { "src": "/images/skills/126_1.jpg" },
-        { "src": "/images/skills/126_2.jpg" },
-        { "src": "/images/skills/126_3.jpg" }
+        { "src": "/images/skills/business_and_career_1.jpg" },
+        { "src": "/images/skills/business_and_career_2.jpg" },
+        { "src": "/images/skills/business_and_career_3.jpg" },
+        { "src": "/images/skills/business_and_career_4.jpg" },
+        { "src": "/images/skills/business_and_career_5.jpg" }
       ]
     },
     {
       "id": 127,
-      "title": "Разработка на Node.js",
+      "title": "Продажи и переговоры",
       "categoryId": 1,
       "subcategoryId": 3,
       "ownerUserId": 18,
-      "description": "Создание серверных приложений.",
-      "images": []
+      "description": "Покажу, как договариваться увереннее и при этом сохранять нормальный человеческий тон. Разберем подготовку, аргументацию, вопросы и способы продвигаться к решению без давления. Полезно для работы с клиентами, партнерами и коллегами.",
+      "images": [
+        { "src": "/images/skills/business_and_career_1.jpg" },
+        { "src": "/images/skills/business_and_career_2.jpg" },
+        { "src": "/images/skills/business_and_career_3.jpg" },
+        { "src": "/images/skills/business_and_career_4.jpg" },
+        { "src": "/images/skills/business_and_career_5.jpg" }
+      ]
     },
     {
       "id": 128,
-      "title": "Шитье одежды",
+      "title": "Арт-терапия",
       "categoryId": 4,
       "subcategoryId": 28,
       "ownerUserId": 19,
-      "description": "Создаю одежду и аксессуары.",
+      "description": "Помогу использовать творческий процесс как способ снять напряжение и переключиться. Будем работать через простые формы, цвет, образы и практики, которые не требуют специальной подготовки. Это подойдет тем, кому важно бережно восстановить внутренний ресурс.",
       "images": [
-        { "src": "/images/skills/128_1.jpg" },
-        { "src": "/images/skills/128_2.jpg" },
-        { "src": "/images/skills/128_3.jpg" },
-        { "src": "/images/skills/128_4.jpg" },
-        { "src": "/images/skills/128_5.jpg" }
+        { "src": "/images/skills/creativity_and_art_1.jpg" },
+        { "src": "/images/skills/creativity_and_art_2.jpg" },
+        { "src": "/images/skills/creativity_and_art_3.jpg" },
+        { "src": "/images/skills/creativity_and_art_4.jpg" },
+        { "src": "/images/skills/creativity_and_art_5.jpg" }
       ]
     },
     {
       "id": 129,
-      "title": "Игра на скрипке",
+      "title": "Актёрское мастерство",
       "categoryId": 4,
       "subcategoryId": 26,
       "ownerUserId": 20,
-      "description": "Обучение игре на скрипке.",
-      "images": []
+      "description": "Помогу раскрепоститься, лучше чувствовать подачу и увереннее держаться перед людьми или камерой. Разберем голос, внимание, импровизацию и упражнения на свободу выражения. Подойдет не только для сцены, но и для жизни, где иногда тоже приходится выступать.",
+      "images": [
+        { "src": "/images/skills/creativity_and_art_1.jpg" },
+        { "src": "/images/skills/creativity_and_art_2.jpg" },
+        { "src": "/images/skills/creativity_and_art_3.jpg" },
+        { "src": "/images/skills/creativity_and_art_4.jpg" },
+        { "src": "/images/skills/creativity_and_art_5.jpg" }
+      ]
     },
     {
       "id": 130,
-      "title": "Кроссфит для всех",
+      "title": "Баланс жизни и работы",
       "categoryId": 6,
       "subcategoryId": 42,
       "ownerUserId": 21,
-      "description": "Тренировки для новичков.",
+      "description": "Помогу выстроить более устойчивый ритм, если работа начала съедать все остальное. Разберем приоритеты, границы, нагрузку и способы оставлять время на восстановление без чувства вины. Это полезно тем, кто устал жить в режиме постоянного перегруза.",
       "images": [
-        { "src": "/images/skills/113_1.jpg" },
-        { "src": "/images/skills/113_2.jpg" },
-        { "src": "/images/skills/113_3.jpg" }
+        { "src": "/images/skills/health_and_lifestyle_1.jpg" },
+        { "src": "/images/skills/health_and_lifestyle_2.jpg" },
+        { "src": "/images/skills/health_and_lifestyle_3.jpg" },
+        { "src": "/images/skills/health_and_lifestyle_4.jpg" },
+        { "src": "/images/skills/health_and_lifestyle_5.jpg" }
       ]
     },
     {
       "id": 131,
-      "title": "Фитнес для похудения",
+      "title": "Физические тренировки",
       "categoryId": 6,
       "subcategoryId": 40,
       "ownerUserId": 21,
-      "description": "Тренировки и советы по питанию.",
-      "images": []
+      "description": "Помогу подобрать понятный и реалистичный формат тренировок под твой уровень и цели. Разберем базовые упражнения, нагрузку, технику и принцип постепенного прогресса. Подойдет тем, кто хочет начать без перегруза и странных подвигов на первой неделе.",
+      "images": [
+        { "src": "/images/skills/health_and_lifestyle_1.jpg" },
+        { "src": "/images/skills/health_and_lifestyle_2.jpg" },
+        { "src": "/images/skills/health_and_lifestyle_3.jpg" },
+        { "src": "/images/skills/health_and_lifestyle_4.jpg" },
+        { "src": "/images/skills/health_and_lifestyle_5.jpg" }
+      ]
     },
     {
       "id": 132,
-      "title": "Редактирование текста",
+      "title": "Рисование и иллюстрация",
       "categoryId": 4,
       "subcategoryId": 22,
       "ownerUserId": 22,
-      "description": "Создание и редактирование текстов, сценариев.",
+      "description": "Помогу развить навык рисования через понятные упражнения и постепенное усложнение. Разберем композицию, форму, цвет и способы делать иллюстрации выразительнее. Полезно для новичков и тех, кто хочет вернуться к творчеству после долгого перерыва.",
       "images": [
-        { "src": "/images/skills/132_1.jpg" },
-        { "src": "/images/skills/132_2.jpg" },
-        { "src": "/images/skills/132_3.jpg" }
+        { "src": "/images/skills/creativity_and_art_1.jpg" },
+        { "src": "/images/skills/creativity_and_art_2.jpg" },
+        { "src": "/images/skills/creativity_and_art_3.jpg" },
+        { "src": "/images/skills/creativity_and_art_4.jpg" },
+        { "src": "/images/skills/creativity_and_art_5.jpg" }
       ]
     },
     {
       "id": 133,
-      "title": "Редактура и корректура",
+      "title": "Арт-терапия",
       "categoryId": 4,
       "subcategoryId": 28,
       "ownerUserId": 22,
-      "description": "Правка текстов, подготовка к публикации.",
-      "images": []
+      "description": "Покажу, как использовать творческие практики для разгрузки, самонаблюдения и восстановления внимания. Это формат без оценки и давления, где важнее процесс и внутреннее состояние, а не идеальная картинка. Подойдет тем, кто хочет мягко вернуть себе спокойствие и контакт с собой.",
+      "images": [
+        { "src": "/images/skills/creativity_and_art_1.jpg" },
+        { "src": "/images/skills/creativity_and_art_2.jpg" },
+        { "src": "/images/skills/creativity_and_art_3.jpg" },
+        { "src": "/images/skills/creativity_and_art_4.jpg" },
+        { "src": "/images/skills/creativity_and_art_5.jpg" }
+      ]
     },
     {
       "id": 134,
-      "title": "Фотография для соцсетей",
+      "title": "Фотография",
       "categoryId": 4,
       "subcategoryId": 23,
       "ownerUserId": 23,
-      "description": "Создание контента для соцсетей.",
+      "description": "Научу делать визуально сильные фотографии для личных проектов, соцсетей или портфолио. Разберем кадр, свет, сюжет и способы передавать настроение через изображение. Подойдет тем, кто хочет, чтобы снимки выглядели осмысленно, а не случайно.",
       "images": [
-        { "src": "/images/skills/134_1.jpg" },
-        { "src": "/images/skills/134_2.jpg" },
-        { "src": "/images/skills/134_3.jpg" },
-        { "src": "/images/skills/134_4.jpg" },
-        { "src": "/images/skills/134_5.jpg" }
+        { "src": "/images/skills/creativity_and_art_1.jpg" },
+        { "src": "/images/skills/creativity_and_art_2.jpg" },
+        { "src": "/images/skills/creativity_and_art_3.jpg" },
+        { "src": "/images/skills/creativity_and_art_4.jpg" },
+        { "src": "/images/skills/creativity_and_art_5.jpg" }
       ]
     },
     {
       "id": 135,
-      "title": "Электронная инженерия",
+      "title": "Управление командой",
       "categoryId": 1,
       "subcategoryId": 1,
       "ownerUserId": 24,
-      "description": "Проектирование электроники, схемотехника.",
+      "description": "Помогу выстроить работу команды так, чтобы меньше времени уходило на хаос и недопонимание. Разберем распределение ответственности, контроль задач, коммуникацию и рабочие ритуалы. Это полезно для лидов, менеджеров и тех, кто растет в сторону управления людьми.",
       "images": [
-        { "src": "/images/skills/135_1.jpg" },
-        { "src": "/images/skills/135_2.jpg" },
-        { "src": "/images/skills/135_3.jpg" },
-        { "src": "/images/skills/135_4.jpg" },
-        { "src": "/images/skills/135_5.jpg" }
+        { "src": "/images/skills/business_and_career_1.jpg" },
+        { "src": "/images/skills/business_and_career_2.jpg" },
+        { "src": "/images/skills/business_and_career_3.jpg" },
+        { "src": "/images/skills/business_and_career_4.jpg" },
+        { "src": "/images/skills/business_and_career_5.jpg" }
       ]
     },
     {
       "id": 136,
-      "title": "Инженерное проектирование",
+      "title": "Личный бренд",
       "categoryId": 1,
       "subcategoryId": 4,
       "ownerUserId": 24,
-      "description": "Проектирование систем автоматизации.",
-      "images": []
+      "description": "Помогу понять, как упаковать свой опыт, сильные стороны и профессиональный образ так, чтобы тебя было проще запомнить. Разберем позиционирование, подачу, смыслы и то, как выглядеть целостно в публичном поле. Полезно для специалистов, которые хотят расти в карьере или развивать личный проект.",
+      "images": [
+        { "src": "/images/skills/business_and_career_1.jpg" },
+        { "src": "/images/skills/business_and_career_2.jpg" },
+        { "src": "/images/skills/business_and_career_3.jpg" },
+        { "src": "/images/skills/business_and_career_4.jpg" },
+        { "src": "/images/skills/business_and_career_5.jpg" }
+      ]
     },
     {
       "id": 137,
-      "title": "Игра на баяне",
+      "title": "Фотография",
       "categoryId": 4,
       "subcategoryId": 23,
       "ownerUserId": 25,
-      "description": "Обучение игре на скрипке.",
-      "images": [{ "src": "/images/skills/137_1.jpg" }, { "src": "/images/skills/137_2.jpg" }]
+      "description": "Покажу, как делать более чистые, выразительные и осмысленные снимки даже без сложного оборудования. Разберем композицию, свет, выбор точки съемки и типичные ошибки, которые портят кадр. Подойдет тем, кто хочет улучшить результат уже на уровне базовых навыков.",
+      "images": [
+        { "src": "/images/skills/creativity_and_art_1.jpg" },
+        { "src": "/images/skills/creativity_and_art_2.jpg" },
+        { "src": "/images/skills/creativity_and_art_3.jpg" },
+        { "src": "/images/skills/creativity_and_art_4.jpg" },
+        { "src": "/images/skills/creativity_and_art_5.jpg" }
+      ]
     },
     {
       "id": 138,
-      "title": "Электроника вычислений",
+      "title": "Тайм-менеджмент",
       "categoryId": 1,
       "subcategoryId": 6,
       "ownerUserId": 26,
-      "description": "Работа с микроконтроллерами, схемы.",
+      "description": "Помогу навести порядок в задачах, дедлайнах и нагрузке, если все постоянно конкурирует за внимание. Разберем приоритеты, планирование дня, фокус и способы не тонуть в мелочах. Это полезно тем, кто хочет работать спокойнее и предсказуемее.",
       "images": [
-        { "src": "/images/skills/138_1.jpg" },
-        { "src": "/images/skills/138_2.jpg" },
-        { "src": "/images/skills/138_3.jpg" },
-        { "src": "/images/skills/138_4.jpg" },
-        { "src": "/images/skills/138_5.jpg" }
+        { "src": "/images/skills/business_and_career_1.jpg" },
+        { "src": "/images/skills/business_and_career_2.jpg" },
+        { "src": "/images/skills/business_and_career_3.jpg" },
+        { "src": "/images/skills/business_and_career_4.jpg" },
+        { "src": "/images/skills/business_and_career_5.jpg" }
       ]
     },
     {
       "id": 139,
-      "title": "Проектирование электроники",
+      "title": "Резюме и собеседование",
       "categoryId": 1,
       "subcategoryId": 5,
       "ownerUserId": 26,
-      "description": "Создание схем и устройств.",
-      "images": []
+      "description": "Помогу привести в порядок резюме и подготовиться к собеседованиям без паники и бессмысленных шаблонов. Разберем, как показывать опыт, достижения и сильные стороны, чтобы работодатель быстрее увидел ценность. Подойдет тем, кто ищет новую работу или хочет выйти на более сильные позиции.",
+      "images": [
+        { "src": "/images/skills/business_and_career_1.jpg" },
+        { "src": "/images/skills/business_and_career_2.jpg" },
+        { "src": "/images/skills/business_and_career_3.jpg" },
+        { "src": "/images/skills/business_and_career_4.jpg" },
+        { "src": "/images/skills/business_and_career_5.jpg" }
+      ]
     },
     {
       "id": 140,
-      "title": "Java программирование",
+      "title": "Управление командой",
       "categoryId": 1,
       "subcategoryId": 1,
       "ownerUserId": 27,
-      "description": "Основы Java, библиотеки, автоматизация.",
+      "description": "Разберем, как руководить командой так, чтобы люди понимали цели, а процессы не разваливались от недосказанности. Поговорим о делегировании, ответственности, синхронизации и обратной связи. Это хороший старт для тех, кто впервые берет на себя лидерскую роль.",
       "images": [
-        { "src": "/images/skills/140_1.jpg" },
-        { "src": "/images/skills/140_2.jpg" },
-        { "src": "/images/skills/140_3.jpg" },
-        { "src": "/images/skills/140_4.jpg" }
+        { "src": "/images/skills/business_and_career_1.jpg" },
+        { "src": "/images/skills/business_and_career_2.jpg" },
+        { "src": "/images/skills/business_and_career_3.jpg" },
+        { "src": "/images/skills/business_and_career_4.jpg" },
+        { "src": "/images/skills/business_and_career_5.jpg" }
       ]
     },
     {
       "id": 141,
-      "title": "Видеомонтаж",
+      "title": "Музыка и звук",
       "categoryId": 4,
       "subcategoryId": 25,
       "ownerUserId": 28,
-      "description": "Adobe Premiere, DaVinci Resolve.",
+      "description": "Помогу войти в тему музыки и звука через практику, слух и базовое понимание структуры. Можно разобрать ритм, простые упражнения, работу со звуком и способы развивать музыкальное мышление. Подойдет начинающим, которые хотят двигаться без перегруза сложной теорией.",
       "images": [
-        { "src": "/images/skills/141_1.jpg" },
-        { "src": "/images/skills/141_2.jpg" },
-        { "src": "/images/skills/141_3.jpg" }
+        { "src": "/images/skills/creativity_and_art_1.jpg" },
+        { "src": "/images/skills/creativity_and_art_2.jpg" },
+        { "src": "/images/skills/creativity_and_art_3.jpg" },
+        { "src": "/images/skills/creativity_and_art_4.jpg" },
+        { "src": "/images/skills/creativity_and_art_5.jpg" }
       ]
     },
     {
       "id": 142,
-      "title": "Игра на пианино",
+      "title": "Креативное письмо",
       "categoryId": 4,
       "subcategoryId": 27,
       "ownerUserId": 29,
-      "description": "Обучение игре, аккорды.",
+      "description": "Помогу писать живее, образнее и увереннее, если хочется развить свой авторский стиль. Разберем идеи, структуру текста, образы, ритм и способы сделать письмо более выразительным. Подойдет тем, кто пишет для себя, учебы, блога или творческих проектов.",
       "images": [
-        { "src": "/images/skills/142_1.jpg" },
-        { "src": "/images/skills/142_2.jpg" },
-        { "src": "/images/skills/142_3.jpg" },
-        { "src": "/images/skills/142_4.jpg" }
+        { "src": "/images/skills/creativity_and_art_1.jpg" },
+        { "src": "/images/skills/creativity_and_art_2.jpg" },
+        { "src": "/images/skills/creativity_and_art_3.jpg" },
+        { "src": "/images/skills/creativity_and_art_4.jpg" },
+        { "src": "/images/skills/creativity_and_art_5.jpg" }
       ]
     },
     {
       "id": 143,
-      "title": "Пауэрлифтинг",
+      "title": "Питание и ЗОЖ",
       "categoryId": 6,
       "subcategoryId": 37,
       "ownerUserId": 30,
-      "description": "Обучение для начинающих.",
+      "description": "Помогу разобраться в базовых принципах питания и более здорового образа жизни без крайностей и модных страшилок. Разберем привычки, режим, простые решения на каждый день и способы поддерживать себя в ресурсе. Это подойдет тем, кто хочет устойчивых изменений, а не короткого рывка.",
       "images": [
-        { "src": "/images/skills/143_1.jpg" },
-        { "src": "/images/skills/143_2.jpg" },
-        { "src": "/images/skills/143_3.jpg" }
+        { "src": "/images/skills/health_and_lifestyle_1.jpg" },
+        { "src": "/images/skills/health_and_lifestyle_2.jpg" },
+        { "src": "/images/skills/health_and_lifestyle_3.jpg" },
+        { "src": "/images/skills/health_and_lifestyle_4.jpg" },
+        { "src": "/images/skills/health_and_lifestyle_5.jpg" }
       ]
     },
     {
       "id": 144,
-      "title": "Фитнес для женщин",
+      "title": "Ментальное здоровье",
       "categoryId": 6,
       "subcategoryId": 38,
       "ownerUserId": 30,
-      "description": "Тренировки и советы по питанию.",
-      "images": []
+      "description": "Помогу выстроить более бережное отношение к своему состоянию через простые ежедневные практики и наблюдение за собой. Разберем стресс, эмоциональную перегрузку, восстановление и способы поддерживать внутреннюю устойчивость. Это не терапия, а аккуратная работа с полезными привычками и вниманием к себе.",
+      "images": [
+        { "src": "/images/skills/health_and_lifestyle_1.jpg" },
+        { "src": "/images/skills/health_and_lifestyle_2.jpg" },
+        { "src": "/images/skills/health_and_lifestyle_3.jpg" },
+        { "src": "/images/skills/health_and_lifestyle_4.jpg" },
+        { "src": "/images/skills/health_and_lifestyle_5.jpg" }
+      ]
     },
     {
       "id": 145,
-      "title": "Контент для Insta***",
+      "title": "Арт-терапия",
       "categoryId": 4,
       "subcategoryId": 28,
       "ownerUserId": 31,
-      "description": "Фото, видео, тексты для соцсетей.",
+      "description": "Покажу, как через творчество можно снижать напряжение, возвращать себе фокус и лучше понимать свое состояние. Будем использовать простые практики, где не нужен художественный опыт и не требуется идеальный результат. Подойдет тем, кто хочет безопасный и мягкий формат восстановления.",
       "images": [
-        { "src": "/images/skills/145_1.jpg" },
-        { "src": "/images/skills/145_2.jpg" },
-        { "src": "/images/skills/145_3.jpg" },
-        { "src": "/images/skills/145_4.jpg" }
+        { "src": "/images/skills/creativity_and_art_1.jpg" },
+        { "src": "/images/skills/creativity_and_art_2.jpg" },
+        { "src": "/images/skills/creativity_and_art_3.jpg" },
+        { "src": "/images/skills/creativity_and_art_4.jpg" },
+        { "src": "/images/skills/creativity_and_art_5.jpg" }
       ]
     },
     {
       "id": 146,
-      "title": "Продвижение в Insta***",
+      "title": "Маркетинг и реклама",
       "categoryId": 1,
       "subcategoryId": 2,
       "ownerUserId": 31,
-      "description": "Таргетинг, сторис, реклама.",
-      "images": []
+      "description": "Помогу понять, как устроены базовые механики продвижения и рекламы на практике. Разберем аудиторию, посыл, рекламные форматы, воронку и ошибки, из-за которых продвижение не дает результата. Подойдет для личных проектов, малого бизнеса и старта в маркетинге.",
+      "images": [
+        { "src": "/images/skills/business_and_career_1.jpg" },
+        { "src": "/images/skills/business_and_career_2.jpg" },
+        { "src": "/images/skills/business_and_career_3.jpg" },
+        { "src": "/images/skills/business_and_career_4.jpg" },
+        { "src": "/images/skills/business_and_career_5.jpg" }
+      ]
     },
     {
       "id": 147,
-      "title": "Мобильная разработка",
+      "title": "Продажи и переговоры",
       "categoryId": 1,
       "subcategoryId": 3,
       "ownerUserId": 32,
-      "description": "Java, Kotlin, создание приложений.",
+      "description": "Научу вести диалог так, чтобы он двигался к понятному результату, а не расползался в неопределенность. Разберем вопросы, аргументацию, выявление интересов и способы спокойно работать с возражениями. Полезно тем, кто хочет увереннее общаться в деловом контексте.",
       "images": [
-        { "src": "/images/skills/147_1.jpg" },
-        { "src": "/images/skills/147_2.jpg" },
-        { "src": "/images/skills/147_3.jpg" },
-        { "src": "/images/skills/147_4.jpg" },
-        { "src": "/images/skills/147_5.jpg" }
+        { "src": "/images/skills/business_and_career_1.jpg" },
+        { "src": "/images/skills/business_and_career_2.jpg" },
+        { "src": "/images/skills/business_and_career_3.jpg" },
+        { "src": "/images/skills/business_and_career_4.jpg" },
+        { "src": "/images/skills/business_and_career_5.jpg" }
       ]
     },
     {
       "id": 148,
-      "title": "Разработка для iOS",
+      "title": "Тайм-менеджмент",
       "categoryId": 1,
       "subcategoryId": 6,
       "ownerUserId": 32,
-      "description": "Swift, Xcode.",
-      "images": []
+      "description": "Помогу разобраться, куда уходит время и почему список задач растет быстрее, чем успевает сокращаться. Разберем планирование, фокус, ограничения и способы работать с нагрузкой реалистично. Подойдет тем, кто хочет меньше суеты и больше управляемости в дне.",
+      "images": [
+        { "src": "/images/skills/business_and_career_1.jpg" },
+        { "src": "/images/skills/business_and_career_2.jpg" },
+        { "src": "/images/skills/business_and_career_3.jpg" },
+        { "src": "/images/skills/business_and_career_4.jpg" },
+        { "src": "/images/skills/business_and_career_5.jpg" }
+      ]
     },
     {
       "id": 149,
-      "title": "Шитье аксессуаров",
+      "title": "Арт-терапия",
       "categoryId": 4,
       "subcategoryId": 28,
       "ownerUserId": 33,
-      "description": "Создаем одежду, игрушки, аксессуары.",
+      "description": "Используем творческие практики как способ замедлиться, восстановиться и переключиться из напряженного режима. Разберем простые задания, которые помогают выражать состояние через цвет, форму и образ. Это хороший формат для тех, кто хочет бережное творческое пространство без оценки.",
       "images": [
-        { "src": "/images/skills/149_1.jpg" },
-        { "src": "/images/skills/149_2.jpg" },
-        { "src": "/images/skills/149_3.jpg" },
-        { "src": "/images/skills/149_4.jpg" }
+        { "src": "/images/skills/creativity_and_art_1.jpg" },
+        { "src": "/images/skills/creativity_and_art_2.jpg" },
+        { "src": "/images/skills/creativity_and_art_3.jpg" },
+        { "src": "/images/skills/creativity_and_art_4.jpg" },
+        { "src": "/images/skills/creativity_and_art_5.jpg" }
       ]
     },
     {
       "id": 150,
-      "title": "Игра на балалайке",
+      "title": "Актёрское мастерство",
       "categoryId": 4,
       "subcategoryId": 26,
       "ownerUserId": 34,
-      "description": "Обучение игре на балалайке.",
+      "description": "Помогу развить подачу, выразительность и уверенность в выступлении перед людьми или камерой. Разберем внимание, голос, телесную свободу и упражнения на импровизацию. Подойдет тем, кто хочет меньше зажиматься и лучше чувствовать себя в публичной ситуации.",
       "images": [
-        { "src": "/images/skills/150_1.jpg" },
-        { "src": "/images/skills/150_2.jpg" },
-        { "src": "/images/skills/150_3.jpg" }
+        { "src": "/images/skills/creativity_and_art_1.jpg" },
+        { "src": "/images/skills/creativity_and_art_2.jpg" },
+        { "src": "/images/skills/creativity_and_art_3.jpg" },
+        { "src": "/images/skills/creativity_and_art_4.jpg" },
+        { "src": "/images/skills/creativity_and_art_5.jpg" }
       ]
     },
     {
       "id": 151,
-      "title": "Лыжи для всех",
+      "title": "Йога и медитация",
       "categoryId": 6,
       "subcategoryId": 36,
       "ownerUserId": 35,
-      "description": "Тренировки для новичков.",
+      "description": "Помогу встроить в жизнь спокойную практику, которая поддерживает тело и снижает уровень стресса. Разберем дыхание, базовые движения, внимание к состоянию и короткие форматы для регулярности. Это подойдет тем, кто хочет больше устойчивости и меньше внутренней гонки.",
       "images": [
-        { "src": "/images/skills/151_1.jpg" },
-        { "src": "/images/skills/151_2.jpg" },
-        { "src": "/images/skills/151_3.jpg" },
-        { "src": "/images/skills/151_4.jpg" }
+        { "src": "/images/skills/health_and_lifestyle_1.jpg" },
+        { "src": "/images/skills/health_and_lifestyle_2.jpg" },
+        { "src": "/images/skills/health_and_lifestyle_3.jpg" },
+        { "src": "/images/skills/health_and_lifestyle_4.jpg" },
+        { "src": "/images/skills/health_and_lifestyle_5.jpg" }
       ]
     },
     {
       "id": 152,
-      "title": "Копирайтинг",
+      "title": "Арт-терапия",
       "categoryId": 4,
       "subcategoryId": 28,
       "ownerUserId": 36,
-      "description": "Помогу писать понятные тексты: структура, заголовки, стиль, правки.",
+      "description": "Помогу использовать письмо, образы и творческие упражнения как инструмент самовыражения и разгрузки. Это формат, в котором важна не оценка результата, а возможность лучше понять свое состояние и дать себе пространство. Подойдет тем, кто устал от постоянной рациональности и хочет чуть больше живого контакта с собой.",
       "images": [
-        { "src": "/images/skills/152_1.jpg" },
-        { "src": "/images/skills/152_2.jpg" },
-        { "src": "/images/skills/152_3.jpg" },
-        { "src": "/images/skills/152_4.jpg" },
-        { "src": "/images/skills/152_5.jpg" }
+        { "src": "/images/skills/creativity_and_art_1.jpg" },
+        { "src": "/images/skills/creativity_and_art_2.jpg" },
+        { "src": "/images/skills/creativity_and_art_3.jpg" },
+        { "src": "/images/skills/creativity_and_art_4.jpg" },
+        { "src": "/images/skills/creativity_and_art_5.jpg" }
       ]
     },
     {
       "id": 153,
-      "title": "Монтаж звука и видео",
+      "title": "Видеомонтаж",
       "categoryId": 4,
       "subcategoryId": 24,
       "ownerUserId": 37,
-      "description": "Склейки, звук, титры и базовая цветокоррекция в популярных редакторах.",
+      "description": "Научу делать монтаж аккуратнее, ритмичнее и понятнее по структуре. Разберем склейки, звук, титры, темп и базовую обработку, чтобы ролик воспринимался как цельная история. Подойдет для контента, блога, учебных и личных задач.",
       "images": [
-        { "src": "/images/skills/153_1.jpg" },
-        { "src": "/images/skills/153_2.jpg" },
-        { "src": "/images/skills/153_3.jpg" }
+        { "src": "/images/skills/creativity_and_art_1.jpg" },
+        { "src": "/images/skills/creativity_and_art_2.jpg" },
+        { "src": "/images/skills/creativity_and_art_3.jpg" },
+        { "src": "/images/skills/creativity_and_art_4.jpg" },
+        { "src": "/images/skills/creativity_and_art_5.jpg" }
       ]
     },
     {
       "id": 154,
-      "title": "Подготовка к интервью",
+      "title": "Личный бренд",
       "categoryId": 1,
       "subcategoryId": 4,
       "ownerUserId": 38,
-      "description": "Помогу упаковать опыт, подобрать кейсы и подготовиться к техническим вопросам.",
+      "description": "Помогу понять, как показать себя в профессиональном поле так, чтобы твой опыт читался ясно и убедительно. Разберем позиционирование, сильные стороны, подачу и то, как формировать цельный образ в коммуникации и публичных материалах. Полезно для карьерного роста, экспертности и перехода на новый уровень видимости.",
       "images": [
-        { "src": "/images/skills/154_1.jpg" },
-        { "src": "/images/skills/154_2.jpg" },
-        { "src": "/images/skills/154_3.jpg" },
-        { "src": "/images/skills/154_4.jpg" }
+        { "src": "/images/skills/business_and_career_1.jpg" },
+        { "src": "/images/skills/business_and_career_2.jpg" },
+        { "src": "/images/skills/business_and_career_3.jpg" },
+        { "src": "/images/skills/business_and_career_4.jpg" },
+        { "src": "/images/skills/business_and_career_5.jpg" }
       ]
     },
     {
       "id": 155,
-      "title": "Скрипка: постановка рук",
+      "title": "Актёрское мастерство",
       "categoryId": 4,
       "subcategoryId": 26,
       "ownerUserId": 39,
-      "description": "Поставим руки, разберем упражнения и первые простые произведения.",
-      "images": []
+      "description": "Покажу упражнения, которые помогают раскрепоститься, улучшить подачу и увереннее взаимодействовать с аудиторией. Разберем голос, внимание, импровизацию и способы убрать лишний зажим. Подойдет тем, кто хочет увереннее выступать и лучше чувствовать себя в контакте с людьми.",
+      "images": [
+        { "src": "/images/skills/creativity_and_art_1.jpg" },
+        { "src": "/images/skills/creativity_and_art_2.jpg" },
+        { "src": "/images/skills/creativity_and_art_3.jpg" },
+        { "src": "/images/skills/creativity_and_art_4.jpg" },
+        { "src": "/images/skills/creativity_and_art_5.jpg" }
+      ]
     },
     {
       "id": 156,
-      "title": "Пайка схем",
+      "title": "Маркетинг и реклама",
       "categoryId": 1,
       "subcategoryId": 2,
       "ownerUserId": 40,
-      "description": "Научу паять, читать простые схемы и собирать макет на плате.",
+      "description": "Расскажу, как мыслить маркетингом системно, а не через набор случайных действий. Разберем аудиторию, ценность предложения, рекламные сообщения и базовые принципы продвижения. Подойдет тем, кто хочет осмысленно продвигать продукт, услугу или личный проект.",
       "images": [
-        { "src": "/images/skills/156_1.jpg" },
-        { "src": "/images/skills/156_2.jpg" },
-        { "src": "/images/skills/156_3.jpg" },
-        { "src": "/images/skills/156_4.jpg" }
+        { "src": "/images/skills/business_and_career_1.jpg" },
+        { "src": "/images/skills/business_and_career_2.jpg" },
+        { "src": "/images/skills/business_and_career_3.jpg" },
+        { "src": "/images/skills/business_and_career_4.jpg" },
+        { "src": "/images/skills/business_and_career_5.jpg" }
       ]
     }
   ]
