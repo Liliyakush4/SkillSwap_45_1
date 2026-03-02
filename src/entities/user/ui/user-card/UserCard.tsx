@@ -7,7 +7,6 @@ import { Avatar } from '@shared/ui/Avatar';
 import { LikesCounter } from '@features/favorites/ui/LikesCounter';
 import { SkillPlate } from '@shared/ui/skill-plate/SkillPlate';
 import { Button } from '@shared/ui/Button';
-import { getSkillColorVar } from '@shared/ui/skill-plate/utils/getSkillColorVar';
 import clockIcon from '@shared/assets/icons/common/icon_clock.svg';
 
 const SKILLS_VISIBLE_LIMIT = 2;
@@ -47,7 +46,7 @@ export const UserCard: React.FC<UserCardProps> = ({
             key={skill.id}
             variant="default"
             text={skill.text}
-            colorVar={getSkillColorVar(skill.categoryId)}
+            colorVar={skill.colorVar}
           />
         ))}
 

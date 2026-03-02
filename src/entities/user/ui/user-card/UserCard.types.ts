@@ -2,6 +2,7 @@ export type SkillBadge = {
   id: number;
   text: string;
   categoryId: number;
+  colorVar?: string;
 };
 
 export type CardHeight = 'regular' | 'compact' | 'auto' | 'full';
