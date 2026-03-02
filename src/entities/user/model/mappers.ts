@@ -8,6 +8,7 @@ import type {
 
 export interface MapUserToUserCardOpts {
   about?: string;
+  showAbout?: boolean;
   showLike?: boolean;
   likesCount?: number;
   isLiked?: boolean;
@@ -67,9 +68,9 @@ export const mapUserToUserCardProps = (
     name: user.name,
     city,
     age,
+    about: opts?.about ?? user.about,
     skillsOffered,
     skillsWanted,
-    ...(opts?.about !== undefined ? { about: opts.about } : {}),
   };
 
   const finalProps: UserCardProps = {

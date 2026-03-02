@@ -19,6 +19,7 @@ export const UserCard: React.FC<UserCardProps> = ({
   skillsOffered,
   skillsWanted,
   about,
+  showAbout = false,
   showLike = true,
   likesCount,
   onLikeClick,
@@ -86,7 +87,7 @@ export const UserCard: React.FC<UserCardProps> = ({
       </div>
 
       <div className={styles.skillsSection}>
-        {about && !onMore && <div className={styles.about}>{about}</div>}
+        {showAbout && about && !onMore && <div className={styles.about}>{about}</div>}
 
         <div className={styles.skill}>
           <h4 className={styles.skillsLabel}>Может научить:</h4>

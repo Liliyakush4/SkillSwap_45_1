@@ -54,6 +54,7 @@ export default function SkillPage() {
   const userData = mapUserToUserCardProps(db, user, {
     onLikeClick: () => dispatch(toggleFavorite(user.id)),
     showLike: false,
+    showAbout: true,
   });
 
   const skillData = db.skillsById[user.skillsOfferedIds[0]];
@@ -163,6 +164,7 @@ export default function SkillPage() {
           city={userData.city}
           age={userData.age}
           about={userData.about}
+          showAbout={true}
           skillsOffered={userData.skillsOffered}
           skillsWanted={userData.skillsWanted}
           showLike={userData.showLike}
